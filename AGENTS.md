@@ -47,6 +47,35 @@ features/ (UI, Riverpod providers)
 - No comments unless the user asks.
 - Match existing file conventions; work one layer at a time.
 - After any change, read the full diff yourself.
+- Security gate: before any commit touching auth, storage, or import/export,
+  load the owasp-security skill, review the diff, and read its findings;
+  then present them and get user approval before the commit goes through.
+  Never commit those layers silently.
+- Always use context7 (query-docs / resolve-library-id) for library/API docs
+  or version-specific code examples — never answer from memory on drift,
+  riverpod, drift_flutter, sqlite3, or Flutter APIs.
+
+## Universal work rules (Karpathy)
+
+1. THINK BEFORE CODING — state every assumption aloud. If a doc is ambiguous,
+   present the interpretations and ask — never pick silently. If a simpler
+   path exists, say so. Silent assumptions are the exact failure mode the
+   DecisionLog exists to catch.
+2. SIMPLICITY FIRST — minimum code that satisfies the doc: no features no one
+   asked for, no speculative abstractions or "flexibility" flags, no error
+   handling for impossible scenarios. If 200 lines could be 50, rewrite. Test:
+   "would a senior engineer call this overcomplicated?"
+3. SURGICAL CHANGES — every changed line must trace to the task. Don't improve
+   adjacent code, comments, or formatting; match existing style even if you'd
+   write it differently. Mention unrelated dead code, don't delete it; do clean
+   up orphans your own change created.
+4. GOAL-DRIVEN EXECUTION — turn tasks into verifiable goals: write the failing
+   test first, then make it pass. For multi-step work, state `step -> verify`
+   checks and don't claim done until each passes (flutter analyze / flutter
+   test).
+
+Tradeoff: these rules bias toward caution over speed — trivial fixes use
+judgment.
 
 ## Commands
 

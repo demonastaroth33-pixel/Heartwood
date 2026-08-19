@@ -37,8 +37,10 @@ O1 (ACCEPTED) — Schema gap fix: templates become first-class storage.
    + workout_templates (id, name, createdAt, updatedAt)
    + workout_template_exercises (id, templateId FK, exerciseId FK,
      order, targetSets, targetReps, pairWith?)
-   Weekly plan slots reference templates; sessions copy template rows into
-   own set rows (frozen history). Template designer + paste parser write
+   Weekly plan slots reference DAY templates (per A7 — workout templates
+   are reached via day-template workout-kind slots); sessions copy
+   template rows into own set rows (frozen history). Template designer +
+   paste parser write
    this table. Additive migration.
 O2 (ACCEPTED) — Bodyweight exercises get real records: record = best
    clean REP COUNT (no Epley, no fake kg); optional addedLoadKg per set
@@ -76,7 +78,8 @@ O6 (ACCEPTED, amended by audit A1) — Backup/export addendum: new
     exerciseMuscleGroups, exercises (seeded-lookup user rows),
     bodyMetrics, phases, deloadMarkers, nutrition_logs, nutrition_
     recipe, meal-types lookup, day_templates, day_template_slots,
-    routine_days, routine_slot_logs. Lookups export via the
+    routine_days, routine_slot_logs, periods (trip records — user rows
+    survive restore). Lookups export via the
     "user rows survive restore" rule (areas + exercises + meal types,
     all seeded-and-extendable); events already covered;
     formatVersion-bumped, additive. Fitness data is metadata-size →
@@ -184,7 +187,9 @@ F2 REST-DAY PATTERN DETECTION (COMMITTED by user pick): sustained
     a-row) → Coach pattern alert + suggest moving volume to a training
     day or a deload (item 32); occasional = silent/neutral; advisory
     only, no XP/no punishment; lands in check-in (34) + calendar week
-    view. Zero schema.
+    view; routes through the quiet-week/period-quiet preconditions like
+    every Coach rule (S13-011 carry-over list) — rest-day training inside
+    a period/vacation never fires a pattern alert. Zero schema.
 F4 TEMPLATE CLONING (COMMITTED by user pick): one-tap "Duplicate
     template" → variant copy (exercises/sets/reps/order/pairings) for
     new phases or splits. Trivial.
@@ -502,7 +507,11 @@ history = ALWAYS DERIVED by walking sessions chronologically (per-exercise
 running best). workout.pr events exist for Coach/gamification/realtime toast
 ONLY — never the truth for vault or achievements. Consequence (in-place edits
 are safe): editing a session's sets OR deleting it simply re-derives everything;
-no event surgery, no stale PR. Do-not-veto-this lightly — contradicts nothing
+no event surgery, no stale PR. XP SYMMETRY (audit MED-13): when re-derivation
+removes a previously-fired PR-XP (session set edit/delete), the gamification
+engine writes a NEGATIVE XP EVENT (S13-014 symmetry, analogous to
+habit.completed_revoked) so totals stay reconciled; PR XP never resurrects
+without a fresh real PR. Do-not-veto-this lightly — contradicts nothing
 else once unified.
 
 Naming/architecture optimization — ONE canonical strength entry point:
@@ -619,6 +628,10 @@ the canonical daily trend may be FIRST weigh-in of the day (morning fasted
 — consistent); later same day entries logged but excluded from derived
 series; honors O3 rolling average; no new storage schema since weigh-ins
 already typed rows (all stored).
+FIRST-OF-DAY DELETION (audit LOW-11): deleting the canonical first row
+promotes the next same-day row; the derived series for that day changes
+retroactively — accepted display-side behavior, consistent with
+delete-and-re-derive everywhere.
 Bulk reality: first 1–2 wks of a bulk show a water/glycogen jump on the
 scale — handled by the locked 7–14d rolling average (item 24/O3) + calm
 Coach line; no seam-growth caveat.
@@ -709,6 +722,13 @@ source='fooddb'. New producer only — no schema change.
 
   SAVED/SMART LIST: anything ever logged floats to the top of the search
   (local muscle memory, MyFitnessPal-style, but entirely local).
+  SAVED-FOODS FATE (audit MED-10): the saved list is DERIVED from
+  nutrition_logs history — a user's "saved food" IS a row they actually
+  logged (macros copied from the source at log time); no separate table,
+  so backup fate is automatic (nutrition_logs rides the O6/A1
+  enumeration) and restore can never wipe a saved food. The
+  nutrition_food_cache stays regenerable-only — nothing user-authored
+  ever lives there.
 
   SEARCH SHAPE (audit 5.2): results are capped top-N (≈20–50); the app
   downloads only picked rows; lookups cache into ONE table
@@ -753,7 +773,8 @@ error over ~2 weeks (item 25 convergence) — honesty by design.
 ## End of full-ledger audit (A/B/C series complete)
 
 Fixes locked this round: A1 backup enumeration incl. nutrition + routine
-tables; A2 TRUE cross-device entity sync (new required sync plane,
+tables + periods (trip records); A2 TRUE cross-device entity sync (new
+required sync plane,
 mechanism per D019); A3 nutrition.logged + body.weighed metadata-only
 events (single behavior log honored); A4 Coach weekly review merged into
 the Sunday check-in (one weekly surface); A5 physique photos anchored to
@@ -765,6 +786,30 @@ basis; B5 week_plan_slots.dayTemplateId naming; C1 meal reminders are
 on-open catch-ups, never push; C2 streak ±20%→±10% + weekly deviation
 reporting; C4 one-tap "track this exercise". C3/C5/C6 reviewed-only.
 ALL CHANGES ARE PENDING FINAL USER APPROVAL before any docs/ write.
+
+## LABEL FAMILIES — DISAMBIGUATION LEGEND (audit LOW-23)
+
+Audit labels repeat ACROSS independent families in this file; citations
+must qualify them (e.g. "resolve-B3" vs "audit-B3") or use section
+references. Families:
+
+- backup-A1–A6    S12 fix summary (enumeration / sync / events / weekly
+                  review / physique anchor / week recap)
+- census-A1–A4    S13-045 trophy-census corrections (incl. its strength-C2
+                  reference — the est-1RM÷rolling-BW ratio definition)
+- routine-A1–A7   S20 daily-routine audit round 2 + S10-004's event-A3
+                  (nutrition/body event coverage) — NOT backup-A3
+- audit-B1–B4     S12/S21 audit fixes (record modes / strength kcal /
+                  fully-logged / TDEE freeze)
+- resolve-B1–B5   B1–B5 resolution entry (re-fire map / Real Progress /
+                  On Target / weekly checkpoint / ghost tolerance)
+- audit-C1–C6     S11/S12 audit fixes (meal reminders / streak window /
+                  C3+C5+C6 reviewed-only / track-this / seeds / band)
+- resolve-E1–E3   E1–E3 resolution entries (count-in-window / settings
+                  knob / Perfect Month)
+- spec-E0–E13     S13-016 achievement spec shared trigger engine
+
+Same letter ≠ same family — always qualify.
 
 ## M0/M1/M2 existing-system audit (LIVING SECTION — ledger-informed notes)
 
@@ -802,14 +847,27 @@ discussion, recorded as a starter set):
   with only "daily note / nudge / weekly review". The full kind set the
   ledger uses MUST be enumerated during the docs pass as a single
   dictionary (kind + payload shape each): daily_note, nudge, briefing,
-  check_in_weekly, nutrition_checkup, milestone_review, phase_close,
+  check_in_weekly, nutrition_checkup, milestone_review_goal,
+  milestone_review_anniversary, phase_close,
   pattern_alert. No schema change; a documentation-only list so the
   kinds stay finite and no two labels mean the same thing.
 - M2 ANALYTICS → the Analytics Engine spec = "one H3 owner function per
   stat, all views consume" (the ledger's list: rollingAvgWeight,
   deriveMacros, adherenceWeek, strengthSnapshot, dayActivityScore,
-  totalVolume). No generic-aggregator meta-framework — the owner-function
-  list IS the engine's catalog.
+  totalVolume, goalProgress(goalId) — the single weight/strength goal
+  owner: linear start→target interpolation anchored on the goal's
+  baseline via rollingAvgWeight; item 27's deadline grading (remaining ÷
+  remaining days) is its sub-view; F1's projection line derives from the
+  same roll). No generic-aggregator meta-framework — the list above is
+  the SEED; the full consolidated owner-function catalog (incl. every
+  M2/trophy owner: sameMonthDay, dayDomainPresence, phaseStartWindow,
+  phaseAdjacency, yearlyPass, consecutiveYears, anniversaryWindow,
+  rollingWindowMean, est1RM, qualifyingEntry, robotOverlapWindow/
+  runAlive) is emitted in the Analytics Engine spec during the docs pass
+  and is the authority there. Pace language: one shared helper
+  paceVerdict(target, rollingTrend) serves phase pace (S1-006), goal
+  pace (goalProgress), and F1 projections; the Coach always cites the
+  owner function's verdict and quotes the number.
 - M2 COACH → ACHIEVEMENT RECOGNITION TIE-IN (LOCKED, user yes):
   one-direction only — the Coach reacts to gamification events
   (achievement.unlocked, level.reached) as recognition material; it
@@ -876,11 +934,14 @@ discussion, recorded as a starter set):
   at goal end — either after the user-declared goal.completed (won
   goals) or on deadline expiry WITHOUT completion (expired goals);
   NEVER mid-run (that belongs to the weekly/monthly report types).
-  Two vintages: WON-goal card follows the facts (target hit, dates,
-  one-line derived reflection — all stats, no text quoting); EXPIRED-goal
+  Two vintages: WON-goal card follows the facts (computed final value
+  always shown next to target — the user declaration is only the trigger,
+  the computed value is the fact; dates, one-line derived reflection —
+  all stats, no text quoting); EXPIRED-goal
   card = "window closed, here's where you started, here's what to carry
-  forward" with ZERO blame language. milestone_review is an auto-written
-  coach_outputs row, deletable like any Coach line. XP ruling (kills
+  forward" with ZERO blame language. milestone_review_goal is an
+  auto-written coach_outputs row, deletable like any Coach line. XP
+  ruling (kills
   contradiction #3): REVIEWS NEVER GIVE XP — weekly review loses its
   small-XP reward in the docs pass and milestone review gets none
   either; all reviews are earned-honor-only, no coinage. Gamification.md
@@ -1814,6 +1875,9 @@ what will reset (audit 8.1); no other fluff.
 Group 1 GENERAL (extends existing settings): display name · timezone ·
 theme (dark default, UIUX "theme-able from day one") · WEEK STARTS ON
 (Monday default; display-only — routines stay stored by weekday index).
+Effect (audit LOW-24): shifts the calendar week-grid first column AND
+the weekly checkpoint close day together — one owner, both surfaces;
+A Week Whole keeps ISO Mon–Sun trophy weeks regardless (G10).
 
 Group 2 COACH: strictness (supportive/balanced/strict, default balanced)
 · WEEKLY REVIEW DAY (default Sunday — item 34 "configurable day") ·
@@ -1835,8 +1899,9 @@ group (item 31, settings-editable).
 Group 4 NUTRITION: height/age/sex/activity factor (NU6/I9 settings keys)
 · MANUAL TDEE OVERRIDE (closure 3 + B4 freeze) · protein g/kg per phase
 (cut 2.0 / bulk 1.8 / maintain 1.6 — NU7) · fat floor g/kg (0.6, editable
-up) · quiet meal reminders (default on — C1 on-open catch-up) ·
-fully-logged streak window ±10% (C2, tunable). ADVANCED: backfill bound
+up) · quiet meal reminders (default on — C1 on-open catch-up).
+ADVANCED: fully-logged streak window (C2, ±10% default — Advanced-only
+knob, clamped 5–15%) · backfill bound
 (normal ≤24h vs historical — closure 6) · macro-collision priority
 (default keep protein, drop fat — NU11) · FOOD MACRO LOOKUP (default ON —
 NU13; OFF = plain manual entry).
@@ -1924,7 +1989,8 @@ becomes a section in the check-in").
   after the due date — one-tap opens it; once only, no overdue nag (mirrors
   C1 catch-up semantics).
 - DELIVERY: user-approved design — a `coach_outputs` row, kind =
-  "milestone_review", same analytics → rules → reflection pipeline; it
+  "milestone_review_anniversary", same analytics → rules → reflection
+  pipeline; it
   renders as a SECTION of the merged Sunday check-in (H2/A4) when due,
   never a standalone screen. Dashboard shows a "your N-month review is
   ready" card → check-in section. Rides backup/export/sync like every
@@ -1992,9 +2058,13 @@ J3 BATCH IMPORT OF PAST ENTRIES (LOCKED, user yes): Settings (Data)
     tables — existing entry columns + one flag. DAYKEY = the ORIGINAL
     date (calendar tint/heartmap/history land on true dates, never the
     import day — audit optimization 3). DEDUPE (audit fix 2): re-import
-    of the same file is BLOCKED by (original date + body-content-hash)
-    — preview reports "N already imported, M new" and only the new M
-    rows are added; the same memory can never exist twice.
+    of the same file is BLOCKED by (original date + body-content-hash);
+    the hash is captured AT IMPORT TIME and stored in one immutable
+    column next to the `imported` flag — dedupe always checks the stored
+    value, never the live body, so editing an imported entry later can
+    never re-enable a duplicate import. Preview reports "N already
+    imported, M new" and only the new M rows are added; the same memory
+    can never exist twice.
     ACHIEVEMENT/CADENCE EXCLUSION (audit fix 5): anything counting
     "documented days", journal cadence, or journal-driven counters
     EXCLUDES rows carrying the `imported` flag — a historical import
@@ -2082,6 +2152,10 @@ J7 AUDIT FIXES (user approved ALL):
     adopted marker, meter math) is written against the LOGICAL schema
     (media_attachments); no IndexedDB/Drift assumption — holds for
     whichever backend Session C locks.
+    g) BROWSER COVERAGE (audit MED-16) — AUTO-ADOPT (persisted folder +
+    auto-scan) requires Chromium (File System Access API — Chrome/Edge;
+    the persisted handle is re-granted silently on relaunch); other
+    browsers degrade to manual folder pick per session, no auto-scan.
 JOURNAL AUDIT OPTIMIZATIONS (user: apply all):
     1) MONTH FACT LINE — filter-aware wording: "N days logged" only in
     the All view; in the Journal filter the line reads "N days
@@ -2103,8 +2177,8 @@ R2 DAY TEMPLATES (LOCKED): named reusable day plans ("School Day",
 "Weekend", "Holiday") = day_templates (id, name, createdAt, updatedAt) +
 day_template_slots (id, templateId, time, kind, title, link — e.g.
 recipeId for meal slots, workoutTemplateId for workout-kind slots,
-notes?). Switchable per day of week — parallel Mon–Sun calendar overlay
-(reuses the workout week-calendar UX pattern).
+notes?). Binding: weekly routine (R7) + per-day override (R8) per A6 —
+no independent per-day toggle.
 R3 WEEK BINDING (LOCKED, reframed — see R7): the week calendar binds
 DAY TEMPLATES per Mon–Sun slot (a "weekly routine" = one 7-slot binding
 list, e.g. [School,School,School,School,School,Weekend,Weekend]). The
@@ -2156,10 +2230,19 @@ protein hit-rate. Zero logging added, analytics-only, mirrors item 34.
 Denominators (audit 2.4): X/Y and X/7 count only days that HAVE the
 slot in the bound template (workout-kind / weigh-in); days without one
 are excluded from both sides. Single owner: adherenceWeek().
+STRIP WINDOW (audit LOW-6): the strip always summarizes the CALENDAR
+week (Mon–Sun — the grid it sits above; glance = the week you see); the
+weekly verdict / merged check-in uses the configured review-day window
+(S15-003) and the strip labels those dates explicitly — glance and
+verdict never silently mixed.
 R12 MORNING BRIEFING CARD (LOCKED): dashboard daily card — today's slots
 in order (per chosen routine + overrides), done-vs-missing markers,
 NU12 macro-gap bar, one-tap log/pack; quiet reminders point here; the
-single daily surface.
+single daily surface. BACKFILL SEMANTICS (audit LOW-18): a meal
+backfilled to an earlier date (NU4) marks its slot done in THAT date's
+routine view, never today's; the macro-gap bar always sums the day's
+target vs the day's full receipt via deriveMacros(dateKey) — display may
+lag, numbers never disagree.
 
 ## Daily routine — audit round 2 (scrutiny fixes, LOCKED)
 
@@ -2271,7 +2354,8 @@ fix): the Coach system already plans a global "weekly review"
 (coach_outputs weekly, per CoachSystem.md M2) SEPARATE from the fitness/
 nutrition Sunday check-in (34/H2). Two weekly summaries = the exact
 double-surface trust problem H2 kills, at the whole-app level. RULE: the
-fitness check-in IS the weekly review — one Sunday screen, one pipeline:
+fitness check-in IS the weekly review — one weekly review surface (the
+day is configurable — Sunday is only the default, S15-003), one pipeline:
 top = Coach weekly section (habits, journaling, life notes), bottom =
 fitness/nutrition sections (gym, weight, food, PRs, macro gaps). Nothing
 is deleted; the Coach's weekly review becomes a section inside the
@@ -2327,9 +2411,9 @@ fix): closure (5) requires "kcal ±20% AND the day's planned meal types" —
 but "planned meal types" only exists when a day template is bound.
 Holiday / first day / travel / off-template day = the day could NEVER
 count toward the streak, silently. RULE (two valid paths, one concept):
-  routine-active day → kcal ±20% AND planned meal types logged (strict,
-  as locked).
-  no-routine day → kcal ±20% AND at least 2 actual meal logs.
+  routine-active day → kcal ±10% AND planned meal types logged (strict,
+  as locked — ±10% per C2).
+  no-routine day → kcal ±10% AND at least 2 actual meal logs (per C2).
 Streak works from day one, before any routine setup; holiday logging
 still counts honestly.
 
