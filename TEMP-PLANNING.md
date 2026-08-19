@@ -282,8 +282,9 @@ deload_markers
 
 ## Session 3 — workout side LOCKED (design-level)
 
-13. Workout layering: named WEEKLY PLANS (7 slots Mon–Sun, design-mode
-    week calendar overlay, each slot = rest or a workout template) →
+13. Workout layering: named day-template bindings (7 slots, per A7 —
+    the weekly routine binds day templates; workout templates are
+    reached via workout-kind slots) →
     performed SESSIONS (copy of that day's template; frozen, append-only
     history). Plans editable/switchable anytime; edits affect future only.
 14. Exercises lookup (seeded, user-extendable like areas) gains muscle
@@ -1650,7 +1651,8 @@ so). Default lives in settings;
   - B3 "On Target" target band was undefined — **LOCKED (user yes,
     Aug 09): the weekly average (5/7-day floor) must sit inside
     ±10% of the day's target — same ±10% band as C2 (fully-logged
-    day tolerance). One number, used by both.**
+    day tolerance). One number, used by both — (±10% default; same
+    Advanced-only knob as C2, clamp 5–15%).**
   - B4 "weekly checkpoint" was undefined — **LOCKED (user yes,
     Aug 09): a weekly checkpoint = the rolling-average evaluation
     at the CLOSED calendar week (Sun), once per week. Thin weeks
@@ -1875,17 +1877,21 @@ what will reset (audit 8.1); no other fluff.
 Group 1 GENERAL (extends existing settings): display name · timezone ·
 theme (dark default, UIUX "theme-able from day one") · WEEK STARTS ON
 (Monday default; display-only — routines stay stored by weekday index).
-Effect (audit LOW-24): shifts the calendar week-grid first column AND
-the weekly checkpoint close day together — one owner, both surfaces;
-A Week Whole keeps ISO Mon–Sun trophy weeks regardless (G10).
+Effect (audit LOW-24): shifts the calendar week-grid first column ONLY
+— display; the weekly checkpoint close day stays owned by the review-day
+window (S15-003) and B4's closed ISO week (G10); A Week Whole keeps ISO
+Mon–Sun regardless (G10).
 
 Group 2 COACH: strictness (supportive/balanced/strict, default balanced)
 · WEEKLY REVIEW DAY (default Sunday — item 34 "configurable day") ·
 Coach notes in calendar day view (default on). Weekly-window rule
 (audit 1.5): the evaluation window = the 7 consecutive days ENDING the
-configured review day — single owner; the R11 strip, the merged check-in
-(H2/A4), and the Coach weekly aggregate all consume it; the calendar
-grid stays Monday-starts-only display. Milestone-review cadence
+configured review day — single owner; the merged check-in (H2/A4), the
+strip's weekly-verdict portion, and the Coach weekly aggregate all
+consume it; the calendar
+week-grid's first column follows WEEK STARTS ON (S15-002); the
+evaluation window and the checkpoint close day are unaffected.
+Milestone-review cadence
 (editable ladder: 1m / 3m / 6m / 1y / yearly, per milestone, or flat
 interval — see Milestone review section).
 
@@ -2055,7 +2061,8 @@ J3 BATCH IMPORT OF PAST ENTRIES (LOCKED, user yes): Settings (Data)
     history); imported entries carry a tiny "imported" flag so future
     views know they were typed later; NO XP for imported content (the
     content-gate rewards new writing, not dumped history). No new
-    tables — existing entry columns + one flag. DAYKEY = the ORIGINAL
+    tables — existing entry columns + one flag + one immutable
+    import-hash column. DAYKEY = the ORIGINAL
     date (calendar tint/heartmap/history land on true dates, never the
     import day — audit optimization 3). DEDUPE (audit fix 2): re-import
     of the same file is BLOCKED by (original date + body-content-hash);
@@ -2187,7 +2194,8 @@ separate per-slot workout/routine kind is needed on the week — keep slotKIND
 later if you want standalone workout-less background, NOT required now.
 R7 WEEKLY ROUTINE SELECTION (LOCKED, user request): "weekly routines" are
 named, reusable 7-slot binding lists ("Term 1 School Routine" = Mon–Fri
-School Day + weekend). At the START OF EACH WEEK the user PICKS which
+School Day + weekend). At the START OF THE CALENDAR WEEK (first day per
+WEEK STARTS ON, S13-040 convention) the user PICKS which
 weekly routine governs that week (or "continue current"). A routine can be
 assigned FOR A SPECIFIC PERIOD (start week → end week, e.g. a school term
 or holiday block) → after the period ends, falls back to the DEFAULT
@@ -2224,14 +2232,16 @@ R10 WEIGH-IN SLOT (LOCKED): new slot kind weigh-in — routine expects a
 morning weigh-in (one tap → body_metrics type=weight; NU8 first-of-day
 rule applies; feeds O3 rolling avg / goals / phase pace). Missing flag in
 the day view. Natural home for the future smart scale (NU5 auto-writer).
-R11 WEEK RECAP (LOCKED): week view strip above Mon–Sun grid — derived
+R11 WEEK RECAP (LOCKED): week view strip above the displayed week grid
+— derived
 summary: gym adherence X/Y, packs eaten ✓, weigh-ins X/7, PRs count,
 protein hit-rate. Zero logging added, analytics-only, mirrors item 34.
 Denominators (audit 2.4): X/Y and X/7 count only days that HAVE the
 slot in the bound template (workout-kind / weigh-in); days without one
 are excluded from both sides. Single owner: adherenceWeek().
-STRIP WINDOW (audit LOW-6): the strip always summarizes the CALENDAR
-week (Mon–Sun — the grid it sits above; glance = the week you see); the
+STRIP WINDOW (audit LOW-6): the strip always summarizes the DISPLAYED
+week (the grid it sits above — first column per WEEK STARTS ON; glance =
+the week you see); the
 weekly verdict / merged check-in uses the configured review-day window
 (S15-003) and the strip labels those dates explicitly — glance and
 verdict never silently mixed.
