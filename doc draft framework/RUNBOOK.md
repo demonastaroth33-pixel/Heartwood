@@ -33,9 +33,13 @@ Operational companion to
 
 ## How to run a stage
 
-1. **Fresh session each stage.** Open opencode, switch to the stage's
-   agent (agent switcher), and send one message: `Run the stage now.` The
-   agent body IS the stage prompt — nothing else to paste.
+1. **Fresh session each stage.** Open opencode and invoke the stage's
+   subagent by @-mention in the input — e.g. `@a1a-indexer Run the stage
+   now.` (type `@` to open the agent autocomplete). Tab only cycles the
+   built-in PRIMARY agents (build/plan); the stage agents are subagents
+   and are invoked by mention. The agent body IS the stage prompt —
+   nothing else to paste. Subagents start with fresh context, which is
+   the framework's "one stage = one fresh session" rule in action.
 2. The agent writes its artifact to disk and stops for review. It will not
    proceed to later stages by itself.
 3. **Git checkpoint (mandatory, §1):** commit the artifact after every
