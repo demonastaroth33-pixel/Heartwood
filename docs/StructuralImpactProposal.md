@@ -20,6 +20,7 @@
 **Do-not-build / do-not-resurrect** (binding regardless of verdicts): I6, I8, N3, N5, N6, N8, F3, Part-B #2/#3/#4/#7, RPE column, FUT-1, E-clash #2 (unlabeled gap — never invent), anything beyond the L248 closed list (intent brief §5.5; ledger L052/L054/L058/L060/L061/L064/L068/L216/L265/L270/L248).
 
 **Doc-discipline**: StorageSpikeSessionA.md is never a target; StorageSpikeStatus.md default read-only; StorageDecision.md is verdict+criteria (no target rows); UIUX.md is a live target (ledger line 7).
+**Explicit no-ops (verified, not skipped — F3/F4 review closure)**: Requirements.md and AGENTS.md are NOT targeted by any ledger row (intent brief reference table, lines 149–150) — no change expected; the build-time dependency entries (J5 PDF, NU13 USDA FDC + OpenFoodFacts, J7g auto-adopt) get their DecisionLog entries separately at build time, not via this integration. README.md / Vision.md reference-only; DevelopmentWorkflow.md receives content ONLY if Stage C item 6 picks the SequencingNotes append.
 
 ---
 
@@ -34,10 +35,12 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 | C1.1 | Database.md | §Logical Schema/Entities (lines 11–28) has no workout/nutrition/body tables; event list (line 68) holds `future: workout.completed, study.session, ...` | Add health-area table groups (workouts, exercise_sets, body_metrics, nutrition, phases) following the entity+event pattern; `workout.completed` promoted to a real metadata-only event type (exercise count, total sets/volume — never set detail) | new-addition + renames-placeholder (the `future:` comment) | L001, L002; S002; [Stage C] L001–L010 verdicts; D041 |
 | C1.1 | Architecture.md | §System Diagram (line 33) lists `goal.progress` and `(future: workout.completed, study.session)`; §Event Model table (57–78) | Add `workout.completed` to the diagram's event list; keep study.session future; document metadata-only payload | extends-existing | L002; D041 |
 | C1.2 | Database.md | No exercise lookup; `areas` is the only seeded/user-extendable lookup precedent (line 20) | New tables: `exercises` (seeded ~44-list verbatim, user-extendable like areas, categories push/pull/legs/core/cardio, tracked/big-5 defaults), `exercise_muscle_groups` (junction, primary/secondary), `muscle_groups(parentId?)` (2-level); `rpe?` STRUCK from any draft schema; seed list verbatim-critical | new-addition | L003, L012, L013, L265, L266, L267, L130; D041; S003 (no new inventions) |
-| C1.3 | Database.md | No workout template/session distinction in schema | New `workout_templates` + `workout_template_exercises` (first-class, pairWith? additive); performed sessions copy template rows (frozen, append-only); two-a-day allowed; sessions store kg (O8); nullable routineSlotLogId? handled in C8.3 | new-addition | L009, L011, L036, L035, L045, L046; D042; C8.1/C8.2/C8.3 (day-template layering, binder) |
+| C1.3 | Database.md | No workout template/session distinction in schema | New `workout_templates` + `workout_template_exercises` (first-class, pairWith? additive); performed sessions copy template rows (frozen, append-only); two-a-day allowed; apply-deviation (O5) folds structure only, never weights, past sessions frozen, per-template opt-out (L041); slot-done rule: a plan slot counts DONE if ANY session references it, freeform = "done differently" (S028); sessions store kg (O8); nullable routineSlotLogId? handled in C8.3 | new-addition | L009, L011, L036, L035, L045, L046, L041; D042; C8.1/C8.2/C8.3 (day-template layering, binder); S028 |
 | C1.3 | Architecture.md | §Data Flow (105–117) describes one-write-path entity+event transactions | Document additive migration discipline for the template/session layer (copy, not link; edits future-only) | extends-existing | L011, L036, L053, L232; D042 |
 | C1.4 | Architecture.md | §Modules table (90–103) has no strength owners; §Event Model lacks `workout.pr` | Add est1RM single-function owner (TENSION 6), strengthSnapshot(exerciseId, asOf) canonical reader, record-mode routing (weight vs rep-count); PR source-of-truth rule: ladder/vault ALWAYS derived by session-walk, workout.pr = Coach/toast ONLY; negative-XP event on re-derivation revoking PR-XP | new-addition | L014, L015, L017, L031, L117, L144, L246, L247, L049, L020, L034, L037, L047, L048; D043; S029/S030 |
 | C1.4 | Gamification.md | §XP Sources (lines 14–23) has no PR row; §Levels & Achievements has no record-mode wording | Add record-mode-aware PR wording (PR XP small, milestone tiers, size-weighted ≥2.5 kg, zero XP for logging); state mode routing (rep-count mode has no 12-cap) | extends-existing | L016, L117, L037, L144; D066 / D043 |
+| C1.4b | Gamification.md | No strength-standards / absolute-ladder content (achievements deferred to M2) | Strength standards = FROZEN 5-tier seed verbatim — 4 canonical lifts only (bench/squat/DL/OHP, men+women percentile-anchored, L143); "Strength Standard Reached" fires per-lift-per-tier ranks 2/3/4 ONLY — Beginner(1) and Elite(5) NEVER fire a trophy (L160, S047); MMA absolute-lift ladders fire ONLY on a real logged set, no est1RM/band substitution (L181, S049); overall level/item-19 = display-only profile grade, never a trophy or gate | new-addition | L143, L160, L181, L182; D044; S047/S049; XD-5 |
+| C1.4c | Architecture.md | §Modules (90–103) lists strength owners but no formula-constants module | Document formula-constant module: Mifflin-St Jeor (BMR/TDEE), Wilks/DOTS, Epley (1RM) — plain Dart pure functions, NO package/network deps; public formulas, not licensed; constants non-togglable per Settings NOT-OFFERED (L007) | new-addition | L007; D044; C10.1 (NOT-OFFERED), C2.3 (Mifflin reuse) |
 | C1.5 | Database.md | workouts would be new (C1.1); no cardio columns exist | Additive workout columns: kind strength\|cardio, durationSec?, distanceKm?, avgEffort?, kcalBurned?; MET formula verbatim-critical; manual kcalBurned replaces the strength band (NU9/B2) | new-addition + extends-existing | L033, L082, L088, L118, L131; D045; C2.3 (TDEE math) |
 | C1.5 | Architecture.md | §Modules has no TDEE burn model | Document TDEE derivation split: non-training Mifflin baseline + derived training burn added separately; constants non-togglable | new-addition | L082, L088, L118, L023; D045; C2.3 |
 
@@ -45,14 +48,14 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 
 | # | Doc | Current state | Proposed change | Type | Depends on |
 |---|---|---|---|---|---|
-| C2.1 | Database.md | No phases table; no baseline mechanism | New `phases` (type bulk/cut/maintain, startDate, endDate? null=ongoing, targetWeeklyRateMin/Max?); ONE active phase; baseline weight anchored at start (O3 rolling average) | new-addition | L022, L024; D047; C2.4 (rolling owner) |
+| C2.1 | Database.md | No phases table; no baseline mechanism | New `phases` (type bulk/cut/maintain, startDate, endDate? null=ongoing, targetWeeklyRateMin/Max?); ONE active phase; baseline weight anchored at start (O3 rolling average); final shape of the phase-rate↔macros feedback DEFERRED to the nutrition session — already closed (S008) | new-addition | L022, L024; D047; C2.4 (rolling owner); S008 |
 | C2.1 | CoachSystem.md | §Reflection Generator lists outputs; no phase-close surface | Add phase-close report rendering (N9) as a derived output + one Coach line; coach_outputs kind `phase_close`; feeds milestone-review phase blocks (L264) | new-addition | L065; D047; C4.3 (kind dictionary) |
 | C2.2 | Architecture.md | §Modules Coach pipeline (Analytics → Rule → Reflection) exists | Add paceVerdict(target, rollingTrend) shared helper; thin-data RESTATED rule (no verdict/projection from a single point, always "Adjusting" label); pace stays in the existing Analytics → Rule → Reflection pipeline (no new subsystem) | new-addition | L005, L006, L039, L165; D046; C2.4 |
 | C2.2 | CoachSystem.md | §Rule Engine has goal_slip but no pace lines | Coach cites the owner verdict and quotes the number; bulk/cut pace lines (L276) as named rules | new-addition | L165, L276; D046/D051; C4.2 |
-| C2.3 | Architecture.md | No energy-balance math | deriveMacros(dateKey) = THE day-target owner (H3): Mifflin BMR × activity → TDEE; calorieTarget = TDEE + (rate × 7700)/7 with rate SIGNED; manual TDEE override freezes auto-recompute AND protein/fat basis (B4); protein cut 2.0 / bulk 1.8 / maintain 1.6, fat floor, carbs remainder; constants non-togglable | new-addition | L023, L078, L079, L086, L087, L120, L084, L083; D046; C2.4, C5.1 (receipt rows feed it) |
+| C2.3 | Architecture.md | No energy-balance math | deriveMacros(dateKey) = THE day-target owner (H3, single owner — S035): Mifflin BMR × activity → TDEE; calorieTarget = TDEE + (rate × 7700)/7 with rate SIGNED; manual TDEE override freezes auto-recompute AND protein/fat basis (B4); protein cut 2.0 / bulk 1.8 / maintain 1.6, fat floor, carbs remainder; constants non-togglable | new-addition | L023, L078, L079, L086, L087, L120, L084, L083; D046; C2.4, C5.1 (receipt rows feed it); S035 |
 | C2.3 | Database.md | settings table (line 21) has keys only (timezone, displayName, coachStrictness, ...) | Add Group-4 settings keys as schema-relevant keys (height/age/sex/activity factor, manual TDEE override, protein g/kg per phase, fat floor, food-lookup toggle) — settings keys, not profile fields (D003) | extends-existing | L026, L078, L079, L120, L257; D046/D055 |
 | C2.4 | Architecture.md | No rolling-average utility | rollingWindowMean(series, windowDays) = ONLY rolling math in the engine (TENSION 7); serves phase pace, goal pace, ratios, trophies, weight-goal pace; thin-data honesty floors inside | new-addition | L038, L039, L145; D046; C2.2, C3.1, C7.2 |
-| C2.4 | Database.md | body_metrics table is new (C1.1) | Document canonical-row rule: FIRST weigh-in of day = canonical daily trend; later same-day stored but excluded; deleting first row promotes next (retroactive re-derive accepted) | new-addition | L080, L081; D046; C12.2 (body.weighed events) |
+| C2.4 | Database.md | body_metrics table is new (C1.1) | Document canonical-row rule: FIRST weigh-in of day = canonical daily trend; later same-day stored but excluded; deleting first row promotes next (retroactive re-derive accepted — S033) | new-addition | L080, L081; D046; C12.2 (body.weighed events); S033 |
 | C2.5 | Gamification.md | §Streaks (lines 44–51) has grace and streak logic but no weekly-checkpoint/fully-logged-day/Real Progress | Add weekly-checkpoint definition (closed calendar week Sun, thin weeks <5/7 neither confirm nor reset, two consecutive non-thin weeks read); fully-logged-day definition (routine-active: kcal ±10% + planned meal types; no-routine: kcal ±10% + ≥2 actual meal logs); Real Progress thresholds +2.5/+5/+10/+20 kg in goal direction; On Target same ±10% band — ONE number, one Advanced-only knob clamped 5–15% | new-addition | L089, L119, L123, L124, L125, L127, L167; D068/D066; C5.1, C8.1 (meal slots) |
 | C5.1 (cross-ref) | [see §1.5] | — | — | — | — |
 
@@ -87,7 +90,7 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 
 | # | Doc | Current state | Proposed change | Type | Depends on |
 |---|---|---|---|---|---|
-| C5.1 | Database.md | No nutrition tables | New: `nutrition_logs` per-meal receipt rows (dateKey = ACTUAL eat date — NU4 backdating exception to I7; portion multiplier ON the row; source column), `meal_types` (seeded + user-extendable), `nutrition_recipe` (copy-in at save, never rewrite history); soft duplicate guard (NU4a) on school-end batch + morning-pack; day total = SUM of rows, never a stored day row | new-addition | L072, L073, L074, L075, L076; D062; C2.3 (targets), C8.3 (pack linkage) |
+| C5.1 | Database.md | No nutrition tables | New: `nutrition_logs` per-meal receipt rows (dateKey = ACTUAL eat date — NU4 backdating exception to I7; portion multiplier ON the row; source column), `meal_types` (seeded + user-extendable), `nutrition_recipe` (copy-in at save, never rewrite history); soft duplicate guard (NU4a) on school-end batch + morning-pack; day total = SUM of rows, never a stored day row; backfill bound: same-day/last-24h backfill = normal, OLDER dates = distinct historical-backfill mode that NEVER extends streak/check-up compliance (L090, S034); reviewed-no-change record: 00:30 snack display mismatch — logs under actual eat date, shows under previous day's slots, no rework (L128); NU status line: NU1–NU12 + add-ons locked (L268, status record) | new-addition | L072, L073, L074, L075, L076, L090, L128, L268; D062; C2.3 (targets), C8.3 (pack linkage); S034 |
 | C5.2 | Architecture.md | No producer seam | Producers pattern: scanner/OCR, smart scale, food-db lookup all print the SAME receipt row; `source` column is the hook; offline forever; DEPENDENCY flag: NU13 (USDA FDC + OpenFoodFacts) needs a DecisionLog entry before formalizing (no-new-dependencies rule) | new-addition | L077, L091; D062; C12.2 events; [Stage C]/build-time entry |
 | C5.2 | Database.md | No food cache table | `nutrition_food_cache` = ONE regenerable table, NOT in backup enumeration; lookups derived from nutrition_logs history ("saved food" IS a logged row) | new-addition | L091; D062; C12.2 |
 | C5.3 | UIUX.md | Dashboard blocks (lines 20–33) have no briefing content | Macro-gap bar lives INSIDE the R12 briefing card (Today fusion, C9.1): protein/kcal progress vs deriveMacros target; the single daily surface | new-addition | L085, L240; D063; C2.3 owner, C8.4, C9.1 |
@@ -120,7 +123,7 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 | C8.2 | Database.md | week_plans not yet in schema (it appears only in drafts L282) | **REMOVAL of standalone fitness week_plans scheduling + re-purpose**: week_plans/week_plan_slots become the routine-week binder (slots reference dayTemplateId — NOT workoutTemplateId, naming per audit-B5); workout templates keep their own tables (O1); one door to edit a workout; no second calendar | REMOVAL + renames-placeholder | L114, L121, L036, L230; D061; S027 (docs-pass immediate) |
 | C8.2 | Roadmap.md | M6+ "Productivity refinement: routines, projects" one-liner; no fitness-weekly-plan claim | No standalone fitness scheduler milestone is authored anywhere; routine replaces it as product scope (M2+ items) | extends-existing (authoring guard) | L114; D061; C8.1 |
 | C8.2 | CoachSystem.md | No plan/scheduler flow exists | Any Coach flow that would reference standalone plans is re-wired to routine slots; no new content needed today | — (verified no-op + guard) | L114; D061 |
-| C8.3 | Database.md | No performed-day model | New: `routine_days` (dateKey, templateUsedId snapshot frozen) + `routine_slot_logs` (status planned\|done\|skipped\|packed\|eaten); pack→meal linkage at TEMPLATE level; backfill marks slot done in THAT date's view; workouts gains nullable routineSlotLogId? | new-addition | L108, L110, L111, L116, L231, L237, L241; D061; C5.1 (pack→nutrition rows), C8.1 |
+| C8.3 | Database.md | No performed-day model | New: `routine_days` (dateKey, templateUsedId snapshot frozen) + `routine_slot_logs` (status planned\|done\|skipped\|packed\|eaten); pack→meal linkage at TEMPLATE level; kind IS the extension seam (like nutrition's source): meal → pre-timed nutrition rows + pre-fill from recipe, pack → carry-list + lunch claim, workout → workout-template link (session day pre-fills), activity/sleep → future hooks only (L233); backfill marks slot done in THAT date's view; workouts gains nullable routineSlotLogId? | new-addition | L108, L110, L111, L116, L231, L237, L241, L233; D061; C5.1 (pack→nutrition rows), C8.1 |
 | C8.4 | UIUX.md | Dashboard six-block list (lines 20–33); no briefing card | R12 briefing card = daily one-tap surface (today's slots, done-vs-missing, macro-gap bar) — fused into "Today" per C9.1; R11 week recap strip above the week grid (denominators count only days WITH the slot; strip window = displayed week); glance/verdict two display modes of ONE owner | new-addition + restructures-existing | L240, L238, L239, L242, L101; D061/D052/D053; C9.1, C9.3 |
 
 ### 1.9 C9 — Surface consolidation (multiple REMOVALs)
@@ -138,7 +141,7 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 
 | # | Doc | Current state | Proposed change | Type | Depends on |
 |---|---|---|---|---|---|
-| C10.1 | UIUX.md | No settings section (only nav mention line 11) | Author Settings per principles: H4 (a group appears only when the user has data — no Sync group until sync ships); two tiers Main + Advanced; search escape hatch; restore-defaults behind confirm dialog; Groups 1 GENERAL, 2 COACH, 3 FITNESS, 4 NUTRITION, 5 CALENDAR & MEDIA, 6 HABITS, 7 DATA & STORAGE, 8 SYNC (skeleton only, renders when sync ships); NOT-OFFERED guardrails; Group 5 gains resolve-E2 vacation-day threshold knob (default 14, verbatim) | new-addition | L253–L262, L133; D055; C4.5, C9.4, C12.1 (Group 8 gate), S061 |
+| C10.1 | UIUX.md | No settings section (only nav mention line 11) | Author Settings per principles: H4 (a group appears only when the user has data — no Sync group until sync ships; S067); two tiers Main + Advanced; search escape hatch; restore-defaults behind confirm dialog; Groups 1 GENERAL, 2 COACH, 3 FITNESS, 4 NUTRITION, 5 CALENDAR & MEDIA, 6 HABITS, 7 DATA & STORAGE, 8 SYNC (skeleton only, renders when sync ships); NOT-OFFERED guardrails; Group 5 gains resolve-E2 vacation-day threshold knob (default 14, verbatim) | new-addition | L253–L262, L133; D055; C4.5, C9.4, C12.1 (Group 8 gate), S061; S067 |
 | C10.1 | Database.md | settings table (line 21) key/value generic | Document settings keys as columns/options where schema-relevant (units kg\|lb, activity factor, TDEE override, protein per phase, food-lookup toggle, grace default, PO kill-switch...) — settings keys, never profile fields (D003) | extends-existing | L256, L257, L262, L183; D055; C2.3, C7.2 |
 
 ### 1.11 C11 — Journal & media features
@@ -170,11 +173,18 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 | # | Doc | Current state | Proposed change | Type | Depends on |
 |---|---|---|---|---|---|
 | C13.1 | ALL affected docs | Every doc describes the pre-integration state | Process rule governing HOW every other row applies: ledger = single source; docs rewritten to match it, never vice versa; nothing edited ad hoc; all changes pending final user approval; every downstream doc uses QUALIFIED family labels (backup-A vs census-A vs routine-A; audit-B vs resolve-B; audit-C vs resolve-E) — see §6 | process (applies to all rows) | TEMP 789/791–813/817–826; L281; D074; S001–S003 |
-| C13.2 | Roadmap.md | No feature-closure statement | Add closed-scope note for the fitness side (workouts, sets, exercises, templates, plans, phases, PR, vault, PO, cardio, volume, deload, injuries, adherence, goals, habits bridge, check-in, phase report; media deferred); N3/N5/N6/N8 + periodization stay park-able; add only when real usage says so | new-addition | L248; D060; S004 |
+| C13.2 | Roadmap.md | No feature-closure statement | Add closed-scope note for the fitness side (workouts, sets, exercises, templates, plans, phases, PR, vault, PO, cardio, volume, deload, injuries, adherence, goals, habits bridge, check-in, phase report; media deferred); N3/N5/N6/N8 + periodization stay park-able; add only when real usage says so; M2 phone↔PC parity principle: every feature/screen exists on BOTH platforms EXCEPT the PC archive (folder adoption + vault browser incl. J7 video library — PC-only, D035-consistent); capture NOT phone-exclusive; offline identical on both (L174) | new-addition | L248, L174; D060; S004 |
 | C13.2 | DecisionLog.md | D001–D040 only | Record feature-list closure as a decision (D060 theme) | new-addition | L248; D060 |
 | C13.3 | Database.md / Roadmap.md / DecisionLog.md | Draft schema shapes only in ledger (L282); Life Tree idea (L269); FUT-2..5 (L271–L274) | NONE of these may be drafted before Stage C APPROVE/REJECT/REFER (L269, L271–L274, L282); L282 treated as sketch with superseded columns (rpe? struck; week_plan_slots.dayTemplateId; routineSlotLogId) | gated — no drafting | L001–L010, L269, L271–L274, L282; S001/S003; C13.4 below |
 | C13.4 | Database.md | coach_outputs row line 22 lists 3 kinds | Full kind dictionary section (9 kinds verbatim — see C4.3); no two labels mean the same thing | extends-existing | L156; D051; S023 |
-| C13.5 | Architecture.md | No consolidated owner catalog | Analytics Engine consolidated owner-function catalog emitted during the docs pass and IS the authority there (seed list: rollingAvgWeight, deriveMacros, adherenceWeek, strengthSnapshot, dayActivityScore, totalVolume, goalProgress(goalId) + every M2/trophy owner); NO generic-aggregator meta-framework; rounding once, in the owner | new-addition (Track 2 artifact) | L165, L244, L168; D049; S024 |
+| C13.5 | Architecture.md | No consolidated owner catalog | Analytics Engine consolidated owner-function catalog emitted during the docs pass and IS the authority there (seed list: rollingAvgWeight, deriveMacros, adherenceWeek, strengthSnapshot, dayActivityScore, totalVolume, goalProgress(goalId) + every M2/trophy owner); NO generic-aggregator meta-framework; rounding once, in the owner | new-addition (Track 2 artifact) | L165, L244, L168; D049; S024; S066 (H3 single-owner discipline) |
+
+### 1.14 C14 — Session-UI, onboarding & lookup UX (D076 + D042-UI — added at Stage C audit)
+
+| # | Doc | Current state | Proposed change | Type | Depends on |
+|---|---|---|---|---|---|
+| C14.1 | UIUX.md | No session-UI / first-run content (only the six-block MVP dashboard) | Author: daily logging flow (plan-driven + editable, freeform/paste fallback — L019); last-time hint display with freshness tiers (<2wk full / 2–4wk quieted w/ date / >4wk collapsed — L021/L040); onboarding first-run (Mifflin inputs as Group-4 settings keys + proposed first weekly plan + seeded tracked exercises, ALL replaceable/clearable from day one — L055, S078); session comparison (side-by-side vs previous same-template, per-exercise deltas + volume delta + PR flag — L059); template cloning one-tap incl. pairings (L069); copy weekly check-in / phase-close report as plain text (L071); "Track this exercise" in session menu → dashboard Your-lifts block (L129, reuses tracked toggle) | new-addition | L019, L021, L040, L055, L059, L069, L071, L129; D076; S006/S078/S022 (paint order) |
+| C14.2 | Architecture.md | No auto-assort parser; no freshness-tiers owner | Auto-assort = rule-based loose-grammar paste parser (fuzzy match + "Did you mean?" confirm, inline create with muscle assignment — NEVER silent auto-create; offline, NO AI; M1-or-M2 — L018, S006); last-time freshness tiers = an owner (constants configurable in settings; >4wk PO suggests pause w/ ~90% baseline instead of +2.5 kg extrapolation — L040); manual structured entry ships M1, general NLP deferred (S007) | new-addition | L018, L040; D076; S006/S007 |
 
 ---
 
@@ -202,7 +212,7 @@ Current CoachSystem.md headings (on disk): `## Architecture`, `## MVP Coach (Mil
 ### 2.2 Net structural outcome for CoachSystem.md
 
 - **Retained (verbatim or lightly edited):** `## Architecture` + `### 1–4` (pipeline mechanics), `## MVP Coach (Milestone 0)` (D017 stub + 3-miss rule; the Rule Engine mechanics move to Named rules as the MVP rule), `## Validation Goals for the MVP Stub`.
-- **Renamed:** `## Data the Coach May Use` → Privacy & the never-list (§7).
+- **Renamed (PROPOSED — pending the §2.4 / Stage C pick, not settled):** `## Data the Coach May Use` → Privacy & the never-list (§7).
 - **Kept + extended:** `## Strictness` (verbatim) inside the new Settings section context (§8).
 - **NEW headings:** Philosophy (§0), Event-log discipline (§2), Named rules (§3), Outputs & surfaces (§4), Achievement tie-in (§5), Context switches (§6), Settings (Group 2 — Coach) (§8), Scheduling & rule-book session (§9).
 - **REMOVAL inside CoachSystem.md:** the standalone weekly-review surface (Reflection Generator's "weekly review" output) — replaced by the check_in_weekly section of the merged Sunday surface (L099, L243; C9.2). Nothing else is deleted — merge only.
@@ -385,63 +395,68 @@ M6+ today (lines 124–136) is a list of one-line bullets ("Fitness: workouts, e
 Two waves keep interdependencies honest; nothing in either wave touches a doc until Stage C verdicts:
 
 - **Wave D1 — spine + schema first:** §5.2 immediate items (S014/S019/S023/S024/S025/S026/S027/S077) → Database.md C1–C8 new tables + event rows → Architecture.md owners (C13.5) → Gamification.md thresholds that read them → CoachSystem.md outputs that cite owners → Roadmap.md author-new-scope + sync milestone (§7.2/§7.3) → backup enumeration (C12.2).
-- **Wave D2 — surfaces + consolidation second:** UIUX.md block-list fusion (C9.1), briefing card (C8.4), week recap (C9.3), calendar (C9.4), Settings (C10.1), journal pages (C11.1) → CoachSystem.md new headings (§2) → DecisionLog D041–D076 (§8) recorded as a batch with dual-listing notes.
+- **Wave D2 — surfaces + consolidation second:** UIUX.md block-list fusion (C9.1), briefing card (C8.4), week recap (C9.3), calendar (C9.4), Settings (C10.1), journal pages (C11.1), session-UI/onboarding (C14) → CoachSystem.md new headings (§2) → DecisionLog D041–D076 (§8) recorded as a batch with dual-listing notes.
 
 ---
 
 ## 8. Decision proposals D041–D076 (B1 consolidated decisions — requires Stage C confirmation)
 
-Every B1 row carries its decision ids in the ledger appendix form `D041|D042|…`. The table below maps intent-package → proposed DecisionLog entry. **Not yet confirmed**: Stage C approves/rejects each; the docs pass uses only approved numbers. Next free DecisionLog ID after this batch = **D077** (DecisionLog.md current max = D040).
+Every B1 row carries its decision ids in the ledger appendix form `D041|D042|…`. §8.1 below is the B1 consolidated table verbatim (the only authoritative D041–D076 list). **Not yet confirmed**: Stage C approves/rejects each; the docs pass uses only approved numbers. Next free DecisionLog ID after this batch = **D077** (DecisionLog.md current max = D040).
 
-### 8.1 Package → proposal ID map
+### 8.1 B1 consolidated decision table (VERBATIM from IntegrationLedger.md appendix, lines 483–518)
 
-| # | Proposal (working title) | Lead rows | Packages / notes |
-|---|---|---|---|
-| D041 | Fitness schema & event nucleus | L001–L003, L009, L265–L267 | C1.1–C1.2; seeds 44-exercise list, `rpe?` struck |
-| D042 | Template/session copy discipline | L009–L011, L035–L036, L045–L046, L053, L232 | C1.3 |
-| D043 | Strength owners & PR truth | L014–L017, L031, L034, L037, L047–L049, L117, L144, L246–L247 | C1.4; negative-XP symmetry |
-| D044 | (reserved) | — | B1 gap — no row; do not invent |
-| D045 | Cardio & TDEE burn | L033, L082, L088, L118, L131, L023 | C1.5 |
-| D046 | Energy-balance & pace owners | L005–L006, L038–L039, L078–L087, L120, L145, L165 | C2.2–C2.4; deriveMacros, paceVerdict, rollingWindowMean |
-| D047 | Phases & bulk/cut spine | L022, L024–L026, L065 | C2.1; phase-close report |
-| D048 | Daily checklist pairing | L080 (`checklist → habit`) | pairs with D046 |
-| D049 | H3 single-owner discipline | L165, L244, L168 | applies to all owner rows |
-| D050 | Goals-kind extension | L139–L142 (goal.kind) | C3.1 |
-| D051 | Coach rule-book restructure | L156, L158, L165–L168, L171, L190, L279–L280 + named-rule rows | C4 package + §2 Coach map |
-| D052 | Merged weekly check-in surface | L099, L101, L243, L249, L092 | C9.2–C9.3 |
-| D053 | Dashboard "Today" fusion | L154, L169, L243, L245 | C9.1 |
-| D054 | Calendar memory-map + dayActivityScore | L249–L254 | C9.4 |
-| D055 | Settings two-tier + Group 8 gate | L253–L262, L133 | C10.1 |
-| D056 | Journal pages rewrite | L211–L217, L226 | C11.1 |
-| D057 | Media duration/lifecycle/evolution | L142, L218–L225 | C11.2–C11.3, J7 videos home |
-| D058 | Backup enumeration & revoke symmetry | L042, L095, L097–L098, L080, L263 | C12.2 |
-| D059 | Entity-sync plane (pre-P2.5) | L043–L044, L096, L157, L191, L283 | C12.1 + §7.3 |
-| D060 | Feature-list closure (fitness side) | L248 | C13.2 |
-| D061 | Routine binder (day templates) | L108, L110–L116, L121, L230–L241 | C8 package |
-| D062 | Nutrition receipts | L072, L231 | C5.1 |
-| D063 | Nutrition dashboard & surfaced metrics | L101, L084–L085, L073 | C5.3 |
-| D064 | Check-in autoCreated + revoke events | L062–L063, L175, L246 | C6 |
-| D065 | Achievement catalog lock (v2 178) | L176–L177, L185 | C7 package; EXTERNAL frozen |
-| D066 | XP symmetry & negative XP | L048, L175, L246–L247 | applies across events |
-| D067 | Grace & streak shield semantics | L183, L214 | C7.4; grace default 1, quiet ≠ shield |
-| D068 | Weekly-checkpoint / fully-logged / Real Progress | L089, L119, L123–L127, L167 | C2.5 |
-| D069 | (reserved) | — | B1 gap — no row |
-| D070 | FUT-2..5 open questions → DecisionLog open items | L271–L274 | §5.4 gate |
-| D071 | Life Tree parked as idea (M2) | L269 | §7.2 note |
-| D072 | L282 draft-schema status + superseded columns | L282, L265, L121 | §5.4 gate |
-| D073 | Physique-photo anchor & monthly nudge | L100, L070 | C11.3 |
-| D074 | Qualified label families (mandatory) | L281 | §4.3/§6 |
-| D075 | (reserved) | — | B1 gap — no row |
-| D076 | (reserved) | — | B1 gap — no row |
+The B1 appendix is the authoritative D041–D076 list; per-row assignments in the ledger's per-row table win over any theme-table entry (ledger 520–525). A first-draft B2 paraphrase of this table was independently reviewed and found to diverge: D048/D050 carried wrong themes and row sets, and D044 / D069 / D075 / D076 were dropped and mislabeled "reserved gaps" — they are REAL rows (strength standards; do-not-build records; periods model; session-UI features) and are restored here. Nothing below is "reserved" or an "invented gap."
+
+| D-number | Theme (B1 verbatim) | Ledger rows (B1 verbatim) |
+|---|---|---|
+| D041 | Fitness domain core adoption (health-area entities + events + seeded lookups + M1 manual-entry scope) | L001, L002, L003, L004, L008, L010, L012, L013, L130, L266, L267 |
+| D042 | Workout layering: templates + performed sessions + supersets + two-a-day + unit policy + midnight dayKey + template-deviation | L009, L011, L035, L036, L041, L045, L046, L053 |
+| D043 | Strength measurement, PR system, vault source-of-truth, record modes, PO suggestions, drill-down | L014, L015, L017, L020, L031, L034, L037, L047, L048, L049, L117, L144, L246, L247 |
+| D044 | Strength standards, profile grades, formula constants, absolute ladders | L007, L143, L160, L181, L182 |
+| D045 | Cardio sessions + MET estimate + strength-burn kcal band + manual override | L033, L082, L088, L118, L131 |
+| D046 | Energy-balance & macro derivation owners (Mifflin TDEE, sign convention, deriveMacros, rolling avg, thin-data, freezes) | L005, L006, L023, L026, L038, L039, L078, L079, L080, L081, L083, L084, L086, L087, L120, L145 |
+| D047 | Phases system (model, baseline, close report, adjacency, rate↔macros feedback) | L022, L024, L065, L151 |
+| D048 | Goals extension (goals.kind) + weight/strength goals + goal↔phase consistency | L025, L027, L051, L162 |
+| D049 | Computed-only goal progress + Analytics owner catalog + one-owner derived math | L155, L165, L168, L244 |
+| D050 | Goal projection + milestone review card + reviews-no-XP ruling | L066, L172, L173, L264 |
+| D051 | Coach system restructure per Coach Consolidated Map + named rules + outputs & surfaces + privacy + tie-in | L028, L029, L030, L032, L050, L056, L057, L067, L137, L148, L156, L158, L166, L171, L190, L275, L276, L277, L278, L279, L280 |
+| D052 | ONE weekly surface consolidation (H2 + A4 + A6 + nutrition check-up merged) | L092, L099, L101, L243 |
+| D053 | Dashboard "Today" fusion + render order + H4 + ordering deferral | L154, L169, L170, L245 |
+| D054 | Calendar = memory map (tint, filters, day view, plan-vs-actual, heatmap, periods UI) | L249, L250, L251, L252 |
+| D055 | Settings two-tier restructure + Groups 1–8 + not-offered guardrails | L133, L253, L254, L255, L256, L257, L258, L259, L260, L261, L262, L280 |
+| D056 | Journal features J1–J7 + quiet week + tags/filters + audits | L211, L212, L213, L214, L215, L217, L226 |
+| D057 | PC video library (J7 family) + vlog duration/lifecycle + tier-aware delete | L142, L218, L219, L220, L221, L222, L223, L224, L225 |
+| D058 | Backup enumeration + metadata/revoke events + tombstone rule | L042, L044, L095, L097, L098 |
+| D059 | Entity-sync plane + Roadmap restructure before P2.5 | L043, L096, L157, L191 |
+| D060 | Fitness feature-list closure + phone/PC parity | L174, L248 |
+| D061 | Daily routine system (day templates, binding, packs, performed-day, week recap, briefing card) | L108, L109, L110, L111, L112, L113, L114, L115, L116, L121, L128, L228, L229, L230, L231, L232, L233, L234, L235, L236, L237, L238, L239, L240, L241, L242 |
+| D062 | Nutrition receipt-line model + producers seam + food macro lookup | L072, L073, L074, L075, L076, L077, L090, L091, L268 |
+| D063 | Macro-gap bar + quiet meal reminders (on-open) + zero-XP streak marker | L085, L093, L094, L126 |
+| D064 | Habits auto-track bridge + auto-tick XP/anti-farm | L062, L063 |
+| D065 | Achievement catalog relationship + census corrections + DOCS-PASS rules | L102, L103, L104, L105, L106, L107, L136, L138, L176, L177 |
+| D066 | XP rulings: reviews no-XP, caps, media XP, negative-XP symmetry | L016, L173, L175, L227 |
+| D067 | Achievement engine primitives (TENSION 1–15 owners, Ghost, Turn, meta-streak, anniversary) | L139, L140, L141, L146, L147, L149, L150, L152, L153, L163, L164, L178, L179, L180 |
+| D068 | Trigger pins G1–G20 + resolve-B/E + E-clash + stall/checkpoint/streak definitions | L089, L119, L122, L123, L124, L125, L127, L132, L134, L135, L148, L159, L161, L167, L183, L184, L185, L186, L187, L188, L189, L192, L193, L194, L195, L196, L197, L198, L199, L200, L201, L202, L203, L204, L205, L206, L207, L208, L209, L210 |
+| D069 | Rejected/skipped/declined items — do-not-build records | L052, L054, L058, L060, L061, L064, L068, L216, L265, L270 |
+| D070 | Open questions / future ideas — DecisionLog open items | L271, L272, L273, L274 |
+| D071 | Life Tree idea — deferred M2, not a spec | L269 |
+| D072 | Draft schema shapes block — Stage C verdict required | L282 |
+| D073 | Physique-photo anchor (A5) + F5 nudge | L070, L100 |
+| D074 | Label-family disambiguation + citation discipline | L281, L283, L284 |
+| D075 | Periods model (trip/vacation content containers) | L263 |
+| D076 | Fitness session UI features (last-time hints, onboarding, comparison, cloning, copy-as-text) | L018, L019, L021, L040, L055, L059, L069, L071, L129 |
+
+Reconciliation note (ledger 520–525): L173 cross-lists under D050 AND D066 — authoritative single assignment L173 → D050. L280 cross-lists under D051 AND D055 — authoritative → D051. L143 → D044 only. L148 cross-lists under D051 AND D068 — authoritative → D051 (Coach stall rule). Every other row's single assignment is in the per-row table.
 
 ### 8.2 Dual-listing notes
 
-- **D041** and **D042** may merge into one "Fitness schema nucleus" entry if Stage C prefers fewer rows — mark dual-listed.
-- **D058/D059** are deliberately separate: enumeration/revoke (D058) vs sync plane (D059). Do NOT merge even though both touch C12.
-- **D050 (goals-kind)** overlaps D046 (goal pace) — keep separate: kind extension (schema) vs pace wording (owners).
-- **D052/D053** both touch "Today"/weekly surfaces; verify no duplicate wording in the batch write.
-- **D065/D066** both touch achievements/XP symmetry; D065 is the catalog lock, D066 the symmetry rules — dual-listing note required so a single "achievements" decision doesn't conflate them.
-- **Every row in §1 with a `D###` in Depends on that is NOT listed here** is cited only as a cross-reference — do not create a decision row for it; Stage C confirmation of §8 is the gate for all.
+- **D041 / D042** stay separate (domain core incl. M1 manual-entry scope vs layering/copy discipline) — B1 assigned distinct row sets; no merge default.
+- **D058 / D059** are deliberately separate: backup enumeration + metadata/revoke events (D058) vs entity-sync plane (D059). Do NOT merge even though both touch C12.
+- **D048 (goals extension)** / **D046 (energy balance)** / **D050 (projection + milestone review)** are three distinct decisions — do not conflate goals-kind schema, macro owners, and the review card in the batch write.
+- **D052 / D053** both touch "Today"/weekly surfaces; verify no duplicate wording in the batch write.
+- **D065 / D066** both touch achievements/XP: D065 is the catalog relationship + census corrections (EXTERNAL frozen), D066 the XP rulings — separate DecisionLog entries so one "achievements" decision doesn't conflate them.
+- **Cross-listed rows** (L173 in D050+D066, L280 in D051+D055, L148 in D051+D068): each appears in two theme rows above; the authoritative single assignment is B1's per-row table (ledger 520–525).
+- **Every row in §1 with a `D###` in Depends on that is NOT listed in §8.1** is cited only as a cross-reference — do not create a decision row for it; Stage C confirmation of §8 is the gate for all.
 
 ### 8.3 Final state
 
