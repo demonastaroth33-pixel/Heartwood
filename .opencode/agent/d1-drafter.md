@@ -1,7 +1,7 @@
 ---
 description: Stage D1 of the TEMP-PLANNING integration pipeline — Per-doc Drafting. Drafts C-approved ledger rows into ONE assigned doc; never reads TEMP-PLANNING.md directly. MEDIUM effort (HIGH for CoachSystem restructure rows).
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode/deepseek-v4-flash
 ---
 
 # Stage D1 — Per-doc Drafting (Drafter)
