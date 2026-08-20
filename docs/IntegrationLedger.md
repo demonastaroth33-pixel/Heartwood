@@ -465,3 +465,352 @@ ledger) decides how to carry them.
 - No source file was modified (TEMP-PLANNING.md, docs/IntegrationIDCensus.md,
   and all other docs untouched). Only this ledger was written.
 - STOP for human review — no later stage was run.
+
+---
+
+## Stage B1 — Mapping & Conflict Detection (Mapper)
+
+- **Stage:** B1 — Mapping & Conflict Detection (Mapper)
+- **Date:** Wed Aug 19 2026
+- **Inputs:** docs/IntegrationLedger.md (L001–L284, read in full) · all 15 live docs/*.md read directly (README, Vision, Requirements, Architecture, Database, CoachSystem, Gamification, MediaStorage, StorageDecision, StorageSpikeStatus, StorageSpikeSessionA, UIUX, DevelopmentWorkflow, Roadmap, DecisionLog — UIUX.md read directly, not secondhand) · AGENTS.md · framework §6.
+- **Method:** Self-directed-mapping rows (YES) verified against the real target doc content; NO rows inferred from real doc structure. No doc was edited; no conflict was resolved. Statuses are the Mapper's proposal only — the consolidated D041+ list is confirmed at Stage C.
+- **REMOVES-existing rows** = surface-consolidation/retirement items the Cartographer flagged (Intent Brief §2.3) plus the doc-claim replacements: L099 (A4), L101 (A6), L154 (clash #1), L243 (H2), L155 (goal.progress), L173 (weekly-review XP), L114 (week_plans re-purpose), L157 (P2.5 claim replaced), and the external v2-file text removals L103, L104, L105. Each carries a conflict note naming exactly what is removed and from where.
+
+### Consolidated D041+ decision proposal (for Stage C confirmation — same-theme rows share ONE ID)
+
+| D-number | Theme | Ledger rows |
+|----------|-------|-------------|
+| D041 | Fitness domain core adoption (health-area entities + events + seeded lookups + M1 manual-entry scope) | L001, L002, L003, L004, L008, L010, L012, L013, L130, L266, L267 |
+| D042 | Workout layering: templates + performed sessions + supersets + two-a-day + unit policy + midnight dayKey + template-deviation | L009, L011, L035, L036, L041, L045, L046, L053 |
+| D043 | Strength measurement, PR system, vault source-of-truth, record modes, PO suggestions, drill-down | L014, L015, L017, L020, L031, L034, L037, L047, L048, L049, L117, L144, L246, L247 |
+| D044 | Strength standards, profile grades, formula constants, absolute ladders | L007, L143, L160, L181, L182 |
+| D045 | Cardio sessions + MET estimate + strength-burn kcal band + manual override | L033, L082, L088, L118, L131 |
+| D046 | Energy-balance & macro derivation owners (Mifflin TDEE, sign convention, deriveMacros, rolling avg, thin-data, freezes) | L005, L006, L023, L026, L038, L039, L078, L079, L080, L081, L083, L084, L086, L087, L120, L145 |
+| D047 | Phases system (model, baseline, close report, adjacency, rate↔macros feedback) | L022, L024, L065, L151 |
+| D048 | Goals extension (goals.kind) + weight/strength goals + goal↔phase consistency | L025, L027, L051, L162 |
+| D049 | Computed-only goal progress + Analytics owner catalog + one-owner derived math | L155, L165, L168, L244 |
+| D050 | Goal projection + milestone review card + reviews-no-XP ruling | L066, L172, L173, L264 |
+| D051 | Coach system restructure per Coach Consolidated Map + named rules + outputs & surfaces + privacy + tie-in | L028, L029, L030, L032, L050, L056, L057, L067, L137, L148, L156, L158, L166, L171, L190, L275, L276, L277, L278, L279, L280 |
+| D052 | ONE weekly surface consolidation (H2 + A4 + A6 + nutrition check-up merged) | L092, L099, L101, L243 |
+| D053 | Dashboard "Today" fusion + render order + H4 + ordering deferral | L154, L169, L170, L245 |
+| D054 | Calendar = memory map (tint, filters, day view, plan-vs-actual, heatmap, periods UI) | L249, L250, L251, L252 |
+| D055 | Settings two-tier restructure + Groups 1–8 + not-offered guardrails | L133, L253, L254, L255, L256, L257, L258, L259, L260, L261, L262, L280 |
+| D056 | Journal features J1–J7 + quiet week + tags/filters + audits | L211, L212, L213, L214, L215, L217, L226 |
+| D057 | PC video library (J7 family) + vlog duration/lifecycle + tier-aware delete | L142, L218, L219, L220, L221, L222, L223, L224, L225 |
+| D058 | Backup enumeration + metadata/revoke events + tombstone rule | L042, L044, L095, L097, L098 |
+| D059 | Entity-sync plane + Roadmap restructure before P2.5 | L043, L096, L157, L191 |
+| D060 | Fitness feature-list closure + phone/PC parity | L174, L248 |
+| D061 | Daily routine system (day templates, binding, packs, performed-day, week recap, briefing card) | L108, L109, L110, L111, L112, L113, L114, L115, L116, L121, L128, L228, L229, L230, L231, L232, L233, L234, L235, L236, L237, L238, L239, L240, L241, L242 |
+| D062 | Nutrition receipt-line model + producers seam + food macro lookup | L072, L073, L074, L075, L076, L077, L090, L091, L268 |
+| D063 | Macro-gap bar + quiet meal reminders (on-open) + zero-XP streak marker | L085, L093, L094, L126 |
+| D064 | Habits auto-track bridge + auto-tick XP/anti-farm | L062, L063 |
+| D065 | Achievement catalog relationship + census corrections + DOCS-PASS rules | L102, L103, L104, L105, L106, L107, L136, L138, L176, L177 |
+| D066 | XP rulings: reviews no-XP, caps, media XP, negative-XP symmetry | L016, L173, L175, L227 |
+| D067 | Achievement engine primitives (TENSION 1–15 owners, Ghost, Turn, meta-streak, anniversary) | L139, L140, L141, L146, L147, L149, L150, L152, L153, L163, L164, L178, L179, L180 |
+| D068 | Trigger pins G1–G20 + resolve-B/E + E-clash + stall/checkpoint/streak definitions | L089, L119, L122, L123, L124, L125, L127, L132, L134, L135, L148, L159, L161, L167, L183, L184, L185, L186, L187, L188, L189, L192, L193, L194, L195, L196, L197, L198, L199, L200, L201, L202, L203, L204, L205, L206, L207, L208, L209, L210 |
+| D069 | Rejected/skipped/declined items — do-not-build records | L052, L054, L058, L060, L061, L064, L068, L216, L265, L270 |
+| D070 | Open questions / future ideas — DecisionLog open items | L271, L272, L273, L274 |
+| D071 | Life Tree idea — deferred M2, not a spec | L269 |
+| D072 | Draft schema shapes block — Stage C verdict required | L282 |
+| D073 | Physique-photo anchor (A5) + F5 nudge | L070, L100 |
+| D074 | Label-family disambiguation + citation discipline | L281, L283, L284 |
+| D075 | Periods model (trip/vacation content containers) | L263 |
+| D076 | Fitness session UI features (last-time hints, onboarding, comparison, cloning, copy-as-text) | L018, L019, L021, L040, L055, L059, L069, L071, L129 |
+
+Note: L173 sits in the D050 row list above AND the D066 row list for cross-reference
+surface; the authoritative single assignment is in the per-row table (L173 → D050).
+L280 sits in both D051 and D055 rows; authoritative per-row assignment → D051.
+L143 is listed only under D044 (strength-standards seed — TENSION 5); the per-row
+table resolves it → D044. L148 is listed under D051 and D068; per-row resolution
+(Coach stall rule) → D051.
+
+---
+
+### Per-row mapping
+
+| ID | Target section | Status | Conflict note | Proposed decision ID |
+|----|----------------|--------|---------------|----------------------|
+| L001 | Database.md §Logical Schema / Entities (health area — new tables) | clean-add | Stage C verdict required (pending-approval). Health-area seed already exists in docs. | D041 |
+| L002 | Architecture.md §Event Model (new: workout.completed) | extends-existing | Event list entry; payload metadata-only. | D041 |
+| L003 | Database.md §Logical Schema / Entities (new: exercises lookup) | extends-existing | Seeded-and-extendable mirrors `areas`; user rows survive restore (O6). | D041 |
+| L004 | Database.md §Logical Schema / Entities (new: nutrition_logs) | clean-add | Schema for nutrition_logs with macros from the start. | D041 |
+| L005 | Architecture.md §Modules / Coach pipeline | extends-existing | Pace computation folded into existing Coach separation of concerns. | D046 |
+| L006 | Architecture.md §Modules (new: Analytics — pace status) | clean-add | — | D046 |
+| L007 | Architecture.md §Modules (new: strength standards) | clean-add | Formula constants non-togglable (Settings NOT-OFFERED). | D044 |
+| L008 | Roadmap.md §Milestone 1 | extends-existing | M1 manual-entry scope; NLP stays out. | D041 |
+| L009 | Database.md §Logical Schema / Entities (new: workout_templates) | clean-add | Predecessor of day-template layering (A7). | D042 |
+| L010 | Roadmap.md §Milestones | extends-existing | Sequencing note: workout side first, macros after. | D041 |
+| L011 | Database.md §Logical Schema / Entities (new: templates → sessions) | clean-add | Layering: named day-templates → frozen append-only performed sessions; edits future-only. | D042 |
+| L012 | Database.md §Logical Schema / Entities (new: exercise_muscle_groups) | clean-add | Junction table; muscle tags set once per exercise. | D041 |
+| L013 | Database.md §Logical Schema / Entities (new: muscle_groups) | clean-add | 2-level seeded hierarchy, user-extendable. | D041 |
+| L014 | Architecture.md §Modules (new: est-1RM owner) | clean-add | Single est1RM owner (TENSION 6). | D043 |
+| L015 | Architecture.md §Modules + §Event Model (new: PR system) | clean-add | workout.pr = Coach/toast ONLY (integrity fix, lines 500–516). | D043 |
+| L016 | Gamification.md §XP Sources (locked) | extends-existing | XP values fixed at M2 (Settings NOT-OFFERED). | D066 |
+| L017 | Architecture.md §Modules (new: strength profile) | clean-add | Seeded tier values frozen (TENSION 5); overall level display-only. | D043 |
+| L018 | Architecture.md §Modules (new: auto-assort parser) | clean-add | Timing M1-or-M2 → Roadmap. | D076 |
+| L019 | UIUX.md §Dashboard (MVP) (new: daily logging flow) | clean-add | Briefing-card integration (R12). | D076 |
+| L020 | Architecture.md §Modules (new: every-set logging constraint) | clean-add | 1–12 guard is NOT a settings toggle. | D043 |
+| L021 | UIUX.md (new: last-time hint) | clean-add | Freshness tiers live in O4 (L040). | D076 |
+| L022 | Database.md §Logical Schema / Entities (new: phases) | clean-add | phases table; baseline via O3 rolling avg. | D047 |
+| L023 | Architecture.md §Modules (new: energy-balance math) | clean-add | Non-togglable constants; 7700 kcal/kg is an honest estimate. | D046 |
+| L024 | Database.md §Logical Schema / Entities (phases — rate↔macros) | clean-add | Final shape deferred; resolved by NU6 + AUDIT CLOSURE (1) — draft only after those land. | D047 |
+| L025 | Roadmap.md §Milestone 1 | extends-existing | goals.kind extension via M1-GOALS-KIND row. | D048 |
+| L026 | Architecture.md §Settings, Not Profile (new: TDEE baseline) | clean-add | Manual override freezes auto-recompute (closure 3). | D046 |
+| L027 | Roadmap.md §Milestone 1 + Database.md §Entities (goals) | extends-existing | Additive nullable cols (kind, exerciseId?, targetValue?). | D048 |
+| L028 | CoachSystem.md §Full Coach Design (M2+) (new: named rules catalog) | clean-add | Named Coach rule (Coach Consolidated Map). | D051 |
+| L029 | CoachSystem.md §Full Coach Design (M2+) (new: volume balance) | clean-add | Advisory only — never XP/penalty; settings keys, zero core schema. | D051 |
+| L030 | Database.md §Logical Schema / Entities (new: deload_markers) | clean-add | Separate table, NOT a phases type. | D051 |
+| L031 | Architecture.md §Modules (new: records vault) | clean-add | PR/vault source-of-truth = derived only (integrity fix). | D043 |
+| L032 | CoachSystem.md §Full Coach Design (M2+) (new: weekly check-in) | clean-add | Merges with Coach weekly review (backup-A4, H2). | D051 |
+| L033 | Database.md §Logical Schema / Entities (workouts — cardio cols) | extends-existing | MET formula verbatim-critical; NU9 prevents double-count. | D045 |
+| L034 | Architecture.md §Modules (new: PO suggestion) | clean-add | Auto by default; override at every level + GLOBAL KILL-SWITCH. | D043 |
+| L035 | Database.md §Logical Schema / Entities (template rows — pairWith) | extends-existing | Templates only; sessions never store pairing. | D042 |
+| L036 | Database.md §Logical Schema / Entities (new: workout_templates first-class) | clean-add | Additive migration; week_plans re-purpose per routine-A7. | D042 |
+| L037 | Database.md §Logical Schema / Entities (exercise_sets — addedLoadKg) | extends-existing | Record mode = rep-count (audit-B1); tonnage excludes (E-clash #4). | D043 |
+| L038 | Architecture.md §Modules (new: rolling-window owner) | clean-add | rollingWindowMean owner (TENSION 7). | D046 |
+| L039 | Architecture.md §Modules (new: thin-data rule) | clean-add | RESTATED clause — supersedes prior thin-data wording. | D046 |
+| L040 | Architecture.md §Modules (new: last-time freshness tiers) | clean-add | Constants configurable in settings; no schema. | D076 |
+| L041 | Database.md §Logical Schema (new: apply-deviation rule) | clean-add | UI surface in session screen (UIUX). | D042 |
+| L042 | Database.md §Backup / Restore Format | extends-existing | Enumeration verbatim-critical; formatVersion-bumped, additive. | D058 |
+| L043 | Architecture.md (new: entity sync plane) | clean-add | Roadmap restructure — see clash #5 row. | D059 |
+| L044 | Architecture.md §Event Model (new: tombstone rule) | clean-add | Delete always wins over earlier-timestamped edits; "connection first". | D058 |
+| L045 | Database.md §Logical Schema / Entities (workouts — two-a-day) | extends-existing | Plan slot counts DONE if any session references it. | D042 |
+| L046 | Database.md §Logical Schema (new: unit policy) | clean-add | STORE kg everywhere; display-convert only; backups pristine. | D042 |
+| L047 | Architecture.md §Modules (new: drill-down) | clean-add | Consumes strengthSnapshot owner; zero schema. | D043 |
+| L048 | Architecture.md §Event Model (new: deletion semantics) | extends-existing | Tombstone per O6-ADD-ON; negative-XP event on re-derive. | D043 |
+| L049 | Architecture.md §Event Model (workout.pr payload) | extends-existing | Payload-versioned, additive; vault never reads the event. | D043 |
+| L050 | CoachSystem.md §Full Coach Design (M2+) (new: pace nudges) | clean-add | Advisory only; never auto-adjusts phase; no XP. | D051 |
+| L051 | Roadmap.md §Milestone 1 | extends-existing | M1 goals area; one-tap goal↔phase link. | D048 |
+| L052 | CoachSystem.md §MVP Coach (do-not-build record) | clean-add | Declined by user; recorded, never built. | D069 |
+| L053 | Architecture.md §Event Model (new: midnight dayKey rule) | clean-add | Exception: nutrition backdating (NU4) files under actual eat date. | D042 |
+| L054 | UIUX.md (do-not-build record) | clean-add | Declined by user; recorded, never built. | D069 |
+| L055 | UIUX.md §Empty & First-Run States | extends-existing | Settings keys land in Group 4 (NUTRITION). | D076 |
+| L056 | Database.md §Logical Schema / Entities (new: limitations) | clean-add | Coach-map entry is the same rule — reconciled here. | D051 |
+| L057 | CoachSystem.md §Full Coach Design (M2+) (new: return ramp) | clean-add | Reuses O4 staleness tiers; constant editable; no schema. | D051 |
+| L058 | Database.md §Logical Schema (deferred line: setType) | clean-add | Keep deferred line documented; revisit anytime. | D069 |
+| L059 | UIUX.md (new: session comparison) | clean-add | Pure derived UI, no schema. | D076 |
+| L060 | Database.md §Logical Schema (deferred line: recovery_log) | clean-add | Deferred; Coach-map lists as deferred rule. | D069 |
+| L061 | Database.md §Logical Schema (deferred line: cueNotes) | clean-add | Keep deferred line documented. | D069 |
+| L062 | Architecture.md §Event Model (new: habits bridge) | clean-add | Transactional auto check-in; compensating revoke event; no new tables. | D064 |
+| L063 | Gamification.md §Anti-Farming Rules | extends-existing | clash #4 resolution merged here (user picked A). | D064 |
+| L064 | MediaStorage.md (deferred line: polymorphic media) | clean-add | M2+ scope → Roadmap timing note. | D069 |
+| L065 | CoachSystem.md §Full Coach Design (M2+) (new: phase close report) | clean-add | Feeds milestone review phase blocks. | D047 |
+| L066 | Roadmap.md §Milestone 1/2 (new: goal projection) | clean-add | Shares goalProgress owner; paceVerdict helper. | D050 |
+| L067 | CoachSystem.md §Full Coach Design (M2+) (new: rest-day pattern) | clean-add | Routes through quiet-week/period-quiet preconditions. | D051 |
+| L068 | DecisionLog.md (do-not-build record) | clean-add | Declined; do not resurrect. | D069 |
+| L069 | UIUX.md (new: template cloning) | clean-add | — | D076 |
+| L070 | MediaStorage.md §Physique-Photo Timeline | extends-existing | Nudge lands in Coach; photo home via A5. | D073 |
+| L071 | UIUX.md (new: copy summary as text) | clean-add | Weekly check-in / phase close report → plain-text copy. | D076 |
+| L072 | Database.md §Logical Schema / Entities (new: nutrition_logs receipt lines) | clean-add | Day total = SUM, never a stored day row; portion multiplier ON the row. | D062 |
+| L073 | Database.md §Logical Schema (new: meal types lookup) | clean-add | Cosmetic grouping only; deleting a type never touches rows. | D062 |
+| L074 | Database.md §Logical Schema / Entities (new: nutrition_recipe) | clean-add | Copy-in at save; never auto-rewrite history. | D062 |
+| L075 | Database.md §Logical Schema (new: backdating rule) | clean-add | Deliberate EXCEPTION to the I7 midnight rule; pre-filler separated (resolved by R12). | D062 |
+| L076 | Database.md §Logical Schema (new: soft duplicate guard) | clean-add | Shared by school-end batch + morning-briefing pack consumption. | D062 |
+| L077 | Architecture.md §Modules (new: producers seam) | clean-add | `source` column = the hook; every input prints the same receipt line; offline forever. | D062 |
+| L078 | Architecture.md §Modules (new: macro derivation owner) | clean-add | deriveMacros = THE day-target owner (NU11); rate signed and additive. | D046 |
+| L079 | Architecture.md §Modules (new: protein g/kg rule) | clean-add | Atwater factors; basis = O3 rolling bodyweight (closure 2); frozen by B4. | D046 |
+| L080 | Database.md §Logical Schema / Entities (body_metrics) | extends-existing | Canonical daily trend = FIRST weigh-in; later entries stored but excluded. | D046 |
+| L081 | Database.md §Logical Schema (new: first-of-day deletion) | clean-add | Retroactive day-series change accepted display-side. | D046 |
+| L082 | Architecture.md §Modules (new: TDEE double-count fix) | clean-add | Training expenditure DERIVED from logged sessions, added separately. | D045 |
+| L083 | Architecture.md §Modules (new: no-phase fallback) | clean-add | Goals first, then "maintain" default. | D046 |
+| L084 | Architecture.md §Modules (new: deriveMacros + collision detector) | clean-add | SINGLE owner of the day's numbers (H3); no silent NaN/negative. | D046 |
+| L085 | UIUX.md §Dashboard (new: macro-gap bar) | clean-add | Lives in briefing card (R12); zero storage; no XP. | D063 |
+| L086 | Architecture.md §Modules (new: sign convention) | clean-add | Canonical form; supersedes old "no double-negative" framing. | D046 |
+| L087 | Architecture.md §Settings (new: manual TDEE freeze) | clean-add | No silent overwrite; extended by audit-B4 (L120). | D046 |
+| L088 | Architecture.md §Modules (new: strength burn band) | clean-add | Always LABELED estimate; cardio keeps exact path (NU9). | D045 |
+| L089 | Gamification.md §Streaks | extends-existing | Superseded window ±20% → ±10% (audit-C2); keep original ±20 cited. | D068 |
+| L090 | Database.md §Logical Schema (new: backfill bound) | clean-add | Historical backfill never extends streak/check-up compliance. | D062 |
+| L091 | Database.md §Logical Schema (new: food macro lookup) | clean-add | DEPENDENCY: open-source data dep (USDA FDC + OpenFoodFacts) needs a DecisionLog entry when formalized. | D062 |
+| L092 | CoachSystem.md §Full Coach Design (M2+) (new: nutrition check-up) | clean-add | Section inside merged weekly surface (H2/A4); zero new tables. | D052 |
+| L093 | CoachSystem.md §Full Coach Design (M2+) (new: quiet meal reminders) | clean-add | On-app-open catch-up only; never push (D018 deferral). | D063 |
+| L094 | Gamification.md §Streaks (new: zero-XP marker) | clean-add | Rejected photo lane recorded here; no XP (anti-farming). | D063 |
+| L095 | Database.md §Backup / Restore Format | extends-existing | Enumeration verbatim-critical; amends O6; additive. | D058 |
+| L096 | Architecture.md (new: entity sync plane) | duplicate-of-existing | Same fact as L043 (O6-ADD-ON shorthand for the backup/sync families); one decision D059. | D059 |
+| L097 | Architecture.md §Event Model (new: nutrition.logged / body.weighed) | extends-existing | Metadata-only; no recipe detail; pack-consumes also emit. | D058 |
+| L098 | Architecture.md §Event Model (new: revoke events) | extends-existing | Transactional with row change (audit 4.2); cross-domain single pattern. | D058 |
+| L099 | CoachSystem.md §MVP Coach (weekly review) | REMOVES-existing | Removes standalone Coach weekly review surface — merged into the Sunday check-in (H2/A4); nothing deleted, merge only, one pipeline. | D052 |
+| L100 | MediaStorage.md §Physique-Photo Timeline | extends-existing | Photo anchor = journal entry tagged health+physique (hidden system tag); zero new tables/media paths. | D073 |
+| L101 | UIUX.md (week recap) | REMOVES-existing | Standalone weekly-verdict surface removed — R11 strip is glance only; verdict belongs to the merged weekly review (A4). | D052 |
+| L102 | Gamification.md §Levels & Achievements (robot family) | extends-existing | Ghost lock ±30% typo fixed to ±3% (NoDeviation alignment; external v2 text). | D065 |
+| L103 | Gamification.md §Levels & Achievements | REMOVES-existing | Stale relative-strength duplicate + stale "Strength Standard Reached" text deleted from v2 file (external, EXTERNAL: PersonalOS-Achievements-v2.md). | D065 |
+| L104 | Gamification.md §Levels & Achievements | REMOVES-existing | "ONCE PER CALENDAR YEAR" residue scrubbed in v2 to anchored-yearly-window; Bookended retains its explicit carve-out (external v2 edits). | D065 |
+| L105 | Gamification.md §Levels & Achievements | REMOVES-existing | v2 capture-pipeline-only wording replaced with the M6 lock (first KEPT vlog, captured OR adopted) — external v2 edit. | D065 |
+| L106 | Gamification.md §Levels & Achievements | extends-existing | Catalog count corrected to 168 (121 trophies + 47 ladder tiers); "Half Century" renamed "Fifty Push-Ups". | D065 |
+| L107 | Gamification.md §Levels & Achievements | extends-existing | Catalog now 178; ALL census claims read 178 (external v2 file count). | D065 |
+| L108 | Database.md §Logical Schema / Entities (new: routine_days) | clean-add | Frozen snapshot copy; packed food stays nutrition_logs rows (source='packed'). | D061 |
+| L109 | UIUX.md (new: prompt rules) | clean-add | No weekly prompt on unbroken indefinite runs. | D061 |
+| L110 | Database.md §Logical Schema (new: pack→meal linkage) | clean-add | Link at TEMPLATE level; pack contents per date are day-instance data. | D061 |
+| L111 | Database.md §Logical Schema (new: routine midnight rule) | clean-add | Display mismatch accepted and documented (audit-C3 reviewed, no change). | D061 |
+| L112 | Database.md §Logical Schema (day_template_slots kinds) | extends-existing | Supersedes the earlier R1 kind list (cross-edit). | D061 |
+| L113 | Database.md §Logical Schema (new: binding model) | clean-add | "Switchable per day-of-week" REMOVED as separate mechanism — ONE binding model. | D061 |
+| L114 | Database.md §Logical Schema / Entities (week_plans) | REMOVES-existing | Standalone fitness week_plans scheduling RETIRED; week_plans/week_plan_slots RE-PURPOSED as routine-week binder (slots → dayTemplateId); workout templates keep own tables (O1). | D061 |
+| L115 | UIUX.md §Dashboard (new: session pre-load) | clean-add | Briefing card (R12); H1 one-tap. | D061 |
+| L116 | Database.md §Logical Schema / Entities (workouts — routineSlotLogId) | extends-existing | audit 2.2 reconciled; freeform paths keep slot "planned", no fuzzy matching. | D061 |
+| L117 | Architecture.md §Modules (new: record mode) | clean-add | audit 4.5 reconciled; strengthSnapshot gains a mode; PR events carry mode-appropriate value. | D043 |
+| L118 | Architecture.md §Modules (new: strength kcal manual) | clean-add | Manual kcalBurned REPLACES the NU9 band estimate entirely. | D045 |
+| L119 | Gamification.md §Streaks | extends-existing | No-routine path; two valid paths, one concept (audit-B3). | D068 |
+| L120 | Architecture.md §Settings (new: manual TDEE freeze-all) | extends-existing | Extends closure (3) / L087; freezes protein/fat basis at override moment. | D046 |
+| L121 | Database.md §Logical Schema (naming) | extends-existing | week_plan_slots.dayTemplateId (not workoutTemplateId) — re-purposed binder. | D061 |
+| L122 | Gamification.md §Levels & Achievements | extends-existing | Re-fire map supersedes v2 "once per habit" wording; per-trophy map verbatim, 7 lines. | D068 |
+| L123 | Gamification.md §Levels & Achievements | extends-existing | 4 stepped repeatable fires; net change in goal direction; 1-week rolling confirmation. | D068 |
+| L124 | Gamification.md §Levels & Achievements | extends-existing | SAME ±10% band as audit-C2 — one number used by both. | D068 |
+| L125 | Gamification.md §Levels & Achievements | extends-existing | Closed calendar week (Sun) evaluation; thin weeks neither confirm nor reset. | D068 |
+| L126 | CoachSystem.md §Full Coach Design (M2+) | duplicate-of-existing | Same fact as L093 (NU ADD-ON 2); folds in for mechanics. | D063 |
+| L127 | Gamification.md §Streaks | extends-existing | Supersedes ±20% streak window; same ±10% as resolve-B3; deviation lives in verdict. | D068 |
+| L128 | Database.md §Logical Schema (reviewed record) | clean-add | 00:30 snack display mismatch — reviewed, no change. | D061 |
+| L129 | UIUX.md (new: track-this-exercise) | clean-add | Reuses tracked toggle; no new schema. | D076 |
+| L130 | Database.md §Logical Schema / Entities (exercises seed) | extends-existing | Reviewed-only record: ~44 seed exercises (actual). | D041 |
+| L131 | Architecture.md §Modules (reviewed record) | clean-add | Strength kcal band — reviewed, no change; error absorbed over ~2 weeks. | D045 |
+| L132 | Gamification.md §Levels & Achievements | extends-existing | Exists-a-window scan (sliding 21-day window), NOT a rolling mean. | D068 |
+| L133 | UIUX.md (new: Settings Group 5) | clean-add | Settings knob default 14 verbatim; periods entity reuse (no new storage). | D055 |
+| L134 | Gamification.md §Levels & Achievements | extends-existing | Day-level UNION of dayKeys; E-clash #5 reconciled here. | D068 |
+| L135 | Gamification.md §Levels & Achievements | extends-existing | Grace covers streaks only; grace never saves Perfect Month. | D068 |
+| L136 | Gamification.md §Levels & Achievements | clean-add | EXTERNAL: TEMP-PLANNING-Achievement-Spec.md = trigger layer (THE WHEN), rung tables R1–R47. | D065 |
+| L137 | CoachSystem.md §Full Coach Design (M2+) | clean-add | One Coach line at most per trophy fire; never repeat congrats. | D051 |
+| L138 | Gamification.md §Levels & Achievements | clean-add | Range endpoint only; covered by L136. | D065 |
+| L139 | Architecture.md §Event Model (new: habit.rest_planned) | clean-add | Rest = freeze (neither resets nor advances); never earns; never from silence. | D067 |
+| L140 | Gamification.md §Levels & Achievements (new: account anchor) | clean-add | Computed + frozen at first real event; immutable, never user-editable. | D067 |
+| L141 | Gamification.md §Anti-Farming Rules (new: isImported) | clean-add | Every H3 owner + predicate filters imported rows INTERNALLY; imports never earn. | D067 |
+| L142 | MediaStorage.md §Three-Tier Storage Model (new: vlog duration) | clean-add | durationSec measured EXACTLY ONCE; tier moves copy the stored row; review screen + tier-aware delete. | D057 |
+| L143 | Gamification.md §Levels & Achievements (new: strength seed) | clean-add | Frozen seed values verbatim; 4 canonical lifts only; per-lift per-tier, no aggregate. | D044 |
+| L144 | Architecture.md §Modules (new: est1RM single function) | clean-add | Only place the Epley conversion exists; mode routing per B1. | D043 |
+| L145 | Architecture.md §Modules (new: rollingWindowMean) | clean-add | Only rolling-average math in the engine; guards inside. | D046 |
+| L146 | Gamification.md §Levels & Achievements (new: six-domain presence) | clean-add | Check-and-fire after writes only; fires exactly once; imported days never paint "full". | D067 |
+| L147 | Gamification.md §Levels & Achievements | clean-add | Deferred with door open; string-enum body-part extension path recorded. | D067 |
+| L148 | CoachSystem.md §Full Coach Design (M2+) (new: stall rule) | clean-add | Shared vocabulary (trophy, Coach line, phase report); trophy celebrates recovery only. | D051 |
+| L149 | Gamification.md §Levels & Achievements (new: month-day matcher) | clean-add | Leap-day handled inside; never re-implemented per trophy. | D067 |
+| L150 | Gamification.md §Levels & Achievements (new: two-domain joins) | clean-add | Built once, shared (anti-copypaste); each half independently qualifying. | D067 |
+| L151 | Architecture.md §Modules (new: phaseAdjacency) | clean-add | Strict adjacency; serves The Turn + Coach phase-transition line. | D047 |
+| L152 | Gamification.md §Levels & Achievements (new: rings/Ouroboros) | clean-add | Rings stack forever; Ouroboros = 10 consecutive anchored years; no XP. | D067 |
+| L153 | Gamification.md §Levels & Achievements (new: writtenAt) | clean-add | occurredAt = declared time (trophy evidence); writtenAt = operational truth only. | D067 |
+| L154 | UIUX.md §Dashboard (MVP) | REMOVES-existing | MVP fixed six-block order (bottom-up) kept EXCEPT briefing card NOT a separate top block — fuses with habit ticks + journal quick-capture into ONE "Today" section; rest verbatim. | D053 |
+| L155 | Roadmap.md §Milestone 1 + Database.md §Event Log | REMOVES-existing | goal.progress event RETIRED from the event list and M1 "progress events flow to the event log" claim; progress COMPUTED-ONLY via one owner per goal kind. | D049 |
+| L156 | Database.md §Logical Schema (coach_outputs) | extends-existing | Full kind dictionary enumerated (9 kinds + payload shapes); finite, no two labels same meaning. | D051 |
+| L157 | Roadmap.md §Milestone 4 (P2.5) | REMOVES-existing | P2.5 "synchronizes ONLY media_attachments metadata + thumbnails" claim REPLACED — data-sync milestone first; P2.5 shrinks to big media blobs. | D059 |
+| L158 | CoachSystem.md §Data the Coach May Use + Architecture.md | extends-existing | Privacy stamp ("facts only" / "needs text access → opt-in") applied in both docs; repeated per new feature. | D051 |
+| L159 | Gamification.md §Levels & Achievements | clean-add | Empty weeks FAIL, never pass vacuously; only declared planned-rest week skips (cap 1). | D068 |
+| L160 | Gamification.md §Levels & Achievements | clean-add | Frozen rank map; rank 1 and 5 NEVER fire a trophy. | D044 |
+| L161 | Gamification.md §Levels & Achievements | clean-add | Tonnage = weight-mode sets only; addedLoadKg not entered. | D068 |
+| L162 | Database.md §Logical Schema / Entities (goals) | extends-existing | Additive cols now = no forced migration on years-old data. | D048 |
+| L163 | Gamification.md §Levels & Achievements (new: Ghost engine) | clean-add | Two owner functions, zero schema; evaluated after relevant writes only. | D067 |
+| L164 | Gamification.md §Levels & Achievements | clean-add | One-shot lookback; no re-fire/re-arm/re-scan; unlogged day = hard miss. | D067 |
+| L165 | Architecture.md §Modules (Analytics Engine spec) | extends-existing | Full consolidated owner-function catalog emitted here — the authority; one H3 owner per stat. | D049 |
+| L166 | CoachSystem.md §Full Coach Design (M2+) (new: achievement tie-in) | clean-add | One-direction only; ONLY Ring/Grove receive Coach appreciation. | D051 |
+| L167 | Gamification.md §Levels & Achievements (new: weight ladder) | clean-add | Thresholds verbatim (70–100 kg); goal threshold = ladder value; two consecutive checkpoints confirm. | D068 |
+| L168 | Architecture.md §Layering Rules | clean-add | One H3 owner per stat; rounding once, in the owner; no per-view hacks. | D049 |
+| L169 | UIUX.md §Dashboard (MVP) | extends-existing | Render order list (paint sequencing only); heavier blocks after skeleton shimmer. | D053 |
+| L170 | UIUX.md §Navigation Shell | clean-add | Ordering deferred to END of design process; revisits last. | D053 |
+| L171 | CoachSystem.md §Full Coach Design (M2+) | clean-add | Deferred dedicated session (after features, before UI/UX ordering); carry-over locks listed. | D051 |
+| L172 | CoachSystem.md §Full Coach Design (M2+) (new: milestone review card) | clean-add | WON/EXPIRED vintages; zero blame language; milestone_review_goal coach_outputs row. | D050 |
+| L173 | Gamification.md §XP Sources (locked) | REMOVES-existing | "weekly review completed = small XP" line STRUCK from Gamification.md; reviews never give XP. | D050 |
+| L174 | Roadmap.md §Milestones (new: parity principle) | clean-add | Every feature on both platforms EXCEPT the PC archive (D035). | D060 |
+| L175 | Gamification.md §Anti-Farming Rules | extends-existing | Media XP rides journal cap; negative-XP event symmetry. | D066 |
+| L176 | Gamification.md §Levels & Achievements | extends-existing | v2 = canonical catalog (EXTERNAL, live); TEMP-PLANNING-Achievements.md superseded; 178 entries preserved; zero XP. | D065 |
+| L177 | Gamification.md §Levels & Achievements | clean-add | Three layers, one truth; docs-pass rules (a)–(e); 131 ↔ 131 ↔ 47 mapping guard. | D065 |
+| L178 | Gamification.md §Levels & Achievements (new: phaseStartWindow) | clean-add | audit clash C3 reconciled; zero schema, one pure function. | D067 |
+| L179 | Gamification.md §Levels & Achievements (new: yearlyPass) | clean-add | audit finding M3; one generic owner pair; anchored windows, never calendar-chopped. | D067 |
+| L180 | Gamification.md §Levels & Achievements (new: anniversaryWindow) | clean-add | audit finding E; ±7 days EXACT day distance; two consumers. | D067 |
+| L181 | Gamification.md §Levels & Achievements | clean-add | Actual-lift-only; no est1RM substitution, no inflation; derived from committed history. | D044 |
+| L182 | Gamification.md §Levels & Achievements | clean-add | est-1RM ÷ 7-day rolling BW; one continuous scale with standards; never mixed with absolute. | D044 |
+| L183 | Gamification.md §Streaks | extends-existing | Grace numbers + settings path now resolve the open item; robot family exempt. | D068 |
+| L184 | Gamification.md §Levels & Achievements (new: Trimester) | clean-add | Rest-frozen weeks cap ONE per run; off-pattern weeks fail; Coach line per closed run. | D068 |
+| L185 | Gamification.md §Levels & Achievements (new: anchored year) | clean-add | "Once per calendar year" DEAD; anchored-window model; Bookended = lone named exception. | D068 |
+| L186 | Gamification.md §Levels & Achievements | extends-existing | Rides M4 row; "Year N" labels with real dates. | D068 |
+| L187 | Gamification.md §Levels & Achievements (new: qualifyingEntry) | clean-add | ONE definition; per-domain bars verbatim; planned rest NEVER fills the slot. | D068 |
+| L188 | Gamification.md §Levels & Achievements | clean-add | Word-trophy carve-out (Novel-Length, Deep Dive); override table exact, no others. | D068 |
+| L189 | Gamification.md §Levels & Achievements | clean-add | Unprompted body exclusion; elite tier zero-trophy ceiling; schedule rest-day freeze. | D068 |
+| L190 | CoachSystem.md §Full Coach Design (M2+) | clean-add | Rule catalog pending, not built; Coach map §9 scheduling note. | D051 |
+| L191 | Roadmap.md (new: sync milestone) | extends-existing | Entity-sync plane = REQUIRED new milestone (Roadmap restructure, pending approval). | D059 |
+| L192 | Gamification.md §Levels & Achievements (pin G1) | extends-existing | 30-min slot anchor; every run re-anchors at its own start. | D068 |
+| L193 | Gamification.md §Levels & Achievements (pin G2) | extends-existing | Fires at 2/3/5 distinct years, one-time each; no repeats at 6+. | D068 |
+| L194 | Gamification.md §Levels & Achievements (pin G3) | extends-existing | Third threshold = 3 years; photo gap ≥3y fires Grove. | D068 |
+| L195 | Gamification.md §Levels & Achievements (pin G4) | extends-existing | Distinct QUALIFYING DAYS; day counts once, never entry-total multiplicity. | D068 |
+| L196 | Gamification.md §Levels & Achievements (pin G5) | extends-existing | Once per closed 21-day window that qualifies; no overlapping re-fire. | D068 |
+| L197 | Gamification.md §Levels & Achievements (pin G6) | extends-existing | Once per closed 7-day window containing all three PRs. | D068 |
+| L198 | Gamification.md §Levels & Achievements (pin G7b) | extends-existing | ANY prior PR across any exercise; plain "G7" never appears in source. | D068 |
+| L199 | Gamification.md §Levels & Achievements (pin G8) | extends-existing | Per-habit anchor, never the app-global anchor. | D068 |
+| L200 | Gamification.md §Levels & Achievements (pin G9) | extends-existing | One shared 365-day window; all three criteria concurrently true. | D068 |
+| L201 | Gamification.md §Levels & Achievements (pin G10) | extends-existing | ISO Mon–Sun weeks; never drifts with review-day/week-start setting. | D068 |
+| L202 | Gamification.md §Levels & Achievements (pin G11) | extends-existing | True calendar months; April 30 cannot fill March. | D068 |
+| L203 | Gamification.md §Levels & Achievements (pin G12) | extends-existing | Always floor: 146 on 365-day and leap years alike. | D068 |
+| L204 | Gamification.md §Levels & Achievements (pin G13) | extends-existing | Containment, not centering (no D−3…D+3 requirement). | D068 |
+| L205 | Gamification.md §Levels & Achievements (pin G14/G15) | extends-existing | Active phase REQUIRED; one row covers both co-labeled IDs. | D068 |
+| L206 | Gamification.md §Levels & Achievements (pin G16) | extends-existing | Thin weeks (<5/7 weigh-ins) count neither for nor against. | D068 |
+| L207 | Gamification.md §Levels & Achievements (pin G17) | extends-existing | Partial week counts as a week with ≥1 qualifying workout; span = startDate→endDate. | D068 |
+| L208 | Gamification.md §Levels & Achievements (pin G18) | extends-existing | Weekday + 30-min slot anchored to first qualifying weigh-in; uses occurredAt. | D068 |
+| L209 | Gamification.md §Levels & Achievements (pin G19) | extends-existing | User REVERSED the default: strict consecutive days only; grace-carrying weeks not active. | D068 |
+| L210 | Gamification.md §Levels & Achievements (pin G20) | extends-existing | Verified-consistent; no pin required. | D068 |
+| L211 | UIUX.md §Journal + §Calendar (new: memory strip) | clean-add | Facts-only; media stubs; leap-day via sameMonthDay; no notifications. | D056 |
+| L212 | UIUX.md §Journal (new: search) | clean-add | Fully offline, simple matching, zero new storage; facts-only privacy. | D056 |
+| L213 | Database.md §Logical Schema / Entities (journal — import cols) | clean-add | imported flag + immutable import-hash; dedupe; no XP; dayKey = original date. | D056 |
+| L214 | CoachSystem.md §Full Coach Design (M2+) (new: quiet week) | clean-add | Never shields streaks (streak truth stays); settings range + rule precondition. | D056 |
+| L215 | Database.md §Backup / Restore Format (new: Year book) | clean-add | DEPENDENCY: PDF generation requires a package — DecisionLog entry + approval at build. | D056 |
+| L216 | DecisionLog.md (do-not-build record) | clean-add | Declined; do not re-propose without a strong new use case. | D069 |
+| L217 | UIUX.md §Journal (new: tag/area filters) | clean-add | Derived only; no new table. | D056 |
+| L218 | MediaStorage.md §Desktop Media UI (PC-only) (new: My Videos) | clean-add | PC-only per D035; auto-adopt; app NEVER deletes/moves/renames files. | D057 |
+| L219 | MediaStorage.md §Desktop Media UI (PC-only) | extends-existing | "My Videos" = videos home INSIDE the existing vault browser; D035 wording kept. | D057 |
+| L220 | Architecture.md §Modules (new: shared matcher) | clean-add | H3-style; one implementation, two consumers (J2 + J7). | D057 |
+| L221 | MediaStorage.md §Storage Meter & Warnings | extends-existing | Adopted rows excluded from the meter (bytes outside app storage). | D057 |
+| L222 | MediaStorage.md §Desktop Media UI (PC-only) | clean-add | Content-hash dedup; copied-twice file appears once. | D057 |
+| L223 | MediaStorage.md §Three-Tier Storage Model | extends-existing | Reuses archived-to-pc semantics; NO new enum. | D057 |
+| L224 | MediaStorage.md (constraint) | clean-add | Logical-schema only; no IndexedDB/Drift assumption (D007 → M0 lock). | D057 |
+| L225 | MediaStorage.md §Desktop Media UI (PC-only) | clean-add | Auto-adopt requires Chromium (File System Access API); others degrade to manual. | D057 |
+| L226 | UIUX.md §Journal | extends-existing | Filter-aware month fact line; same H3 owner, display-only. | D056 |
+| L227 | Gamification.md §XP Sources (locked) | extends-existing | Journal XP cap: first 2 content-gated entries/day. | D066 |
+| L228 | Database.md §Logical Schema / Entities (new: day_templates) | clean-add | Full-day typed slots; kind list completed by routine-A5 (weigh-in). | D061 |
+| L229 | Database.md §Logical Schema / Entities (new: day_templates + slots) | clean-add | Binding: weekly routine (R7) + per-day override (R8) — no independent toggle. | D061 |
+| L230 | Database.md §Logical Schema (new: week binding) | clean-add | Workout template lives INSIDE a day template (workout-kind slot). | D061 |
+| L231 | Database.md §Logical Schema (new: pack slots) | clean-add | kcal at pack time; consumed at EAT time; skip = cancelled, no kcal. | D061 |
+| L232 | Database.md §Logical Schema (new: template building) | clean-add | Copy op, not a link; past days frozen; edits affect future only. | D061 |
+| L233 | Database.md §Logical Schema (new: kind tie-ins) | clean-add | Kind is the extension seam (like nutrition's source). | D061 |
+| L234 | Database.md §Logical Schema (new: weekly routine selection) | clean-add | Named 7-slot binding lists; period-bound or indefinite; auto-falls back. | D061 |
+| L235 | Database.md §Logical Schema (new: per-day override) | clean-add | One real-life exception doesn't fork the routine. | D061 |
+| L236 | Database.md §Logical Schema (new: delete semantics) | clean-add | Future bindings only; frozen days never lose data; auto-fallback to default. | D061 |
+| L237 | Database.md §Logical Schema (new: weigh-in slot) | clean-add | NU8 first-of-day rule applies; missing flag in day view. | D061 |
+| L238 | UIUX.md (new: week recap strip) | clean-add | Denominators count only days WITH the slot; adherenceWeek() single owner. | D061 |
+| L239 | UIUX.md (new: week recap strip) | extends-existing | Strip = displayed week (WEEK STARTS ON); verdict = review-day window, labels explicit. | D061 |
+| L240 | UIUX.md §Dashboard (new: briefing card) | clean-add | The single daily surface; "Today" fusion per clash #1. | D061 |
+| L241 | UIUX.md §Dashboard (new: briefing card) | extends-existing | Backfill marks THAT date's slot, never today's; deriveMacros(dateKey) is the sum. | D061 |
+| L242 | UIUX.md §Dashboard (MVP) | clean-add | Layout default; no new feature. | D061 |
+| L243 | UIUX.md (weekly surfaces) | REMOVES-existing | Week recap (R11) + nutrition check-up NOT separate top-level screens — COMPACT sections inside the single Sunday check-in (item 34 / H2); standalone weekly surfaces removed. | D052 |
+| L244 | Architecture.md §Layering Rules + §Modules | extends-existing | Build rule: one owner function per derived stat; all views call it. | D049 |
+| L245 | UIUX.md §Empty & First-Run States | extends-existing | Build rule for every new area; first-touch = escape hatch; applies to settings too. | D053 |
+| L246 | Architecture.md §Event Model + §Modules | clean-add | PR/vault ALWAYS derived by session-walk; negative-XP event when re-derivation revokes PR-XP. | D043 |
+| L247 | Architecture.md §Modules (new: strengthSnapshot) | clean-add | ONE canonical reader; all locked read-views consume it. | D043 |
+| L248 | Roadmap.md (status line) | clean-add | Feature list CLOSED for the fitness side; add only when real usage says so. | D060 |
+| L249 | UIUX.md (new: Calendar role) | clean-add | Memory map, not judgment; derives everything, zero writes. | D054 |
+| L250 | UIUX.md (new: Calendar tint) | clean-add | Tint only, never glyphs/numbers; dayActivityScore single H3 owner; score uncapped by design. | D054 |
+| L251 | UIUX.md (new: Calendar day view) | clean-add | Plan-vs-actual toggle; year heatmap; goal deadlines; fact line only in All view. | D054 |
+| L252 | UIUX.md (new: Calendar periods) | clean-add | Both creation methods end in an explicit confirmation step (audit 8.2). | D054 |
+| L253 | UIUX.md (new: Settings principles) | clean-add | H4 applies; two tiers (Main/Advanced); search; restore-defaults behind confirm. | D055 |
+| L254 | UIUX.md (new: Settings Group 1) | clean-add | WEEK STARTS ON display-only; checkpoint close owned by review-day window. | D055 |
+| L255 | UIUX.md (new: Settings Group 2) | clean-add | Weekly-window rule (audit 1.5); milestone-review cadence ladder. | D055 |
+| L256 | UIUX.md (new: Settings Group 3) | clean-add | Units, PO kill-switch, weight step, freshness tiers, MRV floors. | D055 |
+| L257 | UIUX.md (new: Settings Group 4) | clean-add | Mifflin keys, manual TDEE, protein/fat, quiet reminders, food lookup toggle. | D055 |
+| L258 | UIUX.md (new: Settings Group 5) | clean-add | Calendar & media knobs; tint weights kept fixed. | D055 |
+| L259 | UIUX.md (new: Settings Group 6) | clean-add | Habits auto-track + deload-day counting. | D055 |
+| L260 | UIUX.md (new: Settings Group 7) | clean-add | Data & storage; "Settings → Data" (J3/J5) anchors here (audit fix 1). | D055 |
+| L261 | UIUX.md (new: Settings Group 8) | clean-add | Sync skeleton; renders only when sync ships (H4). | D055 |
+| L262 | UIUX.md (new: Settings guardrails) | clean-add | NOT OFFERED list; public-formula constants never togglable. | D055 |
+| L263 | Database.md §Logical Schema / Entities (new: periods) | clean-add | Invisible metadata record; date-range derivation; extraEntityIds the ONE deliberate exception. | D075 |
+| L264 | CoachSystem.md §Full Coach Design (M2+) (new: milestone review) | clean-add | Section of the merged check-in, never a screen; anchored to first journal entry; zero new tables. | D050 |
+| L265 | Database.md §Logical Schema (do-not-build record) | clean-add | rpe? column STRUCK from draft schema; est-1RM math works on weight × reps alone. | D069 |
+| L266 | Database.md §Logical Schema / Entities (exercises seed list) | clean-add | Seed list verbatim-critical (~44 names, final). | D041 |
+| L267 | Database.md §Logical Schema / Entities (exercises categories) | clean-add | Seeded category column (push/pull/legs/core/cardio). | D041 |
+| L268 | Database.md (status line) | clean-add | Status record — no new content. | D062 |
+| L269 | Roadmap.md §Milestone 6+ (idea record) | clean-add | Draft state — Stage C verdict REQUIRED; NOT a spec, deferred M2; confirmed premises only. | D071 |
+| L270 | DecisionLog.md (do-not-build record) | clean-add | Rejected by user; do not resurrect without a strong new use case. | D069 |
+| L271 | DecisionLog.md §Open items | clean-add | FUT-2 open question; N5/deferred lines cover partial overlap. | D070 |
+| L272 | DecisionLog.md §Open items | clean-add | FUT-3 open question. | D070 |
+| L273 | DecisionLog.md §Open items | clean-add | FUT-4 open question; check NU7 overlap before scoping. | D070 |
+| L274 | DecisionLog.md §Open items | clean-add | FUT-5 parked; revisit condition stated in source. | D070 |
+| L275 | CoachSystem.md §Full Coach Design (M2+) (new: rules catalog) | clean-add | Coach map names CoachSystem.md as part of its master reference set. | D051 |
+| L276 | CoachSystem.md §Full Coach Design (M2+) (new: rules catalog) | clean-add | Bulk/cut pace lines + calm water-jump during "Adjusting". | D051 |
+| L277 | CoachSystem.md §Full Coach Design (M2+) (new: rules catalog) | clean-add | Missed-habit warnings live in Coach reflection, never in calendar tint. | D051 |
+| L278 | CoachSystem.md §Full Coach Design (M2+) (new: context switches) | clean-add | Index row consolidating §6; items individually locked elsewhere. | D051 |
+| L279 | CoachSystem.md §Data the Coach May Use (never-list) | clean-add | Never-list verbatim-critical; facts-only default. | D051 |
+| L280 | CoachSystem.md §Strictness + §Settings (Group 2) | extends-existing | Reconciles with settings-group-2 row (L255); CoachSystem.md :102-107 cited. | D051 |
+| L281 | DecisionLog.md (terminology) | clean-add | Label-qualification rule applies to EVERY downstream doc citing these families. | D074 |
+| L282 | Database.md §Logical Schema (draft block) | clean-add | Draft state — Stage C verdict REQUIRED; superseded columns noted (rpe? struck, week_plan_slots.dayTemplateId, routineSlotLogId). | D072 |
+| L283 | DecisionLog.md (terminology) | clean-add | Cross-file references, all verified; "D5" alias recorded. | D074 |
+| L284 | DecisionLog.md (terminology) | clean-add | Citation codes; keep qualified when re-citing. | D074 |
