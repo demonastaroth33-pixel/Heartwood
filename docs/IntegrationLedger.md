@@ -814,3 +814,58 @@ table resolves it → D044. L148 is listed under D051 and D068; per-row resoluti
 | L282 | Database.md §Logical Schema (draft block) | clean-add | Draft state — Stage C verdict REQUIRED; superseded columns noted (rpe? struck, week_plan_slots.dayTemplateId, routineSlotLogId). | D072 |
 | L283 | DecisionLog.md (terminology) | clean-add | Cross-file references, all verified; "D5" alias recorded. | D074 |
 | L284 | DecisionLog.md (terminology) | clean-add | Citation codes; keep qualified when re-citing. | D074 |
+
+---
+
+## Stage C — Human Resolution Record (verdicts, 2026-08-20)
+
+Human checkpoint per framework §8 / runbook §C. Verdicts recorded by the
+owner over the full proposal + ledger at DocsSession C. Every item below was
+re-read against the structural proposal (docs/StructuralImpactProposal.md,
+committed 861f8c7 + B2 audits) before being confirmed.
+
+### C.1 Ballot — six answers, all confirmed
+
+1. **L001–L010 (pending-approval, 10 rows)** — **APPROVE all.** Fitness
+   domain core / event pattern / seeded lookups / pace placement / manual
+   structured entry draft into docs as specified.
+2. **Draft rows (L269, L271–L274, L282)** — **AS RECOMMENDED** in the
+   proposal: L269 Life Tree = idea-recorded, NOT a spec, deferred M2 (D071);
+   L271–L274 = open questions → DecisionLog open items (D070); L282 = sketch
+   with superseded columns noted (rpe? struck, week_plan_slots.dayTemplateId,
+   routineSlotLogId) — never drafted as decided schema (D072).
+3. **D041–D076 decision list + citation fixes** — **YES, confirmed.** The B1
+   consolidated table (§8.1) is authoritative. Two citation flags resolved:
+   - **D050** — title/citation corrected to the goal-projection + milestone-
+     review theme (L066 / L172 / L173 / L264); the "goals.kind" citation
+     (L139–L142) that had leaked into D050 is dropped.
+   - **D048** — the invented "Daily checklist pairing — L080" row is dropped;
+     L080 is NU8 weigh-in resolution (belongs to D046), not a checklist-pairing
+     row. D048 is a REAL, confirmed entry: Goals extension (goals.kind +
+     weight/strength goals + goal↔phase consistency — L025/L027/L051/L162).
+     Nothing is reserved anywhere in D041–D076. No draft may create a
+     checklist-pairing row under any D-number.
+4. **CoachSystem.md §7 heading** — **RENAME + subsection** to
+   `## Privacy & the never-list`; never-list retained as a sub-section
+   (L279 verbatim; L158 per-feature stamps). **§2.4 pick (b)** also confirmed:
+   Named rules live as `###` sub-sections under a new `## Named rules`
+   (one citable, named section per rule — DOCS-PASS rule (c)).
+5. **RC-6 / RC-7 backend prose** — **NEUTRAL**: keep backend-neutral
+   phrasing per L224 for the storage meter / LocalMediaAdapter prose; RC-7
+   recovery prose gets an inline D040-resolution note rather than a rewrite.
+6. **IntegrationSequencingNotes.md placement** — **APPEND** as a section in
+   docs/DevelopmentWorkflow.md ("sequencing notes from TEMP-PLANNING.md
+   integration"); file stops being a standalone artifact after the append.
+
+### C.2 Gates opened by this record
+
+- S001 master gate: OPEN — drafting may begin.
+- REMOVES-existing rows all signed off as intended (R-flagged in ledger).
+- D1/D2 may draft only the rows listed above as APPROVED; REFER/REJECT rows
+  stay in ledger / SequencingNotes / DecisionLog open items.
+- Documents with content updates in this pass: Database.md, Architecture.md,
+  Gamification.md, CoachSystem.md, UIUX.md, Roadmap.md, MediaStorage.md,
+  DecisionLog.md, DevelopmentWorkflow.md (append only). Requirements.md,
+  AGENTS.md, README.md, Vision.md, StorageDecision.md, StorageSpikeStatus.md,
+  StorageSpikeSessionA.md are NOT drafting targets (no-op verified).
+- No live doc was modified while recording this verdict.
