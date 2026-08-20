@@ -36,9 +36,9 @@ document describes the logical schema that both candidates must implement.
 | `meal_types` | id, name, userDefined | seeded (breakfast/lunch/dinner/snack), user-extendable + editable; cosmetic grouping only |
 | `nutrition_recipe` | id, name, kcal, protein, carbs, fat, mealTypeId?, servingNotes? | copy-in at save — editing a recipe never rewrites past rows |
 | `nutrition_food_cache` | (regenerable lookup cache) | ONE regenerable table — deliberately NOT in the backup enumeration; lookups derived from nutrition_logs history |
-| `deload_markers` | id, phaseId?, dateKey, reason (adherence\|volume\|user), weightDropKg? | records deload events — Coach deload suggestion + manual entry; drives deload ranges (CoachSystem.md §Context switches) |
-| `periods` | id, dateKey, startDate, endDate?, kind (period\|vacation\|planned-rest), note? | trip/quiet-range records — user rows survive restore (backup enumeration); vacation-day union drives streak rules (Gamification.md) |
-| `limitations` | id, dateKey, exerciseId?, limitation (injury\|soreness\|other), note?, resolvedAt? | records injuries/limitations — feeds "limited-not-lazy" Coach rule + PO suggestions (CoachSystem.md §Named rules) |
+| `deload_markers` | id, startDate, endDate (ANY range), reason?, journalEntryId?, notes? | deload ranges: days in range are adherence-quiet, volume-balance exempt, strength chart shaded (CoachSystem.md §Context switches); journalEntryId? FK → journal_entries; separate table, NOT a phases type (D051) |
+| `periods` | id, type (vacation\|term\|holiday\|…), title, startDate, endDate, notes?, extraEntityIds? | invisible metadata records — content derived by INCLUSIVE date range [start, end], never copied/owned; extraEntityIds? = the ONE deliberate exception (an item dragged into a period outside its range); user rows survive restore (backup enumeration); vacation-day union drives streak rules (Gamification.md); D075 |
+| `limitations` | id, exerciseId?, muscleGroupId?, startDate, endDate?, note? | injury/limitation records — target is an exercise OR a muscle group; feeds "limited-not-lazy" Coach rule + PO suggestions (CoachSystem.md §Named rules); D051 |
 | `day_templates` | id, name, createdAt, updatedAt | named reusable full-day plans; edits/deletes affect FUTURE bindings only |
 | `day_template_slots` | id, templateId, time, kind (meal\|pack\|workout\|activity\|rest\|sleep\|weigh-in), title, link?, notes? | link = recipeId for meal slots, workoutTemplateId for workout-kind slots |
 | `week_plans` | id, name, ... | routine-week binder: a named 7-slot binding list + per-day override (ONE binding model); standalone fitness week_plans scheduling RETIRED (A7) |
@@ -220,8 +220,8 @@ Schema-relevant ones:
 
 - `syncState` canonical values:
   - `local-only` — blob and thumbnail on this device only (default).
-  - `metadata-synced` — metadata row + thumbnail synced to Drive (P2.5 phase);
-    full blob still device-local.
+  - `metadata-synced` — metadata row + thumbnail synced across devices (Milestone 4
+    entity-sync plane); full blob still device-local.
   - `fully-synced` — full blob in the Drive vault (P3).
   - `archived-to-pc` — blob moved to a PC filesystem folder outside app storage;
     metadata + thumbnail remain in the DB. `storageRef` points at the archive

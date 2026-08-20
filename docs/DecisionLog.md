@@ -302,7 +302,7 @@ before P3 sync exists.
 Rejected: showing the screen on phone builds (broken/dead UI, violates the
 platform-parity guardrail D035); shipping without the scope note (false
 expectations).
-Revisit: when P2.5 metadata sync lands (stubs become meaningful).
+Revisit: when the entity-sync plane (M4) lands (stubs become meaningful).
 
 ### D033 — Multi-device metadata via deviceId (accepted; extends D019)
 Every archived-to-PC media row is tagged with the archiving machine's
@@ -346,6 +346,11 @@ Rejected: platform gating for build convenience.
 Revisit: every time a new phone-only or PC-only feature is proposed.
 
 ### D036 — Drive phasing split: P2.5 metadata sync before P3 (accepted)
+> **Superseded by D059 (entity-sync plane).** The milestone numbering below
+> (M4 = P2.5, M5 = P3, M7 = graph) was renumbered a SECOND time by D059:
+> M4 = entity-sync plane, M5 = P2.5 (media blobs only), M6 = P3, M8 = graph.
+> D036's substance (metadata-before-media phasing) survives; its numbering
+> does not.
 New lighter phase P2.5 (new Milestone 4): sync only `media_attachments` rows
 and thumbnail blobs (~10–20 KB each) through a lightweight Drive data pool.
 P3 becomes Milestone 5, unchanged in media-vault scope. Milestones renumbered:
@@ -943,7 +948,7 @@ Revisit: whenever a new family label is introduced.
 A period is a user-created start/end date range + title + type (vacation / term
 / holiday / etc.) — an INVISIBLE METADATA RECORD (media/journal style, NOT a
 journal entry). Content is collected by DATE-RANGE derivation (inclusive
-[end, start], verified), never copied or owned; `extraEntityIds` is the ONE
+[start, end], verified), never copied or owned; `extraEntityIds` is the ONE
 deliberate exception (an item dragged into a period outside its range, day-1).
 Content never moves or gets flagged; deleting/changing a period never orphans
 content (re-range = re-slice); the trip view reuses the D031 physique/journal

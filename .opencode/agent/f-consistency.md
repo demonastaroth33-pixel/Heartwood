@@ -1,7 +1,7 @@
 ---
 description: Stage F of the TEMP-PLANNING integration pipeline — Cross-doc Consistency Pass. Dangling-reference checks + terminology normalization across all 15 docs. MEDIUM-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage F — Cross-doc Consistency Pass

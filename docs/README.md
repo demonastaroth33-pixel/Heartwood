@@ -50,7 +50,8 @@ conflicts with one of these, the principle wins.
 | `CoachSystem.md` | Coach architecture, MVP rules, strictness modes, AI adapter |
 | `Gamification.md` | Meaningful-progress philosophy, XP, streaks |
 | `MediaStorage.md` | Media pipeline, compression, repository abstraction, storage limits |
-| `StorageDecision.md` | Open storage decision, M0 spike spec, persistence test |
+| `StorageDecision.md` | Locked storage decision (Drift + SQLite WASM, DecisionLog D040), M0 spike spec, persistence test |
+| `StorageSpikeStatus.md` | Living spike-status doc: Drift vs IndexedDB metrics, iPhone persistence gate, open items |
 | `StorageSpikeSessionA.md` | Approved Session A spec (desktop spike: Drift vs IndexedDB, 10k rows + media, overnight persistence); execute in a fresh session |
 | `UIUX.md` | Dashboard, navigation, responsive rules |
 | `DevelopmentWorkflow.md` | AI-assisted development rules, boundaries, tests |
@@ -62,7 +63,7 @@ conflicts with one of these, the principle wins.
 - First: `README.md` (you are here) → `Vision.md` → `Requirements.md`.
 - Then: `Architecture.md` → `Database.md` for the system shape.
 - Domain design: `CoachSystem.md`, `Gamification.md`, `MediaStorage.md`.
-- Open item: `StorageDecision.md` — read before starting Milestone 0.
+- Storage: `StorageDecision.md` + `StorageSpikeStatus.md` — read before starting Milestone 0.
 - Process: `DevelopmentWorkflow.md` before writing any code.
 - Sequencing: `Roadmap.md` before starting any milestone.
 - History: `DecisionLog.md` before reversing any decision.

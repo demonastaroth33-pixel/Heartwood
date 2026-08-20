@@ -13,8 +13,9 @@ pipeline, the repository abstraction, and the storage-limits strategy.
 4. **Media Repository abstraction** — Journal never touches file storage.
 5. **Storage meter + threshold warnings + export-as-safety-valve** are
    non-negotiable MVP features (long videos consume local storage).
-6. **Drive sync is the first post-MVP priority** (P2.5 metadata/thumbnail sync,
-   then P3 full media vault — see `Roadmap.md`).
+6. **Drive sync is the first post-MVP priority** (entity-sync plane first — Milestone 4,
+   then P2.5 media-blob sync — Milestone 5, then P3 full media vault — Milestone 6;
+   see `Roadmap.md`).
 7. **Three-tier storage model** — Tier 1 local working set/thumbnails, Tier 2
    Drive vault, Tier 3 PC manual archive (see Three-Tier Storage Model below).
 8. **PC manual archive is NOT Drive** — a plain folder on the PC's filesystem,
@@ -74,7 +75,7 @@ evict site data. Mitigations, in order:
 3. Export is the primary safety mechanism — one tap produces the full backup.
 4. Vlog local buffer prompt → PC archive (see Vlog Local Buffer) — an active
    nudge, not a passive warning.
-5. Offload workflow once Drive sync lands (P2.5/P3): upload to vault, then free
+5. Offload workflow once Drive sync lands (P3): upload to vault, then free
    device space; metadata always stays in the DB.
 
 ## Media Repository Abstraction
@@ -148,8 +149,8 @@ also exist locally; thumbnails exist everywhere, always).
   PC-specific. Every device that has ever opened the app caches its own
   thumbnails/file cache independently. Device caches are convergent (same items)
   but not synced yet (see Part-8 multi-device note: metadata crosses devices via
-  Drive sync once P2.5 ships; Tier-1 copies are local stacks, not a distributed
-  system).
+  the entity-sync plane (Milestone 4) once sync ships; Tier-1 copies are local
+  stacks, not a distributed system).
 
 ### Tier 2 — Drive vault (cloud)
 

@@ -89,7 +89,7 @@ the phase close report.
 achievements) per `Gamification.md`; Analytics Engine; full rule-based Coach
 (strictness modes, weekly check-in) per `CoachSystem.md`; journal text analysis
 (English, rule-based). Weekly-review-day config, milestone-review cadence, and
-the reviews-give-no-XP ruling are M2-time items (DecisionLog D059). M2 is
+the reviews-give-no-XP ruling are M2-time items (DecisionLog D050/D052/D055/D066). M2 is
 sequenced: features planned → Coach rule-book session → UI/UX ordering pass.
 Phone↔PC parity applies from M2 (DecisionLog D060): every feature/screen exists
 on both platforms EXCEPT the PC archive (folder adoption + vault browser incl.

@@ -18,7 +18,7 @@ human — AI writes code, but the boundaries protect the design.
 features/ (UI, Riverpod providers, widgets)
     → repositories/   ONLY way to touch storage
     → services/       media, coach, gamification, (drive later)
-    → store           Drift/IndexedDB — never referenced outside data/
+    → store           Drift (SQLite WASM) — never referenced outside data/
 ```
 
 Rules for both human and AI code:
@@ -104,7 +104,7 @@ _Folded verbatim from the standalone docs/IntegrationSequencingNotes.md (Stage A
 
 | ID | Instruction | Applies to (ledger ID / intent ID / free text) | When-condition | Source lines |
 |----|-------------|-----------------------------------------------|----------------|--------------|
-| S001 | Design-lock gate: NOTHING in TEMP-PLANNING is locked or applied to docs/ until the user says yes; ALL changes are pending final user approval before any docs/ write; D040 is the next DecisionLog number when formally decided. | ALL ledger rows (L001–L284); intent brief C13.1 | User final approval (single global gate) | 3–5, 789 |
+| S001 | Design-lock gate: NOTHING in TEMP-PLANNING is locked or applied to docs/ until the user says yes; ALL changes are pending final user approval before any docs/ write; D040 is the next DecisionLog number when formally decided. **Gate OPENED at Stage C (2026-08-20); next DecisionLog number after the D041–D076 batch is D077.** | ALL ledger rows (L001–L284); intent brief C13.1 | User final approval (single global gate) | 3–5, 789 |
 | S002 | Ledger-first workflow: FIRST fully finish the ledger — every design decision locked and satisfactory; ONLY THEN adapt ALL existing architecture docs (Architecture, Database, Requirements, Roadmap, DecisionLog, CoachSystem, Gamification, MediaStorage, UIUX) to fit; the ledger stays the single source of the target state; docs get rewritten to match it, never vice versa. Nothing in the audit section edits docs — it only collects proposals for the later adaptation pass. | ALL ledger rows; intent brief C13.1, 2.3 (removals) | Ledger complete + user approval (S001); then docs-adaptation pass | 815–827 |
 | S003 | No new inventions during the docs pass; if reality diverges from the ledger, the ledger gets a NEW lock entry FIRST — nothing is edited ad hoc. | L177 (DOCS-PASS rules), L281 (label-qualification rule), L248; intent brief C13.1 | Docs pass; any detected divergence | 1006–1007 |
 | S004 | Features list is CLOSED for the fitness side (workouts, sets, exercises, templates, plans, phases, PR, vault, PO, cardio, volume, deload, injuries, adherence, goals, habits bridge, check-in, phase report; media deferred); add new features ONLY when real usage says so. N3/N5/N6/N8 and periodization stay park-able; rest-day patterns (F2) + recovery readiness (N5) cover rest for M3+. | L248 (binds L058, L060, L061, L064, L067, L274) | Real-usage evidence justifying an addition (no automatic re-open) | 527–532 |
