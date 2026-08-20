@@ -369,6 +369,19 @@ The authoritative unreconciled list is **empty of drafting failures**, with six 
 
 **Gate statement for Stage G Part A:** E's Part 4 is present and complete. The unreconciled list contains **zero unreconciled census IDs other than the six documented caveats above**, but **Part 4 does NOT clear the gate yet because of L050** — one census ID (I4) traces to a ledger row (L050) that has no doc representation and no documented resting place. Stage G Part A should treat the list as "one open item (L050/I4)" until resolved; everything else reconciles.
 
+> **Closure note (Stage G, 2026-08-20):** the sole census blocker above is
+> RESOLVED — L050/I4 was drafted post-audit in the E audit-fix pass (same
+> commit, 17e5def) as CoachSystem.md §Named rules — "Pace nudges (I4)"
+> (lines 321–332): gap → kcal gap (×7700) → DIET/ACTIVITY levers; never
+> "push harder in the gym"; recalibration not crash; ahead-in-cut cautious;
+> advisory only, check-in + phase report, no XP, never auto-adjusts phase;
+> cited L050. Stage G Part A re-verified the section against ledger L050
+> (IntegrationLedger.md line 61) and the B1 mapping (line 582) and clears
+> the census gate: the unreconciled list is now exactly the six documented
+> caveats in §4.2, all reconciled-as-documented. No other census ID became
+> newly unreconciled in the E-fix/F passes (verified against commits
+> 17e5def and 087b372).
+
 ---
 
 ## Part 5 — Self-citation cross-check (Coach Consolidated Map `ledger:NNN` citations vs final CoachSystem.md)
@@ -464,3 +477,14 @@ The authoritative unreconciled list is **empty of drafting failures**, with six 
 - **Headline results:** Part 1 — 283/284 ledger rows represented or resting; **1 miss (L050)**. Part 2 — all 8 REMOVALS applied; all verbatim-critical rows exact; 47/48 intent items faithful (1 partial via L050). Part 3 — 5/5 dependency chains consistent; 2 cross-doc stale-state mismatches (milestone numbering; storage-decision state) + 3 minor alignment items. Part 4 — 375 census rows traced; unreconciled list = 6 documented caveats + **1 open item (L050/I4)**; **census gate NOT clear until L050 is resolved**. Part 5 — 42 ✅ / 2 ⚠ / **0 ❌ ORPHANED-CITATION**.
 
 **STOP for human review. Do not proceed to C2 / F / G in this session.** C2 should sample the marginal items above (especially L050, the milestone renumber ripple, and the storage-decision state), then F should apply the fixes, then G may consume Part 4 as its census gate after L050's disposition is recorded.
+
+> **Pipeline closure (Stage G, 2026-08-20):** the audit-fix pass in this
+> commit drafted L050/I4 (CoachSystem.md §Pace nudges (I4), lines 321–332),
+> resolving the single census blocker; the F consistency pass (commit
+> 087b372) resolved the remaining cross-doc items (milestone renumber,
+> storage-decision state, schema restores, F1–F5 flags). Stage G re-verified
+> every residual against the current docs (see the G session report) and
+> closed the integration pipeline: census gate CLEAR, no-holes gate CLEAR,
+> all E marginal items resolved or resting per the framework. Historical
+> findings above are left unchanged — this file is archived as the
+> authoritative audit record (audits/IntegrationAuditReport-2026-08-20.md).

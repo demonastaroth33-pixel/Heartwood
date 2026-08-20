@@ -1,5 +1,14 @@
 # TEMP PLANNING — fitness/body-tracking vision expansion (scratchpad)
 
+> **CLOSED (2026-08-20) — fully integrated into `docs/`.** The TEMP-PLANNING
+> integration pipeline (Stages A1a–G) is complete: ledger L001–L284, census
+> 375 rows, sequencing notes S001–S082, and decisions D041–D076 are all
+> drafted into the docs set, which is now the source of truth. This file and
+> the pipeline artifacts are archived at `audits/` for provenance. Per
+> Sequencing Note S001, the design-lock gate still awaits the user's final
+> approval — nothing here is locked until then; D077 is the next DecisionLog
+> number when formally decided.
+
 ONLY FILE AUTHORIZED FOR WRITE DURING THIS PLANNING SESSION.
 Nothing is locked or applied to docs/ until the user says yes.
 Next DecisionLog number when formally decided: D040.

@@ -6,6 +6,7 @@ Entry point for all project documentation. Read this first.
 
 - **Phase:** Architecture refinement — COMPLETE
 - **Documentation:** COMPLETE (this set)
+- **Integration:** TEMP-PLANNING pipeline CLOSED 2026-08-20 — census + no-holes gates cleared; docs/ are the source of truth; design-lock awaits final approval (DevelopmentWorkflow.md S001)
 - **Implementation:** NOT STARTED (no code, no `lib/`, no dependencies installed)
 - **Next step:** Milestone 0 (see `Roadmap.md`), pending explicit approval
 
@@ -57,6 +58,13 @@ conflicts with one of these, the principle wins.
 | `DevelopmentWorkflow.md` | AI-assisted development rules, boundaries, tests |
 | `Roadmap.md` | Milestones M0–M8, Drive phases, exit criteria |
 | `DecisionLog.md` | Every decision: accepted and rejected, with rationale |
+
+Provenance: the TEMP-PLANNING integration set — `TEMP-PLANNING.md`,
+`IntegrationLedger.md`, `IntegrationIDCensus.md`, `IntegrationIntentBrief.md`,
+`StructuralImpactProposal.md`, `IntegrationAuditReport.md` — is archived
+date-suffixed in `audits/` (2026-08-20). The docs above are now the single
+source of truth; the sequencing notes (S001–S082) live in
+`DevelopmentWorkflow.md`.
 
 ## How to Read the Docs
 
