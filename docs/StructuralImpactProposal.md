@@ -15,7 +15,7 @@
 
 **Depends on** = other intent rows (C#.#) and/or ledger/decision IDs (L###/D###) and sequencing gates (S###) that must land first. The B1 consolidated decision proposals are cited as **D041…D076** (not yet confirmed — see §8; authoritative per-row assignment is B1's per-row table, with dual-listing notes in §8.2).
 
-**Stage-C verdict gates**: ledger rows with source state `pending-approval` (L001–L010, 11 rows) and `draft` (L269, L271–L274, L282) REQUIRE an APPROVE/REJECT/REFER verdict before any drafting (ledger source-state legend; SequencingNotes S001/S003; intent brief C13.3). No row in this proposal pre-empts that gate.
+**Stage-C verdict gates**: ledger rows with source state `pending-approval` (L001–L010, 10 rows) and `draft` (L269, L271–L274, L282) REQUIRE an APPROVE/REJECT/REFER verdict before any drafting (ledger source-state legend; SequencingNotes S001/S003; intent brief C13.3). No row in this proposal pre-empts that gate.
 
 **Do-not-build / do-not-resurrect** (binding regardless of verdicts): I6, I8, N3, N5, N6, N8, F3, Part-B #2/#3/#4/#7, RPE column, FUT-1, E-clash #2 (unlabeled gap — never invent), anything beyond the L248 closed list (intent brief §5.5; ledger L052/L054/L058/L060/L061/L064/L068/L216/L265/L270/L248).
 
@@ -162,7 +162,7 @@ One row per (intent item × affected doc). Current-state descriptions cite the d
 
 | # | Doc | Current state | Proposed change | Type | Depends on |
 |---|---|---|---|---|---|
-| C12.1 | Architecture.md | §Offline Strategy (209–215) mentions "Sync (when it exists)"; D019 LWW policy is dual-doc (DecisionLog D019 + Architecture references) | Document the entity-sync service layer as REQUIRED before the multi-device M1-phase: mechanism = D019 (event log = append-only UNION of distinct event ids; same-entity edits = LWW by timestamp, deviceId ties); TOMBSTONE RULE (delete always wins over earlier-timestamped edits — entity never resurrects); does NOT change storage backend | new-addition | L043, L044, L096, L157, L191, L283; D059; S010/S011/S012/S031; §7.3 |
+| C12.1 | Architecture.md | §Offline Strategy (209–215) mentions "Sync (when it exists)" (line 214); D019 LWW policy lives in DecisionLog with tie-break references in Database.md (`archivedOnDevice`, line 48) and MediaStorage.md (Decision 15 + §Multi-device metadata) — Architecture.md itself carries no D019 text today | Document the entity-sync service layer as REQUIRED before the multi-device M1-phase: mechanism = D019 (event log = append-only UNION of distinct event ids; same-entity edits = LWW by timestamp, deviceId ties); TOMBSTONE RULE (delete always wins over earlier-timestamped edits — entity never resurrects); does NOT change storage backend | new-addition | L043, L044, L096, L157, L191, L283; D059; S010/S011/S012/S031; §7.3 |
 | C12.1 | Roadmap.md | §Drive Phasing + M3/M4/M5; no entity-sync milestone | NEW milestone inserted BEFORE P2.5 (see §7.3); P2.5 shrinks to big media blobs only; same D019 mechanism for both | restructures-existing | L157, L191, L043, L096; D059; S010/S011 |
 | C12.1 | Database.md | §Event Log (53–72) immutability/append-only; no sync semantics | Document event-union + LWW/tombstone semantics (logical-only, backend-neutral) | extends-existing | L044, L096; D058/D059; S031 |
 | C12.2 | Database.md | §Backup/Restore Format (84–146): formatVersion 1, data keys list | Backup enumeration extended verbatim-critical (O6 + backup-A1 lists: weekPlans/weekPlanSlots, workoutTemplates, workoutTemplateExercises, workouts, exerciseSets, muscleGroups, exerciseMuscleGroups, exercises user rows, bodyMetrics, phases, deloadMarkers, nutrition_logs, nutrition_recipe, meal-types, day_templates, day_template_slots, routine_days, routine_slot_logs, periods, limitations); formatVersion-bumped, additive; nutrition_food_cache NOT in enumeration (regenerable) | extends-existing | L042, L095, L091, L263; D058; C1.x/C5.x/C8.x tables exist first |
@@ -355,7 +355,7 @@ Direction: `producer → consumer`. Draft producers before consumers so docs nev
 
 ## 7. Roadmap.md restructure — authoring NEW scope vs restructuring LOCKED milestones
 
-Roadmap.md on disk (163 lines): `## Milestones` (M0–M6+ lines 1–137) and `## Drive Phasing` (P1–P3 lines 140–162). Two different operations apply, and they must not be conflated:
+Roadmap.md on disk (163 lines): `## Drive Phasing` (P1–P3, lines 6–20) comes FIRST, then the milestone sections — M0 (line 23), M1 (46), M2 (60), M3 (76), M4 (88), M5 (105), M6+ (126) — then `## Milestone 7 — Graph/"Brain" View` (lines 142–155; NOT scheduled, D023 — must stay untouched by this pass) and `## Milestones vs Principles` (lines 158–163; guardrails — no change). Two different operations apply, and they must not be conflated:
 
 ### 7.1 Restructuring LOCKED milestones (M0–M5) — edit in place, never re-scope
 
@@ -363,17 +363,17 @@ Locked text may be **rewritten only where the ledger supersedes or REMOVEs conte
 
 | Milestone | LOCKED content affected | Ledger truth | Action |
 |---|---|---|---|
-| M0 (MVP) | "physical backup (file copy) / restore" (line 37–38); Coach MVP stub (D017) | D016/D040 unchanged; storage meter per §4.2 RC-6 | No structural change; only cross-ref Database.md §Backup |
-| M1 (lines 44–60) | "progress events flow to event log" (line 53) | L155 — goal.progress is a computed-only owner, never an event | Rewrite exit criterion to owner-based wording (RC-3 → PH-3) |
+| M0 (MVP) | "Export → wipe → restore round-trip restores identical data" (line 37); Coach MVP stub (D017) | D016/D040 unchanged; storage meter per §4.2 RC-6 | No structural change; only cross-ref Database.md §Backup |
+| M1 (lines 46–57) | "progress events flow to the event log" (line 53) | L155 — goal.progress is a computed-only owner, never an event | Rewrite exit criterion to owner-based wording (RC-3 → PH-3) |
 | M1–M2 | Daily note / nudges wording | L099 — weekly review is merged into Sunday check-in | Adjust M2 wording (RC-4 → C9.2) |
-| M2 (lines 62–88) | "Coach generates ... weekly review" (line 69–70) | L099/L243 — one merged check-in surface | Same as above |
+| M2 (lines 60–72) | "Coach generates ... weekly review" (line 69–70) | L099/L243 — one merged check-in surface | Same as above |
 | M3 (backup) / M4 (Drive) | "syncs only media_attachments metadata and thumbnails" (lines 88–101, 95) | L157 (clash #5) — plain-data entity sync ships FIRST; P2.5 shrinks to big media blobs ONLY | Replace claim (PH-9); do NOT re-order locked milestones, add the new milestone (§7.3) |
 | M5 (PC) | no change | D032/D035 unchanged | No action |
 | Roadmap.md "What is locked" note (lines 3–4) | — | — | Keep the lock note as-is; add a pointer that §7.1/§7.2 changes are the authorized edits |
 
 ### 7.2 Authoring NEW scope (Milestone 6+ — was a one-line placeholder)
 
-M6+ today (lines 124–136) is a list of one-line bullets ("Fitness: workouts, exercises, progression, measurements; emits workout.completed events; maps to Health area. No Apple Health." etc.). This is **new scope authoring**, NOT a locked-milestone edit:
+M6+ today (lines 126–138) is a list of one-line bullets ("Fitness: workouts, exercises, progression, measurements; emits workout.completed events; maps to Health area. No Apple Health." etc.). This is **new scope authoring**, NOT a locked-milestone edit:
 
 | Bullet today | Becomes (per ledger) | Notes |
 |---|---|---|
@@ -381,13 +381,14 @@ M6+ today (lines 124–136) is a list of one-line bullets ("Fitness: workouts, e
 | Nutrition: macros, BMR/TDEE, meal logging (in M6+ one-liner) | C2/C5 package — phases, deriveMacros, receipts, food lookup, settings | Author same pointer pattern (C2/D046, C5.1/D062) |
 | Routine scheduler one-liner ("Productivity: routines …") | C8 package — day templates, routine_days, briefing, week recap | Replace one-liner with authored bullet (D061); keep "Productivity: routines, projects" promo line intact for the rest |
 | Study / Productive Focus / AI (other M6+ lines) | stays one-line placeholder | NO ledger rows — do not invent |
-| Life Tree idea (M6+ line ~132) | mark as idea-recorded, NOT scoped (L269) | Author as "idea park: Life Tree (L269)" with pointer to DecisionLog open item (D071) |
+| Life Tree idea (NO line exists today — new addition, not a replacement) | mark as idea-recorded, NOT scoped (L269) | ADD an "idea park: Life Tree (L269)" bullet to M6+ with pointer to DecisionLog open item (D071) |
 
 ### 7.3 NEW milestone: entity-sync plane (inserted BEFORE P2.5) — REQUIRED, per clash #5
 
 - **Source:** L157 (clash #5, ROADMAP ORDERING resolution): the plain-data entity-sync plane is a required NEW milestone inserted BEFORE P2.5; P2.5 in Roadmap.md (lines 10–15 / 88–101) shrinks to big media blobs only.
 - **Content (D059):** event log = append-only UNION of distinct event ids; same-entity edits = LWW by timestamp, deviceId tiebreaker (D019); TOMBSTONE RULE — delete always wins over earlier-timestamped edits, entity never resurrects; logical-only, backend-neutral; does NOT change storage backend.
 - **Ordering effects:** M1-phase "multi-device" claims must reference the new milestone, not P2.5; Settings Group 8 (sync) renders only when this milestone ships (S061, H4 reveal-on-first-data).
+- **Renumber ripple (load-bearing):** inserting the sync plane BEFORE P2.5 re-numbers the milestones a SECOND time — current mapping (M4 = P2.5, M5 = P3, M6+ = future systems, M7 = graph) becomes M4 = entity-sync plane, M5 = P2.5, M6 = P3, M7 = future systems, M8 = graph. D036 already performed the first renumber and updated cross-references in D023 / Database.md / README.md at that time — the same cascade duty applies again to this insertion (D023 + Database.md event-log refs + README milestone list). Roadmap's own `## Milestone 7 — Graph/"Brain" View` section renames to Milestone 8.
 - **File:** Architecture.md §Offline Strategy + §Event Model (C12.1), Database.md event-log sync semantics (C12.1), Roadmap.md new milestone (C12.1). All three land together in the docs pass.
 
 ### 7.4 2026 change waves (drafting order for the D1/D2 docs pass)
