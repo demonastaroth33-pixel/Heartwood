@@ -182,7 +182,7 @@ related) is explicitly left open, as is the rendering approach:
 pure-Dart force-directed package vs JS interop to d3-force (Flutter Web-only
 consideration).
 Zero impact on M0 scope and on the storage decision. Not locked; not built.
-Revisit: at milestone start, post-M1 (see Roadmap.md Milestone 7).
+Revisit: at milestone start, post-M1 (see Roadmap.md Milestone 8).
 
 ### D024 — Spike dependencies for candidate A evaluation (accepted, spike-scoped only)
 drift, drift_flutter, sqlite3, web (runtime); drift_dev, build_runner (dev) —

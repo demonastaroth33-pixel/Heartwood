@@ -10,7 +10,7 @@ document describes the logical schema that both candidates must implement.
 
 | Table | Fields (key) | Notes |
 |---|---|---|
-| `journal_entries` | id, title?, body, area?, tags (JSON), createdAt, updatedAt, deletedAt?, imported, importHash | multiple per day allowed; `imported` + immutable `importHash` set at batch import (dedupe on original date + content hash); imported entries land on their ORIGINAL date, never earn XP |
+| `journal_entries` | id, title?, body, area?, tags (JSON), createdAt, updatedAt, deletedAt?, imported, importHash | multiple per day allowed; `imported` + immutable `importHash` set at batch import (dedupe on original date + content hash); imported entries land on their ORIGINAL date, never earn XP. The `imported` flag is global on every importable entity (workouts, nutrition_logs, body_metrics, habit_checkins) — Gamification.md Anti-Farming #7; journal entries additionally carry the dedupe `importHash`. |
 | `media_attachments` | id, entryId, fileName, mimeType, sizeBytes, durationSec?, title?, capturedAt, syncState, storageRef, thumbnailRef, contentHash?, archivedOnDevice?, adopted | syncState: local-only / metadata-synced / fully-synced / archived-to-pc (see below); thumbnailRef: separate always-local thumb copy; contentHash: dedup key (see `MediaStorage.md`); archivedOnDevice: deviceId of the PC that archived the blob, null = not PC-archived; durationSec/title/adopted: see field notes below |
 | `habits` | id, name, area?, cadence (daily default), createdAt, active, autoSource? | autoSource (workout / future weigh-in): auto-tracked habits — draft-schema flag (L062) |
 | `habit_checkins` | id, habitId, dayKey, completedAt, note?, autoCreated? | one per habit per day; autoCreated? = written by the session-save habit bridge in the same transaction; manual check-ins win |
@@ -36,6 +36,9 @@ document describes the logical schema that both candidates must implement.
 | `meal_types` | id, name, userDefined | seeded (breakfast/lunch/dinner/snack), user-extendable + editable; cosmetic grouping only |
 | `nutrition_recipe` | id, name, kcal, protein, carbs, fat, mealTypeId?, servingNotes? | copy-in at save — editing a recipe never rewrites past rows |
 | `nutrition_food_cache` | (regenerable lookup cache) | ONE regenerable table — deliberately NOT in the backup enumeration; lookups derived from nutrition_logs history |
+| `deload_markers` | id, phaseId?, dateKey, reason (adherence\|volume\|user), weightDropKg? | records deload events — Coach deload suggestion + manual entry; drives deload ranges (CoachSystem.md §Context switches) |
+| `periods` | id, dateKey, startDate, endDate?, kind (period\|vacation\|planned-rest), note? | trip/quiet-range records — user rows survive restore (backup enumeration); vacation-day union drives streak rules (Gamification.md) |
+| `limitations` | id, dateKey, exerciseId?, limitation (injury\|soreness\|other), note?, resolvedAt? | records injuries/limitations — feeds "limited-not-lazy" Coach rule + PO suggestions (CoachSystem.md §Named rules) |
 | `day_templates` | id, name, createdAt, updatedAt | named reusable full-day plans; edits/deletes affect FUTURE bindings only |
 | `day_template_slots` | id, templateId, time, kind (meal\|pack\|workout\|activity\|rest\|sleep\|weigh-in), title, link?, notes? | link = recipeId for meal slots, workoutTemplateId for workout-kind slots |
 | `week_plans` | id, name, ... | routine-week binder: a named 7-slot binding list + per-day override (ONE binding model); standalone fitness week_plans scheduling RETIRED (A7) |
@@ -45,7 +48,7 @@ document describes the logical schema that both candidates must implement.
 
 Future, NOT M0: a `links` table (sourceType, sourceId, targetType, targetId,
 linkType, id, createdAt; one row per directed edge, rendered as undirected in
-the view) for the graph/"brain" view — DecisionLog D023, Roadmap.md Milestone 7
+the view) for the graph/"brain" view — DecisionLog D023, Roadmap.md Milestone 8
 (under consideration). Not part of the M0 schema; not built.
 
 ### `exercises` — seeded lookup
@@ -254,7 +257,8 @@ Schema-relevant ones:
 
 Indexes: `(type, dayKey)`, `(entityType, entityId)`, `(area, dayKey)`.
 
-Event types seeded in MVP:
+Event types seeded in MVP (not exhaustive — Architecture.md's event table is
+the canonical list; this is the MVP launch subset):
 
 - `habit.completed`, `habit.missed`
 - `journal.created`, `journal.edited`, `journal.deleted`

@@ -312,7 +312,7 @@ a named owner. The catalog below is the consolidated authority (C13.5 / S024):
    day-keyed scans instant. Nutrition/body revoke events add ~2k small rows/yr
    inside that budget (L098).
 4. **Coach:** analytics output + recent events → rules → reflection → dashboard
-   note / weekly review. Privacy stamp applies per feature: "facts only" OR
+   note / merged weekly check-in. Privacy stamp applies per feature: "facts only" OR
    "needs text access → user opt-in first" (L158 / S025).
 5. **Ownership:** export = versioned JSON snapshot (entities + events + media
    manifest) + media files. Restore = import snapshot + media.
@@ -423,8 +423,10 @@ docs/              this documentation set
 
 ## Storage Backend
 
-OPEN — deferred to the M0 spike. See `StorageDecision.md`. Candidates:
-A) Drift + SQLite (WASM), B) IndexedDB document store. Must be locked before M1.
+LOCKED — Drift + SQLite (WASM), decided by the M0 storage spike (DecisionLog
+D040, resolved 2026-08-11; see `StorageDecision.md`). This document describes
+the logical model that the chosen backend implements; no backend changes are
+open for M1.
 
 ## Offline Strategy
 

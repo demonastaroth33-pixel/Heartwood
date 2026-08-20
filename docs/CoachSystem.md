@@ -214,6 +214,12 @@ check-in on the same surface model, NEVER a new screen (L264).
 - **Smart catch-up**: an anniversary that passes while away generates the
   review the first time the app opens after the due date — one tap opens it;
   once only, no overdue nag.
+- **Idempotency (S020)**: a milestone already generated for that date is never
+  re-minted — no duplicate review on re-render or re-open.
+- **Thin-data honesty (3.3)**: when the window's data is thin, the partial-
+  window rule and thin-deviation honesty apply — same O3/3.3 shared rule
+  (rolling averages use available days, always carry "Adjusting"); no
+  verdict/projection from a single point.
 - **Delivery**: a `coach_outputs` row through the same pipeline; renders as a
   SECTION of the merged Sunday check-in when due; dashboard card points to the
   check-in section; rides backup/export/sync like every `coach_outputs` row.
@@ -312,6 +318,19 @@ Bulk side: "gaining too fast = fat" caution. Cut side: slow-loss-is-muscle.
 Thin-data "Adjusting" weeks get a calm water-jump line, not a projection
 (L276, L039).
 
+### Pace nudges (I4)
+
+When a goal pace is off, the Coach turns the gap into concrete levers — never
+"push harder in the gym":
+
+- Gap = actual − target (kg per week, rolling 7–14d vs target).
+- Kcal gap = gap × 7700 → DIET lever (−kcal/day) or ACTIVITY lever (+1 cardio
+  session / MET kcal).
+- Heavily behind → recalibration, not crash; ahead-in-cut → cautious, never
+  aggressive.
+- Advisory only: lands in the check-in + phase report; no XP; never auto-
+  adjusts the phase (L050).
+
 ### Missed-habit warnings
 
 Missed-habit warnings live in the Coach reflection, NEVER in the calendar tint
@@ -353,6 +372,11 @@ grants XP (L166).
 - Celebrations respect the quiet-week and facts-only privacy rules.
 - Trophy lines ride the same auto-written + deletable `coach_outputs`
   machinery as everything else.
+- Phase transitions get one line from the shared `phaseAdjacency` helper
+  (L151) — the same helper the Turn achievement uses; no second adjacency
+  computation.
+- Ouroboros: the Coach's single line fires only when the run lands or ends —
+  no interim commentary on a live run.
 
 ## Context switches
 

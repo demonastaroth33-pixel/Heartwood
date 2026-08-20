@@ -1,7 +1,7 @@
 ---
 description: Stage E of the TEMP-PLANNING integration pipeline — Audit. Five parts: item coverage, intent fidelity, dependency integrity, ID census coverage, self-citation cross-check. Produces docs/IntegrationAuditReport.md. MAX-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage E — Audit (Auditor)

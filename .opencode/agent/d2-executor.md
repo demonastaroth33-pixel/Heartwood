@@ -1,7 +1,7 @@
 ---
 description: Stage D2 of the TEMP-PLANNING integration pipeline — Cross-Doc Structural Execution. Implements StructuralImpactProposal changes that span docs, coordinated. HIGH-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage D2 — Cross-Doc Structural Execution

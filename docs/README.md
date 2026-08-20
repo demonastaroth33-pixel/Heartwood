@@ -54,7 +54,7 @@ conflicts with one of these, the principle wins.
 | `StorageSpikeSessionA.md` | Approved Session A spec (desktop spike: Drift vs IndexedDB, 10k rows + media, overnight persistence); execute in a fresh session |
 | `UIUX.md` | Dashboard, navigation, responsive rules |
 | `DevelopmentWorkflow.md` | AI-assisted development rules, boundaries, tests |
-| `Roadmap.md` | Milestones M0–M6, Drive phases, exit criteria |
+| `Roadmap.md` | Milestones M0–M8, Drive phases, exit criteria |
 | `DecisionLog.md` | Every decision: accepted and rejected, with rationale |
 
 ## How to Read the Docs
