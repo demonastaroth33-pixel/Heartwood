@@ -39,6 +39,17 @@ pipeline, the repository abstraction, and the storage-limits strategy.
 15. **Multi-device metadata tagging** — `archivedOnDevice` via the existing
     `deviceId` (extends D019; metadata crosses devices only via Drive sync, file
     bytes never travel automatically).
+16. **Vlog duration is stored, measured once** — `durationSec` on
+    `media_attachments`, measured the moment a file first enters the library;
+    later tier moves copy the stored row (see Vlog duration & lifecycle below).
+17. **PC video library ("My Videos") is the videos home inside the PC vault
+    browser** — not a separate screen (J7a merge); the vault browser remains the
+    one PC-exclusive feature (see Desktop Media UI below).
+18. **Adopted ≠ app storage** — J7-adopted rows carry an `adopted` marker and
+    are excluded from the storage meter (see Storage Meter & Warnings).
+19. **Physique photos anchor to a journal entry** tagged `health`+`physique`
+    (hidden system tag) — the D031 timeline queries `media_attachments` by that
+    tag; zero new tables or media paths (see Physique-Photo Timeline).
 
 ## Vlog Storage Math (context)
 
@@ -72,16 +83,16 @@ evict site data. Mitigations, in order:
 Journal feature
     → MediaRepository   (interface: save, load, delete, resolve(uri),
                          archiveToPc, vaultBrowserQuery)
-    → LocalMediaAdapter     (MVP: IndexedDB blobs / object URLs +
+    → LocalMediaAdapter     (MVP: local blob storage +
                              PC-filesystem archive sink on desktop)
     → CloudMediaAdapter   (future: provider-agnostic cloud vault)
 ```
 
 - The Journal depends only on `MediaRepository`.
-- Local adapter stores blobs in IndexedDB with metadata rows in
-  `media_attachments` (`syncState`, `storageRef`).
+- Local adapter stores blobs in the storage backend (see `StorageDecision.md`)
+  with metadata rows in `media_attachments` (`syncState`, `storageRef`).
 - **`LocalMediaAdapter` distinguishes two local backing states:**
-  - **in local blob storage** (IndexedDB; thumb + original present in DB) — the
+  - **in local blob storage** (blob + original present in the backend) — the
     default for photos/short clips and unarchived vlogs;
   - **archived to PC filesystem** — blob physically moved out of the app's blob
     storage into a plain folder on that PC; the `media_attachments` row keeps
@@ -111,10 +122,14 @@ Journal feature
 
 ## Storage Meter & Warnings
 
-- Compute used/available from IndexedDB quota API (and local DB size).
+- Compute used/available from the storage backend's quota (and local DB size).
 - Dashboard block shows usage; thresholds warn (70%) and hard-warn (90%).
 - Hard-warn prompts: export backup now, and/or offload (P3).
 - All warnings are dismissible but re-appear until resolved.
+- **Adopted rows are excluded from the meter.** The meter counts app-managed
+  bytes + thumbnails only — adopted rows (`adopted` marker) hold their bytes in
+  the user's own folder, outside app storage, so a huge adopted video library
+  must never false-alarm the thresholds (J7c).
 
 ## Three-Tier Storage Model
 
@@ -161,6 +176,36 @@ also exist locally; thumbnails exist everywhere, always).
   permanently** (filename, thumbnail, size, date, tags) — only the video blob
   leaves. Its `storageRef` is rewritten to point at the PC-filesystem archive
   location; `syncState` becomes `archived-to-pc`.
+- **Adopted files reuse the same `archived-to-pc` semantics — no new enum
+  (J7e).** A J7-adopted video row is written exactly like an archived one:
+  `storageRef` → the user's folder path, `archivedOnDevice` = this PC,
+  `exported: false` stubs in exports.
+
+### Vlog duration & lifecycle
+
+- `media_attachments` gains an additive nullable `durationSec` column.
+- Duration is measured **exactly once**, the moment a file first enters the
+  library:
+  - phone capture returns the finished duration from the recorder;
+  - PC adoption (J7) parses the MP4/MOV container header once (a ~50-line parse,
+    no ffmpeg).
+- Every later tier move **copies the stored row** — no re-measurement, no
+  re-download, no cross-device drift. Consumers that sum duration read the
+  column only.
+- An unreadable/corrupt file stores `NULL` and **never counts** (absolute
+  honesty: no estimates, no user-typed values).
+- **Vlog lifecycle:**
+  1. Every recording ends at a **review screen**:
+     - **Keep** — row created immediately, duration stamped, optional `title`
+       (J7 naming hook);
+     - **Discard** — file wiped, no row, zero trophies (no farming via
+       try-cancel loops).
+  2. **Delete is tier-aware** (the no-silent-deletion rule applies):
+     - buffered/phone — row + local file + `vlog.deleted` tombstone;
+     - Drive-vaulted — metadata row only; never destroys the blob;
+     - PC-adopted — the app **never** removes the file (folder = truth, J7);
+       it un-lists and marks a "do-not-readopt" list.
+  3. Duration trophies read only **kept** recordings.
 
 ### Retention policy
 
@@ -230,9 +275,13 @@ explicitly NOT included; it is an open item (see Open Items).
   general daily-photo compression tier ends up being (lossy resize, see Open
   Items). Keep physique photos at higher signal quality by default; its low
   volume makes that cheap.
-- The timeline is a UI/view derivative over existing media attachments flagged
-  with a `physique` category on the media row; the exact field is defined with
-  the timeline feature (P3 design, see `Database.md`).
+- The timeline is a UI/view derivative over existing media attachments
+  **anchored to a journal entry tagged `health` + `physique`** (a hidden system
+  tag, per backup-A5). The D031 timeline queries `media_attachments` by that
+  tag — zero new tables, zero new media paths; the tag rides backup/restore
+  automatically. The F5 physique-photo nudge (an optional monthly reminder, off
+  by default, no nagging) opens a prefilled journal composer; the nudge rule
+  itself lives in `CoachSystem.md`.
 
 ## Cloud Provider Abstraction
 
@@ -263,6 +312,41 @@ method directly. This is how "swap providers later" stays a one-file change.
     metadata-only until Drive sync becomes available."
 - This is the **only** platform-exclusive feature in PersonalOS (see
   `Architecture.md`, platform-parity guardrail).
+
+### PC Videos — "My Videos" (J7)
+
+- The PC video library is **not a separate screen** (J7a): it is the **videos
+  home inside this vault browser**. The same filters apply (All / On this
+  device / In the Drive vault / Archived on this PC + the "This PC only"
+  toggle), with a **thumbnail-grid default**, a **compact-list toggle**, and
+  the J7 search box. The "only PC-exclusive feature" claim above stays
+  literally true — the vault browser is the one home.
+- **PC-only per the D035 physically-true test** — video files live only on that
+  PC's disk; on phone builds this view does not render at all (same discipline
+  as the vault browser).
+- **Naming** — media rows gain a nullable `title` (optional at capture,
+  editable any time; display falls back to `fileName`).
+- **Search** — finds by name/filename/date/month/year, fully offline, simple
+  matching (no AI). Uses the same H3-style matcher as journal search (J2+J7).
+- **Auto-adopt (option 1)** — the app remembers **one chosen folder** (File
+  System Access API); on every app open on the PC it scans that folder, and any
+  **new video automatically enters the library** (thumbnail + date harvested),
+  no user tap — "put a file, it appears."
+- **Browser coverage (audit MED-16)** — auto-adopt (persisted folder +
+  auto-scan) requires **Chromium** (Chrome/Edge; the persisted handle is
+  re-granted silently on relaunch). Other browsers degrade to a manual folder
+  pick per session, no auto-scan.
+- **Guardrails** — the app **never** deletes/moves/renames files (the folder is
+  the source of truth for the blob); a removed file shows an honest **"file
+  missing" stub**; **NO XP**; privacy is facts-only — the Coach never inspects
+  video content; names + search index stay offline.
+- **Dedup still applies** (J7d) — the folder scan dedups by content hash; a
+  file copied into the folder twice appears once.
+- **Backend-agnostic** (J7f) — the whole J7 family (metadata rows, thumbnails,
+  `adopted` marker, meter math) is written against the **logical
+  `media_attachments` schema only**; no IndexedDB/Drift assumption — it holds
+  for whichever backend Session C locked.
+- **Backup** — metadata rides the usual export; blobs stay on the PC.
 
 ## Multi-device metadata (extends D019 — deviceId)
 
@@ -314,3 +398,7 @@ situation.
 - Dedup logical key design (with the remux-identical-video caveat above:
   optimizations 1 and 3 interact; the key must not false-positive on derived
   copies).
+- **Session media — SKIPPED for now (N8, user); deferred line kept:** widen
+  `media_attachments` to a polymorphic entity anchor (`journal` | `workout`) via
+  additive migration; tiers and PC-archive unchanged; M2+ timing. Revisit
+  anytime.
