@@ -17,6 +17,9 @@ class JournalEntries extends Table {
   DateTimeColumn get deletedAt => dateTime().nullable()();
   BoolColumn get imported => boolean().withDefault(const Constant(false))();
   TextColumn get importHash => text().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
 }
 
 @DataClassName('MediaAttachmentRow')
@@ -48,6 +51,9 @@ class Habits extends Table {
   TextColumn get area => text().nullable()();
   DateTimeColumn get createdAt => dateTime()();
   BoolColumn get active => boolean().withDefault(const Constant(true))();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
 }
 
 @DataClassName('HabitCheckinRow')
@@ -57,6 +63,9 @@ class HabitCheckins extends Table {
   TextColumn get dayKey => text()();
   DateTimeColumn get completedAt => dateTime()();
   TextColumn get note => text().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
 
   @override
   List<Set<Column<Object>>> get uniqueKeys => [
