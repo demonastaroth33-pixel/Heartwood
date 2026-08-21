@@ -8,6 +8,7 @@ import 'package:personalos/data/repositories/journal_repository.dart';
 import 'package:personalos/data/repositories/media_repository.dart';
 import 'package:personalos/data/repositories/settings_repository.dart';
 import 'package:personalos/services/media/media_capture.dart';
+import 'package:personalos/services/coach/coach_service.dart';
 
 final dbProvider = Provider<AppDatabase>(
   (ref) => throw UnimplementedError('dbProvider must be overridden at startup'),
@@ -44,4 +45,12 @@ final mediaCaptureProvider = Provider<MediaCaptureService>(
 
 final exportRepoProvider = Provider<ExportImportRepository>(
   (ref) => ExportImportRepository(ref.watch(dbProvider)),
+);
+
+final coachServiceProvider = Provider<CoachService>(
+  (ref) => CoachService(
+    ref.watch(dbProvider),
+    ref.watch(eventRepoProvider),
+    ref.watch(habitRepoProvider),
+  ),
 );
