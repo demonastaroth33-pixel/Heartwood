@@ -25,6 +25,26 @@ class JournalEntry {
     this.importHash,
   });
 
+  JournalEntry copyWith({
+    String? title,
+    String? body,
+    String? area,
+    List<String>? tags,
+    DateTime? updatedAt,
+  }) {
+    return JournalEntry(
+      id: id,
+      title: title ?? this.title,
+      body: body ?? this.body,
+      area: area ?? this.area,
+      tags: tags ?? this.tags,
+      createdAt: createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      imported: imported,
+      importHash: importHash,
+    );
+  }
+
   factory JournalEntry.fromRow(JournalEntryRow row) {
     return JournalEntry(
       id: row.id,
