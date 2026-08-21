@@ -8,10 +8,12 @@ import 'data/providers.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final db = AppDatabase.open();
+  final integrity = await db.integrityCheck();
+  final healthy = integrity.isNotEmpty && integrity.first == 'ok';
   runApp(
     ProviderScope(
       overrides: [dbProvider.overrideWithValue(db)],
-      child: const App(),
+      child: App(bootHealthy: healthy),
     ),
   );
 }

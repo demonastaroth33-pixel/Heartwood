@@ -1007,6 +1007,20 @@ separate so one decision never conflates two themes:
 
 ---
 
+## 2026-08-21 — M0 Build — Export Integrity
+
+### D080 — crypto package for backup sha256 manifest (accepted)
+Adopt `package:crypto` (Dart team, pure Dart) for the export/restore media
+manifest: each exported blob is sha256-hashed and verified on restore
+(Database.md backup format; soft failure on missing/mismatched files).
+Rationale: the format mandates sha256; Dart stdlib has no hash primitives;
+crypto is the standard minimal dependency. Approved within the M0 plan
+checkpoint (Step 5.2 specified "sha256 via crypto").
+Rejected: hand-rolled hash (never); a heavier hashing library.
+Revisit: none for M0.
+
+---
+
 ## 2026-08-21 — M0 Build — Media Capture
 
 ### D079 — image_picker for journal photo capture (accepted)

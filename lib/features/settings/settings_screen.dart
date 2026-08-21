@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'data_section.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -7,11 +9,9 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
-      body: Center(
-        child: Text(
-          'Settings groups appear as you use the app.',
-          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
-        ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: const [DataSection()],
       ),
     );
   }

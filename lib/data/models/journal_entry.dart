@@ -10,6 +10,7 @@ class JournalEntry {
   final List<String> tags;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final DateTime? deletedAt;
   final bool imported;
   final String? importHash;
 
@@ -21,6 +22,7 @@ class JournalEntry {
     this.tags = const [],
     required this.createdAt,
     required this.updatedAt,
+    this.deletedAt,
     this.imported = false,
     this.importHash,
   });
@@ -31,6 +33,7 @@ class JournalEntry {
     String? area,
     List<String>? tags,
     DateTime? updatedAt,
+    DateTime? deletedAt,
   }) {
     return JournalEntry(
       id: id,
@@ -40,6 +43,7 @@ class JournalEntry {
       tags: tags ?? this.tags,
       createdAt: createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
       imported: imported,
       importHash: importHash,
     );
@@ -56,6 +60,7 @@ class JournalEntry {
           : (jsonDecode(row.tagsJson) as List).cast<String>(),
       createdAt: row.createdAt,
       updatedAt: row.updatedAt,
+      deletedAt: row.deletedAt,
       imported: row.imported,
       importHash: row.importHash,
     );
@@ -70,6 +75,7 @@ class JournalEntry {
       'tags': tags,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
+      'deletedAt': deletedAt?.toIso8601String(),
       'imported': imported,
       'importHash': importHash,
     };
@@ -84,6 +90,9 @@ class JournalEntry {
       tags: (json['tags'] as List<dynamic>? ?? const []).cast<String>(),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      deletedAt: json['deletedAt'] == null
+          ? null
+          : DateTime.parse(json['deletedAt'] as String),
       imported: json['imported'] as bool? ?? false,
       importHash: json['importHash'] as String?,
     );

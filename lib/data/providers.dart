@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:personalos/data/adapters/local_media_adapter.dart';
 import 'package:personalos/data/database/database.dart';
 import 'package:personalos/data/repositories/event_repository.dart';
+import 'package:personalos/data/repositories/export_import_repository.dart';
 import 'package:personalos/data/repositories/habit_repository.dart';
 import 'package:personalos/data/repositories/journal_repository.dart';
 import 'package:personalos/data/repositories/media_repository.dart';
@@ -39,4 +40,8 @@ final settingsRepoProvider = Provider<SettingsRepository>(
 
 final mediaCaptureProvider = Provider<MediaCaptureService>(
   (ref) => WebMediaCapture(),
+);
+
+final exportRepoProvider = Provider<ExportImportRepository>(
+  (ref) => ExportImportRepository(ref.watch(dbProvider)),
 );
