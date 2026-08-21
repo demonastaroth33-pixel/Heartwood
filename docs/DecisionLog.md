@@ -1007,6 +1007,22 @@ separate so one decision never conflates two themes:
 
 ---
 
+## 2026-08-21 — M0 Build — State Management
+
+### D078 — Riverpod as the M0 state-management layer (accepted)
+Adopt `flutter_riverpod` for the M0 UI: providers wrap repositories (each
+repository is exposed through a provider); engines (Coach, streaks, storage
+meter) stay pure functions consumed by providers, never widgets.
+Rationale: Architecture.md already names Riverpod for the real application;
+providers keep widget code reactive and thin while repositories remain the
+only DB access path. User-approved at the M0 plan checkpoint (2026-08-21).
+Rejected: plain StatefulWidgets + service locator (diverges from the
+documented plan; no reactivity for the dashboard's derived blocks);
+bloc (heavier than needed at personal scale).
+Revisit: none for M0; re-evaluate only if provider patterns prove awkward.
+
+---
+
 ## 2026-08-21 — Design Lock (S001 gate)
 
 ### D077 — Design-lock gate: final approval granted (accepted)
