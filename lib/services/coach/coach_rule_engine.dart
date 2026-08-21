@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:personalos/core/ids.dart';
 
 class CoachMessage {
@@ -23,7 +21,7 @@ class CoachRuleEngine {
     final today = dayKey(on ?? DateTime.now());
     final messages = <CoachMessage>[];
     for (final entry in missesByHabit.entries) {
-      final run = longestConsecutiveRun(entry.value);
+      final run = trailingConsecutiveRun(entry.value);
       if (run < 3) continue;
       final name = habitNames[entry.key] ?? 'this habit';
       messages.add(CoachMessage(
@@ -35,20 +33,17 @@ class CoachRuleEngine {
     return messages;
   }
 
-  static int longestConsecutiveRun(List<String> dayKeys) {
+  static int trailingConsecutiveRun(List<String> dayKeys) {
     if (dayKeys.isEmpty) return 0;
     final sorted = dayKeys.map(DateTime.parse).toList()..sort();
-    var best = 1;
-    var current = 1;
-    for (var i = 1; i < sorted.length; i++) {
-      final diff = sorted[i].difference(sorted[i - 1]).inDays;
-      if (diff == 1) {
-        current++;
-        best = max(best, current);
+    var run = 1;
+    for (var i = sorted.length - 1; i > 0; i--) {
+      if (sorted[i].difference(sorted[i - 1]).inDays == 1) {
+        run++;
       } else {
-        current = 1;
+        break;
       }
     }
-    return best;
+    return run;
   }
 }

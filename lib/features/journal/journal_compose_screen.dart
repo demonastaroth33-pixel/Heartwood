@@ -85,20 +85,42 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
     await showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: const Text('Recording…'),
-        content: const Text('Recording your vlog. Tap stop when done.'),
-        actions: [
-          FilledButton(
-            onPressed: () async {
-              final media = await session.stop();
-              if (!context.mounted) return;
-              Navigator.of(context).pop();
-              setState(() => _pendingMedia.add(media));
-            },
-            child: const Text('Stop'),
-          ),
-        ],
+      builder: (dialogContext) => PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, _) async {
+          if (didPop) return;
+          try {
+            await session.stop();
+          } catch (_) {}
+          if (dialogContext.mounted) {
+            Navigator.of(dialogContext).pop();
+          }
+        },
+        child: AlertDialog(
+          title: const Text('Recording…'),
+          content: const Text('Recording your vlog. Tap stop when done.'),
+          actions: [
+            FilledButton(
+              onPressed: () async {
+                CapturedMedia? media;
+                try {
+                  media = await session.stop();
+                } catch (_) {}
+                if (!dialogContext.mounted) return;
+                Navigator.of(dialogContext).pop();
+                if (media == null) {
+                  if (!mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Recording failed.')),
+                  );
+                  return;
+                }
+                setState(() => _pendingMedia.add(media!));
+              },
+              child: const Text('Stop'),
+            ),
+          ],
+        ),
       ),
     );
   }

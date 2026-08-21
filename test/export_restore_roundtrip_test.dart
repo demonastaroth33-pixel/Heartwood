@@ -152,4 +152,86 @@ void main() {
     await dbA.close();
     await dbB.close();
   });
+
+  test('empty DB export → restore round-trips with zero rows', () async {
+    final dbA = AppDatabase(NativeDatabase.memory());
+    final bundle = await ExportImportRepository(dbA).exportAll();
+    expect(bundle.mediaFiles, isEmpty);
+
+    final dbB = AppDatabase(NativeDatabase.memory());
+    final report = await ExportImportRepository(dbB).restore(bundle);
+    expect(report.missingFiles, isEmpty);
+    expect(await dump(dbA), await dump(dbB));
+
+    await dbA.close();
+    await dbB.close();
+  });
+
+  test('exported:false manifest entries restore as metadata-only', () async {
+    final dbA = AppDatabase(NativeDatabase.memory());
+    await seed(dbA);
+    final bundle = await ExportImportRepository(dbA).exportAll();
+    final parsed = jsonDecode(bundle.json) as Map<String, dynamic>;
+    final files =
+        ((parsed['media'] as Map<String, dynamic>)['files'] as List)
+            .cast<Map<String, dynamic>>();
+    for (final f in files) {
+      f['exported'] = false;
+    }
+    final noBlobBundle = bundle.copyWith(
+      json: jsonEncode(parsed),
+      mediaFiles: const {},
+    );
+
+    final dbB = AppDatabase(NativeDatabase.memory());
+    final report = await ExportImportRepository(dbB).restore(noBlobBundle);
+    expect(report.missingFiles, isEmpty);
+    final media = await dbB.select(dbB.mediaAttachments).get();
+    expect(media, hasLength(1));
+    expect(media.single.blobData, isNull);
+
+    await dbA.close();
+    await dbB.close();
+  });
+
+  test('restore rejects wrong format and wrong formatVersion', () async {
+    final db = AppDatabase(NativeDatabase.memory());
+    final repo = ExportImportRepository(db);
+
+    await expectLater(
+      repo.restore(
+        ExportBundle(json: '{"format":"not-personalos","formatVersion":2}'),
+      ),
+      throwsA(isA<FormatException>()),
+    );
+    await expectLater(
+      repo.restore(
+        ExportBundle(
+          json:
+              '{"format":"PersonalOS-backup","formatVersion":99,"schemaVersion":1,"data":{},"media":{"files":[]}}',
+        ),
+      ),
+      throwsA(isA<FormatException>()),
+    );
+    await db.close();
+  });
+
+  test('soft-deleted entries survive the round-trip as tombstones', () async {
+    final dbA = AppDatabase(NativeDatabase.memory());
+    await seed(dbA);
+    final events = EventRepository(dbA);
+    final journal = JournalRepository(dbA, events);
+    final entry = (await journal.recent()).first;
+    await journal.delete(entry.id);
+    final bundle = await ExportImportRepository(dbA).exportAll();
+
+    final dbB = AppDatabase(NativeDatabase.memory());
+    await ExportImportRepository(dbB).restore(bundle);
+    expect(await dump(dbA), await dump(dbB));
+    final restored = await dbB.select(dbB.journalEntries).get();
+    expect(restored.singleWhere((r) => r.id == entry.id).deletedAt, isNotNull);
+
+    await dbA.close();
+    await dbB.close();
+  });
 }

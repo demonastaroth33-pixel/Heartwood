@@ -114,3 +114,27 @@ spec drift?):
 **Open items** (carried to the next milestone):
 - Full UI overhaul pass (scheduled next).
 - Cloudflare Pages deployment + iPhone PWA verification (Phase 8).
+
+---
+
+### Milestone: M0 — Pre-Phase-8 audit & hardening pass (2026-08-21)
+
+**Went well** (keep doing):
+- Full-diff code review (code-reviewer agent) surfaced 10 findings: 2 critical, 3 major, 5 minor — every one verified against drift/web 1.1.1 sources or empirically (download-attribute sanitization tested in real Chrome).
+- The critical find (backup round-trip silently lost ALL media blobs through the browser: `download` sanitizes `media/<id>` → `media_<id>`, restore matcher could never match) was invisible to VM tests — it only exists at the browser boundary. The audit's existence proved itself.
+- Fixes all TDD: concurrent double-check-in → exactly 1 event; journal delete cleans media + tombstones; stale coach gaps never fire; exported:false manifests; empty-DB round-trip; boot health on unusable DB.
+- Release web build exposed a second class of bug VM tests can't see: `toJS` + async function is rejected by dart2js (compile error) — fixed by a sync handler. Rule: **the release build is part of verification, not just the final step.**
+- Boot hardening (D021): main() now try/catches the integrity check — a corrupted DB shows the recovery screen instead of a white screen (this exact scenario reproduced in the browser after network-flap kills corrupted the dev profile's DB).
+
+**Went wrong** (AI behavior worth fixing):
+- Two attempts at simulating DB corruption in tests were wrong (integrity_check doesn't flag schema-text edits; closed in-memory DBs don't throw) before landing on LazyDatabase-thrower. Read the tool's actual semantics before writing the simulation.
+- The web-compile bug (async→toJS) slipped through because flutter analyze checks the VM branch of conditional imports, not the web branch.
+
+**Root causes** (silent assumption? over-engineering? boundary-crossing? spec drift?):
+- Trusting VM-green as web-green; conditional-import branches need real web compilation to validate.
+
+**Encoded lesson** (the AGENTS.md rule or DecisionLog entry this spawned):
+- "flutter test never compiles the web branch of conditional imports — a release `flutter build web` is REQUIRED after any change touching services/web/*, media_capture*, estimate*, or main.dart. `toJS` callbacks must be synchronous (dart2js rejects async)."
+
+**Open items** (carried to the next milestone):
+- None new; audit clean (65 tests).

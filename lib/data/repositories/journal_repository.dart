@@ -99,6 +99,22 @@ class JournalRepository {
     final row = await byIdRow(id);
     final area = row?.area;
     await db.transaction(() async {
+      final mediaRows = await (db.select(db.mediaAttachments)
+            ..where((t) => t.entryId.equals(id)))
+          .get();
+      await (db.delete(db.mediaAttachments)
+            ..where((t) => t.entryId.equals(id)))
+          .go();
+      for (final m in mediaRows) {
+        await events.append(EventRecord(
+          id: newId('ev'),
+          type: m.mimeType.startsWith('video/') ? 'vlog.deleted' : 'media.removed',
+          occurredAt: DateTime.now(),
+          dayKey: dayKey(DateTime.now()),
+          entityType: 'media',
+          entityId: m.id,
+        ));
+      }
       await (db.update(db.journalEntries)
             ..where((t) => t.id.equals(id)))
           .write(JournalEntriesCompanion(deletedAt: Value(DateTime.now())));

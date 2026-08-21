@@ -13,6 +13,7 @@ class HabitsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Habits')),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'habits-fab',
         onPressed: () => showHabitEditSheet(context),
         tooltip: 'Add habit',
         child: const Icon(Icons.add),

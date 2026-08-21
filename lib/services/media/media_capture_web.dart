@@ -36,6 +36,9 @@ Future<VlogSession?> startVlogSession() async {
   recorder.addEventListener('stop', ((web.Event e) {
     vlog._finish();
   }).toJS);
+  recorder.addEventListener('error', ((web.Event e) {
+    vlog._fail();
+  }).toJS);
   recorder.start();
   return vlog;
 }
@@ -53,9 +56,7 @@ class VlogRecorder implements VlogSession {
   @override
   Future<CapturedMedia> stop() async {
     if (!_finished) {
-      for (final track in _stream.getTracks().toDart) {
-        track.stop();
-      }
+      _stopTracks();
       _recorder.stop();
     }
     return _done.future;
@@ -64,6 +65,7 @@ class VlogRecorder implements VlogSession {
   void _finish() {
     if (_finished) return;
     _finished = true;
+    _stopTracks();
     _clock.stop();
     final blob = web.Blob(
       _chunks.toJS,
@@ -78,5 +80,20 @@ class VlogRecorder implements VlogSession {
       ),
     );
     _done.complete(future);
+  }
+
+  void _fail() {
+    if (_finished) return;
+    _finished = true;
+    _stopTracks();
+    if (!_done.isCompleted) {
+      _done.completeError(StateError('Recording failed'));
+    }
+  }
+
+  void _stopTracks() {
+    for (final track in _stream.getTracks().toDart) {
+      track.stop();
+    }
   }
 }

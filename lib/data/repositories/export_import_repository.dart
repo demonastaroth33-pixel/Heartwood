@@ -90,7 +90,7 @@ class ExportImportRepository {
         exported: bytes != null,
       ));
       if (bytes != null) {
-        mediaFiles['media/${attachment.id}'] = bytes;
+        mediaFiles['media_${attachment.id}'] = bytes;
       }
     }
 
@@ -202,7 +202,7 @@ class ExportImportRepository {
         Uint8List? bytes;
         final entry = files.where((f) => f['id'] == m.id).firstOrNull;
         if (entry != null && entry['exported'] == true) {
-          bytes = bundle.mediaFiles['media/${m.id}'];
+          bytes = bundle.mediaFiles['media_${m.id}'];
           if (bytes == null) {
             missing.add(m.fileName);
           } else {

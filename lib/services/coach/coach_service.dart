@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:personalos/core/ids.dart';
 import 'package:personalos/data/database/database.dart';
+import 'package:personalos/data/models/coach_output.dart';
 import 'package:personalos/data/models/event_record.dart';
 import 'package:personalos/data/repositories/event_repository.dart';
 import 'package:personalos/data/repositories/habit_repository.dart';
@@ -30,13 +31,16 @@ class CoachService {
         if (!checked.contains(dk)) missDays.add(dk);
         d = d.add(const Duration(days: 1));
       }
-      for (final dk in missDays) {
-        final exists = await events.eventExists(
-          type: 'habit.missed',
-          entityId: habit.id,
-          dayKey: dk,
-        );
-        if (!exists) {
+      if (missDays.isEmpty) continue;
+      final existing = await events.query(
+        type: 'habit.missed',
+        entityType: 'habit',
+        entityId: habit.id,
+      );
+      final existingKeys = existing.map((e) => e.dayKey).toSet();
+      await db.transaction(() async {
+        for (final dk in missDays) {
+          if (existingKeys.contains(dk)) continue;
           await events.append(EventRecord(
             id: newId('ev'),
             type: 'habit.missed',
@@ -46,8 +50,8 @@ class CoachService {
             entityId: habit.id,
           ));
         }
-      }
-      if (missDays.isNotEmpty) misses[habit.id] = missDays;
+      });
+      misses[habit.id] = missDays;
     }
 
     final messages = CoachRuleEngine.evaluate(
@@ -67,5 +71,14 @@ class CoachService {
         payload: m.payload,
       ));
     }
+  }
+
+  Future<CoachOutput?> todayOutput({DateTime? on}) async {
+    final today = dayKey(on ?? DateTime.now());
+    final q = db.select(db.coachOutputs)
+      ..where((t) => t.kind.equals('nudge') & t.dateKey.equals(today))
+      ..limit(1);
+    final row = await q.getSingleOrNull();
+    return row == null ? null : CoachOutput.fromRow(row);
   }
 }

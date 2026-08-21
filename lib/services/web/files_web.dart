@@ -26,24 +26,39 @@ Future<List<PickedFile>> pickFiles({bool multiple = true}) {
     ..multiple = multiple;
   input.addEventListener(
     'change',
-    ((web.Event e) async {
+    ((web.Event e) {
       final files = input.files;
       if (files == null) {
         completer.complete([]);
         return;
       }
       final result = <PickedFile>[];
-      for (var i = 0; i < files.length; i++) {
-        final file = files.item(i);
-        if (file == null) continue;
-        final buffer = await file.arrayBuffer().toDart;
-        result.add(
-          PickedFile(name: file.name, bytes: buffer.toDart.asUint8List()),
-        );
+      var index = 0;
+      void next() {
+        if (index >= files.length) {
+          completer.complete(result);
+          return;
+        }
+        final file = files.item(index);
+        index++;
+        if (file == null) {
+          next();
+          return;
+        }
+        file.arrayBuffer().toDart.then((buffer) {
+          result.add(
+            PickedFile(name: file.name, bytes: buffer.toDart.asUint8List()),
+          );
+          next();
+        });
       }
-      completer.complete(result);
+
+      next();
     }).toJS,
   );
+  input.addEventListener('cancel', ((web.Event e) {
+    if (!completer.isCompleted) completer.complete([]);
+  }).toJS);
   input.click();
   return completer.future;
 }

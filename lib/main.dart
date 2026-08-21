@@ -8,12 +8,20 @@ import 'data/providers.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final db = AppDatabase.open();
-  final integrity = await db.integrityCheck();
-  final healthy = integrity.isNotEmpty && integrity.first == 'ok';
+  final healthy = await checkBootHealthy(db);
   runApp(
     ProviderScope(
       overrides: [dbProvider.overrideWithValue(db)],
       child: App(bootHealthy: healthy),
     ),
   );
+}
+
+Future<bool> checkBootHealthy(AppDatabase db) async {
+  try {
+    final integrity = await db.integrityCheck();
+    return integrity.isNotEmpty && integrity.first == 'ok';
+  } catch (_) {
+    return false;
+  }
 }

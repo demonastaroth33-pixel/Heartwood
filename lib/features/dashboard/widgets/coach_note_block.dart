@@ -1,7 +1,5 @@
-import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:personalos/core/ids.dart';
 import 'package:personalos/data/models/coach_output.dart';
 import 'package:personalos/data/providers.dart';
 
@@ -10,13 +8,7 @@ import 'block_card.dart';
 final coachTodayProvider = FutureProvider<CoachOutput?>((ref) async {
   final service = ref.watch(coachServiceProvider);
   await service.refresh();
-  final db = ref.watch(dbProvider);
-  final today = dayKey(DateTime.now());
-  final q = db.select(db.coachOutputs)
-    ..where((t) => t.kind.equals('nudge') & t.dateKey.equals(today))
-    ..limit(1);
-  final row = await q.getSingleOrNull();
-  return row == null ? null : CoachOutput.fromRow(row);
+  return service.todayOutput();
 });
 
 class CoachNoteBlock extends ConsumerWidget {

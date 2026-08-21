@@ -18,6 +18,7 @@ class DataSection extends ConsumerWidget {
         'PersonalOS-backup-${stamp.year}-${stamp.month.toString().padLeft(2, '0')}-${stamp.day.toString().padLeft(2, '0')}-${stamp.hour.toString().padLeft(2, '0')}${stamp.minute.toString().padLeft(2, '0')}.json';
     downloadBytes(fileName, utf8.encode(bundle.json));
     for (final entry in bundle.mediaFiles.entries) {
+      await Future<void>.delayed(const Duration(milliseconds: 250));
       downloadBytes(entry.key, entry.value);
     }
     if (!context.mounted) return;
@@ -39,7 +40,7 @@ class DataSection extends ConsumerWidget {
     }
     final mediaFiles = <String, Uint8List>{};
     for (final file in picked) {
-      if (file.name.startsWith('media/')) {
+      if (file.name.startsWith('media_')) {
         mediaFiles[file.name] = file.bytes;
       }
     }

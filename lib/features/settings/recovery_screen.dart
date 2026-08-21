@@ -55,7 +55,7 @@ class RecoveryScreen extends ConsumerWidget {
                     if (jsonFile == null) return;
                     final mediaFiles = <String, Uint8List>{};
                     for (final file in picked) {
-                      if (file.name.startsWith('media/')) {
+                      if (file.name.startsWith('media_')) {
                         mediaFiles[file.name] = file.bytes;
                       }
                     }

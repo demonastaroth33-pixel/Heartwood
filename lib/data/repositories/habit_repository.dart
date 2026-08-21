@@ -60,28 +60,30 @@ class HabitRepository {
   Future<void> checkIn(String habitId, {DateTime? at, String? note}) async {
     final now = at ?? DateTime.now();
     final dk = dayKey(now);
-    final existing = await (db.select(db.habitCheckins)
-          ..where((t) => t.habitId.equals(habitId) & t.dayKey.equals(dk)))
-        .getSingleOrNull();
-    if (existing != null) return;
-    await db.into(db.habitCheckins).insert(
-          HabitCheckinsCompanion.insert(
-            id: newId('chk'),
-            habitId: habitId,
-            dayKey: dk,
-            completedAt: now,
-            note: Value(note),
-          ),
-          mode: InsertMode.insertOrIgnore,
-        );
-    await events.append(EventRecord(
-      id: newId('ev'),
-      type: 'habit.completed',
-      occurredAt: now,
-      dayKey: dk,
-      entityType: 'habit',
-      entityId: habitId,
-    ));
+    await db.transaction(() async {
+      final existing = await (db.select(db.habitCheckins)
+            ..where((t) => t.habitId.equals(habitId) & t.dayKey.equals(dk)))
+          .getSingleOrNull();
+      if (existing != null) return;
+      await db.into(db.habitCheckins).insert(
+            HabitCheckinsCompanion.insert(
+              id: newId('chk'),
+              habitId: habitId,
+              dayKey: dk,
+              completedAt: now,
+              note: Value(note),
+            ),
+            mode: InsertMode.insertOrIgnore,
+          );
+      await events.append(EventRecord(
+        id: newId('ev'),
+        type: 'habit.completed',
+        occurredAt: now,
+        dayKey: dk,
+        entityType: 'habit',
+        entityId: habitId,
+      ));
+    });
   }
 
   Future<List<HabitCheckin>> checkInsForDay(String dayKey) async {
