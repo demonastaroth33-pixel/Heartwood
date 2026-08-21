@@ -91,3 +91,26 @@ spec drift?):
 
 **Open items** (carried to the next milestone):
 - None.
+
+---
+
+### Milestone: M0 — Phases 5–7: Export/restore, Coach stub, Storage meter (2026-08-21)
+
+**Went well** (keep doing):
+- Export→wipe→restore proven at the data layer: identical table dumps across a fresh DB, missing media = soft failure, newer-schema refusal, restore replaces populated data. sha256 manifest via crypto (D080).
+- D021 recovery boot check wired: integrity check before runApp, recovery screen (export-what's-readable + restore) with a widget test.
+- Coach stub is Decision-D faithful: idempotent habit.missed events (never duplicated on re-refresh), engine pure, outputs deduped per (kind, dateKey).
+- Storage meter: threshold math is a pure function; web estimate() behind the same conditional-import pattern; widget test with overridden meter proved the 95% hard-warn banner + export action (and caught a real 36px overflow at phone width).
+
+**Went wrong** (AI behavior worth fixing):
+- Twice I wrote test expectations that didn't match the rule I'd implemented (compact-JSON assertion; "2 missed days" counted as a nudge). The tests were wrong, not the code — read the rule's numbers before writing the assertion.
+
+**Root causes** (silent assumption? over-engineering? boundary-crossing? spec drift?):
+- Assertions written from the plan sketch instead of the actual behavior contract (3 CONSECUTIVE missed days = habit skipped for 3 full days).
+
+**Encoded lesson** (the AGENTS.md rule or DecisionLog entry this spawned):
+- "When a test fails and the code looks right, re-check the test's numbers against the doc's rule — the failing assertion is often the bug."
+
+**Open items** (carried to the next milestone):
+- Full UI overhaul pass (scheduled next).
+- Cloudflare Pages deployment + iPhone PWA verification (Phase 8).
