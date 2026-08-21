@@ -49,6 +49,13 @@ features/ (UI, Riverpod providers)
 - No comments unless the user asks.
 - Match existing file conventions; work one layer at a time.
 - After any change, read the full diff yourself.
+- Drift schema: after ANY database.dart edit, run build_runner + flutter analyze
+  before proceeding; every entity table needs an explicit primaryKey on id (FK
+  references fail at prepare time otherwise); column getters must not collide
+  with Table built-ins (e.g. `blob` -> `blobData`); use @DataClassName('XxxRow')
+  so generated row classes don't collide with domain models. Never trust
+  scaffold stubs — verify drift syntax via context7.
+- Never commit with failing tests — read the runner's final summary line first.
 - Security gate: before any commit touching auth, storage, or import/export,
   load the owasp-security skill, review the diff, and read its findings;
   then present them and get user approval before the commit goes through.

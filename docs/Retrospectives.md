@@ -24,3 +24,27 @@ spec drift?):
 
 **Open items** (carried to the next milestone):
 -
+
+---
+
+### Milestone: M0 — Phase 1: Data layer skeleton (2026-08-21)
+
+**Went well** (keep doing):
+- TDD-first held: every repository started as a failing test; codegen/analyze verified after every step.
+- The plan-review TableIndex catch was validated by an actual build_runner failure — doc-checking against context7 before codegen paid off twice over (index syntax, then `Table.blob` collision).
+- Repositories write entity + event in one `db.transaction()`; tests assert the event log never diverges.
+
+**Went wrong** (AI behavior worth fixing):
+- Committed Task 1.5 with 7 failing tests — the full-suite verification line was misread and the commit went through anyway. Process violation: never commit with red tests; verify the final "All tests passed" line explicitly.
+- The scaffold's schema stub carried three latent breakages that only surfaced at codegen/FK time (invalid `TableIndex` syntax, `blob` column colliding with `Table.blob`, missing `primaryKey` on entity tables). I copied the stub's patterns instead of verifying them — exactly what AGENTS.md's context7 mandate exists to prevent.
+
+**Root causes** (silent assumption? over-engineering? boundary-crossing? spec drift?):
+- Assumed the scaffold stub was compilable drift; it had never been code-generated. Drift codegen IS the compiler — the first real run exposes schema truth.
+- Generated data-class names (`JournalEntry`, `Habit`, `Event`) collide with the domain models by default; fixed with `@DataClassName('XxxRow')`.
+- SQLite rejects FK references to non-key parent columns at prepare time (`foreign key mismatch`); entity tables need explicit `primaryKey` on `id`.
+
+**Encoded lesson** (the AGENTS.md rule or DecisionLog entry this spawned):
+- AGENTS.md Code rules: "Drift schema: after ANY database.dart edit, run build_runner + flutter analyze before proceeding; every entity table needs an explicit primaryKey on id (FK references fail at prepare time otherwise); column getters must not collide with Table built-ins (e.g. `blob` → `blobData`); use @DataClassName('XxxRow') so generated row classes don't collide with domain models. Never trust scaffold stubs — verify drift syntax via context7." Plus: "Never commit with failing tests — grep the runner's final line first."
+
+**Open items** (carried to the next milestone):
+- None.
