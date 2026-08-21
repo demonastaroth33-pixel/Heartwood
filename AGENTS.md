@@ -142,11 +142,18 @@ Rules (non-negotiable):
 
 ## UI milestone skills (off by default)
 
-frontend-design + impeccable live in .opencode/skills-off/ — NOT loaded.
-Before a UI milestone (M0 dashboard, journal, habits screens): move the
-needed folder(s) from skills-off/ into .opencode/skills/ and restart
-opencode; move them back after the milestone. When a skill conflicts with
-docs/UIUX.md, the doc wins — state that in the prompt.
+frontend-design, impeccable, and the mobbin-* skills live in
+.opencode/skills-off/ — NOT loaded. Before a UI milestone (M0 dashboard,
+journal, habits screens): move the needed folder(s) from skills-off/ into
+.opencode/skills/ and restart opencode; move them back after the milestone.
+When a skill conflicts with docs/UIUX.md, the doc wins — state that in the
+prompt.
+
+Mobbin usage: request 3-5 real screens per UI block being built (streak
+display, diary list, storage meter) and use them as evidence in the prompt;
+never dump whole libraries into context. Mobbin auth lives in the mobbin-mcp
+CLI (mobbin-mcp auth, browser login) — never in this repo. Caveat: it runs
+on Mobbin's unofficial internal API; treat it as best-effort reference.
 
 ## Definition of done (every task)
 

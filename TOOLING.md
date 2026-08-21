@@ -41,10 +41,20 @@ you recognize when one is doing its job, or nudge the AI toward it.
 |---|---|
 | frontend-design | M0 dashboard / journal / habits UI work |
 | impeccable | Same, design-QA (audit/polish/critique) |
+| mobbin-search | Real-app screen search: streak patterns, diary lists, storage meters |
+| mobbin-capture | Save specific Mobbin flows/screens into a local reference store |
+| mobbin-prompts | Reference-pack prompts for implementation work |
+| mobbin-visuals | Contact sheets + visual-similarity lookups |
+| mobbin-flow-architect | Study how a top app handles a flow → adapt as a spec (needs your sign-off) |
 
 **Toggle ritual:** move the folder from `.opencode/skills-off/` into
 `.opencode/skills/`, restart opencode, work the UI milestone, then move it
 back. UIUX.md always wins over these skills.
+
+**Mobbin notes:** runs on Mobbin's unofficial internal API — best-effort
+reference, may break upstream. Auth once via `mobbin-mcp auth` (browser
+login, Mobbin account with free tier). Ask for 3-5 screens per UI block,
+never whole libraries.
 
 ## 4. Subagents (.opencode/agent/)
 
@@ -86,7 +96,7 @@ folder inspection at P3, (3) dropping fixtures. **Rules:** only
 - **Big feature** → writing-plans → executing-plans
 - **Before you review** → `/code-review`
 - **After tests green** → code-simplifier, then read the diff
-- **UI milestone** → toggle frontend-design + impeccable ON
+- **UI milestone** → toggle frontend-design + impeccable + mobbin-* ON
 - **Library API unsure** → context7
 - **Browser boundary** → playwright
 - **Backup/restore testing** → drive MCP
