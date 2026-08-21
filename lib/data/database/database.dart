@@ -14,6 +14,29 @@ class JournalEntries extends Table {
   DateTimeColumn get createdAt => dateTime()();
   DateTimeColumn get updatedAt => dateTime()();
   DateTimeColumn get deletedAt => dateTime().nullable()();
+  BoolColumn get imported => boolean().withDefault(const Constant(false))();
+  TextColumn get importHash => text().nullable()();
+}
+
+class MediaAttachments extends Table {
+  TextColumn get id => text()();
+  TextColumn get entryId => text().nullable().references(JournalEntries, #id)();
+  TextColumn get fileName => text()();
+  TextColumn get mimeType => text()();
+  IntColumn get sizeBytes => integer()();
+  IntColumn get durationSec => integer().nullable()();
+  TextColumn get title => text().nullable()();
+  DateTimeColumn get capturedAt => dateTime()();
+  TextColumn get syncState => text().withDefault(const Constant('local-only'))();
+  TextColumn get storageRef => text().withDefault(const Constant(''))();
+  TextColumn get thumbnailRef => text().nullable()();
+  TextColumn get contentHash => text().nullable()();
+  TextColumn get archivedOnDevice => text().nullable()();
+  BoolColumn get adopted => boolean().withDefault(const Constant(false))();
+  BlobColumn get blobData => blob().nullable()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
 }
 
 class Habits extends Table {
@@ -54,6 +77,9 @@ class Settings extends Table {
   Set<Column<Object>> get primaryKey => {key};
 }
 
+@TableIndex(name: 'idx_events_type_day', columns: {#type, #dayKey})
+@TableIndex(name: 'idx_events_area_day', columns: {#area, #dayKey})
+@TableIndex(name: 'idx_events_entity', columns: {#entityType, #entityId})
 class Events extends Table {
   TextColumn get id => text()();
   TextColumn get type => text()();
@@ -70,36 +96,21 @@ class Events extends Table {
   Set<Column<Object>> get primaryKey => {id};
 }
 
-@TableIndex(name: 'idx_events_type_day', columns: {#type, #dayKey})
-class _EventsIndex1 extends TableIndex on Events {
-  @override
-  String get indexName => 'idx_events_type_day';
-}
-
-@TableIndex(name: 'idx_events_area_day', columns: {#area, #dayKey})
-class _EventsIndex2 extends TableIndex on Events {
-  @override
-  String get indexName => 'idx_events_area_day';
-}
-
-@TableIndex(name: 'idx_events_entity', columns: {#entityType, #entityId})
-class _EventsIndex3 extends TableIndex on Events {
-  @override
-  String get indexName => 'idx_events_entity';
-}
-
-class MediaAttachments extends Table {
+class CoachOutputs extends Table {
   TextColumn get id => text()();
-  TextColumn get entryId =>
-      text().nullable().references(JournalEntries, #id)();
-  TextColumn get fileName => text()();
-  TextColumn get mimeType => text()();
-  IntColumn get sizeBytes => integer()();
-  IntColumn get durationSec => integer().nullable()();
-  DateTimeColumn get capturedAt => dateTime()();
-  TextColumn get syncState => text().withDefault(const Constant('local'))();
-  TextColumn get storageRef => text().withDefault(const Constant(''))();
-  BlobColumn get blob => blob().nullable()();
+  TextColumn get kind => text()();
+  TextColumn get dateKey => text()();
+  TextColumn get payload => text()();
+
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+class MediaManifest extends Table {
+  TextColumn get id => text()();
+  TextColumn get mediaId => text()();
+  TextColumn get sha256 => text().nullable()();
+  BoolColumn get exportedIn => boolean().withDefault(const Constant(false))();
 
   @override
   Set<Column<Object>> get primaryKey => {id};
@@ -107,12 +118,14 @@ class MediaAttachments extends Table {
 
 @DriftDatabase(tables: [
   JournalEntries,
+  MediaAttachments,
   Habits,
   HabitCheckins,
   Areas,
   Settings,
   Events,
-  MediaAttachments,
+  CoachOutputs,
+  MediaManifest,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
@@ -121,19 +134,13 @@ class AppDatabase extends _$AppDatabase {
       : super(executor ?? driftDatabase(name: 'personalos'));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 1;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
         onCreate: (m) async {
           await m.createAll();
           await _seedAreas();
-        },
-        onUpgrade: (m, from, to) async {
-          if (from < 2) {
-            await m.createTable(events);
-            await m.createTable(mediaAttachments);
-          }
         },
         beforeOpen: (details) async {
           await customStatement('PRAGMA foreign_keys = ON');
@@ -159,18 +166,23 @@ class AppDatabase extends _$AppDatabase {
   }
 
   Future<Map<String, int>> tableCounts() async {
-    final tables = <String, TableInfo<dynamic, dynamic>>{
-      'settings': settings,
-      'areas': areas,
-      'journal_entries': journalEntries,
-      'habits': habits,
-      'habit_checkins': habitCheckins,
-      'media_attachments': mediaAttachments,
-      'events': events,
-    };
+    const tableNames = <String>[
+      'settings',
+      'areas',
+      'journal_entries',
+      'media_attachments',
+      'habits',
+      'habit_checkins',
+      'events',
+      'coach_outputs',
+      'media_manifest',
+    ];
     final result = <String, int>{};
-    for (final entry in tables.entries) {
-      result[entry.key] = await entry.value.count().getSingle();
+    for (final name in tableNames) {
+      final row = await customSelect(
+        'SELECT COUNT(*) AS c FROM $name',
+      ).getSingle();
+      result[name] = row.read<int>('c');
     }
     return result;
   }
