@@ -38,7 +38,7 @@ class StorageMeter {
 
   Future<StorageMeterData> read() async {
     final row = await db.customSelect(
-      'SELECT COALESCE(SUM(sizeBytes), 0) AS s FROM media_attachments WHERE adopted = 0',
+      'SELECT COALESCE(SUM(size_bytes), 0) AS s FROM media_attachments WHERE adopted = 0',
     ).getSingle();
     final dbMedia = row.read<int>('s');
     final usage = await impl.estimateUsageBytes();
