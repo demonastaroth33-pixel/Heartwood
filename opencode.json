@@ -8,6 +8,19 @@
       "headers": {
         "Authorization": "Bearer {env:CONTEXT7_API_KEY}"
       }
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest", "--browser", "chrome"],
+      "enabled": true
+    },
+    "drive": {
+      "type": "local",
+      "command": ["npx", "-y", "@piotr-agier/google-drive-mcp"],
+      "environment": {
+        "GOOGLE_DRIVE_MCP_SCOPES": "drive.readonly,drive.file"
+      },
+      "enabled": true
     }
   },
   "permission": {

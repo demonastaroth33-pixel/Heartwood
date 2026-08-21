@@ -25,6 +25,7 @@ Planned in docs/ — implementation NOT started.
 - Milestones, what is/isn't built            -> docs/Roadmap.md
 - Project philosophy, core loop              -> docs/Vision.md
 - Any decision rationale                     -> docs/DecisionLog.md
+- Milestone retrospectives                   -> docs/Retrospectives.md
 
 ## Layer boundaries (non-negotiable)
 
@@ -54,6 +55,11 @@ features/ (UI, Riverpod providers)
 - Always use context7 (query-docs / resolve-library-id) for library/API docs
   or version-specific code examples — never answer from memory on drift,
   riverpod, drift_flutter, sqlite3, or Flutter APIs.
+- After milestone phase tests are green, before reading the diff: dispatch
+  the code-simplifier subagent (only files in the current diff; flutter
+  analyze/test must stay green; review its diff yourself).
+- After every milestone phase, write the docs/Retrospectives.md entry and
+  encode at least one lesson into AGENTS.md or DecisionLog.
 
 ## Universal work rules (Karpathy)
 
@@ -81,6 +87,58 @@ judgment.
 
 - flutter test       (engines, repositories, export/restore round-trip)
 - flutter analyze    (must be clean before commit)
+
+## Browser testing (Playwright MCP)
+
+Use the playwright MCP tools (drive installed Chrome) for the browser
+boundary only:
+- PWA persistence gate (M0 exit criterion): flutter run -d web-server, drive
+  the UI to create data, kill the browser, relaunch, assert the data is still
+  there. A repeatable regression test, not a one-time ceremony.
+- Export -> wipe -> restore round-trip through the actual UI.
+- Probing the running app during development (navigate, click, fill,
+  screenshot, console logs).
+- Anything touching the service worker, PWA install flow, or storage
+  persistence across browser restarts.
+
+Do NOT use Playwright for:
+- Widget-tree assertions: Flutter web renders to canvas; accessibility
+  snapshots are near-empty. Use integration_test for widget logic.
+- iPhone PWA verification: always manual; nothing automates it.
+- Engines, repositories, unit tests: flutter test owns those.
+
+Ownership: flutter test owns engines, integration_test owns widget logic,
+Playwright owns the browser boundary.
+
+## Drive MCP (dev tool — NOT the app's integration)
+
+The drive MCP authenticates as your personal Google account with
+drive.readonly + drive.file scopes (writes limited to files the MCP itself
+creates). Dev-side only: the app's M3-M5 Drive sync ships in-app via OAuth +
+Drive REST inside CloudMediaAdapter — never through this MCP.
+
+Use it for:
+- Live-testing the P2 backup upload/restore path against /PersonalOS-dev
+  with real JSON backups.
+- Inspecting the vault folder tree / metadata during P3 offload work
+  (read-only; drive.readonly scope).
+- Fixture management (drop test backups into /PersonalOS-dev for restore
+  tests).
+
+Rules (non-negotiable):
+- The drive MCP may ONLY touch the /PersonalOS-dev test folder. Never any
+  other Drive path, never a user's real folder.
+- Credentials live in ~/.config/google-drive-mcp/ — never in the repo,
+  never committed.
+- The MCP uses its own OAuth client, separate from the app's future client.
+
+## UI milestone skills (off by default)
+
+frontend-design + impeccable live in .opencode/skills-off/ — NOT loaded.
+Before a UI milestone (M0 dashboard, journal, habits screens): move the
+needed folder(s) from skills-off/ into .opencode/skills/ and restart
+opencode; move them back after the milestone. When a skill conflicts with
+docs/UIUX.md, the doc wins — state that in the prompt.
 
 ## Definition of done (every task)
 
