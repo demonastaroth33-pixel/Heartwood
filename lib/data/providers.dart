@@ -6,6 +6,7 @@ import 'package:personalos/data/repositories/habit_repository.dart';
 import 'package:personalos/data/repositories/journal_repository.dart';
 import 'package:personalos/data/repositories/media_repository.dart';
 import 'package:personalos/data/repositories/settings_repository.dart';
+import 'package:personalos/services/media/media_capture.dart';
 
 final dbProvider = Provider<AppDatabase>(
   (ref) => throw UnimplementedError('dbProvider must be overridden at startup'),
@@ -34,4 +35,8 @@ final mediaRepoProvider = Provider<MediaRepository>(
 
 final settingsRepoProvider = Provider<SettingsRepository>(
   (ref) => SettingsRepository(ref.watch(dbProvider)),
+);
+
+final mediaCaptureProvider = Provider<MediaCaptureService>(
+  (ref) => WebMediaCapture(),
 );

@@ -1007,6 +1007,23 @@ separate so one decision never conflates two themes:
 
 ---
 
+## 2026-08-21 — M0 Build — Media Capture
+
+### D079 — image_picker for journal photo capture (accepted)
+Adopt `image_picker` for M0 photo capture: photos picked from the device
+camera or gallery return bytes + mimeType to the compose flow, saved via
+MediaRepository (blobs in the Drift BLOB column, Decision C). User-approved
+at the M0 plan checkpoint (2026-08-21, Decision B).
+Rationale: one dependency handles camera-on-device + file-pick on desktop +
+multi-photo in a single API; the capture attribute path (raw HTML input) was
+considered but image_picker's web implementation is battle-tested. Vlog
+recording stays dependency-free via browser MediaRecorder (package:web).
+Rejected: raw HTML file input (manual interop for multi-file + no camera
+attribute guarantees); ffmpeg re-encoding (locked out, D012).
+Revisit: none for M0.
+
+---
+
 ## 2026-08-21 — M0 Build — State Management
 
 ### D078 — Riverpod as the M0 state-management layer (accepted)
