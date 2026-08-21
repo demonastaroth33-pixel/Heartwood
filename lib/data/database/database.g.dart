@@ -4,7 +4,7 @@ part of 'database.dart';
 
 // ignore_for_file: type=lint
 class $JournalEntriesTable extends JournalEntries
-    with TableInfo<$JournalEntriesTable, JournalEntry> {
+    with TableInfo<$JournalEntriesTable, JournalEntryRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -135,7 +135,7 @@ class $JournalEntriesTable extends JournalEntries
   static const String $name = 'journal_entries';
   @override
   VerificationContext validateIntegrity(
-    Insertable<JournalEntry> instance, {
+    Insertable<JournalEntryRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -213,9 +213,9 @@ class $JournalEntriesTable extends JournalEntries
   @override
   Set<GeneratedColumn> get $primaryKey => const {};
   @override
-  JournalEntry map(Map<String, dynamic> data, {String? tablePrefix}) {
+  JournalEntryRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return JournalEntry(
+    return JournalEntryRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -265,7 +265,7 @@ class $JournalEntriesTable extends JournalEntries
   }
 }
 
-class JournalEntry extends DataClass implements Insertable<JournalEntry> {
+class JournalEntryRow extends DataClass implements Insertable<JournalEntryRow> {
   final String id;
   final String? title;
   final String body;
@@ -276,7 +276,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
   final DateTime? deletedAt;
   final bool imported;
   final String? importHash;
-  const JournalEntry({
+  const JournalEntryRow({
     required this.id,
     this.title,
     required this.body,
@@ -333,12 +333,12 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
     );
   }
 
-  factory JournalEntry.fromJson(
+  factory JournalEntryRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return JournalEntry(
+    return JournalEntryRow(
       id: serializer.fromJson<String>(json['id']),
       title: serializer.fromJson<String?>(json['title']),
       body: serializer.fromJson<String>(json['body']),
@@ -368,7 +368,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
     };
   }
 
-  JournalEntry copyWith({
+  JournalEntryRow copyWith({
     String? id,
     Value<String?> title = const Value.absent(),
     String? body,
@@ -379,7 +379,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
     Value<DateTime?> deletedAt = const Value.absent(),
     bool? imported,
     Value<String?> importHash = const Value.absent(),
-  }) => JournalEntry(
+  }) => JournalEntryRow(
     id: id ?? this.id,
     title: title.present ? title.value : this.title,
     body: body ?? this.body,
@@ -391,8 +391,8 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
     imported: imported ?? this.imported,
     importHash: importHash.present ? importHash.value : this.importHash,
   );
-  JournalEntry copyWithCompanion(JournalEntriesCompanion data) {
-    return JournalEntry(
+  JournalEntryRow copyWithCompanion(JournalEntriesCompanion data) {
+    return JournalEntryRow(
       id: data.id.present ? data.id.value : this.id,
       title: data.title.present ? data.title.value : this.title,
       body: data.body.present ? data.body.value : this.body,
@@ -410,7 +410,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
 
   @override
   String toString() {
-    return (StringBuffer('JournalEntry(')
+    return (StringBuffer('JournalEntryRow(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('body: $body, ')
@@ -441,7 +441,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is JournalEntry &&
+      (other is JournalEntryRow &&
           other.id == this.id &&
           other.title == this.title &&
           other.body == this.body &&
@@ -454,7 +454,7 @@ class JournalEntry extends DataClass implements Insertable<JournalEntry> {
           other.importHash == this.importHash);
 }
 
-class JournalEntriesCompanion extends UpdateCompanion<JournalEntry> {
+class JournalEntriesCompanion extends UpdateCompanion<JournalEntryRow> {
   final Value<String> id;
   final Value<String?> title;
   final Value<String> body;
@@ -496,7 +496,7 @@ class JournalEntriesCompanion extends UpdateCompanion<JournalEntry> {
        tagsJson = Value(tagsJson),
        createdAt = Value(createdAt),
        updatedAt = Value(updatedAt);
-  static Insertable<JournalEntry> custom({
+  static Insertable<JournalEntryRow> custom({
     Expression<String>? id,
     Expression<String>? title,
     Expression<String>? body,
@@ -611,7 +611,7 @@ class JournalEntriesCompanion extends UpdateCompanion<JournalEntry> {
 }
 
 class $MediaAttachmentsTable extends MediaAttachments
-    with TableInfo<$MediaAttachmentsTable, MediaAttachment> {
+    with TableInfo<$MediaAttachmentsTable, MediaAttachmentRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -811,7 +811,7 @@ class $MediaAttachmentsTable extends MediaAttachments
   static const String $name = 'media_attachments';
   @override
   VerificationContext validateIntegrity(
-    Insertable<MediaAttachment> instance, {
+    Insertable<MediaAttachmentRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -931,9 +931,9 @@ class $MediaAttachmentsTable extends MediaAttachments
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  MediaAttachment map(Map<String, dynamic> data, {String? tablePrefix}) {
+  MediaAttachmentRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return MediaAttachment(
+    return MediaAttachmentRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -1003,7 +1003,8 @@ class $MediaAttachmentsTable extends MediaAttachments
   }
 }
 
-class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
+class MediaAttachmentRow extends DataClass
+    implements Insertable<MediaAttachmentRow> {
   final String id;
   final String? entryId;
   final String fileName;
@@ -1019,7 +1020,7 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
   final String? archivedOnDevice;
   final bool adopted;
   final Uint8List? blobData;
-  const MediaAttachment({
+  const MediaAttachmentRow({
     required this.id,
     this.entryId,
     required this.fileName,
@@ -1105,12 +1106,12 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
     );
   }
 
-  factory MediaAttachment.fromJson(
+  factory MediaAttachmentRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return MediaAttachment(
+    return MediaAttachmentRow(
       id: serializer.fromJson<String>(json['id']),
       entryId: serializer.fromJson<String?>(json['entryId']),
       fileName: serializer.fromJson<String>(json['fileName']),
@@ -1150,7 +1151,7 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
     };
   }
 
-  MediaAttachment copyWith({
+  MediaAttachmentRow copyWith({
     String? id,
     Value<String?> entryId = const Value.absent(),
     String? fileName,
@@ -1166,7 +1167,7 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
     Value<String?> archivedOnDevice = const Value.absent(),
     bool? adopted,
     Value<Uint8List?> blobData = const Value.absent(),
-  }) => MediaAttachment(
+  }) => MediaAttachmentRow(
     id: id ?? this.id,
     entryId: entryId.present ? entryId.value : this.entryId,
     fileName: fileName ?? this.fileName,
@@ -1185,8 +1186,8 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
     adopted: adopted ?? this.adopted,
     blobData: blobData.present ? blobData.value : this.blobData,
   );
-  MediaAttachment copyWithCompanion(MediaAttachmentsCompanion data) {
-    return MediaAttachment(
+  MediaAttachmentRow copyWithCompanion(MediaAttachmentsCompanion data) {
+    return MediaAttachmentRow(
       id: data.id.present ? data.id.value : this.id,
       entryId: data.entryId.present ? data.entryId.value : this.entryId,
       fileName: data.fileName.present ? data.fileName.value : this.fileName,
@@ -1219,7 +1220,7 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
 
   @override
   String toString() {
-    return (StringBuffer('MediaAttachment(')
+    return (StringBuffer('MediaAttachmentRow(')
           ..write('id: $id, ')
           ..write('entryId: $entryId, ')
           ..write('fileName: $fileName, ')
@@ -1260,7 +1261,7 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is MediaAttachment &&
+      (other is MediaAttachmentRow &&
           other.id == this.id &&
           other.entryId == this.entryId &&
           other.fileName == this.fileName &&
@@ -1278,7 +1279,7 @@ class MediaAttachment extends DataClass implements Insertable<MediaAttachment> {
           $driftBlobEquality.equals(other.blobData, this.blobData));
 }
 
-class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachment> {
+class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
   final Value<String> id;
   final Value<String?> entryId;
   final Value<String> fileName;
@@ -1335,7 +1336,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachment> {
        mimeType = Value(mimeType),
        sizeBytes = Value(sizeBytes),
        capturedAt = Value(capturedAt);
-  static Insertable<MediaAttachment> custom({
+  static Insertable<MediaAttachmentRow> custom({
     Expression<String>? id,
     Expression<String>? entryId,
     Expression<String>? fileName,
@@ -1489,7 +1490,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachment> {
   }
 }
 
-class $HabitsTable extends Habits with TableInfo<$HabitsTable, Habit> {
+class $HabitsTable extends Habits with TableInfo<$HabitsTable, HabitRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1554,7 +1555,7 @@ class $HabitsTable extends Habits with TableInfo<$HabitsTable, Habit> {
   static const String $name = 'habits';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Habit> instance, {
+    Insertable<HabitRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1598,9 +1599,9 @@ class $HabitsTable extends Habits with TableInfo<$HabitsTable, Habit> {
   @override
   Set<GeneratedColumn> get $primaryKey => const {};
   @override
-  Habit map(Map<String, dynamic> data, {String? tablePrefix}) {
+  HabitRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Habit(
+    return HabitRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -1630,13 +1631,13 @@ class $HabitsTable extends Habits with TableInfo<$HabitsTable, Habit> {
   }
 }
 
-class Habit extends DataClass implements Insertable<Habit> {
+class HabitRow extends DataClass implements Insertable<HabitRow> {
   final String id;
   final String name;
   final String? area;
   final DateTime createdAt;
   final bool active;
-  const Habit({
+  const HabitRow({
     required this.id,
     required this.name,
     this.area,
@@ -1666,12 +1667,12 @@ class Habit extends DataClass implements Insertable<Habit> {
     );
   }
 
-  factory Habit.fromJson(
+  factory HabitRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Habit(
+    return HabitRow(
       id: serializer.fromJson<String>(json['id']),
       name: serializer.fromJson<String>(json['name']),
       area: serializer.fromJson<String?>(json['area']),
@@ -1691,21 +1692,21 @@ class Habit extends DataClass implements Insertable<Habit> {
     };
   }
 
-  Habit copyWith({
+  HabitRow copyWith({
     String? id,
     String? name,
     Value<String?> area = const Value.absent(),
     DateTime? createdAt,
     bool? active,
-  }) => Habit(
+  }) => HabitRow(
     id: id ?? this.id,
     name: name ?? this.name,
     area: area.present ? area.value : this.area,
     createdAt: createdAt ?? this.createdAt,
     active: active ?? this.active,
   );
-  Habit copyWithCompanion(HabitsCompanion data) {
-    return Habit(
+  HabitRow copyWithCompanion(HabitsCompanion data) {
+    return HabitRow(
       id: data.id.present ? data.id.value : this.id,
       name: data.name.present ? data.name.value : this.name,
       area: data.area.present ? data.area.value : this.area,
@@ -1716,7 +1717,7 @@ class Habit extends DataClass implements Insertable<Habit> {
 
   @override
   String toString() {
-    return (StringBuffer('Habit(')
+    return (StringBuffer('HabitRow(')
           ..write('id: $id, ')
           ..write('name: $name, ')
           ..write('area: $area, ')
@@ -1731,7 +1732,7 @@ class Habit extends DataClass implements Insertable<Habit> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Habit &&
+      (other is HabitRow &&
           other.id == this.id &&
           other.name == this.name &&
           other.area == this.area &&
@@ -1739,7 +1740,7 @@ class Habit extends DataClass implements Insertable<Habit> {
           other.active == this.active);
 }
 
-class HabitsCompanion extends UpdateCompanion<Habit> {
+class HabitsCompanion extends UpdateCompanion<HabitRow> {
   final Value<String> id;
   final Value<String> name;
   final Value<String?> area;
@@ -1764,7 +1765,7 @@ class HabitsCompanion extends UpdateCompanion<Habit> {
   }) : id = Value(id),
        name = Value(name),
        createdAt = Value(createdAt);
-  static Insertable<Habit> custom({
+  static Insertable<HabitRow> custom({
     Expression<String>? id,
     Expression<String>? name,
     Expression<String>? area,
@@ -1839,7 +1840,7 @@ class HabitsCompanion extends UpdateCompanion<Habit> {
 }
 
 class $HabitCheckinsTable extends HabitCheckins
-    with TableInfo<$HabitCheckinsTable, HabitCheckin> {
+    with TableInfo<$HabitCheckinsTable, HabitCheckinRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1911,7 +1912,7 @@ class $HabitCheckinsTable extends HabitCheckins
   static const String $name = 'habit_checkins';
   @override
   VerificationContext validateIntegrity(
-    Insertable<HabitCheckin> instance, {
+    Insertable<HabitCheckinRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1964,9 +1965,9 @@ class $HabitCheckinsTable extends HabitCheckins
     {habitId, dayKey},
   ];
   @override
-  HabitCheckin map(Map<String, dynamic> data, {String? tablePrefix}) {
+  HabitCheckinRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return HabitCheckin(
+    return HabitCheckinRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -1996,13 +1997,13 @@ class $HabitCheckinsTable extends HabitCheckins
   }
 }
 
-class HabitCheckin extends DataClass implements Insertable<HabitCheckin> {
+class HabitCheckinRow extends DataClass implements Insertable<HabitCheckinRow> {
   final String id;
   final String habitId;
   final String dayKey;
   final DateTime completedAt;
   final String? note;
-  const HabitCheckin({
+  const HabitCheckinRow({
     required this.id,
     required this.habitId,
     required this.dayKey,
@@ -2032,12 +2033,12 @@ class HabitCheckin extends DataClass implements Insertable<HabitCheckin> {
     );
   }
 
-  factory HabitCheckin.fromJson(
+  factory HabitCheckinRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return HabitCheckin(
+    return HabitCheckinRow(
       id: serializer.fromJson<String>(json['id']),
       habitId: serializer.fromJson<String>(json['habitId']),
       dayKey: serializer.fromJson<String>(json['dayKey']),
@@ -2057,21 +2058,21 @@ class HabitCheckin extends DataClass implements Insertable<HabitCheckin> {
     };
   }
 
-  HabitCheckin copyWith({
+  HabitCheckinRow copyWith({
     String? id,
     String? habitId,
     String? dayKey,
     DateTime? completedAt,
     Value<String?> note = const Value.absent(),
-  }) => HabitCheckin(
+  }) => HabitCheckinRow(
     id: id ?? this.id,
     habitId: habitId ?? this.habitId,
     dayKey: dayKey ?? this.dayKey,
     completedAt: completedAt ?? this.completedAt,
     note: note.present ? note.value : this.note,
   );
-  HabitCheckin copyWithCompanion(HabitCheckinsCompanion data) {
-    return HabitCheckin(
+  HabitCheckinRow copyWithCompanion(HabitCheckinsCompanion data) {
+    return HabitCheckinRow(
       id: data.id.present ? data.id.value : this.id,
       habitId: data.habitId.present ? data.habitId.value : this.habitId,
       dayKey: data.dayKey.present ? data.dayKey.value : this.dayKey,
@@ -2084,7 +2085,7 @@ class HabitCheckin extends DataClass implements Insertable<HabitCheckin> {
 
   @override
   String toString() {
-    return (StringBuffer('HabitCheckin(')
+    return (StringBuffer('HabitCheckinRow(')
           ..write('id: $id, ')
           ..write('habitId: $habitId, ')
           ..write('dayKey: $dayKey, ')
@@ -2099,7 +2100,7 @@ class HabitCheckin extends DataClass implements Insertable<HabitCheckin> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is HabitCheckin &&
+      (other is HabitCheckinRow &&
           other.id == this.id &&
           other.habitId == this.habitId &&
           other.dayKey == this.dayKey &&
@@ -2107,7 +2108,7 @@ class HabitCheckin extends DataClass implements Insertable<HabitCheckin> {
           other.note == this.note);
 }
 
-class HabitCheckinsCompanion extends UpdateCompanion<HabitCheckin> {
+class HabitCheckinsCompanion extends UpdateCompanion<HabitCheckinRow> {
   final Value<String> id;
   final Value<String> habitId;
   final Value<String> dayKey;
@@ -2133,7 +2134,7 @@ class HabitCheckinsCompanion extends UpdateCompanion<HabitCheckin> {
        habitId = Value(habitId),
        dayKey = Value(dayKey),
        completedAt = Value(completedAt);
-  static Insertable<HabitCheckin> custom({
+  static Insertable<HabitCheckinRow> custom({
     Expression<String>? id,
     Expression<String>? habitId,
     Expression<String>? dayKey,
@@ -2675,7 +2676,7 @@ class SettingsCompanion extends UpdateCompanion<Setting> {
   }
 }
 
-class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
+class $EventsTable extends Events with TableInfo<$EventsTable, EventRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -2803,7 +2804,7 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   static const String $name = 'events';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Event> instance, {
+    Insertable<EventRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -2891,9 +2892,9 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Event map(Map<String, dynamic> data, {String? tablePrefix}) {
+  EventRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Event(
+    return EventRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -2943,7 +2944,7 @@ class $EventsTable extends Events with TableInfo<$EventsTable, Event> {
   }
 }
 
-class Event extends DataClass implements Insertable<Event> {
+class EventRow extends DataClass implements Insertable<EventRow> {
   final String id;
   final String type;
   final DateTime occurredAt;
@@ -2954,7 +2955,7 @@ class Event extends DataClass implements Insertable<Event> {
   final int payloadVersion;
   final String payload;
   final String? supersedesId;
-  const Event({
+  const EventRow({
     required this.id,
     required this.type,
     required this.occurredAt,
@@ -3003,12 +3004,12 @@ class Event extends DataClass implements Insertable<Event> {
     );
   }
 
-  factory Event.fromJson(
+  factory EventRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Event(
+    return EventRow(
       id: serializer.fromJson<String>(json['id']),
       type: serializer.fromJson<String>(json['type']),
       occurredAt: serializer.fromJson<DateTime>(json['occurredAt']),
@@ -3038,7 +3039,7 @@ class Event extends DataClass implements Insertable<Event> {
     };
   }
 
-  Event copyWith({
+  EventRow copyWith({
     String? id,
     String? type,
     DateTime? occurredAt,
@@ -3049,7 +3050,7 @@ class Event extends DataClass implements Insertable<Event> {
     int? payloadVersion,
     String? payload,
     Value<String?> supersedesId = const Value.absent(),
-  }) => Event(
+  }) => EventRow(
     id: id ?? this.id,
     type: type ?? this.type,
     occurredAt: occurredAt ?? this.occurredAt,
@@ -3061,8 +3062,8 @@ class Event extends DataClass implements Insertable<Event> {
     payload: payload ?? this.payload,
     supersedesId: supersedesId.present ? supersedesId.value : this.supersedesId,
   );
-  Event copyWithCompanion(EventsCompanion data) {
-    return Event(
+  EventRow copyWithCompanion(EventsCompanion data) {
+    return EventRow(
       id: data.id.present ? data.id.value : this.id,
       type: data.type.present ? data.type.value : this.type,
       occurredAt: data.occurredAt.present
@@ -3086,7 +3087,7 @@ class Event extends DataClass implements Insertable<Event> {
 
   @override
   String toString() {
-    return (StringBuffer('Event(')
+    return (StringBuffer('EventRow(')
           ..write('id: $id, ')
           ..write('type: $type, ')
           ..write('occurredAt: $occurredAt, ')
@@ -3117,7 +3118,7 @@ class Event extends DataClass implements Insertable<Event> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Event &&
+      (other is EventRow &&
           other.id == this.id &&
           other.type == this.type &&
           other.occurredAt == this.occurredAt &&
@@ -3130,7 +3131,7 @@ class Event extends DataClass implements Insertable<Event> {
           other.supersedesId == this.supersedesId);
 }
 
-class EventsCompanion extends UpdateCompanion<Event> {
+class EventsCompanion extends UpdateCompanion<EventRow> {
   final Value<String> id;
   final Value<String> type;
   final Value<DateTime> occurredAt;
@@ -3174,7 +3175,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
        entityType = Value(entityType),
        entityId = Value(entityId),
        payload = Value(payload);
-  static Insertable<Event> custom({
+  static Insertable<EventRow> custom({
     Expression<String>? id,
     Expression<String>? type,
     Expression<DateTime>? occurredAt,
@@ -3289,7 +3290,7 @@ class EventsCompanion extends UpdateCompanion<Event> {
 }
 
 class $CoachOutputsTable extends CoachOutputs
-    with TableInfo<$CoachOutputsTable, CoachOutput> {
+    with TableInfo<$CoachOutputsTable, CoachOutputRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -3343,7 +3344,7 @@ class $CoachOutputsTable extends CoachOutputs
   static const String $name = 'coach_outputs';
   @override
   VerificationContext validateIntegrity(
-    Insertable<CoachOutput> instance, {
+    Insertable<CoachOutputRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -3383,9 +3384,9 @@ class $CoachOutputsTable extends CoachOutputs
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  CoachOutput map(Map<String, dynamic> data, {String? tablePrefix}) {
+  CoachOutputRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return CoachOutput(
+    return CoachOutputRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -3411,12 +3412,12 @@ class $CoachOutputsTable extends CoachOutputs
   }
 }
 
-class CoachOutput extends DataClass implements Insertable<CoachOutput> {
+class CoachOutputRow extends DataClass implements Insertable<CoachOutputRow> {
   final String id;
   final String kind;
   final String dateKey;
   final String payload;
-  const CoachOutput({
+  const CoachOutputRow({
     required this.id,
     required this.kind,
     required this.dateKey,
@@ -3441,12 +3442,12 @@ class CoachOutput extends DataClass implements Insertable<CoachOutput> {
     );
   }
 
-  factory CoachOutput.fromJson(
+  factory CoachOutputRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return CoachOutput(
+    return CoachOutputRow(
       id: serializer.fromJson<String>(json['id']),
       kind: serializer.fromJson<String>(json['kind']),
       dateKey: serializer.fromJson<String>(json['dateKey']),
@@ -3464,19 +3465,19 @@ class CoachOutput extends DataClass implements Insertable<CoachOutput> {
     };
   }
 
-  CoachOutput copyWith({
+  CoachOutputRow copyWith({
     String? id,
     String? kind,
     String? dateKey,
     String? payload,
-  }) => CoachOutput(
+  }) => CoachOutputRow(
     id: id ?? this.id,
     kind: kind ?? this.kind,
     dateKey: dateKey ?? this.dateKey,
     payload: payload ?? this.payload,
   );
-  CoachOutput copyWithCompanion(CoachOutputsCompanion data) {
-    return CoachOutput(
+  CoachOutputRow copyWithCompanion(CoachOutputsCompanion data) {
+    return CoachOutputRow(
       id: data.id.present ? data.id.value : this.id,
       kind: data.kind.present ? data.kind.value : this.kind,
       dateKey: data.dateKey.present ? data.dateKey.value : this.dateKey,
@@ -3486,7 +3487,7 @@ class CoachOutput extends DataClass implements Insertable<CoachOutput> {
 
   @override
   String toString() {
-    return (StringBuffer('CoachOutput(')
+    return (StringBuffer('CoachOutputRow(')
           ..write('id: $id, ')
           ..write('kind: $kind, ')
           ..write('dateKey: $dateKey, ')
@@ -3500,14 +3501,14 @@ class CoachOutput extends DataClass implements Insertable<CoachOutput> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CoachOutput &&
+      (other is CoachOutputRow &&
           other.id == this.id &&
           other.kind == this.kind &&
           other.dateKey == this.dateKey &&
           other.payload == this.payload);
 }
 
-class CoachOutputsCompanion extends UpdateCompanion<CoachOutput> {
+class CoachOutputsCompanion extends UpdateCompanion<CoachOutputRow> {
   final Value<String> id;
   final Value<String> kind;
   final Value<String> dateKey;
@@ -3530,7 +3531,7 @@ class CoachOutputsCompanion extends UpdateCompanion<CoachOutput> {
        kind = Value(kind),
        dateKey = Value(dateKey),
        payload = Value(payload);
-  static Insertable<CoachOutput> custom({
+  static Insertable<CoachOutputRow> custom({
     Expression<String>? id,
     Expression<String>? kind,
     Expression<String>? dateKey,
@@ -3985,14 +3986,15 @@ typedef $$JournalEntriesTableUpdateCompanionBuilder =
     });
 
 final class $$JournalEntriesTableReferences
-    extends BaseReferences<_$AppDatabase, $JournalEntriesTable, JournalEntry> {
+    extends
+        BaseReferences<_$AppDatabase, $JournalEntriesTable, JournalEntryRow> {
   $$JournalEntriesTableReferences(
     super.$_db,
     super.$_table,
     super.$_typedResult,
   );
 
-  static MultiTypedResultKey<$MediaAttachmentsTable, List<MediaAttachment>>
+  static MultiTypedResultKey<$MediaAttachmentsTable, List<MediaAttachmentRow>>
   _mediaAttachmentsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
     db.mediaAttachments,
     aliasName: 'journal_entries__id__media_attachments__entry_id',
@@ -4230,14 +4232,14 @@ class $$JournalEntriesTableTableManager
         RootTableManager<
           _$AppDatabase,
           $JournalEntriesTable,
-          JournalEntry,
+          JournalEntryRow,
           $$JournalEntriesTableFilterComposer,
           $$JournalEntriesTableOrderingComposer,
           $$JournalEntriesTableAnnotationComposer,
           $$JournalEntriesTableCreateCompanionBuilder,
           $$JournalEntriesTableUpdateCompanionBuilder,
-          (JournalEntry, $$JournalEntriesTableReferences),
-          JournalEntry,
+          (JournalEntryRow, $$JournalEntriesTableReferences),
+          JournalEntryRow,
           PrefetchHooks Function({bool mediaAttachmentsRefs})
         > {
   $$JournalEntriesTableTableManager(
@@ -4324,9 +4326,9 @@ class $$JournalEntriesTableTableManager
                 return [
                   if (mediaAttachmentsRefs)
                     await $_getPrefetchedData<
-                      JournalEntry,
+                      JournalEntryRow,
                       $JournalEntriesTable,
-                      MediaAttachment
+                      MediaAttachmentRow
                     >(
                       currentTable: table,
                       referencedTable: $$JournalEntriesTableReferences
@@ -4353,14 +4355,14 @@ typedef $$JournalEntriesTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $JournalEntriesTable,
-      JournalEntry,
+      JournalEntryRow,
       $$JournalEntriesTableFilterComposer,
       $$JournalEntriesTableOrderingComposer,
       $$JournalEntriesTableAnnotationComposer,
       $$JournalEntriesTableCreateCompanionBuilder,
       $$JournalEntriesTableUpdateCompanionBuilder,
-      (JournalEntry, $$JournalEntriesTableReferences),
-      JournalEntry,
+      (JournalEntryRow, $$JournalEntriesTableReferences),
+      JournalEntryRow,
       PrefetchHooks Function({bool mediaAttachmentsRefs})
     >;
 typedef $$MediaAttachmentsTableCreateCompanionBuilder =
@@ -4404,7 +4406,11 @@ typedef $$MediaAttachmentsTableUpdateCompanionBuilder =
 
 final class $$MediaAttachmentsTableReferences
     extends
-        BaseReferences<_$AppDatabase, $MediaAttachmentsTable, MediaAttachment> {
+        BaseReferences<
+          _$AppDatabase,
+          $MediaAttachmentsTable,
+          MediaAttachmentRow
+        > {
   $$MediaAttachmentsTableReferences(
     super.$_db,
     super.$_table,
@@ -4728,14 +4734,14 @@ class $$MediaAttachmentsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $MediaAttachmentsTable,
-          MediaAttachment,
+          MediaAttachmentRow,
           $$MediaAttachmentsTableFilterComposer,
           $$MediaAttachmentsTableOrderingComposer,
           $$MediaAttachmentsTableAnnotationComposer,
           $$MediaAttachmentsTableCreateCompanionBuilder,
           $$MediaAttachmentsTableUpdateCompanionBuilder,
-          (MediaAttachment, $$MediaAttachmentsTableReferences),
-          MediaAttachment,
+          (MediaAttachmentRow, $$MediaAttachmentsTableReferences),
+          MediaAttachmentRow,
           PrefetchHooks Function({bool entryId})
         > {
   $$MediaAttachmentsTableTableManager(
@@ -4882,14 +4888,14 @@ typedef $$MediaAttachmentsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $MediaAttachmentsTable,
-      MediaAttachment,
+      MediaAttachmentRow,
       $$MediaAttachmentsTableFilterComposer,
       $$MediaAttachmentsTableOrderingComposer,
       $$MediaAttachmentsTableAnnotationComposer,
       $$MediaAttachmentsTableCreateCompanionBuilder,
       $$MediaAttachmentsTableUpdateCompanionBuilder,
-      (MediaAttachment, $$MediaAttachmentsTableReferences),
-      MediaAttachment,
+      (MediaAttachmentRow, $$MediaAttachmentsTableReferences),
+      MediaAttachmentRow,
       PrefetchHooks Function({bool entryId})
     >;
 typedef $$HabitsTableCreateCompanionBuilder =
@@ -4912,10 +4918,10 @@ typedef $$HabitsTableUpdateCompanionBuilder =
     });
 
 final class $$HabitsTableReferences
-    extends BaseReferences<_$AppDatabase, $HabitsTable, Habit> {
+    extends BaseReferences<_$AppDatabase, $HabitsTable, HabitRow> {
   $$HabitsTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
-  static MultiTypedResultKey<$HabitCheckinsTable, List<HabitCheckin>>
+  static MultiTypedResultKey<$HabitCheckinsTable, List<HabitCheckinRow>>
   _habitCheckinsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
     db.habitCheckins,
     aliasName: 'habits__id__habit_checkins__habit_id',
@@ -5084,14 +5090,14 @@ class $$HabitsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $HabitsTable,
-          Habit,
+          HabitRow,
           $$HabitsTableFilterComposer,
           $$HabitsTableOrderingComposer,
           $$HabitsTableAnnotationComposer,
           $$HabitsTableCreateCompanionBuilder,
           $$HabitsTableUpdateCompanionBuilder,
-          (Habit, $$HabitsTableReferences),
-          Habit,
+          (HabitRow, $$HabitsTableReferences),
+          HabitRow,
           PrefetchHooks Function({bool habitCheckinsRefs})
         > {
   $$HabitsTableTableManager(_$AppDatabase db, $HabitsTable table)
@@ -5154,9 +5160,9 @@ class $$HabitsTableTableManager
                 return [
                   if (habitCheckinsRefs)
                     await $_getPrefetchedData<
-                      Habit,
+                      HabitRow,
                       $HabitsTable,
-                      HabitCheckin
+                      HabitCheckinRow
                     >(
                       currentTable: table,
                       referencedTable: $$HabitsTableReferences
@@ -5182,14 +5188,14 @@ typedef $$HabitsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $HabitsTable,
-      Habit,
+      HabitRow,
       $$HabitsTableFilterComposer,
       $$HabitsTableOrderingComposer,
       $$HabitsTableAnnotationComposer,
       $$HabitsTableCreateCompanionBuilder,
       $$HabitsTableUpdateCompanionBuilder,
-      (Habit, $$HabitsTableReferences),
-      Habit,
+      (HabitRow, $$HabitsTableReferences),
+      HabitRow,
       PrefetchHooks Function({bool habitCheckinsRefs})
     >;
 typedef $$HabitCheckinsTableCreateCompanionBuilder =
@@ -5212,7 +5218,8 @@ typedef $$HabitCheckinsTableUpdateCompanionBuilder =
     });
 
 final class $$HabitCheckinsTableReferences
-    extends BaseReferences<_$AppDatabase, $HabitCheckinsTable, HabitCheckin> {
+    extends
+        BaseReferences<_$AppDatabase, $HabitCheckinsTable, HabitCheckinRow> {
   $$HabitCheckinsTableReferences(
     super.$_db,
     super.$_table,
@@ -5395,14 +5402,14 @@ class $$HabitCheckinsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $HabitCheckinsTable,
-          HabitCheckin,
+          HabitCheckinRow,
           $$HabitCheckinsTableFilterComposer,
           $$HabitCheckinsTableOrderingComposer,
           $$HabitCheckinsTableAnnotationComposer,
           $$HabitCheckinsTableCreateCompanionBuilder,
           $$HabitCheckinsTableUpdateCompanionBuilder,
-          (HabitCheckin, $$HabitCheckinsTableReferences),
-          HabitCheckin,
+          (HabitCheckinRow, $$HabitCheckinsTableReferences),
+          HabitCheckinRow,
           PrefetchHooks Function({bool habitId})
         > {
   $$HabitCheckinsTableTableManager(_$AppDatabase db, $HabitCheckinsTable table)
@@ -5505,14 +5512,14 @@ typedef $$HabitCheckinsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $HabitCheckinsTable,
-      HabitCheckin,
+      HabitCheckinRow,
       $$HabitCheckinsTableFilterComposer,
       $$HabitCheckinsTableOrderingComposer,
       $$HabitCheckinsTableAnnotationComposer,
       $$HabitCheckinsTableCreateCompanionBuilder,
       $$HabitCheckinsTableUpdateCompanionBuilder,
-      (HabitCheckin, $$HabitCheckinsTableReferences),
-      HabitCheckin,
+      (HabitCheckinRow, $$HabitCheckinsTableReferences),
+      HabitCheckinRow,
       PrefetchHooks Function({bool habitId})
     >;
 typedef $$AreasTableCreateCompanionBuilder =
@@ -6007,14 +6014,14 @@ class $$EventsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $EventsTable,
-          Event,
+          EventRow,
           $$EventsTableFilterComposer,
           $$EventsTableOrderingComposer,
           $$EventsTableAnnotationComposer,
           $$EventsTableCreateCompanionBuilder,
           $$EventsTableUpdateCompanionBuilder,
-          (Event, BaseReferences<_$AppDatabase, $EventsTable, Event>),
-          Event,
+          (EventRow, BaseReferences<_$AppDatabase, $EventsTable, EventRow>),
+          EventRow,
           PrefetchHooks Function()
         > {
   $$EventsTableTableManager(_$AppDatabase db, $EventsTable table)
@@ -6092,14 +6099,14 @@ typedef $$EventsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $EventsTable,
-      Event,
+      EventRow,
       $$EventsTableFilterComposer,
       $$EventsTableOrderingComposer,
       $$EventsTableAnnotationComposer,
       $$EventsTableCreateCompanionBuilder,
       $$EventsTableUpdateCompanionBuilder,
-      (Event, BaseReferences<_$AppDatabase, $EventsTable, Event>),
-      Event,
+      (EventRow, BaseReferences<_$AppDatabase, $EventsTable, EventRow>),
+      EventRow,
       PrefetchHooks Function()
     >;
 typedef $$CoachOutputsTableCreateCompanionBuilder =
@@ -6206,17 +6213,17 @@ class $$CoachOutputsTableTableManager
         RootTableManager<
           _$AppDatabase,
           $CoachOutputsTable,
-          CoachOutput,
+          CoachOutputRow,
           $$CoachOutputsTableFilterComposer,
           $$CoachOutputsTableOrderingComposer,
           $$CoachOutputsTableAnnotationComposer,
           $$CoachOutputsTableCreateCompanionBuilder,
           $$CoachOutputsTableUpdateCompanionBuilder,
           (
-            CoachOutput,
-            BaseReferences<_$AppDatabase, $CoachOutputsTable, CoachOutput>,
+            CoachOutputRow,
+            BaseReferences<_$AppDatabase, $CoachOutputsTable, CoachOutputRow>,
           ),
-          CoachOutput,
+          CoachOutputRow,
           PrefetchHooks Function()
         > {
   $$CoachOutputsTableTableManager(_$AppDatabase db, $CoachOutputsTable table)
@@ -6270,17 +6277,17 @@ typedef $$CoachOutputsTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $CoachOutputsTable,
-      CoachOutput,
+      CoachOutputRow,
       $$CoachOutputsTableFilterComposer,
       $$CoachOutputsTableOrderingComposer,
       $$CoachOutputsTableAnnotationComposer,
       $$CoachOutputsTableCreateCompanionBuilder,
       $$CoachOutputsTableUpdateCompanionBuilder,
       (
-        CoachOutput,
-        BaseReferences<_$AppDatabase, $CoachOutputsTable, CoachOutput>,
+        CoachOutputRow,
+        BaseReferences<_$AppDatabase, $CoachOutputsTable, CoachOutputRow>,
       ),
-      CoachOutput,
+      CoachOutputRow,
       PrefetchHooks Function()
     >;
 typedef $$MediaManifestTableCreateCompanionBuilder =

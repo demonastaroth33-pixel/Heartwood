@@ -5,6 +5,7 @@ import '../../core/constants.dart';
 
 part 'database.g.dart';
 
+@DataClassName('JournalEntryRow')
 class JournalEntries extends Table {
   TextColumn get id => text()();
   TextColumn get title => text().nullable()();
@@ -18,6 +19,7 @@ class JournalEntries extends Table {
   TextColumn get importHash => text().nullable()();
 }
 
+@DataClassName('MediaAttachmentRow')
 class MediaAttachments extends Table {
   TextColumn get id => text()();
   TextColumn get entryId => text().nullable().references(JournalEntries, #id)();
@@ -39,6 +41,7 @@ class MediaAttachments extends Table {
   Set<Column<Object>> get primaryKey => {id};
 }
 
+@DataClassName('HabitRow')
 class Habits extends Table {
   TextColumn get id => text()();
   TextColumn get name => text()();
@@ -47,6 +50,7 @@ class Habits extends Table {
   BoolColumn get active => boolean().withDefault(const Constant(true))();
 }
 
+@DataClassName('HabitCheckinRow')
 class HabitCheckins extends Table {
   TextColumn get id => text()();
   TextColumn get habitId => text().references(Habits, #id)();
@@ -80,6 +84,7 @@ class Settings extends Table {
 @TableIndex(name: 'idx_events_type_day', columns: {#type, #dayKey})
 @TableIndex(name: 'idx_events_area_day', columns: {#area, #dayKey})
 @TableIndex(name: 'idx_events_entity', columns: {#entityType, #entityId})
+@DataClassName('EventRow')
 class Events extends Table {
   TextColumn get id => text()();
   TextColumn get type => text()();
@@ -96,6 +101,7 @@ class Events extends Table {
   Set<Column<Object>> get primaryKey => {id};
 }
 
+@DataClassName('CoachOutputRow')
 class CoachOutputs extends Table {
   TextColumn get id => text()();
   TextColumn get kind => text()();
