@@ -71,3 +71,23 @@ spec drift?):
 
 **Open items** (carried to the next milestone):
 - Screenshots `dashboard-shell-phone-v2.png` / `dashboard-shell-desktop.png` in repo root — visual review is the user's call (AI can't view images).
+
+---
+
+### Milestone: M0 — Phase 3: Habits UI (2026-08-21)
+
+**Went well** (keep doing):
+- Full flow driven by widget tests: create habit via bottom sheet → check off → streak line, and archive → empty state. Provider invalidation (family streak + today ticks) is explicit and testable.
+- Today section (dashboard) wired to real habit data with one-tap ticks; dashboard smoke test still green — the fused block is real, not a stub.
+
+**Went wrong** (AI behavior worth fixing):
+- Flutter web renders to a canvas: the playwright accessibility snapshot is literally empty, so "create a habit in the browser" can't be driven reliably by the MCP snapshot. Don't plan browser interaction for canvas UI — widget tests own it.
+
+**Root causes** (silent assumption? over-engineering? boundary-crossing? spec drift?):
+- None structural; the ownership split (widget tests for interaction, playwright for console/persistence) held once applied.
+
+**Encoded lesson** (the AGENTS.md rule or DecisionLog entry this spawned):
+- Already encoded in Phase 2's AGENTS.md entry (browser boundary only via playwright; widget tests own logic). No new rule needed.
+
+**Open items** (carried to the next milestone):
+- None.
