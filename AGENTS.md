@@ -9,10 +9,11 @@ Planned in docs/ — implementation NOT started.
 - Read docs/README.md first: non-negotiable principles, document map, reading order.
 - Read the doc for your task from the map below — do NOT dump-read all docs.
 - Never reverse or assume a decision in docs/DecisionLog.md without reading its entry.
-- Storage backend is NOT decided — read docs/StorageDecision.md before any storage
-  code; do not assume Drift, SQLite, or IndexedDB. Lock happens at M0, before M1.
-- Before any storage-decision work (Drift vs IndexedDB), read
-  docs/StorageSpikeStatus.md first for current metrics and open items.
+- Storage backend is LOCKED — Drift + SQLite (WASM), DecisionLog D040 (see
+  docs/StorageDecision.md + docs/StorageSpikeStatus.md). Do not re-open the
+  backend question without new measured evidence and a new DecisionLog entry.
+- docs/StorageSpikeStatus.md is the historical record + regression reference
+  for M0 repository work; it does not reopen the (locked) backend decision.
 
 ## Doc-read map
 
