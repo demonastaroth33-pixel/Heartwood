@@ -1005,6 +1005,25 @@ separate so one decision never conflates two themes:
   as a cross-reference — no decision row exists for it; §8 confirmation is
   the gate for the listed entries.
 
+---
+
+## 2026-08-21 — Design Lock (S001 gate)
+
+### D077 — Design-lock gate: final approval granted (accepted)
+The user's explicit final approval for the TEMP-PLANNING integration design is
+granted (2026-08-21). S001's single global gate is CLOSED: docs/ are locked as
+the source of truth, and Milestone 0 may begin per `Roadmap.md`. Nothing in the
+design-lock changes any architecture; it converts the pending approval state
+(docs/README.md "await final approval", DevelopmentWorkflow.md S001) into
+approved.
+Rationale: the design has passed the census, no-holes, and audit gates; the
+user reviewed and approved the docs set.
+Rejected: holding the gate open further.
+Revisit: at M0 exit per `Roadmap.md` (each milestone ends with docs + DecisionLog
+updated).
+
+---
+
 ### Open items — build-time dependency decisions required (open; pending)
 The following require a DecisionLog entry + user approval at build time before
 the feature can be built (no-new-dependencies rule; AGENTS.md). They are

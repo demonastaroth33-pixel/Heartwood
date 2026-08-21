@@ -49,7 +49,8 @@ handoffs only:
 
 ## Open threads (tracked, non-blocking)
 
-- S001 design-lock awaits the user's explicit final approval before M0.
+- S001 design-lock: GRANTED 2026-08-21 (DecisionLog D077) — the global gate is
+  closed; Milestone 0 may start.
 - `StorageDecision.md` / `StorageSpikeStatus.md` / D040 still cite
   `TEMP-PLANNING.md` by name — safe to keep as archive pointers, or clean on
   a future pass (flagged F7).
@@ -58,5 +59,5 @@ handoffs only:
 
 ## Next step
 
-Milestone 0 — see `Roadmap.md`; storage is already locked (D040), so M0
-can begin on the decided backend.
+Milestone 0 — see `Roadmap.md`; storage is already locked (D040) and the
+design-lock gate is closed (D077), so M0 can begin on the decided backend.

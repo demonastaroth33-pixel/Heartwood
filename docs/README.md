@@ -6,10 +6,10 @@ Entry point for all project documentation. Read this first.
 
 - **Phase:** Architecture refinement — COMPLETE
 - **Documentation:** COMPLETE (this set)
-- **Integration:** TEMP-PLANNING pipeline CLOSED 2026-08-20 — census + no-holes gates cleared; docs/ are the source of truth; design-lock awaits final approval (DevelopmentWorkflow.md S001)
+- **Integration:** TEMP-PLANNING pipeline CLOSED 2026-08-20 — census + no-holes gates cleared; docs/ are the source of truth; design-lock granted 2026-08-21 (DecisionLog D077, closes gate S001)
 - **Implementation:** NOT STARTED in the docs sense — `lib/` holds only a Flutter scaffold + a preliminary Drift `database.dart` stub; no feature code, no domain logic, no tests
 - **Integration summary:** see `IntegrationSummary.md`
-- **Next step:** Milestone 0 (see `Roadmap.md`), pending explicit approval
+- **Next step:** Milestone 0 (see `Roadmap.md`)
 
 ## Non-Negotiable Principles
 
