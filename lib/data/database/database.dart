@@ -146,7 +146,16 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   AppDatabase.open({QueryExecutor? executor})
-      : super(executor ?? driftDatabase(name: 'personalos'));
+      : super(
+          executor ??
+              driftDatabase(
+                name: 'personalos',
+                web: DriftWebOptions(
+                  sqlite3Wasm: Uri.parse('sqlite3.wasm'),
+                  driftWorker: Uri.parse('drift_worker.dart.js'),
+                ),
+              ),
+        );
 
   @override
   int get schemaVersion => 1;

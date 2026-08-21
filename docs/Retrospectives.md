@@ -48,3 +48,26 @@ spec drift?):
 
 **Open items** (carried to the next milestone):
 - None.
+
+---
+
+### Milestone: M0 — Phase 2: Dashboard shell + navigation (2026-08-21)
+
+**Went well** (keep doing):
+- Playwright caught a real web-only bug the widget tests could not: `driftDatabase()` throws on web without `DriftWebOptions`. Widget tests run on the VM (NativeDatabase), so the browser boundary check earned its place.
+- Fixed via docs, not memory: drift web setup requires `web/sqlite3.wasm` + `web/drift_worker.dart.js` from the SAME drift GitHub release tag (2.34.3), plus `DriftWebOptions(sqlite3Wasm:, driftWorker:)`. Verified end-to-end in Chrome (zero console errors).
+- Responsive shell (bottom bar < 800px / left rail >= 800px) covered by two widget tests, not just manual resizing.
+
+**Went wrong** (AI behavior worth fixing):
+- The plan's smoke test assumed the default 800x600 test surface, which silently hits the desktop rail and fails `NavigationBar` assertions — surface size must be set explicitly in responsive widget tests.
+- First browser run showed a crash the smoke test never could: web wasm bootstrap isn't exercised by flutter test at all.
+
+**Root causes** (silent assumption? over-engineering? boundary-crossing? spec drift?):
+- Assumed `driftDatabase(name: …)` was cross-platform by default; drift_flutter requires explicit web options.
+- Test viewport defaults are desktop-width; responsive tests need `setSurfaceSize`.
+
+**Encoded lesson** (the AGENTS.md rule or DecisionLog entry this spawned):
+- AGENTS.md Code rules: "drift_flutter web needs DriftWebOptions + web/sqlite3.wasm + web/drift_worker.dart.js from the matching drift GitHub release; flutter test never exercises web bootstrap — the browser boundary (playwright) is the only place wasm/worker errors surface. Responsive widget tests must setSurfaceSize explicitly."
+
+**Open items** (carried to the next milestone):
+- Screenshots `dashboard-shell-phone-v2.png` / `dashboard-shell-desktop.png` in repo root — visual review is the user's call (AI can't view images).

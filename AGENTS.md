@@ -55,6 +55,11 @@ features/ (UI, Riverpod providers)
   with Table built-ins (e.g. `blob` -> `blobData`); use @DataClassName('XxxRow')
   so generated row classes don't collide with domain models. Never trust
   scaffold stubs — verify drift syntax via context7.
+- drift_flutter web: needs DriftWebOptions + web/sqlite3.wasm +
+  web/drift_worker.dart.js from the matching drift GitHub release tag;
+  flutter test never exercises web bootstrap — only the browser boundary
+  (playwright) surfaces wasm/worker errors. Responsive widget tests must
+  setSurfaceSize explicitly (default 800x600 hits the desktop layout).
 - Never commit with failing tests — read the runner's final summary line first.
 - Security gate: before any commit touching auth, storage, or import/export,
   load the owasp-security skill, review the diff, and read its findings;
