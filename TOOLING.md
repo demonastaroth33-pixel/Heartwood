@@ -72,6 +72,17 @@ never whole libraries.
 | playwright | Drives your installed Chrome: click/fill/screenshot/logs | ✅ active |
 | drive | Your Google Drive (read + write-own-files only) | ✅ active, OAuth done |
 
+**Mobbin (NOT an MCP — a CLI + off-by-default skills):** `mobbin-mcp` v1.0.19
+powers the 5 `mobbin-*` skills (search / prompts / visuals / capture /
+flow-architect) in `.opencode/skills/` during UI milestones. No server schema
+is loaded every session — the skills call the CLI directly, so Mobbin never
+appears in the MCP list, by design. Auth is a one-time browser login
+(`mobbin-mcp auth` — paste the cookie from mobbin.com console), never stored
+in the repo. Use for 3–5 real reference screens per UI block (nav shell,
+streak display, diary list, storage meter); treat results as best-effort
+reference (unofficial API); UIUX.md wins on any conflict. Move the folders
+back to `.opencode/skills-off/` when the UI milestone ends.
+
 **Playwright's two jobs:** (1) M0 PWA persistence gate — create data → kill
 browser → relaunch → assert data survived; (2) export→wipe→restore round
 -trip through the real UI. NOT for widget assertions (that's
