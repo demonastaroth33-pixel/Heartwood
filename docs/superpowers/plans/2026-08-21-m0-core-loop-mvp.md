@@ -837,12 +837,33 @@ test('warning levels: below 70 none, 70+ warn, 90+ hard warn', () {
 
 ---
 
-## Phase 8 — M0 exit verification (no new feature code)
+## Phase 8 — UI overhaul + M0 media surface (ADDED 2026-08-21 by docs/M0ScopeGapReview-2026-08-21.md)
 
-- [ ] **Step 8.1: Offline core loop (airplane mode)** — `flutter run -d web-server` + serve locally; block network in the browser; journal create, habit check-off, dashboard, export all work with zero network (exit criterion).
-- [ ] **Step 8.2: PWA Persistence Test (playwright, desktop Chrome)** — install/serve the PWA, create data (journal + habits + media), kill the browser, relaunch, assert data survived. (iPhone PWA persistence is the manual user check — StorageDecision.md gate was already green; re-verify the real app on iPhone.)
-- [ ] **Step 8.3: Full M0 gate sweep** — `flutter analyze` clean, `flutter test` green (evidence shown), export→wipe→restore identical, storage meter real + 70/90 warnings, Coach stub after 3 misses, on-device camera/MediaRecorder (manual), AGENTS.md lock text present.
-- [ ] **Step 8.4: M0 close-out** — write `docs/Retrospectives.md` M0 entry; encode ≥1 lesson; add any new decisions to DecisionLog; ensure all open DecisionLog build-time items are either resolved or explicitly carried.
+Preconditions: frontend-design + impeccable toggled ON (folders moved + restart); mobbin auth optional. UIUX.md wins on conflicts. Scope = the gap review's Section 3 (G1–G11) + full design-system pass (palette, type scale, spacing, nav, every screen):
+
+- [ ] **G1:** Compose edit mode loads existing attachments via `mediaRepo.forEntry` (functional fix, TDD).
+- [ ] **G2:** Journal timeline tiles show media thumbnails (or count while generating) — lazy, viewport-only decode (MediaStorage opt. #5).
+- [ ] **G3:** Entry media viewer: inline playback — vlog via object URL → HtmlElementView video (web interop behind the existing conditional-import pattern); photo shown in a viewer sheet.
+- [ ] **G4:** Post-recording review screen: duration + optional title + **Keep** (row created immediately, duration stamped) / **Discard** (file wiped, no row, zero trophies — vlog.deleted only on later delete).
+- [ ] **G5:** Live camera preview in the recording dialog (video element bound to the MediaStream via srcObject).
+- [ ] **G6:** Background thumbnail generation after save (non-blocking; thumbnailRef; "generating…" state acceptable).
+- [ ] **G7:** First-run welcome: 3-step (what PersonalOS is → create 2–3 habits → first journal entry) → dashboard.
+- [ ] **G8:** Today section gains a journal quick-capture entry (one-tap → compose with today's timestamp).
+- [ ] **G9:** Habit detail: recent 7/30-day dot indicator (simple, no charts).
+- [ ] **G10:** Coach line deletable (dismiss → coach_outputs row delete).
+- [ ] **G11:** Imported external video files (file picker, stored as-is, never transcoded).
+- [ ] **Design system:** final palette (dark-first, theme-able), type scale, spacing, BlockCard → surface system, nav polish, storage meter presentation, one primary action per screen, ≥44px targets.
+- [ ] Verify: flutter analyze clean, flutter test green, release build, browser boot. Commit (user approval). Retrospective.
+
+---
+
+## Phase 9 — M0 exit verification (no new feature code)
+
+- [ ] **Step 9.1: Offline core loop (airplane mode)** — `flutter run -d web-server` + serve locally; block network in the browser; journal create, habit check-off, dashboard, export all work with zero network (exit criterion).
+- [ ] **Step 9.2: PWA Persistence Test (playwright, desktop Chrome)** — install/serve the PWA, create data (journal + habits + media), kill the browser, relaunch, assert data survived. (iPhone PWA persistence is the manual user check — StorageDecision.md gate was already green; re-verify the real app on iPhone.)
+- [ ] **Step 9.3: Cloudflare Pages deploy** — `wrangler pages deploy build/web` (or the user's existing Pages flow); iPhone PWA install + camera/MediaRecorder verification + persistence gate on the deployed URL (manual, user).
+- [ ] **Step 9.4: Full M0 gate sweep** — `flutter analyze` clean, `flutter test` green (evidence shown), export→wipe→restore identical, storage meter real + 70/90 warnings, Coach stub after 3 misses, media view-back (G3/G4), on-device camera/MediaRecorder (manual), AGENTS.md lock text present.
+- [ ] **Step 9.5: M0 close-out** — write `docs/Retrospectives.md` M0 entry; encode ≥1 lesson; add any new decisions to DecisionLog; ensure all open DecisionLog build-time items are either resolved or explicitly carried.
 
 ---
 
