@@ -43,3 +43,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Dev artifacts (Playwright MCP logs/snapshots, root-level UI review screenshots,
+# error captures, raw Mobbin research output, design mockup scratch)
+/.playwright-mcp/
+/*.png
+/errors.txt
+/release-errors.txt
+/research_*.json
+/tools/mobbin_findings.json
+/UI develop/
