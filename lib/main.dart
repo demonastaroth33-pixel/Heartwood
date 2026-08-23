@@ -12,7 +12,11 @@ Future<void> main() async {
   runApp(
     ProviderScope(
       overrides: [dbProvider.overrideWithValue(db)],
-      child: App(bootHealthy: healthy),
+      child: App(
+        bootHealthy: healthy,
+        showLoader: true,
+        showWelcome: true,
+      ),
     ),
   );
 }
