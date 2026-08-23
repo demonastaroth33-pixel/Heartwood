@@ -1,20 +1,9 @@
-import 'package:flutter/material.dart';
+import 'theme/themes.dart' as themes;
+import 'theme/themes.dart' show ThemeValues;
 
-const kAccent = Color(0xFFE8B45A);
+export 'theme/tokens.dart';
+export 'theme/themes.dart';
 
-ThemeData buildTheme() {
-  final scheme = ColorScheme.fromSeed(
-    seedColor: const Color(0xFF4E7DCC),
-    brightness: Brightness.dark,
-  );
-  return ThemeData(
-    colorScheme: scheme,
-    scaffoldBackgroundColor: const Color(0xFF0F141E),
-    useMaterial3: true,
-    fontFamily: 'Roboto',
-    navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: const Color(0xFF17202E),
-      indicatorColor: scheme.primary.withValues(alpha: 0.22),
-    ),
-  );
-}
+/// Resolve theme values from a settings key; unknown keys fall back to Ink.
+ThemeValues themeValuesFor(String? key) =>
+    themes.themeRegistry[key] ?? themes.inkTheme;
