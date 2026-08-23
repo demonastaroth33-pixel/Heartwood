@@ -24,7 +24,12 @@ Use the bundled script:
 node scripts/mobbin-search.mjs <action> '<json>'
 ```
 
-The script delegates to `mobbin-mcp skill <action> <json>` and accepts the same JSON fields as the old MCP tools.
+The script routes three actions through the repo's bypass harness
+(`tools/mobbin_search.mjs`) because the `mobbin-mcp` CLI (v1.0.19) 404s on its
+retired app-list endpoint: **search-screens**, **search-flows**, **quick-search**
+— these hit Mobbin's live `/api/search-bar/search` + app RSC screens pages
+instead, and accept the same JSON fields plus an optional `query`. All other
+actions delegate to `mobbin-mcp skill <action> <json>` unchanged.
 
 ## Actions
 
