@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../core/theme/tokens.dart';
 import '../features/dashboard/dashboard_screen.dart';
 import '../features/habits/habits_screen.dart';
 import '../features/journal/journal_screen.dart';
 import '../features/settings/settings_screen.dart';
+import 'atmosphere_layer.dart';
 
 class NavShell extends StatefulWidget {
   const NavShell({super.key});
@@ -51,39 +53,49 @@ class _NavShellState extends State<NavShell> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final desktop = constraints.maxWidth >= 800;
-        if (desktop) {
-          return Scaffold(
-            body: Row(
-              children: [
-                NavigationRail(
+        return Stack(
+          children: [
+            const Positioned.fill(child: AtmosphereLayer()),
+            if (desktop)
+              Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Row(
+                  children: [
+                    NavigationRail(
+                      selectedIndex: _index,
+                      onDestinationSelected: (i) => setState(() => _index = i),
+                      labelType: NavigationRailLabelType.all,
+                      minWidth: 80,
+                      destinations: _destinations
+                          .map(
+                            (d) => NavigationRailDestination(
+                              icon: d.icon,
+                              selectedIcon: d.selectedIcon,
+                              label: Text(d.label),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    VerticalDivider(
+                      width: 1,
+                      thickness: 1,
+                      color: Theme.of(context).extension<AppTokens>()!.hairline,
+                    ),
+                    Expanded(child: body),
+                  ],
+                ),
+              )
+            else
+              Scaffold(
+                backgroundColor: Colors.transparent,
+                body: body,
+                bottomNavigationBar: NavigationBar(
                   selectedIndex: _index,
                   onDestinationSelected: (i) => setState(() => _index = i),
-                  labelType: NavigationRailLabelType.all,
-                  backgroundColor:
-                      Theme.of(context).navigationBarTheme.backgroundColor,
-                  destinations: _destinations
-                      .map(
-                        (d) => NavigationRailDestination(
-                          icon: d.icon,
-                          selectedIcon: d.selectedIcon,
-                          label: Text(d.label),
-                        ),
-                      )
-                      .toList(),
+                  destinations: _destinations,
                 ),
-                const VerticalDivider(width: 1),
-                Expanded(child: body),
-              ],
-            ),
-          );
-        }
-        return Scaffold(
-          body: body,
-          bottomNavigationBar: NavigationBar(
-            selectedIndex: _index,
-            onDestinationSelected: (i) => setState(() => _index = i),
-            destinations: _destinations,
-          ),
+              ),
+          ],
         );
       },
     );

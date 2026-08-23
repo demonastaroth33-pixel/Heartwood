@@ -26,6 +26,11 @@ void main() {
       expect(find.text('Goal progress'), findsOneWidget);
       expect(find.text("Today's tasks"), findsOneWidget);
       expect(find.text('Streak / XP'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.textContaining('Storage'),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.textContaining('Storage'), findsOneWidget);
       expect(find.byType(NavigationBar), findsOneWidget);
       expect(find.byType(NavigationRail), findsNothing);

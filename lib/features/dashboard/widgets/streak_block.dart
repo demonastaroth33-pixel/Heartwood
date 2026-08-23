@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
-import 'block_card.dart';
+import '../../../widgets/block_card.dart';
 
 class StreakBlock extends StatelessWidget {
   const StreakBlock({super.key});

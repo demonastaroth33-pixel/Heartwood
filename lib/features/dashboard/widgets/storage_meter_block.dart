@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:personalos/core/theme/tokens.dart';
 import 'package:personalos/data/providers.dart';
 import 'package:personalos/features/settings/data_section.dart';
 import 'package:personalos/services/storage/storage_meter.dart';
-
-import 'block_card.dart';
+import 'package:personalos/widgets/block_card.dart';
 
 final storageMeterProvider = FutureProvider<StorageMeterData>(
   (ref) => StorageMeter(ref.watch(dbProvider)).read(),
@@ -41,62 +41,99 @@ class _StorageMeterBlockState extends ConsumerState<StorageMeterBlock> {
           child: Center(child: CircularProgressIndicator()),
         ),
         error: (e, _) => EmptyLine(text: 'Could not read storage: $e'),
-        data: (data) {
-          final quota = data.quotaBytes;
-          final fraction = quota <= 0 ? 0.0 : (data.usedBytes / quota).clamp(0.0, 1.0);
-          final level = data.level;
-          final color = switch (level) {
-            StorageLevel.none => const Color(0xFF4E7DCC),
-            StorageLevel.warn => const Color(0xFFE8B45A),
-            StorageLevel.hardWarn => const Color(0xFFE06C5A),
-          };
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LinearProgressIndicator(
-                value: fraction,
-                color: color,
-                backgroundColor: const Color(0xFF0F141E),
-                minHeight: 8,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              const SizedBox(height: 8),
+        data: (data) => _MeterBody(
+          data: data,
+          dismissed: _dismissed,
+          onDismiss: () => setState(() => _dismissed = true),
+        ),
+      ),
+    );
+  }
+}
+
+class _MeterBody extends StatelessWidget {
+  final StorageMeterData data;
+  final bool dismissed;
+  final VoidCallback onDismiss;
+
+  const _MeterBody({
+    required this.data,
+    required this.dismissed,
+    required this.onDismiss,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
+    final quota = data.quotaBytes;
+    final fraction = quota <= 0 ? 0.0 : (data.usedBytes / quota).clamp(0.0, 1.0);
+    final level = data.level;
+    final color = switch (level) {
+      StorageLevel.none => tokens.accent,
+      StorageLevel.warn => tokens.warning,
+      StorageLevel.hardWarn => tokens.danger,
+    };
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              quota <= 0
+                  ? 'Used: ${_formatBytes(data.usedBytes)}'
+                  : '${_formatBytes(data.usedBytes)} of ${_formatBytes(data.quotaBytes)}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            if (quota > 0)
               Text(
-                quota <= 0
-                    ? 'Used: ${_formatBytes(data.usedBytes)}'
-                    : 'Used ${_formatBytes(data.usedBytes)} of ${_formatBytes(data.quotaBytes)}'
-                        ' (${(fraction * 100).toStringAsFixed(0)}%)',
-                style: Theme.of(context).textTheme.bodySmall,
+                '${(fraction * 100).toStringAsFixed(0)}%',
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: color),
               ),
-              if (data.dbMediaBytes > 0)
-                Text(
-                  'Media: ${_formatBytes(data.dbMediaBytes)}',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
-                ),
-              if (level != StorageLevel.none && !_dismissed) ...[
-                const SizedBox(height: 8),
-                _WarningBanner(
-                  level: level,
-                  onDismiss: () => setState(() => _dismissed = true),
-                  onExport: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => Scaffold(
-                        appBar: AppBar(title: const Text('Backup')),
-                        body: ListView(
-                          padding: const EdgeInsets.all(16),
-                          children: const [DataSection()],
-                        ),
-                      ),
-                    ),
+          ],
+        ),
+        const SizedBox(height: AppSpace.sm),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(AppRadius.md),
+          child: LinearProgressIndicator(
+            value: fraction,
+            color: color,
+            backgroundColor: tokens.surfaceRaised,
+            minHeight: 8,
+          ),
+        ),
+        if (data.dbMediaBytes > 0) ...[
+          const SizedBox(height: AppSpace.sm),
+          Text(
+            'Media: ${_formatBytes(data.dbMediaBytes)}',
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: tokens.textSecondary),
+          ),
+        ],
+        if (level != StorageLevel.none && !dismissed) ...[
+          const SizedBox(height: AppSpace.md),
+          _WarningBanner(
+            level: level,
+            onDismiss: onDismiss,
+            onExport: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => Scaffold(
+                  appBar: AppBar(title: const Text('Backup')),
+                  body: ListView(
+                    padding: const EdgeInsets.all(16),
+                    children: const [DataSection()],
                   ),
                 ),
-              ],
-            ],
-          );
-        },
-      ),
+              ),
+            ),
+          ),
+        ],
+      ],
     );
   }
 }
@@ -114,13 +151,14 @@ class _WarningBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
     final hard = level == StorageLevel.hardWarn;
-    final color = hard ? const Color(0xFFE06C5A) : const Color(0xFFE8B45A);
+    final color = hard ? tokens.danger : tokens.warning;
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(AppSpace.md),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.md),
         border: Border.all(color: color.withValues(alpha: 0.5)),
       ),
       child: Column(
@@ -133,18 +171,20 @@ class _WarningBanner extends StatelessWidget {
                   hard
                       ? 'Storage almost full. Export a backup now.'
                       : 'Storage getting full. Consider exporting a backup.',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
               IconButton(
                 onPressed: onDismiss,
                 icon: const Icon(Icons.close),
                 tooltip: 'Dismiss',
+                visualDensity: VisualDensity.compact,
               ),
             ],
           ),
           if (hard)
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: AppSpace.xs),
               child: FilledButton(
                 onPressed: onExport,
                 child: const Text('Export backup now'),

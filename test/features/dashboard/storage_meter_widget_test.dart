@@ -31,6 +31,12 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(
+      find.byType(StorageMeterBlock),
+      200,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pumpAndSettle();
   }
 
   testWidgets('meter shows used/quota at 95% with hard-warn export action',
