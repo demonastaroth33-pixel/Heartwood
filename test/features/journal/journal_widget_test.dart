@@ -7,9 +7,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:personalos/app.dart';
 import 'package:personalos/data/database/database.dart';
 import 'package:personalos/data/providers.dart';
+import 'package:personalos/features/journal/journal_compose_screen.dart';
 import 'package:personalos/services/media/media_capture.dart';
 
 class FakeVlogSession implements VlogSession {
+  @override
+  Object? get previewHandle => null;
+
   @override
   Future<CapturedMedia> stop() async {
     return CapturedMedia(
@@ -33,6 +37,9 @@ class FakeMediaCapture implements MediaCaptureService {
 
   @override
   Future<VlogSession?> startVlog() async => FakeVlogSession();
+
+  @override
+  Future<CapturedMedia?> pickVideo() async => null;
 }
 
 void main() {
@@ -68,7 +75,20 @@ void main() {
   }
 
   Future<void> saveEntry(WidgetTester tester) async {
+    await tester.pump();
     await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> scrollToMediaRow(WidgetTester tester) async {
+    await tester.scrollUntilVisible(
+      find.text('vlog.webm'),
+      120,
+      scrollable: find.descendant(
+        of: find.byType(JournalComposeScreen),
+        matching: find.byType(Scrollable),
+      ).first,
+    );
     await tester.pumpAndSettle();
   }
 
@@ -99,6 +119,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Stop'));
     await tester.pumpAndSettle();
+    await tester.tap(find.text('Keep'));
+    await tester.pumpAndSettle();
+    await scrollToMediaRow(tester);
     expect(find.text('photo.jpg'), findsOneWidget);
     expect(find.text('vlog.webm'), findsOneWidget);
 

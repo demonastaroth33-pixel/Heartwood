@@ -1,12 +1,20 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:personalos/core/constants.dart';
 import 'package:personalos/core/ids.dart';
+import 'package:personalos/core/theme/tokens.dart';
 import 'package:personalos/data/models/journal_entry.dart';
 import 'package:personalos/data/models/media_attachment.dart';
 import 'package:personalos/data/providers.dart';
 import 'package:personalos/features/journal/journal_providers.dart';
+import 'package:personalos/features/journal/widgets/media_thumb.dart';
 import 'package:personalos/services/media/media_capture.dart';
+import 'package:personalos/services/media/thumbnail.dart';
+import 'package:personalos/services/web/video_view.dart';
+import 'package:personalos/widgets/app_field.dart';
 
 class JournalComposeScreen extends ConsumerStatefulWidget {
   final JournalEntry? entry;
@@ -25,6 +33,7 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
   late String? _area;
   late DateTime _capturedAt;
   final List<CapturedMedia> _pendingMedia = [];
+  List<MediaAttachment> _existingMedia = [];
   bool _saving = false;
 
   bool get _editing => widget.entry != null;
@@ -38,6 +47,15 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
     _tags = TextEditingController(text: entry?.tags.join(', ') ?? '');
     _area = entry?.area;
     _capturedAt = entry?.createdAt ?? DateTime.now();
+    if (_editing) {
+      // G1: edit mode loads the entry's existing attachments.
+      Future.microtask(() async {
+        final media = await ref
+            .read(mediaRepoProvider)
+            .forEntry(widget.entry!.id);
+        if (mounted) setState(() => _existingMedia = media);
+      });
+    }
   }
 
   @override
@@ -79,9 +97,16 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
     setState(() => _pendingMedia.add(media));
   }
 
+  Future<void> _addVideo() async {
+    final media = await ref.read(mediaCaptureProvider).pickVideo();
+    if (media == null || !mounted) return;
+    setState(() => _pendingMedia.add(media));
+  }
+
   Future<void> _recordVlog() async {
     final session = await ref.read(mediaCaptureProvider).startVlog();
     if (session == null || !mounted) return;
+    // G5: live preview bound to the recording stream while recording.
     await showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -98,7 +123,34 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
         },
         child: AlertDialog(
           title: const Text('Recording…'),
-          content: const Text('Recording your vlog. Tap stop when done.'),
+          content: SizedBox(
+            width: 320,
+            height: 200,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(AppRadius.md),
+              child: LivePreview(
+                streamHandle: session.previewHandle,
+                fallback: Container(
+                  color: Colors.black26,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.videocam, size: 40),
+                      const SizedBox(height: AppSpace.sm),
+                      Text(
+                        'Live preview unavailable',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(color: Colors.white70),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
           actions: [
             FilledButton(
               onPressed: () async {
@@ -115,7 +167,8 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
                   );
                   return;
                 }
-                setState(() => _pendingMedia.add(media!));
+                // G4: Keep/Discard review after recording.
+                await _reviewCaptured(media);
               },
               child: const Text('Stop'),
             ),
@@ -123,6 +176,67 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
         ),
       ),
     );
+  }
+
+  /// G4: post-recording review — duration + optional title, Keep or Discard.
+  /// Discard wipes the file (never stored); Keep creates the pending row.
+  Future<void> _reviewCaptured(CapturedMedia media) async {
+    if (!mounted) return;
+    final title = TextEditingController();
+    final keep = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Review vlog'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.videocam,
+                    size: 16,
+                    color: Theme.of(context)
+                        .extension<AppTokens>()!
+                        .textSecondary),
+                const SizedBox(width: AppSpace.sm),
+                Text(
+                  '${media.durationSec ?? 0}s recorded',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpace.md),
+            TextField(
+              controller: title,
+              decoration: const InputDecoration(
+                labelText: 'Title (optional)',
+                border: OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: const Text('Discard'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: const Text('Keep'),
+          ),
+        ],
+      ),
+    );
+    if (keep != true || !mounted) return;
+    setState(() {
+      _pendingMedia.add(CapturedMedia(
+        bytes: media.bytes,
+        mimeType: media.mimeType,
+        durationSec: media.durationSec,
+        fileName: title.text.trim().isEmpty
+            ? media.fileName
+            : title.text.trim(),
+      ));
+    });
   }
 
   Future<void> _save() async {
@@ -161,7 +275,7 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
       entryId = entry.id;
     }
     for (final media in _pendingMedia) {
-      await mediaRepo.save(
+      final saved = await mediaRepo.save(
         MediaAttachment(
           id: newId('ma'),
           entryId: entryId,
@@ -176,10 +290,24 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
         ),
         media.bytes,
       );
+      if (saved.mimeType.startsWith('video/')) {
+        // G6: background thumbnail generation — never blocks the save.
+        unawaited(_generateThumbnail(saved.id, media.bytes, saved.mimeType));
+      }
     }
     if (!mounted) return;
     Navigator.of(context).pop();
     await refreshJournal(ref);
+  }
+
+  Future<void> _generateThumbnail(String id, Uint8List bytes, String mimeType) async {
+    final thumb = await generateVideoThumbnail(bytes, mimeType);
+    if (thumb == null) return;
+    try {
+      await ref.read(mediaRepoProvider).setThumbnail(id, thumb);
+    } catch (_) {
+      // Thumbnail is a nicety — failure never fails the entry.
+    }
   }
 
   Future<void> _delete() async {
@@ -209,8 +337,11 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
+    final canSave = _body.text.trim().isNotEmpty && !_saving;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: tokens.surface,
         title: Text(_editing ? 'Edit entry' : 'New entry'),
         actions: [
           if (_editing)
@@ -219,88 +350,106 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
               child: const Text('Delete'),
             ),
           FilledButton(
-            onPressed: _saving ? null : _save,
-            child: const Text('Save'),
+            onPressed: canSave ? _save : null,
+            child: _saving
+                ? const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Text('Save'),
           ),
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(AppSpace.lg),
         children: [
-          TextField(
+          AppField(
             key: const Key('compose-title'),
             controller: _title,
-            decoration: const InputDecoration(
-              labelText: 'Title (optional)',
-              border: OutlineInputBorder(),
-            ),
+            hint: 'Title (optional)',
           ),
-          const SizedBox(height: 12),
-          TextField(
+          const SizedBox(height: AppSpace.md),
+          AppField(
             key: const Key('compose-body'),
             controller: _body,
-            minLines: 6,
-            maxLines: 14,
-            decoration: const InputDecoration(
-              labelText: 'What happened today?',
-              border: OutlineInputBorder(),
-              alignLabelWithHint: true,
-            ),
+            hint: 'What happened today?',
+            multiline: true,
+            onChanged: (_) => setState(() {}),
           ),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String?>(
-            initialValue: _area,
-            decoration: const InputDecoration(
-              labelText: 'Life area',
-              border: OutlineInputBorder(),
-            ),
-            items: [
-              const DropdownMenuItem<String?>(value: null, child: Text('None')),
-              ...seedAreas.map(
-                (slug) => DropdownMenuItem<String?>(
-                  value: slug,
-                  child: Text(areaLabels[slug] ?? slug),
-                ),
-              ),
-            ],
-            onChanged: (value) => setState(() => _area = value),
+          const SizedBox(height: AppSpace.md),
+          _AreaSelector(
+            selected: _area,
+            onChanged: (v) => setState(() => _area = v),
           ),
-          const SizedBox(height: 12),
-          TextField(
+          const SizedBox(height: AppSpace.md),
+          AppField(
             key: const Key('compose-tags'),
             controller: _tags,
-            decoration: const InputDecoration(
-              labelText: 'Tags (comma-separated)',
-              border: OutlineInputBorder(),
-            ),
+            hint: 'Tags, comma-separated',
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpace.sm),
           ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.schedule),
+            contentPadding: const EdgeInsets.symmetric(horizontal: AppSpace.xs),
+            leading: Icon(Icons.schedule, color: tokens.textSecondary),
             title: Text(
               '${_capturedAt.year}-${_capturedAt.month.toString().padLeft(2, '0')}-${_capturedAt.day.toString().padLeft(2, '0')} ${_capturedAt.hour.toString().padLeft(2, '0')}:${_capturedAt.minute.toString().padLeft(2, '0')}',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             subtitle: const Text('Tap to change'),
             onTap: _pickDate,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpace.sm),
           Wrap(
-            spacing: 8,
+            spacing: AppSpace.sm,
             children: [
-              OutlinedButton.icon(
+              FilledButton.icon(
                 onPressed: _addPhoto,
-                icon: const Icon(Icons.photo_camera_outlined),
+                icon: const Icon(Icons.photo_camera_outlined, size: 18),
                 label: const Text('Add photo'),
               ),
-              OutlinedButton.icon(
+              FilledButton.icon(
                 onPressed: _recordVlog,
-                icon: const Icon(Icons.videocam_outlined),
+                icon: const Icon(Icons.videocam_outlined, size: 18),
                 label: const Text('Record vlog'),
+              ),
+              FilledButton.icon(
+                onPressed: _addVideo,
+                icon: const Icon(Icons.video_file_outlined, size: 18),
+                label: const Text('Import video'),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpace.sm),
+          for (final media in _existingMedia)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: SizedBox(
+                width: 48,
+                height: 48,
+                child: MediaThumb(
+                  mediaId: media.id,
+                  mimeType: media.mimeType,
+                  durationSec: media.durationSec,
+                ),
+              ),
+              title: Text(media.fileName,
+                  style: Theme.of(context).textTheme.bodyMedium),
+              subtitle: media.durationSec == null
+                  ? null
+                  : Text('${media.durationSec}s'),
+              trailing: IconButton(
+                icon: const Icon(Icons.close),
+                tooltip: 'Remove attachment',
+                onPressed: () async {
+                  await ref.read(mediaRepoProvider).delete(media.id);
+                  if (mounted) {
+                    setState(() =>
+                        _existingMedia.removeWhere((m) => m.id == media.id));
+                  }
+                },
+              ),
+            ),
           for (final media in _pendingMedia)
             ListTile(
               contentPadding: EdgeInsets.zero,
@@ -308,8 +457,10 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
                 media.mimeType.startsWith('video/')
                     ? Icons.videocam
                     : Icons.image,
+                color: tokens.textSecondary,
               ),
-              title: Text(media.fileName),
+              title: Text(media.fileName,
+                  style: Theme.of(context).textTheme.bodyMedium),
               subtitle: media.durationSec == null
                   ? null
                   : Text('${media.durationSec}s'),
@@ -320,6 +471,90 @@ class _JournalComposeScreenState extends ConsumerState<JournalComposeScreen> {
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class _AreaSelector extends StatelessWidget {
+  final String? selected;
+  final ValueChanged<String?> onChanged;
+
+  const _AreaSelector({required this.selected, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: AppSpace.sm, bottom: AppSpace.xs),
+          child: Text(
+            'Life area',
+            style: Theme.of(context)
+                .textTheme
+                .labelMedium
+                ?.copyWith(color: tokens.textSecondary),
+          ),
+        ),
+        Wrap(
+          spacing: AppSpace.sm,
+          runSpacing: AppSpace.sm,
+          children: [
+            _AreaChip(
+              label: 'None',
+              active: selected == null,
+              onTap: () => onChanged(null),
+            ),
+            ...seedAreas.map(
+              (slug) => _AreaChip(
+                label: areaLabels[slug] ?? slug,
+                active: selected == slug,
+                onTap: () => onChanged(slug),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _AreaChip extends StatelessWidget {
+  final String label;
+  final bool active;
+  final VoidCallback onTap;
+
+  const _AreaChip({
+    required this.label,
+    required this.active,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSpace.lg, vertical: AppSpace.sm),
+        decoration: BoxDecoration(
+          color: active ? tokens.accent : tokens.surfaceRaised,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(
+            color: active ? tokens.accent : tokens.hairline,
+          ),
+        ),
+        child: Text(
+          label,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: active ? tokens.onAccent : tokens.textSecondary,
+              ),
+        ),
       ),
     );
   }
