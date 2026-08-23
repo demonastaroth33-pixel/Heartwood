@@ -54,6 +54,9 @@ class VlogRecorder implements VlogSession {
   VlogRecorder._(this._stream, this._recorder, this._clock);
 
   @override
+  Object? get previewHandle => _stream;
+
+  @override
   Future<CapturedMedia> stop() async {
     if (!_finished) {
       _stopTracks();

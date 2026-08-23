@@ -786,6 +786,18 @@ class $MediaAttachmentsTable extends MediaAttachments
     type: DriftSqlType.blob,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _thumbnailBlobMeta = const VerificationMeta(
+    'thumbnailBlob',
+  );
+  @override
+  late final GeneratedColumn<Uint8List> thumbnailBlob =
+      GeneratedColumn<Uint8List>(
+        'thumbnail_blob',
+        aliasedName,
+        true,
+        type: DriftSqlType.blob,
+        requiredDuringInsert: false,
+      );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -803,6 +815,7 @@ class $MediaAttachmentsTable extends MediaAttachments
     archivedOnDevice,
     adopted,
     blobData,
+    thumbnailBlob,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -925,6 +938,15 @@ class $MediaAttachmentsTable extends MediaAttachments
         blobData.isAcceptableOrUnknown(data['blob_data']!, _blobDataMeta),
       );
     }
+    if (data.containsKey('thumbnail_blob')) {
+      context.handle(
+        _thumbnailBlobMeta,
+        thumbnailBlob.isAcceptableOrUnknown(
+          data['thumbnail_blob']!,
+          _thumbnailBlobMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -994,6 +1016,10 @@ class $MediaAttachmentsTable extends MediaAttachments
         DriftSqlType.blob,
         data['${effectivePrefix}blob_data'],
       ),
+      thumbnailBlob: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}thumbnail_blob'],
+      ),
     );
   }
 
@@ -1020,6 +1046,7 @@ class MediaAttachmentRow extends DataClass
   final String? archivedOnDevice;
   final bool adopted;
   final Uint8List? blobData;
+  final Uint8List? thumbnailBlob;
   const MediaAttachmentRow({
     required this.id,
     this.entryId,
@@ -1036,6 +1063,7 @@ class MediaAttachmentRow extends DataClass
     this.archivedOnDevice,
     required this.adopted,
     this.blobData,
+    this.thumbnailBlob,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1068,6 +1096,9 @@ class MediaAttachmentRow extends DataClass
     map['adopted'] = Variable<bool>(adopted);
     if (!nullToAbsent || blobData != null) {
       map['blob_data'] = Variable<Uint8List>(blobData);
+    }
+    if (!nullToAbsent || thumbnailBlob != null) {
+      map['thumbnail_blob'] = Variable<Uint8List>(thumbnailBlob);
     }
     return map;
   }
@@ -1103,6 +1134,9 @@ class MediaAttachmentRow extends DataClass
       blobData: blobData == null && nullToAbsent
           ? const Value.absent()
           : Value(blobData),
+      thumbnailBlob: thumbnailBlob == null && nullToAbsent
+          ? const Value.absent()
+          : Value(thumbnailBlob),
     );
   }
 
@@ -1127,6 +1161,7 @@ class MediaAttachmentRow extends DataClass
       archivedOnDevice: serializer.fromJson<String?>(json['archivedOnDevice']),
       adopted: serializer.fromJson<bool>(json['adopted']),
       blobData: serializer.fromJson<Uint8List?>(json['blobData']),
+      thumbnailBlob: serializer.fromJson<Uint8List?>(json['thumbnailBlob']),
     );
   }
   @override
@@ -1148,6 +1183,7 @@ class MediaAttachmentRow extends DataClass
       'archivedOnDevice': serializer.toJson<String?>(archivedOnDevice),
       'adopted': serializer.toJson<bool>(adopted),
       'blobData': serializer.toJson<Uint8List?>(blobData),
+      'thumbnailBlob': serializer.toJson<Uint8List?>(thumbnailBlob),
     };
   }
 
@@ -1167,6 +1203,7 @@ class MediaAttachmentRow extends DataClass
     Value<String?> archivedOnDevice = const Value.absent(),
     bool? adopted,
     Value<Uint8List?> blobData = const Value.absent(),
+    Value<Uint8List?> thumbnailBlob = const Value.absent(),
   }) => MediaAttachmentRow(
     id: id ?? this.id,
     entryId: entryId.present ? entryId.value : this.entryId,
@@ -1185,6 +1222,9 @@ class MediaAttachmentRow extends DataClass
         : this.archivedOnDevice,
     adopted: adopted ?? this.adopted,
     blobData: blobData.present ? blobData.value : this.blobData,
+    thumbnailBlob: thumbnailBlob.present
+        ? thumbnailBlob.value
+        : this.thumbnailBlob,
   );
   MediaAttachmentRow copyWithCompanion(MediaAttachmentsCompanion data) {
     return MediaAttachmentRow(
@@ -1215,6 +1255,9 @@ class MediaAttachmentRow extends DataClass
           : this.archivedOnDevice,
       adopted: data.adopted.present ? data.adopted.value : this.adopted,
       blobData: data.blobData.present ? data.blobData.value : this.blobData,
+      thumbnailBlob: data.thumbnailBlob.present
+          ? data.thumbnailBlob.value
+          : this.thumbnailBlob,
     );
   }
 
@@ -1235,7 +1278,8 @@ class MediaAttachmentRow extends DataClass
           ..write('contentHash: $contentHash, ')
           ..write('archivedOnDevice: $archivedOnDevice, ')
           ..write('adopted: $adopted, ')
-          ..write('blobData: $blobData')
+          ..write('blobData: $blobData, ')
+          ..write('thumbnailBlob: $thumbnailBlob')
           ..write(')'))
         .toString();
   }
@@ -1257,6 +1301,7 @@ class MediaAttachmentRow extends DataClass
     archivedOnDevice,
     adopted,
     $driftBlobEquality.hash(blobData),
+    $driftBlobEquality.hash(thumbnailBlob),
   );
   @override
   bool operator ==(Object other) =>
@@ -1276,7 +1321,8 @@ class MediaAttachmentRow extends DataClass
           other.contentHash == this.contentHash &&
           other.archivedOnDevice == this.archivedOnDevice &&
           other.adopted == this.adopted &&
-          $driftBlobEquality.equals(other.blobData, this.blobData));
+          $driftBlobEquality.equals(other.blobData, this.blobData) &&
+          $driftBlobEquality.equals(other.thumbnailBlob, this.thumbnailBlob));
 }
 
 class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
@@ -1295,6 +1341,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
   final Value<String?> archivedOnDevice;
   final Value<bool> adopted;
   final Value<Uint8List?> blobData;
+  final Value<Uint8List?> thumbnailBlob;
   final Value<int> rowid;
   const MediaAttachmentsCompanion({
     this.id = const Value.absent(),
@@ -1312,6 +1359,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
     this.archivedOnDevice = const Value.absent(),
     this.adopted = const Value.absent(),
     this.blobData = const Value.absent(),
+    this.thumbnailBlob = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   MediaAttachmentsCompanion.insert({
@@ -1330,6 +1378,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
     this.archivedOnDevice = const Value.absent(),
     this.adopted = const Value.absent(),
     this.blobData = const Value.absent(),
+    this.thumbnailBlob = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        fileName = Value(fileName),
@@ -1352,6 +1401,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
     Expression<String>? archivedOnDevice,
     Expression<bool>? adopted,
     Expression<Uint8List>? blobData,
+    Expression<Uint8List>? thumbnailBlob,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -1370,6 +1420,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
       if (archivedOnDevice != null) 'archived_on_device': archivedOnDevice,
       if (adopted != null) 'adopted': adopted,
       if (blobData != null) 'blob_data': blobData,
+      if (thumbnailBlob != null) 'thumbnail_blob': thumbnailBlob,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1390,6 +1441,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
     Value<String?>? archivedOnDevice,
     Value<bool>? adopted,
     Value<Uint8List?>? blobData,
+    Value<Uint8List?>? thumbnailBlob,
     Value<int>? rowid,
   }) {
     return MediaAttachmentsCompanion(
@@ -1408,6 +1460,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
       archivedOnDevice: archivedOnDevice ?? this.archivedOnDevice,
       adopted: adopted ?? this.adopted,
       blobData: blobData ?? this.blobData,
+      thumbnailBlob: thumbnailBlob ?? this.thumbnailBlob,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1460,6 +1513,9 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
     if (blobData.present) {
       map['blob_data'] = Variable<Uint8List>(blobData.value);
     }
+    if (thumbnailBlob.present) {
+      map['thumbnail_blob'] = Variable<Uint8List>(thumbnailBlob.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1484,6 +1540,7 @@ class MediaAttachmentsCompanion extends UpdateCompanion<MediaAttachmentRow> {
           ..write('archivedOnDevice: $archivedOnDevice, ')
           ..write('adopted: $adopted, ')
           ..write('blobData: $blobData, ')
+          ..write('thumbnailBlob: $thumbnailBlob, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -4382,6 +4439,7 @@ typedef $$MediaAttachmentsTableCreateCompanionBuilder =
       Value<String?> archivedOnDevice,
       Value<bool> adopted,
       Value<Uint8List?> blobData,
+      Value<Uint8List?> thumbnailBlob,
       Value<int> rowid,
     });
 typedef $$MediaAttachmentsTableUpdateCompanionBuilder =
@@ -4401,6 +4459,7 @@ typedef $$MediaAttachmentsTableUpdateCompanionBuilder =
       Value<String?> archivedOnDevice,
       Value<bool> adopted,
       Value<Uint8List?> blobData,
+      Value<Uint8List?> thumbnailBlob,
       Value<int> rowid,
     });
 
@@ -4515,6 +4574,11 @@ class $$MediaAttachmentsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
+  ColumnFilters<Uint8List> get thumbnailBlob => $composableBuilder(
+    column: $table.thumbnailBlob,
+    builder: (column) => ColumnFilters(column),
+  );
+
   $$JournalEntriesTableFilterComposer get entryId {
     final $$JournalEntriesTableFilterComposer composer = $composerBuilder(
       composer: this,
@@ -4618,6 +4682,11 @@ class $$MediaAttachmentsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<Uint8List> get thumbnailBlob => $composableBuilder(
+    column: $table.thumbnailBlob,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$JournalEntriesTableOrderingComposer get entryId {
     final $$JournalEntriesTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -4705,6 +4774,11 @@ class $$MediaAttachmentsTableAnnotationComposer
   GeneratedColumn<Uint8List> get blobData =>
       $composableBuilder(column: $table.blobData, builder: (column) => column);
 
+  GeneratedColumn<Uint8List> get thumbnailBlob => $composableBuilder(
+    column: $table.thumbnailBlob,
+    builder: (column) => column,
+  );
+
   $$JournalEntriesTableAnnotationComposer get entryId {
     final $$JournalEntriesTableAnnotationComposer composer = $composerBuilder(
       composer: this,
@@ -4774,6 +4848,7 @@ class $$MediaAttachmentsTableTableManager
                 Value<String?> archivedOnDevice = const Value.absent(),
                 Value<bool> adopted = const Value.absent(),
                 Value<Uint8List?> blobData = const Value.absent(),
+                Value<Uint8List?> thumbnailBlob = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => MediaAttachmentsCompanion(
                 id: id,
@@ -4791,6 +4866,7 @@ class $$MediaAttachmentsTableTableManager
                 archivedOnDevice: archivedOnDevice,
                 adopted: adopted,
                 blobData: blobData,
+                thumbnailBlob: thumbnailBlob,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -4810,6 +4886,7 @@ class $$MediaAttachmentsTableTableManager
                 Value<String?> archivedOnDevice = const Value.absent(),
                 Value<bool> adopted = const Value.absent(),
                 Value<Uint8List?> blobData = const Value.absent(),
+                Value<Uint8List?> thumbnailBlob = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => MediaAttachmentsCompanion.insert(
                 id: id,
@@ -4827,6 +4904,7 @@ class $$MediaAttachmentsTableTableManager
                 archivedOnDevice: archivedOnDevice,
                 adopted: adopted,
                 blobData: blobData,
+                thumbnailBlob: thumbnailBlob,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

@@ -39,6 +39,7 @@ class MediaAttachments extends Table {
   TextColumn get archivedOnDevice => text().nullable()();
   BoolColumn get adopted => boolean().withDefault(const Constant(false))();
   BlobColumn get blobData => blob().nullable()();
+  BlobColumn get thumbnailBlob => blob().nullable()();
 
   @override
   Set<Column<Object>> get primaryKey => {id};

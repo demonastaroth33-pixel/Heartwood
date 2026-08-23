@@ -1,9 +1,20 @@
+import 'dart:typed_data';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:personalos/data/models/journal_entry.dart';
+import 'package:personalos/data/models/media_attachment.dart';
 import 'package:personalos/data/providers.dart';
 
 final journalEntriesProvider = FutureProvider<List<JournalEntry>>(
   (ref) => ref.watch(journalRepoProvider).recent(limit: 500),
+);
+
+final mediaForEntryProvider = FutureProvider.family<List<MediaAttachment>, String>(
+  (ref, entryId) => ref.watch(mediaRepoProvider).forEntry(entryId),
+);
+
+final mediaBlobProvider = FutureProvider.family<Uint8List?, String>(
+  (ref, mediaId) => ref.watch(mediaRepoProvider).loadBlob(mediaId),
 );
 
 Future<void> refreshJournal(WidgetRef ref) async {

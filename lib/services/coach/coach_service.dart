@@ -81,4 +81,11 @@ class CoachService {
     final row = await q.getSingleOrNull();
     return row == null ? null : CoachOutput.fromRow(row);
   }
+
+  Future<void> dismissToday({DateTime? on}) async {
+    final today = dayKey(on ?? DateTime.now());
+    await (db.delete(db.coachOutputs)
+          ..where((t) => t.kind.equals('nudge') & t.dateKey.equals(today)))
+        .go();
+  }
 }

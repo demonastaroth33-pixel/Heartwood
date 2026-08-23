@@ -101,6 +101,21 @@ class MediaRepository {
     });
   }
 
+  Future<void> setThumbnail(String id, Uint8List bytes) async {
+    await (db.update(db.mediaAttachments)
+          ..where((t) => t.id.equals(id)))
+        .write(MediaAttachmentsCompanion(
+      thumbnailRef: Value('blob:thumb:$id'),
+      thumbnailBlob: Value(bytes),
+    ));
+  }
+
+  Future<Uint8List?> loadThumbnail(String id) async {
+    final q = db.select(db.mediaAttachments)..where((t) => t.id.equals(id));
+    final row = await q.getSingleOrNull();
+    return row?.thumbnailBlob;
+  }
+
   Future<MediaAttachmentRow?> _rowById(String id) async {
     final q = db.select(db.mediaAttachments)..where((t) => t.id.equals(id));
     return q.getSingleOrNull();

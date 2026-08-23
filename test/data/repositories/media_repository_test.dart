@@ -117,4 +117,28 @@ void main() {
         await eventRepo.query(type: 'media.removed', entityId: media.id);
     expect(removed, hasLength(1));
   });
+
+  test('setThumbnail stores a separate blob; loadThumbnail round-trips', () async {
+    final entry = await journalRepo.create(body: 'with vlog');
+    final bytes = Uint8List.fromList(List.filled(100, 2));
+    final media = await mediaRepo.save(
+      MediaAttachment(
+        id: newId('ma'),
+        entryId: entry.id,
+        fileName: 'v.mp4',
+        mimeType: 'video/mp4',
+        sizeBytes: bytes.length,
+        capturedAt: DateTime.now(),
+        syncState: 'local-only',
+        storageRef: '',
+        adopted: false,
+      ),
+      bytes,
+    );
+    final thumb = Uint8List.fromList(List.filled(32, 9));
+    await mediaRepo.setThumbnail(media.id, thumb);
+    expect(await mediaRepo.loadThumbnail(media.id), thumb);
+    // The original blob is untouched by thumbnail storage.
+    expect(await mediaRepo.loadBlob(media.id), bytes);
+  });
 }
