@@ -13,8 +13,8 @@ pipeline, the repository abstraction, and the storage-limits strategy.
 4. **Media Repository abstraction** — Journal never touches file storage.
 5. **Storage meter + threshold warnings + export-as-safety-valve** are
    non-negotiable MVP features (long videos consume local storage).
-6. **Drive sync is the first post-MVP priority** (entity-sync plane first — Milestone 4,
-   then P2.5 media-blob sync — Milestone 5, then P3 full media vault — Milestone 6;
+6. **Drive sync is the first post-MVP priority** (entity-sync plane first — Milestone 11,
+   then P2.5 media-blob sync — Milestone 12, then P3 full media vault — Milestone 13;
    see `Roadmap.md`).
 7. **Three-tier storage model** — Tier 1 local working set/thumbnails, Tier 2
    Drive vault, Tier 3 PC manual archive (see Three-Tier Storage Model below).
@@ -149,7 +149,7 @@ also exist locally; thumbnails exist everywhere, always).
   PC-specific. Every device that has ever opened the app caches its own
   thumbnails/file cache independently. Device caches are convergent (same items)
   but not synced yet (see Part-8 multi-device note: metadata crosses devices via
-  the entity-sync plane (Milestone 4) once sync ships; Tier-1 copies are local
+  the entity-sync plane (Milestone 11) once sync ships; Tier-1 copies are local
   stacks, not a distributed system).
 
 ### Tier 2 — Drive vault (cloud)

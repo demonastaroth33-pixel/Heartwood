@@ -48,8 +48,9 @@ document describes the logical schema that both candidates must implement.
 
 Future, NOT M0: a `links` table (sourceType, sourceId, targetType, targetId,
 linkType, id, createdAt; one row per directed edge, rendered as undirected in
-the view) for the graph/"brain" view — DecisionLog D023, Roadmap.md Milestone 8
-(under consideration). Not part of the M0 schema; not built.
+the view) for the graph/"brain" view — DecisionLog D023, Roadmap.md (Graph
+section, under consideration — not scheduled). Not part of the M0 schema; not
+built.
 
 ### `exercises` — seeded lookup
 
@@ -220,7 +221,7 @@ Schema-relevant ones:
 
 - `syncState` canonical values:
   - `local-only` — blob and thumbnail on this device only (default).
-  - `metadata-synced` — metadata row + thumbnail synced across devices (Milestone 4
+  - `metadata-synced` — metadata row + thumbnail synced across devices (Milestone 11
     entity-sync plane); full blob still device-local.
   - `fully-synced` — full blob in the Drive vault (P3).
   - `archived-to-pc` — blob moved to a PC filesystem folder outside app storage;

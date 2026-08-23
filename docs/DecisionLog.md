@@ -182,7 +182,8 @@ related) is explicitly left open, as is the rendering approach:
 pure-Dart force-directed package vs JS interop to d3-force (Flutter Web-only
 consideration).
 Zero impact on M0 scope and on the storage decision. Not locked; not built.
-Revisit: at milestone start, post-M1 (see Roadmap.md Milestone 8).
+Revisit: at milestone start, post-M1 (see Roadmap.md — Graph section, under
+consideration, not scheduled).
 
 ### D024 — Spike dependencies for candidate A evaluation (accepted, spike-scoped only)
 drift, drift_flutter, sqlite3, web (runtime); drift_dev, build_runner (dev) —
@@ -1083,3 +1084,42 @@ recorded here so they are not adopted silently:
 - **J7g auto-adopt** — auto-adopt uses the File System Access API (Chromium
   only; other browsers degrade to manual folder pick). Decision needed before
   the J7 PC-video-library build (D057).
+
+---
+
+## 2026-08-23 — Roadmap overhaul (user-directed re-order)
+
+### D081 — Roadmap restructured: per-system milestones + re-ordering (accepted)
+The Roadmap is overhauled per the user's explicit direction (2026-08-23).
+M0 is untouched and stays first. Every large, fully-specified system now has
+its own milestone in the classic M0 format (Scope / Includes / Exit criteria /
+Gate), and the order changed to respect data dependencies:
+
+- **New order:** M0 Core Loop (unchanged) → M1 Journal Features (J1–J6 +
+  physique timeline) → M2 Fitness & Body → M3 Nutrition & Energy Balance →
+  M4 Daily Routine & Briefing → M5 Goals & Tasks (the former M1, moved later
+  so weight/strength goals ship with real body/exercise data) → M6 Calendar &
+  Periods → M7 Analytics Engine & Gamification → M8 Full Coach → M9 Life Tree
+  → M10 Drive P2 backup → M11 Entity Sync Plane → M12 Drive P2.5 media blobs →
+  M13 Drive P3 media vault → Future candidates (Study, projects, AI adapter) +
+  idea park + Graph (under consideration, unnumbered).
+- **Former M2 split** into M7/M8/M9 (analytics & gamification; full coach; Life
+  Tree) for build size; the locked M2 sequencing (features planned → Coach
+  rule-book session → UI/UX ordering pass) is preserved inside M8.
+- **Locked ordering preserved:** workouts before macros (D041), nutrition
+  before routine (S009), entity sync before P2.5 before P3 (D059), P2 after
+  the former-M2 phase (D005), graph under consideration (D023), fitness
+  surface closed (D060).
+- Nothing was dropped: all scope/exit-criteria content from the old M0–M8
+  moved into the new milestones; content from other docs that had no milestone
+  home (journal features J1–J6, calendar, periods, routine, nutrition, Life
+  Tree placement) now has one. Renumbering map (old → new) lives at the top of
+  `Roadmap.md` so S-notes and D-series references stay interpretable.
+- Cross-refs updated: README.md milestone span, Database.md (Milestone 4 → 11;
+  Milestone 8 → Graph section), MediaStorage.md (Milestones 4/5/6 → 11/12/13),
+  D023's Roadmap pointer.
+- Rejected: keeping the old numbering (stale "future systems" bucket hid fully
+  specified systems); folding the sync chain into one milestone (D059 locked
+  them separate).
+Revisit: at each milestone boundary per `Roadmap.md`; re-ordering is always
+authorized in that file with a DecisionLog entry.
