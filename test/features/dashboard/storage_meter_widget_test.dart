@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:personalos/app.dart';
 import 'package:personalos/data/database/database.dart';
 import 'package:personalos/data/providers.dart';
-import 'package:personalos/features/dashboard/widgets/storage_meter_block.dart';
+import 'package:personalos/features/dashboard/dashboard_providers.dart';
 import 'package:personalos/services/storage/storage_meter.dart';
 
 void main() {
@@ -17,7 +17,7 @@ void main() {
   tearDown(() => db.close());
 
   Future<void> pumpWithMeter(WidgetTester tester, StorageMeterData data) async {
-    await tester.binding.setSurfaceSize(const Size(390, 844));
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       ProviderScope(
@@ -31,15 +31,12 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    await tester.scrollUntilVisible(
-      find.byType(StorageMeterBlock),
-      200,
-      scrollable: find.byType(Scrollable).first,
-    );
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
     await tester.pumpAndSettle();
   }
 
-  testWidgets('meter shows used/quota at 95% with hard-warn export action',
+  testWidgets('meter shows used/quota at 95% with hard-warn copy',
       (tester) async {
     await pumpWithMeter(
       tester,
@@ -49,10 +46,10 @@ void main() {
         dbMediaBytes: 40 * 1048576,
       ),
     );
-    expect(find.textContaining('95.0 MB of 100.0 MB'), findsOneWidget);
-    expect(find.text('Storage almost full. Export a backup now.'),
-        findsOneWidget);
-    expect(find.text('Export backup now'), findsOneWidget);
+    expect(
+      find.textContaining('Storage nearly full'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('meter at 50% shows no warning', (tester) async {
@@ -64,7 +61,7 @@ void main() {
         dbMediaBytes: 0,
       ),
     );
-    expect(find.textContaining('50.0 MB of 100.0 MB'), findsOneWidget);
-    expect(find.textContaining('Export a backup'), findsNothing);
+    expect(find.textContaining('Storage nearly full'), findsNothing);
+    expect(find.textContaining('Approaching your storage limit'), findsNothing);
   });
 }

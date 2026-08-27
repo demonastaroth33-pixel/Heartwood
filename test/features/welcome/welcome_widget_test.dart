@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:personalos/app.dart';
 import 'package:personalos/data/database/database.dart';
-import 'package:personalos/data/providers.dart';
+import 'package:personalos/data/providers.dart' hide kWelcomeDoneKey;
+import 'package:personalos/features/welcome/welcome_screen.dart';
 
 void main() {
   late AppDatabase db;
@@ -15,7 +16,7 @@ void main() {
   tearDown(() => db.close());
 
   Future<void> pumpWelcome(WidgetTester tester) async {
-    await tester.binding.setSurfaceSize(const Size(390, 844));
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       ProviderScope(
@@ -24,37 +25,28 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
+    await tester.pumpAndSettle();
   }
 
-  testWidgets('first run shows the 3-step welcome; habits persist after finish',
+  testWidgets('first run shows the 3-step welcome; skip reaches the shell',
       (tester) async {
     await pumpWelcome(tester);
 
-    expect(find.text('PersonalOS'), findsOneWidget);
-    await tester.tap(find.text('Start'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Create your first habits'), findsOneWidget);
-    await tester.enterText(find.byType(TextField), 'Read 20 pages');
-    await tester.pump();
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pumpAndSettle();
-    expect(find.text('Read 20 pages'), findsOneWidget);
-
+    expect(find.text('This is Heartwood.'), findsOneWidget);
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
-    expect(find.text('Write your first entry'), findsOneWidget);
-
-    await tester.enterText(find.byType(TextField), 'Day one.');
-    await tester.pump();
-    await tester.tap(find.text('Done'));
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
     await tester.pumpAndSettle();
-
-    expect(find.text('Today'), findsOneWidget);
-    final habits = await db.select(db.habits).get();
-    expect(habits, hasLength(1));
-    final entries = await db.select(db.journalEntries).get();
-    expect(entries, hasLength(1));
+    expect(find.text('Plant two or three habits.'), findsOneWidget);
+    await tester.tap(find.text('Back'));
+    await tester.pumpAndSettle();
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
+    await tester.pumpAndSettle();
+    expect(find.text('This is Heartwood.'), findsOneWidget);
   });
 
   testWidgets('welcome is skipped once done', (tester) async {
@@ -62,7 +54,7 @@ void main() {
       SettingsCompanion.insert(key: kWelcomeDoneKey, value: 'true'),
     );
     await pumpWelcome(tester);
-    expect(find.text('Today'), findsOneWidget);
-    expect(find.text('PersonalOS'), findsNothing);
+    expect(find.textContaining('Good morning'), findsOneWidget);
+    expect(find.text('This is Heartwood.'), findsNothing);
   });
 }

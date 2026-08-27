@@ -2,45 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:personalos/core/constants.dart';
 import 'package:personalos/core/theme/tokens.dart';
+import 'package:personalos/data/models/habit.dart';
 import 'package:personalos/data/providers.dart';
 import 'package:personalos/features/habits/habits_providers.dart';
-import 'package:personalos/widgets/app_field.dart';
+import 'package:personalos/widgets/animated_widgets.dart';
+import 'package:personalos/widgets/core_widgets.dart';
+import 'package:personalos/widgets/heartwood_icon.dart';
 
-Future<void> showHabitEditSheet(
-  BuildContext context, {
-  String? initialName,
-  String? initialArea,
-}) {
-  return showModalBottomSheet(
+/// Habit creation/edit — centered modal on desktop, bottom sheet on mobile,
+/// one surface. Mirrors `.habit-modal` / `.habit-sheet`.
+Future<void> showHabitEditSheet(BuildContext context, {Habit? habit}) {
+  return showHabitEditFrom(context, habit);
+}
+
+Future<void> showHabitEditFrom(BuildContext context, Habit? habit) {
+  final desktop = MediaQuery.sizeOf(context).width >= 1040;
+  if (desktop) {
+    return showBlurDialog<void>(
+      context: context,
+      builder: (_) => _HabitModal(habit: habit),
+    );
+  }
+  return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
-    builder: (context) => _HabitEditSheet(
-      initialName: initialName,
-      initialArea: initialArea,
+    backgroundColor: Theme.of(context).extension<AppTokens>()!.surface,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
     ),
+    builder: (_) => _HabitModal(habit: habit, inSheet: true),
   );
 }
 
-class _HabitEditSheet extends ConsumerStatefulWidget {
-  final String? initialName;
-  final String? initialArea;
+class _HabitModal extends ConsumerStatefulWidget {
+  final Habit? habit;
+  final bool inSheet;
 
-  const _HabitEditSheet({this.initialName, this.initialArea});
+  const _HabitModal({this.habit, this.inSheet = false});
 
   @override
-  ConsumerState<_HabitEditSheet> createState() => _HabitEditSheetState();
+  ConsumerState<_HabitModal> createState() => _HabitModalState();
 }
 
-class _HabitEditSheetState extends ConsumerState<_HabitEditSheet> {
-  late final TextEditingController _name;
+class _HabitModalState extends ConsumerState<_HabitModal> {
+  late final TextEditingController _name =
+      TextEditingController(text: widget.habit?.name ?? '');
   String? _area;
   bool _saving = false;
+  bool _saved = false;
 
   @override
   void initState() {
     super.initState();
-    _name = TextEditingController(text: widget.initialName ?? '');
-    _area = widget.initialArea;
+    _area = widget.habit?.area;
   }
 
   @override
@@ -50,119 +64,183 @@ class _HabitEditSheetState extends ConsumerState<_HabitEditSheet> {
   }
 
   Future<void> _save() async {
-    if (_saving) return;
-    final name = _name.text.trim();
-    if (name.isEmpty) return;
+    if (_name.text.trim().isEmpty || _saving) return;
     setState(() => _saving = true);
     final repo = ref.read(habitRepoProvider);
-    if (widget.initialName == null) {
-      await repo.create(name: name, area: _area);
+    if (widget.habit == null) {
+      await repo.create(name: _name.text.trim(), area: _area);
     } else {
-      final habits = await repo.listActive();
-      final habit = habits.where((h) => h.name == widget.initialName).firstOrNull;
-      if (habit != null) await repo.rename(habit.id, name);
+      await repo.rename(widget.habit!.id, _name.text.trim());
     }
+    ref.invalidate(habitsProvider);
+    ref.invalidate(habitStreakProvider(widget.habit?.id ?? ''));
     if (!mounted) return;
-    Navigator.of(context).pop();
-    await refreshHabits(ref);
+    // Success beat: icon swaps to a check with a pop, then closes (650ms,
+    // mirroring the mock's saveHabit flow).
+    setState(() => _saved = true);
+    await Future<void>.delayed(const Duration(milliseconds: 650));
+    if (mounted) Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     final tokens = Theme.of(context).extension<AppTokens>()!;
-    return Padding(
-      padding: EdgeInsets.only(
-        left: AppSpace.xl,
-        right: AppSpace.xl,
-        top: AppSpace.sm,
-        bottom: MediaQuery.of(context).viewInsets.bottom + AppSpace.xl,
-      ),
+    final editing = widget.habit != null;
+    final valid = _name.text.trim().isNotEmpty;
+    final content = SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            widget.initialName == null ? 'New habit' : 'Edit habit',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: AppSpace.lg),
-          AppField(
-            controller: _name,
-            label: 'Name',
-            onChanged: (_) => setState(() {}),
-          ),
-          const SizedBox(height: AppSpace.md),
-          Text(
-            'Life area',
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium
-                ?.copyWith(color: tokens.textSecondary),
-          ),
-          const SizedBox(height: AppSpace.xs),
-          Wrap(
-            spacing: AppSpace.sm,
-            runSpacing: AppSpace.sm,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _AreaChip(
-                label: 'None',
-                active: _area == null,
-                onTap: () => setState(() => _area = null),
+              Expanded(
+                child: Text(
+                  editing ? 'Edit habit' : 'Plant a new habit',
+                  style: TextStyle(
+                    fontFamily: 'Fraunces',
+                    fontSize: 21,
+                    fontWeight: FontWeight.w500,
+                    color: tokens.textPrimary,
+                  ),
+                ),
               ),
-              ...seedAreas.map(
-                (slug) => _AreaChip(
-                  label: areaLabels[slug] ?? slug,
-                  active: _area == slug,
-                  onTap: () => setState(() => _area = slug),
+              HoverRotate(
+                size: 32,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: HeartwoodIconWidget(
+                    icon: HeartwoodIcon.x,
+                    size: 15,
+                    color: tokens.textTertiary,
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: AppSpace.lg),
-          FilledButton(
-            onPressed: _name.text.trim().isEmpty || _saving ? null : _save,
-            child: const Text('Save'),
+          const SizedBox(height: 14),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: tokens.accentWash,
+              borderRadius: BorderRadius.circular(AppRadius.md),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 38,
+                  height: 38,
+                  decoration: BoxDecoration(
+                    color: tokens.surface,
+                    shape: BoxShape.circle,
+                  ),
+                  alignment: Alignment.center,
+                  child: HeartwoodIconWidget(
+                    icon: HeartwoodIcon.sprout,
+                    size: 18,
+                    color: tokens.accent,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    widget.inSheet
+                        ? 'Starts as a seed — grows a stage each week its streak holds.'
+                        : 'Every habit starts as a seed. It grows a stage each week you keep its streak alive.',
+                    style: TextStyle(
+                      fontSize: 12,
+                      height: 1.5,
+                      fontWeight: FontWeight.w500,
+                      color: tokens.accentDeep,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const FieldLabel(text: 'Name'),
+          FieldInput(
+            controller: _name,
+            hint: 'e.g. Stretch before bed',
+            onChanged: (_) => setState(() {}),
+          ),
+          const FieldLabel(text: 'Life area'),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              LifeChip(
+                label: 'None',
+                active: _area == null,
+                onTap: () => setState(() => _area = null),
+              ),
+              for (final slug in seedAreas)
+                LifeChip(
+                  label: areaLabels[slug] ?? slug,
+                  active: _area == slug,
+                  onTap: () => setState(() => _area = slug),
+                ),
+            ],
+          ),
+          const SizedBox(height: 26),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              PillButton(
+                label: 'Cancel',
+                ghost: true,
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              const SizedBox(width: 10),
+              PillButton(
+                label: editing ? 'Save changes' : 'Plant habit',
+                icon: HeartwoodIcon.sprout,
+                success: _saved,
+                disabled: !valid || _saving,
+                onPressed: _save,
+              ),
+            ],
           ),
         ],
       ),
     );
-  }
-}
-
-class _AreaChip extends StatelessWidget {
-  final String label;
-  final bool active;
-  final VoidCallback onTap;
-
-  const _AreaChip({
-    required this.label,
-    required this.active,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final tokens = Theme.of(context).extension<AppTokens>()!;
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(
-            horizontal: AppSpace.lg, vertical: AppSpace.sm),
-        decoration: BoxDecoration(
-          color: active ? tokens.accent : tokens.surfaceRaised,
-          borderRadius: BorderRadius.circular(AppRadius.pill),
-          border: Border.all(
-            color: active ? tokens.accent : tokens.hairline,
-          ),
+    if (widget.inSheet) {
+      return Padding(
+        padding: EdgeInsets.only(
+          left: 22,
+          right: 22,
+          top: 14,
+          bottom: MediaQuery.viewInsetsOf(context).bottom + 26,
         ),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: active ? tokens.onAccent : tokens.textSecondary,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 34,
+              height: 4,
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: tokens.hairlineStrong,
+                borderRadius: BorderRadius.circular(99),
               ),
+            ),
+            content,
+          ],
         ),
+      );
+    }
+    return Dialog(
+      backgroundColor: tokens.surface,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 40),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        side: BorderSide(color: tokens.hairline),
+      ),
+      child: Container(
+        width: 428,
+        padding: const EdgeInsets.all(30),
+        child: content,
       ),
     );
   }

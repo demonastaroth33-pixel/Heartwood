@@ -86,6 +86,24 @@ class HabitRepository {
     });
   }
 
+  /// Removes today's check-in (and its `habit.completed` event) so a habit
+  /// can be unticked for the day — mirrors the mock's toggle.
+  Future<void> uncheckIn(String habitId, {DateTime? at}) async {
+    final now = at ?? DateTime.now();
+    final dk = dayKey(now);
+    await db.transaction(() async {
+      await (db.delete(db.habitCheckins)
+            ..where((t) => t.habitId.equals(habitId) & t.dayKey.equals(dk)))
+          .go();
+      await (db.delete(db.events)
+            ..where((t) =>
+                t.type.equals('habit.completed') &
+                t.entityId.equals(habitId) &
+                t.dayKey.equals(dk)))
+          .go();
+    });
+  }
+
   Future<List<HabitCheckin>> checkInsForDay(String dayKey) async {
     final q = db.select(db.habitCheckins)
       ..where((t) => t.dayKey.equals(dayKey))

@@ -7,10 +7,21 @@ import 'package:personalos/data/providers.dart';
 import 'package:personalos/data/repositories/export_import_repository.dart';
 import 'package:personalos/services/web/files.dart';
 
-class DataSection extends ConsumerWidget {
+/// Data & storage actions. Exposed as a stateful surface so Settings can call
+/// export()/restore() and report through a messenger.
+class DataSection extends ConsumerStatefulWidget {
   const DataSection({super.key});
 
-  Future<void> _export(BuildContext context, WidgetRef ref) async {
+  static DataSectionState? of(BuildContext context) {
+    return context.findAncestorStateOfType<DataSectionState>();
+  }
+
+  @override
+  ConsumerState<DataSection> createState() => DataSectionState();
+}
+
+class DataSectionState extends ConsumerState<DataSection> {
+  Future<void> export() async {
     final repo = ref.read(exportRepoProvider);
     final bundle = await repo.exportAll();
     final stamp = DateTime.now();
@@ -21,21 +32,28 @@ class DataSection extends ConsumerWidget {
       await Future<void>.delayed(const Duration(milliseconds: 250));
       downloadBytes(entry.key, entry.value);
     }
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Backup exported (${bundle.mediaFiles.length} media files).')),
-    );
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Backup exported (${bundle.mediaFiles.length} media files).',
+          ),
+        ),
+      );
+    }
   }
 
-  Future<void> _restore(BuildContext context, WidgetRef ref) async {
+  Future<void> restore() async {
     final picked = await pickFiles(multiple: true);
-    final jsonFile =
-        picked.where((f) => f.name.endsWith('.json')).firstOrNull;
+    final jsonFile = picked.where((f) => f.name.endsWith('.json')).firstOrNull;
     if (jsonFile == null) {
-      if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Pick the backup .json file to restore.')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Pick the backup .json file to restore.'),
+          ),
+        );
+      }
       return;
     }
     final mediaFiles = <String, Uint8List>{};
@@ -49,19 +67,17 @@ class DataSection extends ConsumerWidget {
       final report = await repo.restore(
         ExportBundle(json: utf8.decode(jsonFile.bytes), mediaFiles: mediaFiles),
       );
-      if (!context.mounted) return;
+      if (!mounted) return;
       final missing = report.missingFiles.isEmpty
           ? ''
           : '\nMissing media: ${report.missingFiles.join(', ')}';
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            'Restored ${report.importedRows} rows.$missing',
-          ),
+          content: Text('Restored ${report.importedRows} rows.$missing'),
         ),
       );
     } catch (e) {
-      if (!context.mounted) return;
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Restore failed: $e')),
       );
@@ -69,33 +85,7 @@ class DataSection extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('DATA & STORAGE', style: Theme.of(context).textTheme.labelSmall),
-        const SizedBox(height: 8),
-        const ListTile(
-          contentPadding: EdgeInsets.zero,
-          title: Text('Backup & restore'),
-          subtitle: Text('Export everything as JSON + media, or restore a backup.'),
-        ),
-        Wrap(
-          spacing: 8,
-          children: [
-            FilledButton.icon(
-              onPressed: () => _export(context, ref),
-              icon: const Icon(Icons.download_outlined),
-              label: const Text('Export backup'),
-            ),
-            OutlinedButton.icon(
-              onPressed: () => _restore(context, ref),
-              icon: const Icon(Icons.upload_outlined),
-              label: const Text('Restore backup'),
-            ),
-          ],
-        ),
-      ],
-    );
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
   }
 }

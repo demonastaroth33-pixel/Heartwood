@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:personalos/core/device_mode.dart';
 import 'package:personalos/core/theme/themes.dart';
 import 'package:personalos/data/adapters/local_media_adapter.dart';
 import 'package:personalos/data/database/database.dart';
@@ -17,6 +18,16 @@ final dbProvider = Provider<AppDatabase>(
 
 const kThemeKey = 'theme';
 const kWelcomeDoneKey = 'welcome_done';
+
+final deviceModeProvider = FutureProvider<String>((ref) async {
+  try {
+    final stored = await ref.watch(settingsRepoProvider).get(kDeviceModeKey);
+    if (stored != null) return stored;
+  } catch (_) {
+    // DB not reachable (recovery boot) — auto mode.
+  }
+  return 'auto';
+});
 
 final themeKeyProvider = FutureProvider<String>((ref) async {
   try {

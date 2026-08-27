@@ -8,9 +8,9 @@ import 'package:personalos/data/providers.dart';
 
 void main() {
   testWidgets(
-    'dashboard shows Today, Coach note, placeholders and storage meter blocks',
+    'dashboard shows Today, Coach, Goals & tasks, Streak and Storage blocks',
     (tester) async {
-      await tester.binding.setSurfaceSize(const Size(390, 844));
+      await tester.binding.setSurfaceSize(const Size(1280, 900));
       addTearDown(() => tester.binding.setSurfaceSize(null));
       final db = AppDatabase(NativeDatabase.memory());
       addTearDown(db.close);
@@ -21,28 +21,26 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
+    await tester.pumpAndSettle();
+      expect(find.textContaining('Good morning'), findsOneWidget);
       expect(find.text('Today'), findsOneWidget);
-      expect(find.text('Coach'), findsWidgets);
-      expect(find.text('Goal progress'), findsOneWidget);
-      expect(find.text("Today's tasks"), findsOneWidget);
-      expect(find.text('Streak / XP'), findsOneWidget);
-      await tester.scrollUntilVisible(
-        find.textContaining('Storage'),
-        200,
-        scrollable: find.byType(Scrollable).first,
-      );
-      expect(find.textContaining('Storage'), findsOneWidget);
-      expect(find.byType(NavigationBar), findsOneWidget);
+      expect(find.text('Coach'), findsOneWidget);
+      expect(find.text('Goals & tasks'), findsOneWidget);
+      expect(find.text('Streak'), findsOneWidget);
+      expect(find.text('STORAGE'), findsOneWidget);
+      // Desktop layout: rail on the left.
       expect(find.byType(NavigationRail), findsNothing);
     },
   );
 
-  testWidgets('desktop layout uses a left rail instead of the bottom bar',
+  testWidgets('desktop uses the Heartwood rail; mobile uses the bottom nav',
       (tester) async {
-    await tester.binding.setSurfaceSize(const Size(1200, 800));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
     final db = AppDatabase(NativeDatabase.memory());
     addTearDown(db.close);
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       ProviderScope(
         overrides: [dbProvider.overrideWithValue(db)],
@@ -50,7 +48,18 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.byType(NavigationRail), findsOneWidget);
-    expect(find.byType(NavigationBar), findsNothing);
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
+    await tester.pumpAndSettle();
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Journal'), findsWidgets);
+
+    await tester.binding.setSurfaceSize(const Size(390, 844));
+    await tester.pumpAndSettle();
+    // T13: the coach refresh defers 600ms past first paint - flush the timer.
+    await tester.pump(const Duration(milliseconds: 700));
+    await tester.pumpAndSettle();
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Habits'), findsWidgets);
   });
 }

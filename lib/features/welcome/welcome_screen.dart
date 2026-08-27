@@ -1,14 +1,16 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:personalos/core/theme/tokens.dart';
 import 'package:personalos/data/providers.dart';
-import 'package:personalos/widgets/app_field.dart';
-import 'package:personalos/widgets/pill_button.dart';
+import 'package:personalos/features/habits/habit_edit_sheet.dart';
+import 'package:personalos/features/journal/journal_compose_screen.dart';
+import 'package:personalos/widgets/core_widgets.dart';
+import 'package:personalos/widgets/heartwood_icon.dart';
 
 const kWelcomeDoneKey = 'welcome_done';
 
-/// First-run 3-step welcome: what PersonalOS is → create 2–3 habits →
-/// first journal entry → dashboard. No skip; back allowed.
+/// First-run welcome — 3 steps, Heartwood treatment (G7). Mirrors
+/// `.welcome-panel` / `.welcome-card` / `.welcome-step`.
 class WelcomeScreen extends ConsumerStatefulWidget {
   final VoidCallback onDone;
 
@@ -19,188 +21,171 @@ class WelcomeScreen extends ConsumerStatefulWidget {
 }
 
 class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
-  int _step = 0;
-  final _habitName = TextEditingController();
-  final _entryBody = TextEditingController();
-  final List<String> _habits = [];
-  bool _saving = false;
-
-  @override
-  void dispose() {
-    _habitName.dispose();
-    _entryBody.dispose();
-    super.dispose();
-  }
-
-  Future<void> _addHabit() async {
-    final name = _habitName.text.trim();
-    if (name.isEmpty) return;
-    await ref.read(habitRepoProvider).create(name: name);
-    _habitName.clear();
-    setState(() => _habits.add(name));
-  }
-
-  Future<void> _finish() async {
-    if (_saving) return;
-    setState(() => _saving = true);
-    final body = _entryBody.text.trim();
-    if (body.isNotEmpty) {
-      await ref.read(journalRepoProvider).create(body: body);
-    }
-    await ref.read(settingsRepoProvider).set(kWelcomeDoneKey, 'true');
-    if (!mounted) return;
-    widget.onDone();
-  }
+  int _step = 1;
 
   @override
   Widget build(BuildContext context) {
     final tokens = Theme.of(context).extension<AppTokens>()!;
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpace.xxl),
-              child: AnimatedSwitcher(
-                duration: AppMotion.fast,
-                switchInCurve: AppMotion.standard,
-                switchOutCurve: AppMotion.standard,
-                child: KeyedSubtree(
-                  key: ValueKey(_step),
-                  child: _step == 0
-                      ? _Intro(onNext: () => setState(() => _step = 1))
-                      : _step == 1
-                          ? _HabitSetup(
-                              controller: _habitName,
-                              habits: _habits,
-                              onAdd: _addHabit,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            center: const Alignment(0, -0.24),
+            radius: 1.3,
+            colors: [const Color(0xFF171B12), tokens.bgDeep],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SizedBox(
+              width: 430,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const HeartwoodIconWidget(
+                      icon: HeartwoodIcon.mark,
+                      size: 56,
+                    ),
+                    const SizedBox(height: 18),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(3, (i) {
+                        final active = i + 1 == _step;
+                        return AnimatedContainer(
+                          duration: AppMotion.fast,
+                          margin: const EdgeInsets.symmetric(horizontal: 3.5),
+                          width: active ? 18 : 6,
+                          height: 6,
+                          decoration: BoxDecoration(
+                            color: active ? tokens.accent : tokens.hairlineStrong,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
+                        );
+                      }),
+                    ),
+                    const SizedBox(height: 22),
+                    AnimatedSwitcher(
+                      duration: AppMotion.fast,
+                      child: KeyedSubtree(
+                        key: ValueKey(_step),
+                        child: switch (_step) {
+                          1 => _StepIntro(
                               onNext: () => setState(() => _step = 2),
-                            )
-                          : _FirstEntry(
-                              controller: _entryBody,
-                              saving: _saving,
-                              onChanged: () => setState(() {}),
-                              onDone: _finish,
+                              onSkip: _skipSetup,
                             ),
+                          2 => _StepHabits(
+                              onNext: _plantHabit,
+                              onSkip: () => setState(() => _step = 3),
+                              onBack: () => setState(() => _step = 1),
+                            ),
+                          _ => _StepEntry(
+                              onNext: _openCompose,
+                              onBack: () => setState(() => _step = 2),
+                            ),
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: AppSpace.xl),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(3, (i) {
-                  return AnimatedContainer(
-                    duration: AppMotion.fast,
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: i == _step ? 10 : 8,
-                    height: i == _step ? 10 : 8,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: i == _step ? tokens.accent : tokens.hairline,
-                    ),
-                  );
-                }),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
+
+  void _plantHabit() {
+    // Opens the habit modal; when it closes (planted OR cancelled) advance
+    // to step 3 — the user is never stuck on step 2.
+    showHabitEditSheet(context).then((_) {
+      if (mounted) setState(() => _step = 3);
+    });
+  }
+
+  void _skipSetup() {
+    _finish();
+  }
+
+  void _openCompose() {
+    openComposeOverlay(context).then((_) {
+      if (mounted) _finish();
+    });
+  }
+
+  Future<void> _finish() async {
+    await ref.read(settingsRepoProvider).set(kWelcomeDoneKey, 'true');
+    if (mounted) widget.onDone();
+  }
 }
 
-class _Intro extends StatelessWidget {
+class _StepIntro extends StatelessWidget {
   final VoidCallback onNext;
+  final VoidCallback onSkip;
 
-  const _Intro({required this.onNext});
+  const _StepIntro({required this.onNext, required this.onSkip});
 
   @override
   Widget build(BuildContext context) {
     final tokens = Theme.of(context).extension<AppTokens>()!;
     return Column(
-      mainAxisSize: MainAxisSize.min,
       children: [
-        Text('PersonalOS', style: Theme.of(context).textTheme.displaySmall),
-        const SizedBox(height: AppSpace.lg),
         Text(
-          'A private place for your days — habits you keep, entries you write, and a quiet coach that notices when life drifts.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: tokens.textSecondary, height: 1.6),
-        ),
-        const SizedBox(height: AppSpace.xl),
-        PillButton(label: 'Start', onPressed: onNext),
-      ],
-    );
-  }
-}
-
-class _HabitSetup extends ConsumerWidget {
-  final TextEditingController controller;
-  final List<String> habits;
-  final VoidCallback onAdd;
-  final VoidCallback onNext;
-
-  const _HabitSetup({
-    required this.controller,
-    required this.habits,
-    required this.onAdd,
-    required this.onNext,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final tokens = Theme.of(context).extension<AppTokens>()!;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text('Create your first habits',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall),
-        const SizedBox(height: AppSpace.md),
-        Text(
-          'Start with 2–3 things you already do — you can change them anytime.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: tokens.textSecondary),
-        ),
-        const SizedBox(height: AppSpace.xl),
-        AppField(
-          controller: controller,
-          hint: 'e.g. Read 20 minutes',
-          trailing: IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => onAdd(),
+          'STEP 1 OF 3',
+          style: TextStyle(
+            fontFamily: 'JetBrainsMono',
+            fontSize: 10.5,
+            letterSpacing: 1.7,
+            color: tokens.textTertiary,
           ),
         ),
-        const SizedBox(height: AppSpace.md),
-        for (final name in habits)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppSpace.xs),
-            child: Row(
-              children: [
-                Icon(Icons.check_circle, size: 18, color: tokens.accent),
-                const SizedBox(width: AppSpace.sm),
-                Text(name, style: Theme.of(context).textTheme.bodyLarge),
-              ],
-            ),
+        const SizedBox(height: 10),
+        Text(
+          'This is Heartwood.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Fraunces',
+            fontStyle: FontStyle.italic,
+            fontSize: 27,
+            height: 1.2,
+            color: tokens.textPrimary,
           ),
-        const SizedBox(height: AppSpace.xl),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          'A private archive for your life — journal, habits, and a quiet coach. Everything lives on this device unless you export it yourself. No account, no cloud, no one watching.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 13.5,
+            height: 1.65,
+            color: tokens.textSecondary,
+          ),
+        ),
+        const SizedBox(height: 26),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            GestureDetector(
+              onTap: onSkip,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  'Skip setup',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: tokens.textTertiary,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
             PillButton(
               label: 'Continue',
-              onPressed: habits.isEmpty ? null : onNext,
+              icon: HeartwoodIcon.chevron,
+              onPressed: onNext,
             ),
           ],
         ),
@@ -209,48 +194,190 @@ class _HabitSetup extends ConsumerWidget {
   }
 }
 
-class _FirstEntry extends StatelessWidget {
-  final TextEditingController controller;
-  final bool saving;
-  final VoidCallback onChanged;
-  final VoidCallback onDone;
+class _StepHabits extends StatelessWidget {
+  final VoidCallback onNext;
+  final VoidCallback onSkip;
+  final VoidCallback onBack;
 
-  const _FirstEntry({
-    required this.controller,
-    required this.saving,
-    required this.onChanged,
-    required this.onDone,
+  const _StepHabits({
+    required this.onNext,
+    required this.onSkip,
+    required this.onBack,
   });
 
   @override
   Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Write your first entry',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall),
-        const SizedBox(height: AppSpace.md),
         Text(
-          'One line is enough. This is your space.',
+          'STEP 2 OF 3',
+          style: TextStyle(
+            fontFamily: 'JetBrainsMono',
+            fontSize: 10.5,
+            letterSpacing: 1.7,
+            color: tokens.textTertiary,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          'Plant two or three habits.',
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).extension<AppTokens>()!.textSecondary,
+          style: TextStyle(
+            fontFamily: 'Fraunces',
+            fontStyle: FontStyle.italic,
+            fontSize: 27,
+            height: 1.2,
+            color: tokens.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          'Small and daily beats big and rare. Each habit starts as a seed and grows through eight stages as its streak holds — from sprout to Heartwood.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 13.5,
+            height: 1.65,
+            color: tokens.textSecondary,
+          ),
+        ),
+        const SizedBox(height: 26),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (final icon in const [
+              HeartwoodIcon.seed,
+              HeartwoodIcon.sprout,
+              HeartwoodIcon.tree1,
+            ]) ...[
+              Container(
+                width: 52,
+                height: 52,
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                decoration: BoxDecoration(
+                  color: tokens.accentWash,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                alignment: Alignment.center,
+                child: HeartwoodIconWidget(icon: icon, size: 24),
               ),
+            ],
+          ],
         ),
-        const SizedBox(height: AppSpace.xl),
-        AppField(
-          controller: controller,
-          hint: 'What happened today?',
-          multiline: true,
-          onChanged: (_) => onChanged(),
+        const SizedBox(height: 26),
+        Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 12,
+          runSpacing: 8,
+          children: [
+            GestureDetector(
+              onTap: onBack,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  'Back',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: tokens.textTertiary,
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: onSkip,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  'Skip',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: tokens.textTertiary,
+                  ),
+                ),
+              ),
+            ),
+            PillButton(
+              label: 'Plant one now',
+              icon: HeartwoodIcon.plus,
+              onPressed: onNext,
+            ),
+          ],
         ),
-        const SizedBox(height: AppSpace.xl),
-        PillButton(
-          label: 'Done',
-          loading: saving,
-          onPressed: controller.text.trim().isEmpty || saving ? null : onDone,
+      ],
+    );
+  }
+}
+
+class _StepEntry extends StatelessWidget {
+  final VoidCallback onNext;
+  final VoidCallback onBack;
+
+  const _StepEntry({required this.onNext, required this.onBack});
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = Theme.of(context).extension<AppTokens>()!;
+    return Column(
+      children: [
+        Text(
+          'STEP 3 OF 3',
+          style: TextStyle(
+            fontFamily: 'JetBrainsMono',
+            fontSize: 10.5,
+            letterSpacing: 1.7,
+            color: tokens.textTertiary,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          'Write the first entry.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Fraunces',
+            fontStyle: FontStyle.italic,
+            fontSize: 27,
+            height: 1.2,
+            color: tokens.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          'Text, photos, a short vlog — whatever today held. Entries group by day under growth-ring dividers, tagged with a Life Area if you feel like it. Honest and unjudged.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 13.5,
+            height: 1.65,
+            color: tokens.textSecondary,
+          ),
+        ),
+        const SizedBox(height: 26),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: onBack,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Text(
+                  'Back',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: tokens.textTertiary,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            PillButton(
+              label: 'Open compose',
+              icon: HeartwoodIcon.book,
+              onPressed: onNext,
+            ),
+          ],
         ),
       ],
     );

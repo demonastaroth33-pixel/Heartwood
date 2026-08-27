@@ -10,7 +10,7 @@ void main() {
   testWidgets('unhealthy boot shows the recovery screen', (tester) async {
     final db = AppDatabase(NativeDatabase.memory());
     addTearDown(db.close);
-    await tester.binding.setSurfaceSize(const Size(390, 844));
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       ProviderScope(
@@ -19,17 +19,16 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.text('Data recovery'), findsOneWidget);
-    expect(find.text('Export what is readable'), findsOneWidget);
-    expect(find.text('Restore from backup'), findsOneWidget);
-    expect(find.byType(NavigationBar), findsNothing);
+    expect(find.text('Your archive needs attention'), findsOneWidget);
+    expect(find.text('Export backup'), findsOneWidget);
+    expect(find.text('Restore'), findsOneWidget);
   });
 
   testWidgets('settings screen exposes the Data & storage section',
       (tester) async {
     final db = AppDatabase(NativeDatabase.memory());
     addTearDown(db.close);
-    await tester.binding.setSurfaceSize(const Size(390, 844));
+    await tester.binding.setSurfaceSize(const Size(1280, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
       ProviderScope(
@@ -38,10 +37,10 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.settings_outlined));
+    await tester.tap(find.text('Settings'));
     await tester.pumpAndSettle();
     expect(find.text('DATA & STORAGE'), findsOneWidget);
     expect(find.text('Export backup'), findsOneWidget);
-    expect(find.text('Restore backup'), findsOneWidget);
+    expect(find.text('Restore from backup'), findsOneWidget);
   });
 }

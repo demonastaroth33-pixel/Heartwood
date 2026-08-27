@@ -11,6 +11,13 @@ final habitStreakProvider = FutureProvider.family<int, String>(
   (ref, habitId) => ref.watch(habitRepoProvider).streak(habitId),
 );
 
+final habitCheckinsProvider = FutureProvider.family<Set<String>, String>(
+  (ref, habitId) async {
+    final checkins = await ref.watch(habitRepoProvider).checkInsForHabit(habitId);
+    return checkins.map((c) => c.dayKey).toSet();
+  },
+);
+
 final todayCheckinsProvider = FutureProvider<Set<String>>(
   (ref) async {
     final repo = ref.watch(habitRepoProvider);

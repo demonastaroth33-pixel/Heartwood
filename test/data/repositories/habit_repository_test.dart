@@ -71,4 +71,24 @@ void main() {
       3,
     );
   });
+
+  test('uncheckIn removes the day checkin + its event, breaking the streak',
+      () async {
+    final habit = await habitRepo.create(name: 'Read');
+    await habitRepo.checkIn(habit.id, at: DateTime(2026, 8, 1, 8));
+    await habitRepo.checkIn(habit.id, at: DateTime(2026, 8, 2, 8));
+    expect(await habitRepo.checkInsForDay('2026-08-02'), hasLength(1));
+
+    await habitRepo.uncheckIn(habit.id, at: DateTime(2026, 8, 2));
+
+    expect(await habitRepo.checkInsForDay('2026-08-02'), isEmpty);
+    final evs =
+        await eventRepo.query(type: 'habit.completed', entityId: habit.id);
+    expect(evs, hasLength(1));
+    expect(evs.single.dayKey, '2026-08-01');
+    expect(
+      await habitRepo.streak(habit.id, today: DateTime(2026, 8, 3)),
+      0,
+    );
+  });
 }

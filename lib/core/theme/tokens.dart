@@ -1,133 +1,159 @@
-import 'dart:ui' show lerpDouble;
-
 import 'package:flutter/material.dart';
+
+// ============================================================
+// HEARTWOOD — DESIGN TOKENS (1:1 with UI develop/heartwood-m0.html)
+// ============================================================
 
 abstract final class AppRadius {
   static const double sm = 8;
-  static const double md = 12;
-  static const double lg = 16;
-  static const double xl = 24;
+  static const double md = 14;
+  static const double lg = 20;
+  static const double xl = 28;
   static const double pill = 999;
 }
 
 abstract final class AppSpace {
-  static const double xs = 4;
-  static const double sm = 8;
-  static const double md = 12;
-  static const double lg = 16;
-  static const double xl = 24;
-  static const double xxl = 32;
+  static const double sp1 = 4;
+  static const double sp2 = 8;
+  static const double sp3 = 12;
+  static const double sp4 = 16;
+  static const double sp5 = 24;
+  static const double sp6 = 32;
+  static const double sp7 = 48;
 }
 
 abstract final class AppMotion {
   static const Duration instant = Duration(milliseconds: 120);
-  static const Duration fast = Duration(milliseconds: 200);
-  static const Duration slow = Duration(milliseconds: 320);
-  static const Curve standard = Curves.easeOutCubic;
-  static const Curve emphasis = Curves.easeInOutCubic;
+  static const Duration fast = Duration(milliseconds: 220);
+  static const Duration slow = Duration(milliseconds: 420);
+  // cubic-bezier(.16,.8,.3,1)
+  static const Cubic standard = Cubic(0.16, 0.8, 0.3, 1.0);
+  // cubic-bezier(.65,0,.35,1)
+  static const Cubic emphasis = Cubic(0.65, 0.0, 0.35, 1.0);
 }
 
 class AppTokens extends ThemeExtension<AppTokens> {
   final Color bg;
+  final Color bgDeep;
   final Color surface;
   final Color surfaceRaised;
+  final Color surfaceHover;
+  final Color hairline;
+  final Color hairlineStrong;
   final Color textPrimary;
   final Color textSecondary;
-  final Color textDisabled;
+  final Color textTertiary;
   final Color accent;
-  final Color onAccent;
-  final Color accentDim;
+  final Color accentDeep;
+  final Color accentInk;
+  final Color accentWash;
+  final Color accentWashStrong;
   final Color gold;
-  final Color danger;
-  final Color warning;
-  final Color hairline;
-  final Color atmoWash1;
-  final Color atmoWash2;
-  final double atmoOpacity;
-  final bool atmoDrift;
+  final Color goldDeep;
+  final Color goldWash;
+  final Color rust;
+  final Color rustWash;
+  final Color paper;
 
   const AppTokens({
     required this.bg,
+    required this.bgDeep,
     required this.surface,
     required this.surfaceRaised,
+    required this.surfaceHover,
+    required this.hairline,
+    required this.hairlineStrong,
     required this.textPrimary,
     required this.textSecondary,
-    required this.textDisabled,
+    required this.textTertiary,
     required this.accent,
-    required this.onAccent,
-    required this.accentDim,
+    required this.accentDeep,
+    required this.accentInk,
+    required this.accentWash,
+    required this.accentWashStrong,
     required this.gold,
-    required this.danger,
-    required this.warning,
-    required this.hairline,
-    required this.atmoWash1,
-    required this.atmoWash2,
-    required this.atmoOpacity,
-    required this.atmoDrift,
+    required this.goldDeep,
+    required this.goldWash,
+    required this.rust,
+    required this.rustWash,
+    required this.paper,
   });
 
   @override
   AppTokens copyWith({
     Color? bg,
+    Color? bgDeep,
     Color? surface,
     Color? surfaceRaised,
+    Color? surfaceHover,
+    Color? hairline,
+    Color? hairlineStrong,
     Color? textPrimary,
     Color? textSecondary,
-    Color? textDisabled,
+    Color? textTertiary,
     Color? accent,
-    Color? onAccent,
-    Color? accentDim,
+    Color? accentDeep,
+    Color? accentInk,
+    Color? accentWash,
+    Color? accentWashStrong,
     Color? gold,
-    Color? danger,
-    Color? warning,
-    Color? hairline,
-    Color? atmoWash1,
-    Color? atmoWash2,
-    double? atmoOpacity,
-    bool? atmoDrift,
+    Color? goldDeep,
+    Color? goldWash,
+    Color? rust,
+    Color? rustWash,
+    Color? paper,
   }) {
     return AppTokens(
       bg: bg ?? this.bg,
+      bgDeep: bgDeep ?? this.bgDeep,
       surface: surface ?? this.surface,
       surfaceRaised: surfaceRaised ?? this.surfaceRaised,
+      surfaceHover: surfaceHover ?? this.surfaceHover,
+      hairline: hairline ?? this.hairline,
+      hairlineStrong: hairlineStrong ?? this.hairlineStrong,
       textPrimary: textPrimary ?? this.textPrimary,
       textSecondary: textSecondary ?? this.textSecondary,
-      textDisabled: textDisabled ?? this.textDisabled,
+      textTertiary: textTertiary ?? this.textTertiary,
       accent: accent ?? this.accent,
-      onAccent: onAccent ?? this.onAccent,
-      accentDim: accentDim ?? this.accentDim,
+      accentDeep: accentDeep ?? this.accentDeep,
+      accentInk: accentInk ?? this.accentInk,
+      accentWash: accentWash ?? this.accentWash,
+      accentWashStrong: accentWashStrong ?? this.accentWashStrong,
       gold: gold ?? this.gold,
-      danger: danger ?? this.danger,
-      warning: warning ?? this.warning,
-      hairline: hairline ?? this.hairline,
-      atmoWash1: atmoWash1 ?? this.atmoWash1,
-      atmoWash2: atmoWash2 ?? this.atmoWash2,
-      atmoOpacity: atmoOpacity ?? this.atmoOpacity,
-      atmoDrift: atmoDrift ?? this.atmoDrift,
+      goldDeep: goldDeep ?? this.goldDeep,
+      goldWash: goldWash ?? this.goldWash,
+      rust: rust ?? this.rust,
+      rustWash: rustWash ?? this.rustWash,
+      paper: paper ?? this.paper,
     );
   }
 
   @override
   AppTokens lerp(AppTokens? other, double t) {
     if (other == null) return this;
+    Color c(Color a, Color b) => Color.lerp(a, b, t)!;
     return AppTokens(
-      bg: Color.lerp(bg, other.bg, t)!,
-      surface: Color.lerp(surface, other.surface, t)!,
-      surfaceRaised: Color.lerp(surfaceRaised, other.surfaceRaised, t)!,
-      textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
-      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
-      textDisabled: Color.lerp(textDisabled, other.textDisabled, t)!,
-      accent: Color.lerp(accent, other.accent, t)!,
-      onAccent: Color.lerp(onAccent, other.onAccent, t)!,
-      accentDim: Color.lerp(accentDim, other.accentDim, t)!,
-      gold: Color.lerp(gold, other.gold, t)!,
-      danger: Color.lerp(danger, other.danger, t)!,
-      warning: Color.lerp(warning, other.warning, t)!,
-      hairline: Color.lerp(hairline, other.hairline, t)!,
-      atmoWash1: Color.lerp(atmoWash1, other.atmoWash1, t)!,
-      atmoWash2: Color.lerp(atmoWash2, other.atmoWash2, t)!,
-      atmoOpacity: lerpDouble(atmoOpacity, other.atmoOpacity, t)!,
-      atmoDrift: t < 0.5 ? atmoDrift : other.atmoDrift,
+      bg: c(bg, other.bg),
+      bgDeep: c(bgDeep, other.bgDeep),
+      surface: c(surface, other.surface),
+      surfaceRaised: c(surfaceRaised, other.surfaceRaised),
+      surfaceHover: c(surfaceHover, other.surfaceHover),
+      hairline: c(hairline, other.hairline),
+      hairlineStrong: c(hairlineStrong, other.hairlineStrong),
+      textPrimary: c(textPrimary, other.textPrimary),
+      textSecondary: c(textSecondary, other.textSecondary),
+      textTertiary: c(textTertiary, other.textTertiary),
+      accent: c(accent, other.accent),
+      accentDeep: c(accentDeep, other.accentDeep),
+      accentInk: c(accentInk, other.accentInk),
+      accentWash: c(accentWash, other.accentWash),
+      accentWashStrong: c(accentWashStrong, other.accentWashStrong),
+      gold: c(gold, other.gold),
+      goldDeep: c(goldDeep, other.goldDeep),
+      goldWash: c(goldWash, other.goldWash),
+      rust: c(rust, other.rust),
+      rustWash: c(rustWash, other.rustWash),
+      paper: c(paper, other.paper),
     );
   }
 }
