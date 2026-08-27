@@ -71,6 +71,81 @@ evidence, proposed change, decision status._
 
 ---
 
+## APP MAP — all major parts/sections
+
+The app as one map: every major part, its build status, and its
+milestone home (Roadmap M0–M13). Refactor audits hang off this list —
+each area below is the anchor for its audit checklist item.
+
+### A. Built / in progress (M0–M1)
+1. **Core shell & navigation** — tabs (Dashboard, Journal, Habits,
+   Settings), bottom bar mobile / left rail desktop, theme system
+   (dark-first tokens, DesignSystem.md), responsive layout. Audit #1
+   anchor for shell-level concerns.
+2. **Welcome / onboarding** — 3-step first run (what PersonalOS is,
+   first habits, first journal entry). Audit: reference onboarding
+   flows.
+3. **Dashboard** — block stack: today section (briefing + habit ticks +
+   capture), calendar/heatmap strip, habits card, goals progress
+   (placeholder), strength snapshot (placeholder), weekly review/Coach
+   note, journal capture, storage meter. Audit #1 anchor.
+4. **Journal** — compose (text + photos + vlogs), chronological
+   timeline, tags, Life Areas, edit/delete with event history, media
+   thumbs + vlog capture. M1 expansion pending (J1–J6 +
+   physique-photo timeline). Audit #2 anchor.
+5. **Habits** — today's list, one-tap check-off, habit detail sheet
+   (streak, 7/30-day indicator), edit/create/archive, Life Areas.
+   Audit #3 anchor.
+6. **Settings & data** — settings groups, export/restore, recovery
+   screen, storage meter + data section. Audit #8 anchor.
+
+### B. Services & data layers (cross-cutting)
+7. **Data layer** — drift/sqlite WASM database, models, repositories
+   (the ONLY storage touchpoint), adapters, event log (single behavior
+   history), isImported flags. Boundary rules per AGENTS.md.
+8. **Services** — storage, media (MediaRepository; blob handling),
+   web, coach stub (M0 rule: 3-missed-days line), growth
+   (`growth_stage.dart` — the Life Tree seed).
+9. **Achievements catalog (cross-cutting, lives at repo root)** — v2
+   = THE WHAT, TEMP-PLANNING-Achievement-Spec.md = THE WHEN (E0–E13,
+   131 trophies + 47 rungs), Gamification.md = THE WHY. Audit #9
+   anchor (achievements/rings surface once it renders).
+
+### C. Planned (milestone homes; audits can pre-plan, not pre-build)
+10. **Fitness & Body (M2)** — gym sessions, templates, exercises,
+    PR/est-1RM (Epley), standards, records vault, deload, body
+    metrics, physique timeline. Audit #4 anchor.
+11. **Nutrition (M3)** — food log, meals, recipes, macros (kcal/
+    protein/carbs/fat), targets (TDEE), weigh-in resolution,
+    macro-gap bar, weekly check-up. Audit #5 anchor.
+12. **Routine & Briefing (M4)** — daily routine templates, briefing
+    (today at a glance). Audit #6 anchor.
+13. **Goals & Tasks (M5)** — goals with milestones/tasks, plan
+    adherence, projections. (Audit #6/#7 shared surface.)
+14. **Calendar & Periods (M6)** — year heatmap, day view,
+    plan-vs-actual, vacation/trip periods. Audit #1/#8 surface ties.
+15. **Analytics Engine & Gamification (M7)** — H3 owner functions,
+    XP policy (locked), streak grace, day activity score, trophy
+    engine (achievement.unlocked events), Coach tie-in loudness.
+    Audit #9/#10 anchors.
+16. **Full Coach (M8)** — rule catalog session (deferred by design),
+    coach_outputs weekly review, strictness, reflections.
+    Audit #10 anchor.
+17. **LIFE TREE (M9 — MAIN GOAL of this generation)** — dedicated
+    tab, huge stylized growing tree, 10-ring trunk, domain branches,
+    tier foliage; design system spec = this file's main section.
+18. **Drive P2/P2.5/P3 (M10–M13)** — backup, entity sync, media blob
+    sync, media vault. No refactor audits planned; contracts only.
+
+### Map notes
+- Audit numbering matches the open-items checklist (1–10); audits
+  target areas that exist or render first, planned areas get
+  pre-planned proposals only.
+- The Life Tree sits on top of analytics feeds (M7) + rings data —
+  its design section (below) assumes those locks, nothing earlier.
+
+---
+
 ## LIFE TREE DESIGN SYSTEM (MAIN GOAL)
 
 Idea recorded gen-1 (archived ledger): dedicated tab, huge stylized tree
