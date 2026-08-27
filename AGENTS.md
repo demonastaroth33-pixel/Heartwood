@@ -100,8 +100,16 @@ judgment.
 
 - flutter test       (engines, repositories, export/restore round-trip)
 - flutter analyze    (must be clean before commit)
+- powershell -File tools/restart_web.ps1   (restart the dev web server on
+  8080; kills only the process owning the port)
 
 ## Browser testing (Playwright MCP)
+
+NEVER free port 8080 with a blanket `Stop-Process -Force` over all node
+processes — playwright and drive MCP servers run as node.exe and die with
+them, and opencode does not reconnect MCPs mid-session (the only fix is
+restarting opencode). Use tools/restart_web.ps1 instead; opencode.json also
+asks for approval on any Stop-Process command.
 
 Use the playwright MCP tools (drive installed Chrome) for the browser
 boundary only:

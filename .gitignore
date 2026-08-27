@@ -53,3 +53,6 @@ app.*.map.json
 /research_*.json
 /tools/mobbin_findings.json
 /UI develop/
+
+# Dev pipeline state (churns every ticket)
+/.opencode/perf-state.json

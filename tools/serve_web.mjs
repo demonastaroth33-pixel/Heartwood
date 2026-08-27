@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { gzipSync } from 'node:zlib';
 import { readFile } from 'node:fs/promises';
 import { extname, join, normalize, resolve } from 'node:path';
 
@@ -7,6 +8,7 @@ const port = Number(process.argv[3] ?? 8080);
 const types = {
   '.html': 'text/html',
   '.js': 'text/javascript',
+  '.mjs': 'text/javascript',
   '.wasm': 'application/wasm',
   '.json': 'application/json',
   '.webmanifest': 'application/manifest+json',
@@ -16,6 +18,22 @@ const types = {
   '.svg': 'image/svg+xml',
   '.txt': 'text/plain',
 };
+
+// Cross-origin isolation (T0): unlocks SharedArrayBuffer for this origin,
+// which lets the Drift WASM storage use its fast worker path instead of the
+// sharedIndexedDb fallback, and makes multi-threaded skwasm eligible later.
+// Safe here: the app loads nothing cross-origin (fonts bundled, no remote
+// media or fonts) -- so `require-corp` cannot break any asset.
+const ISOLATION_HEADERS = {
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Embedder-Policy': 'require-corp',
+};
+
+// gzip only text-ish assets worth compressing; skip already-binary formats
+// (png, ico) and anything under 1KB where the header overhead is a loss.
+const compressible = new Set([
+  '.html', '.js', '.json', '.css', '.svg', '.txt', '.webmanifest', '.wasm',
+]);
 
 http
   .createServer(async (req, res) => {
@@ -35,8 +53,17 @@ http
       }
       const ext = extname(file);
       const mime = ext ? (types[ext] ?? 'application/octet-stream') : 'text/html';
-      res.writeHead(200, { 'Content-Type': mime });
-      res.end(data);
+      const gz = compressible.has(ext) && data.length > 1024 ? gzipSync(data) : null;
+      const headers = {
+        'Content-Type': mime,
+        ...ISOLATION_HEADERS,
+        'Vary': 'Accept-Encoding',
+        ...(gz
+          ? { 'Content-Encoding': 'gzip', 'Content-Length': gz.length }
+          : { 'Content-Length': data.length }),
+      };
+      res.writeHead(200, headers);
+      res.end(gz ?? data);
     } catch {
       res.writeHead(404).end();
     }

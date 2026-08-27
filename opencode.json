@@ -12,7 +12,8 @@
     "playwright": {
       "type": "local",
       "command": ["npx", "-y", "@playwright/mcp@latest", "--browser", "chrome"],
-      "enabled": true
+      "enabled": true,
+      "timeout": 30000
     },
     "drive": {
       "type": "local",
@@ -29,7 +30,8 @@
       "git push*": "ask",
       "git commit*": "ask",
       "flutter run*": "ask",
-      "flutter build*": "ask"
+      "flutter build*": "ask",
+      "Stop-Process*": "ask"
     },
     "edit": {
       "*": "ask"
