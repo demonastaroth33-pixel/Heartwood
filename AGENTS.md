@@ -2,7 +2,8 @@
 
 Private, single-user life-management app (journal + habits + goals + Coach).
 Built by one developer with heavy AI assistance. Flutter Web / PWA.
-Planned in docs/ — implementation NOT started.
+M0 implementation in progress — docs/ is the contract, Roadmap.md is the
+sequencer; read the doc for your task before touching code.
 
 ## Orientation (mandatory first step)
 
@@ -23,6 +24,10 @@ Planned in docs/ — implementation NOT started.
 - Gamification (XP, streaks, anti-farming)   -> docs/Gamification.md
 - Goals, tasks, milestones                   -> docs/Roadmap.md (M1+; not built)
 - UI, navigation, dashboard blocks           -> docs/UIUX.md
+- UI mockups / visual source of truth        -> design/ (git-ignored scratch) +
+  docs/DesignSystem.md; the M0 contract is design/heartwood/heartwood-m0.html
+  (1:1 with lib/ per the handoff + PerformanceOptimizationBrief)
+- Friendly design-workflow usage guide       -> docs/DesignWorkflowGuide.md
 - Milestones, what is/isn't built            -> docs/Roadmap.md
 - Project philosophy, core loop              -> docs/Vision.md
 - Any decision rationale                     -> docs/DecisionLog.md
@@ -65,6 +70,10 @@ features/ (UI, Riverpod providers)
   load the owasp-security skill, review the diff, and read its findings;
   then present them and get user approval before the commit goes through.
   Never commit those layers silently.
+- At the M3 gate (first OAuth/Drive commit), run a white-box strix pass in
+  addition to the owasp-security review — the strix skills are installed in
+  .opencode/skills/ (runtime: Strix CLI + Docker, installed only at M3;
+  authorized target = own app only).
 - Always use context7 (query-docs / resolve-library-id) for library/API docs
   or version-specific code examples — never answer from memory on drift,
   riverpod, drift_flutter, sqlite3, or Flutter APIs.
@@ -96,12 +105,65 @@ features/ (UI, Riverpod providers)
 Tradeoff: these rules bias toward caution over speed — trivial fixes use
 judgment.
 
+## Agent skills (installed; DecisionLog D082)
+
+- Workflow core: superpowers suite (brainstorming, writing-plans,
+  executing-plans, test-driven-development, systematic-debugging,
+  verification-before-completion, requesting/receiving-code-review,
+  subagent-driven-development, dispatching-parallel-agents, writing-skills)
+  + skill-creator + Karpathy rules (above).
+- Discovery: find-skills — before hand-rolling a prompt or installing a
+  registry skill, search via `npx skills`; any install still needs a
+  DecisionLog entry + user approval and a security pass.
+- Security: owasp-security (per-commit gate) + strix ×9 (M3 milestone gate,
+  Docker runtime required).
+- Design: frontend-design, impeccable, mobbin-* (5), open-design atoms (13,
+  e.g. design-extract, direction-picker, token-map, critique-theater,
+  handoff) — UI milestone set; move back to .opencode/skills-off/ after.
+- Do NOT install more skills from registries ad hoc; vet each candidate's
+  SKILL.md before enabling (several popular skills fail security scans).
+
 ## Commands
 
 - flutter test       (engines, repositories, export/restore round-trip)
 - flutter analyze    (must be clean before commit)
 - powershell -File tools/restart_web.ps1   (restart the dev web server on
   8080; kills only the process owning the port)
+- Open Design (local UI-mockup workspace, .tools/open-design):
+  - start:  pnpm tools-dev start web --daemon-port 7456 --web-port 5173
+    (fixed ports: web http://127.0.0.1:5173, daemon http://127.0.0.1:7456)
+  - status: pnpm tools-dev check       (ports, logs, diagnostics)
+  - stop:   pnpm tools-dev stop
+  Use a detached launch (Win32_Process) when starting from an agent shell —
+  plain `pnpm tools-dev start web` dies with the shell's process tree.
+  The open-design MCP (opencode.json) connects to the daemon at :7456 via
+  `node apps/daemon/bin/od.mjs mcp` — it is ENABLED; the daemon must be
+  running for its tools to respond.
+- OmniRoute (local AI gateway, loopback-only, no providers configured yet):
+  - start:  cmd /c "set OMNIROUTE_SERVER_HOST=127.0.0.1&& omniroute --no-open"
+    (detached from agent shells; dashboard http://127.0.0.1:20128,
+    OpenAI-compatible API http://127.0.0.1:20128/v1)
+  - Providers are added MANUALLY in the dashboard (user-owned); opencode
+    points at it only after the user wires it in.
+
+## Design workflow (mockups + Open Design)
+
+- design/ is the git-ignored mockup scratch. It holds the visual source of
+  truth per milestone: design/heartwood/heartwood-m0.html (M0, 1:1 contract
+  with lib/ code) + heartwood-design-system.html + the handoff/workflow mds.
+  Future milestones: design/<milestone>/<mockup>.html.
+- Open Design (OpenDesign, nexu-io/open-design) lives at .tools/open-design
+  (BYOK, local-first; drives your opencode CLI as the design engine). Use the
+  web UI to prompt mockups: import the design/ folder as the project
+  (imported-folder, NOT managed), pick a design system + skill, send.
+  Spawned runs use YOUR opencode config: AGENTS.md, .opencode/skills
+  (frontend-design, impeccable, mobbin-*, open-design atoms), and project
+  MCPs all apply. Prompt only writes under design/; check git status after.
+- When a skill/mockup conflicts with docs/UIUX.md, the doc wins — except
+  where a handoff doc explicitly supersedes it (M0 color/theme is superseded
+  by the heartwood HTML per design/heartwood-deepseek-handoff.md).
+- After a UI milestone: move unneeded UI skills back to
+  .opencode/skills-off/ and restart opencode (see "UI milestone skills").
 
 ## Browser testing (Playwright MCP)
 
@@ -153,12 +215,14 @@ Rules (non-negotiable):
   never committed.
 - The MCP uses its own OAuth client, separate from the app's future client.
 
-## UI milestone skills (off by default)
+## UI milestone skills
 
-frontend-design, impeccable, and the mobbin-* skills live in
-.opencode/skills-off/ — NOT loaded. Before a UI milestone (M0 dashboard,
-journal, habits screens): move the needed folder(s) from skills-off/ into
-.opencode/skills/ and restart opencode; move them back after the milestone.
+frontend-design, impeccable, the mobbin-* skills, and the open-design atoms
+(design-extract, direction-picker, token-map, critique-theater, handoff,
+figma-extract, etc.) currently live in .opencode/skills/ and ARE loaded.
+Milestone discipline: after a UI milestone (M0 dashboard, journal, habits
+screens), move the unneeded folders back to .opencode/skills-off/ and
+restart opencode — unused skills burn context every session.
 When a skill conflicts with docs/UIUX.md, the doc wins — state that in the
 prompt.
 

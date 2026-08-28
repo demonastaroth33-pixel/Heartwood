@@ -1123,3 +1123,51 @@ Gate), and the order changed to respect data dependencies:
   them separate).
 Revisit: at each milestone boundary per `Roadmap.md`; re-ordering is always
 authorized in that file with a DecisionLog entry.
+
+---
+
+## 2026-08-28 — AI agent skill toolchain (user-approved install)
+
+### D082 — Skills installed: find-skills, strix, open-design atoms (accepted)
+Installed into `.opencode/skills/` per user scoping (exactly these three; no
+other skills this session):
+
+- **find-skills** (Vercel Labs) — meta-skill teaching the agent to discover,
+  evaluate (install counts, source reputation), and recommend registry skills
+  via `npx skills` before hand-rolling prompts or adding skills. Discovery
+  gate only: any candidate still needs a DecisionLog entry + user approval,
+  and security vetting (several popular skills fail automated scans).
+- **strix ×9** (usestrix/strix) — agent skills driving Strix autonomous
+  pentesting (white-box + black-box, PoC-validated findings, no static-scan
+  false positives). Runtime (Strix CLI + Docker sandbox) NOT installed —
+  gated to the M3 OAuth/backup milestone. Authorized target: own app only.
+- **open-design atoms ×13** (nexu-io/open-design `plugins/_official/atoms`):
+  design-extract, direction-picker, token-map, critique-theater, handoff,
+  diff-review, patch-edit, build-test, code-import, discovery-question-form,
+  figma-extract, rewrite-plan, todo-write. Full OpenDesign needs the `od`
+  daemon (desktop app / source build — manual step, not done); its MCP server
+  is wired in opencode.json as disabled until the daemon exists. The full
+  139-skill library was NOT installed (per-session context bloat); remaining
+  skills are on-demand via find-skills.
+
+Already present (no action): superpowers suite (14 skills), frontend-design,
+impeccable, owasp-security, skill-creator, mobbin-* (5), code-simplifier +
+code-reviewer subagents, Karpathy rules (AGENTS.md "Universal work rules"),
+MCPs context7 / playwright / drive (opencode.json).
+
+Rationale: find-skills enforces the no-new-deps rule as a process; strix is
+the milestone-level security pass complementing the per-commit owasp-security
+gate; open-design is local-first BYOK and aligns with the $0 + data-ownership
+principles; only curated official atoms were installed to cap context cost.
+
+Rejected/skipped (2026-08-28 consultation, user scoping): agent reach (cookie
+credentials = secret surface, no matching need), TS LSP (Dart app), higgsfield
+(video-gen product, not a skill), codeburn (spend telemetry for another
+harness), graphify (revisit post-M1 when code exists), notebooklmpy
+(unofficial API), n8n (overkill for offline-first single-user), context-mode
+(paid), morph (paid infra), gstack / GSD / compound-engineering (ideas adopted
+into process; no package install), cavemen / grill-me / feature-dev (deferred).
+
+Revisit: strix runtime at M3 design phase; open-design daemon at the M0
+dashboard UI milestone; firecrawl/exa MCPs when a concrete research job needs
+them (API keys pending).

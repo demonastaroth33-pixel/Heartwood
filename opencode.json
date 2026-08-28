@@ -22,6 +22,11 @@
         "GOOGLE_DRIVE_MCP_SCOPES": "drive.readonly,drive.file"
       },
       "enabled": true
+    },
+    "open-design": {
+      "type": "local",
+      "command": ["node", "C:\\Users\\dell\\Desktop\\Quanti_Delta\\.tools\\open-design\\apps\\daemon\\bin\\od.mjs", "mcp", "--daemon-url", "http://127.0.0.1:7456"],
+      "enabled": true
     }
   },
   "permission": {

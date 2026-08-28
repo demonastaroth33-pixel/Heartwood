@@ -52,7 +52,11 @@ app.*.map.json
 /release-errors.txt
 /research_*.json
 /tools/mobbin_findings.json
-/UI develop/
+/design/
+
+# Local dev tools (Open Design monorepo, etc.)
+/.tools/
+/.od-skills/
 
 # Dev pipeline state (churns every ticket)
 /.opencode/perf-state.json
