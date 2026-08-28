@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ============================================================
-// HEARTWOOD — DESIGN TOKENS (1:1 with UI develop/heartwood-m0.html)
+// HEARTWOOD — DESIGN TOKENS (1:1 with design/heartwood/heartwood-m0.html)
 // ============================================================
 
 abstract final class AppRadius {

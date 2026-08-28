@@ -17,7 +17,7 @@ and decide outcomes. You are the only agent the user talks to.
 
 - `docs/PerfBacklog.md` — the ticket table (your source of truth; it is state,
   do not write to it)
-- `UI develop/Heartwood-Perf-Critique-and-Expanded-Plan.md` — the technical plan
+- `design/Heartwood-Perf-Critique-and-Expanded-Plan.md` — the technical plan
 - `docs/PerformanceOptimizationBrief.md` — the original brief (evidence, golden rule)
 - `AGENTS.md` — repo rules (layers, security gate, doc governance)
 

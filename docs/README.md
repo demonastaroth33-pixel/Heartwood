@@ -7,7 +7,10 @@ Entry point for all project documentation. Read this first.
 - **Phase:** Architecture refinement — COMPLETE
 - **Documentation:** COMPLETE (this set)
 - **Integration:** TEMP-PLANNING pipeline CLOSED 2026-08-20 — census + no-holes gates cleared; docs/ are the source of truth; design-lock granted 2026-08-21 (DecisionLog D077, closes gate S001)
-- **Implementation:** NOT STARTED in the docs sense — `lib/` holds only a Flutter scaffold + a preliminary Drift `database.dart` stub; no feature code, no domain logic, no tests
+- **Implementation:** M0 IN PROGRESS — `lib/` is active (features, repositories,
+  engines, media pipeline per `Roadmap.md`); docs/ remain the contract for the
+  current milestone. Where an HTML mockup is the visual source of truth, it lives
+  in `design/` (see AGENTS.md "Design workflow").
 - **Integration summary:** see `IntegrationSummary.md`
 - **Next step:** Milestone 0 (see `Roadmap.md`)
 
@@ -56,6 +59,7 @@ conflicts with one of these, the principle wins.
 | `StorageSpikeStatus.md` | Living spike-status doc: Drift vs IndexedDB metrics, iPhone persistence gate, open items |
 | `StorageSpikeSessionA.md` | Approved Session A spec (desktop spike: Drift vs IndexedDB, 10k rows + media, overnight persistence); execute in a fresh session |
 | `UIUX.md` | Dashboard, navigation, responsive rules |
+| `DesignWorkflowGuide.md` | Friendly usage guide: mockups, Open Design (import the repo, no account needed), prompt recipe, handoff to Flutter |
 | `DevelopmentWorkflow.md` | AI-assisted development rules, boundaries, tests |
 | `Roadmap.md` | Milestones M0–M13, Drive phases, exit criteria |
 | `DecisionLog.md` | Every decision: accepted and rejected, with rationale |

@@ -12,7 +12,7 @@ language, motion timings, and reference fidelity are non-negotiable.
 
 - **Heartwood (PersonalOS)** — a private single-user life-management app
   (journal + habits + goals + coach). Flutter Web / PWA.
-- UI built as a strict 1:1 replica of `UI develop/heartwood-m0.html` (the visual
+- UI built as a strict 1:1 replica of `design/heartwood/heartwood-m0.html` (the visual
   source of truth: same colors, spacing, type scale — Fraunces/Inter/JetBrains Mono —
   motion timings, and copy).
 - **Stack:** Flutter **3.44.8** (stable, 2026-07), Dart 3.12, Riverpod, Drift +
@@ -178,7 +178,7 @@ this app at reference fidelity needs roughly 2018-era hardware for true 60fps.
 
 - **Never reduce visual quality or reference fidelity**: colors, fonts, spacing,
   radii, motion timings/curves, copy — all must stay 1:1 with
-  `UI develop/heartwood-m0.html` (exceptions: the mock's "System notes" block and
+  `design/heartwood/heartwood-m0.html` (exceptions: the mock's "System notes" block and
   top "Heartwood M0" band are intentionally absent from the app).
 - **Do not drop the modal blur** (user explicitly requested it stays, sigma 5).
 - No new pub dependencies without a `docs/DecisionLog.md` entry + user approval

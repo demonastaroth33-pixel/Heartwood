@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // ============================================================
 // HEARTWOOD ICON SET — custom botanical-line icons, ported 1:1
-// from UI develop/heartwood-m0.html <symbol> sprite. No icon font.
+// from design/heartwood/heartwood-m0.html <symbol> sprite. No icon font.
 // ============================================================
 
 enum HeartwoodIcon {

@@ -3,7 +3,7 @@ import '../../widgets/heartwood_icon.dart';
 // ============================================================
 // GROWTH STAGES — eight visual tiers tied to consecutive-day streak.
 // Pure presentational derivation from the existing streak integer;
-// no schema. Mirrors STAGES in heartwood-m0.html.
+// no schema. Mirrors STAGES in design/heartwood/heartwood-m0.html.
 // ============================================================
 
 class GrowthStage {
