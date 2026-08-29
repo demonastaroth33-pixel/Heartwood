@@ -978,7 +978,510 @@ LANDS: Roadmap M2 (fitness area + weekly check-in); UIUX.md
     RESTING PLACE: dead — do not resurrect without a new use case.
       (Mid-session swap stays manual via the F-02 anatomy.)
 
-## Incorporate list (journaling C-series — all candidates decided except C-15, deferred to the Life Tree section)
+- N-09 BARCODE SCANNER (LOCKED, user yes - gen-2 approval; D069 distinction recorded):
+    SOURCE: R02 R6 (research-nutrition); user approval; docs already
+      anticipate it - `source` column enumerates `scanner` (Roadmap.md:326).
+    WHAT: EAN lookup via the native Chrome BarcodeDetector API (offline,
+      ~94% of Chrome, dependency-free on Flutter web) + zxing-wasm fallback;
+      lookup against a local OFF/FDC mirror (see N-02 when triaged); scan ->
+      match -> verify -> add.
+    DISTINCTION (verbatim): the D069 do-not-build AI food scanner is the
+      PHOTO-AI scanner (meal estimation - stays rejected, evidence-backed:
+      1/3-calorie error + cloud-bound); EAN barcode lookup is a DIFFERENT
+      feature, never blocked, now approved.
+    CONSTRAINTS: on-device only; no cloud; no AI estimation; no new package
+      needed on web (verify at build); DecisionLog entry records the approval
+      + D069 distinction.
+    LANDS: DecisionLog (D082+); Roadmap M3; Database.md (barcode lookup
+      against the seed data).
+- N-01 HISTORY/RECENT-FIRST LOGGING + PROVENANCE BADGES (LOCKED,
+  user yes - all decision points accepted):
+    SOURCE: MacroFactor (R01) + Cronometer (R01) + DAI audit (R02).
+    WHAT: (a) the diary opens on YOUR foods - recent/history/
+      favorites ribbon, 2 taps to log (the <30 s/meal, 2-3 tap
+      retention bar); (b) persistent nutrition banner (plate totals,
+      swipeable to day-remaining) = the macro-gap bar's home;
+      (c) provenance badges on every food row + daily totals
+      (verified/custom/source) - the locked `source` column made
+      visible; (d) producer-switcher row (Manual / Food DB / Pack /
+      Scale / Scanner) mirroring the locked source producers.
+    DECISIONS (accepted): history ribbon = top-12 recent + pinned
+      favorites · badges always-visible tiny chips (trust is
+      glanceable).
+    UI NOTE (user, verbatim): UI/UX candidate - current suggestions
+      recorded; FUTURE UI DEVELOPMENT STAGES may change or keep them.
+    CONSTRAINTS: no single-macro quick-add; facts-only.
+    LANDS: UIUX.md (diary); Database.md (source display); Roadmap M3;
+      MOBBIN REFS: research-nutrition/mobbin-screens-mfp.json (290) -
+      diary/search/food-detail anatomy.
+- N-03 ADHERENCE-NEUTRAL COMPLIANCE MATH (LOCKED, user yes):
+    SOURCE: MacroFactor (R01).
+    WHAT: weekly check-up denominator rules - missed rows NEVER count
+      as zero (unlogged days = typical intake or excluded); compliance
+      = logged days' performance only; no streak displays for
+      nutrition.
+    DECISIONS (my take, pending user confirm at walkthrough): missing
+      days EXCLUDED from the denominator when <5 logged days (thin-
+      week rule); typical-average only when the week is otherwise
+      complete. [REVIEW - user accepted the candidate; confirm this
+      decision point or adjust]
+    LANDS: CoachSystem.md (weekly check-up denominator); Database.md.
+    MOBBIN REFS (verbatim): research-fitness/mobbin-screens-macrofactor.json
+      (402) — the adherence-neutral check-in card reference (N-03).
+- N-11 GRAM-ANCHORED PORTION STEPPER UX (LOCKED, user yes):
+    SOURCE: USDA FDC/FNDDS (R02 R4) + Cronometer.
+    WHAT: every food carries a gram reference; portion picker offers
+      unit presets each carrying gram equivalents (1 cup = 125g, 100g,
+      1 serving as packaged); portionMultiplier scales from the gram
+      anchor (1.5x of 125g cup = 187.5g exact); text-based portion
+      input (evidence: beats image-based); seed data brings FNDDS
+      portion weights (N-02).
+    DECISIONS (my take, pending user confirm): grams as canonical
+      entry, presets as shortcuts. [REVIEW - confirm or adjust]
+    LANDS: UIUX.md (food detail); Database.md (gram reference field);
+      Roadmap M3.
+    MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-mfp.json
+      (290) — food-detail/portion-picker anatomy (N-11).
+- N-18 VENDOR-RESILIENT EXPORT FOR FOODS/RECIPES (LOCKED, user yes):
+    SOURCE: R03 (vendor extinction - PlateJoy shut July 2025,
+      PlanEatMore defunct).
+    WHAT: dedicated human-readable export for the nutrition namespace
+      - foods + recipes (name, macros, servings, gram references) as
+      readable/re-importable docs; rides the existing export machinery.
+    LANDS: Roadmap M3 (export); UIUX.md (settings).
+- N-02 USDA FDC SEED + PRIVATE NAMESPACE - TIERED DATA ARCHITECTURE (LOCKED, user yes - all four decisions confirmed):
+    SOURCE: R02 R1/R2 + R01 (Cronometer architecture); user goal: the
+      nutrition section must genuinely compete with industry gold
+      standards (MacroFactor, Cronometer).
+    THE REFRAME (verbatim - the design premise): we never BUILD a food
+      database - the honest data exists free (USDA FDC = CC0,
+      OpenFoodFacts = ODbL); the work is curation, licensing hygiene,
+      and tiered distribution. Accuracy leaders win on ARCHITECTURE
+      (verified-default + provenance + sandboxed customs), not size
+      (Cronometer 98% verified / 0.9% error vs MFP 23% error).
+    THE TIERED ARCHITECTURE (accepted - the data design):
+      TIER 1 BUNDLED CORE (verbatim): FDC SR Legacy + Foundation +
+        FNDDS generics + quality-flagged OFF top products, brotli-
+        compressed at build; instant local search, airplane-mode
+        complete; the SPEED tier. Covers 80-90% of daily eating.
+      TIER 2 GROWING LOCAL MIRROR (verbatim - the accumulation
+        rule, USER-CLARIFIED): EVERY food lookup - bundled hits AND
+        online pass-through results - is cached into the local
+        searchable mirror. The mirror is the accumulation of ALL
+        lookups, ranked by frequency + recency, so items that become
+        REGULAR surface first. Online pass-through (likely the most
+        common path once the app is in daily use) feeds the mirror
+        on every single lookup - a niche item looked up once is
+        cached; if it becomes regular, it ranks up automatically.
+        Over months the mirror CONVERGES ON THE USER'S ACTUAL DIET:
+        offline coverage approximately equals real eating, and the
+        app's offline experience IMPROVES with use. This is the
+        personalization no cloud app can offer (they serve a global
+        DB; the user grows a personal one).
+      TIER 3 ONLINE PASS-THROUGH (verbatim - when connected): full
+        FDC + OFF API queries for the long-tail (niche brands, new
+        products, obscure EANs); barcode scans (N-09) hit the mirror
+        first, then the online pool; EVERY tier-3 result is cached
+        into tier 2 per the accumulation rule above.
+      SEARCH PRECEDENCE (verbatim): local mirror -> bundled core ->
+        online pool. Provenance badges (N-01) label the result tier:
+        bundled USDA / cached / online. Coverage is honest too - the
+        badge explains why an item is missing offline.
+    THE ONLINE EXCEPTION (accepted - user: fine; DecisionLog entry
+      records it verbatim): food-database network exception - read-
+      only, TERM-ONLY queries (food names / EANs) to public databases
+      (USDA FDC, OpenFoodFacts) when connected. NO account, NO diary
+      payloads, NO personal data, NO query logging, NO writes.
+      Offline-first unchanged; tier-3 results cache locally (the
+      accumulation rule). The SOLE network exception in the nutrition
+      domain; the security gate checks against this contract.
+    NAMESPACE RULE (Cronometer's, verbatim): a custom row can NEVER
+      shadow a canonical row in search - canonical-first always; My
+      Foods one tap away; provenance badges label every result tier.
+    SEED SCOPE (CONFIRMED - user yes): ~15k bundled - FDC full
+      generics (SR Legacy + Foundation + FNDDS) + quality-flagged
+      top-5k OFF branded products (~10-15 MB brotli). Rationale:
+      the mirror (tier 2) makes bigger bundles unnecessary - the
+      bundle is the SPEED tier, the mirror is the PERSONAL tier, the
+      online pool is the DEPTH tier.
+    MICRONUTRIENTS - SEPARATE MILESTONE M3b (CONFIRMED - user yes):
+      micros get their own milestone (M3b, after M3 before M4 -
+      needs the M3 diary foundation, self-contained after that); data
+      already CC0 + complete in FDC (the same root Cronometer uses -
+      the work is UI/UX + display science, NOT data); the milestone
+      includes a LARGE GUI/UIX SECTION pulled from mobbin research
+      (nutrient report cards, deficiency flags, %DV, adequacy
+      coloring, per-nutrient trends). MOBBIN CAVEAT (recorded):
+      Cronometer - the micro-UI gold standard - has NO mobbin
+      screens (query returned only its app index); M3b needs a
+      dedicated mobbin pull + research pass at activation; the
+      nutrition report's Cronometer GUI descriptions (84-nutrient
+      profile, adequacy coloring, deficiency flags) seed the
+      reference until then.
+    DRAFTER NOTES (critical - draft this cleanly):
+      (1) DATABASE.md drafts: the tiering plan (bundled core tables
+        + local mirror table + source/provenance columns + gram-
+        reference field per N-11); the seed scope numbers (15k,
+        10-15 MB) are VERBATIM-CRITICAL; the accumulation rule
+        (every lookup caches, frequency+recency ranking) is
+        VERBATIM-CRITICAL.
+      (2) DECISIONLOG drafts: D-number entry recording (a) the
+        online exception contract VERBATIM (read-only, term-only,
+        no account, no diary payloads, no query logging, no writes,
+        sole nutrition-domain exception), (b) the data licensing
+        note (FDC CC0 / OFF ODbL attribution in-app), (c) the
+        seed-data bundle decision.
+      (3) ROADMAP drafts: the M3b milestone entry (micronutrients,
+        after M3 before M4, mobbin-caveat note included).
+      (4) UIUX drafts: diary surfaces per N-01 (history-first,
+        provenance badges, producer switcher) - the tier badge
+        labels (bundled USDA / cached / online) are VERBATIM-
+        CRITICAL.
+      (5) The security gate references the online-exception
+        contract when reviewing any nutrition network code.
+    LANDS: Database.md (seed plan + tiering + mirror); DecisionLog
+      (online exception + licensing + seed decision); Roadmap (M3b
+      milestone); UIUX.md (diary + badges).
+    MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-mfp.json
+      (290) — search/verified-badge + diary anatomy (N-02 tiering
+      context); research-nutrition/mobbin-screens-noom.json (529) —
+      density/trust surface patterns.
+- N-04 PLAN-CONFIRM LOGGING + GAP REBALANCE (LOCKED, user yes - both decision points my takes accepted):
+    SOURCE: Eat This Much (R03).
+    WHAT: logging by CONFIRMING the plan: template-bound days show
+      planned meals; logging = one-tap confirm (or log-all-planned);
+      the locked batch catch-up becomes the confirm flow. GAP
+      REBALANCE: a skipped/swapped meal's macro gap reshapes the
+      REMAINING meals' suggested composition so the day lands near
+      target - the macro-gap bar made proactive (report card ->
+      steering wheel).
+    DECISIONS (verbatim): (a) rebalance = SUGGESTED adjustments,
+      user confirms - NEVER auto-applied (the plan is the user's;
+      same principle as the locked PO kill-switch and F-08's
+      report-never-auto-change) Â· (b) confirm is a MODE, not a
+      template feature - applies to free-form days too (catch-up
+      unified).
+    LANDS: Roadmap M3 (batch catch-up v2); CoachSystem.md (gap bar);
+      UIUX.md (diary plan view).
+- N-05 PACK MODEL - RECIPE -> BATCH -> CONTAINERS -> CONSUME, WITH
+  MIXED BATCHES FOLDED IN FROM DAY ONE (LOCKED, user yes - mixed
+  batches included by user decision):
+    SOURCE: R03 (open territory - no app ships it fully).
+    WHAT: prepped batches as first-class: recipe x N servings ->
+      BATCH -> CONTAINERS -> consume-decrement; the locked packed`r
+      source producer gets its first-class flow; composes with
+      N-04 (a packed meal IS a confirmed plan meal).
+    MIXED BATCHES - FOLDED IN (user decision, verbatim): NOT the
+      simple count-per-batch model - the FULL containers model from
+      day one:
+      (1) CONTAINERS TABLE with per-container LINE ITEMS (a mini
+        receipt per container): partial servings (a 2-serving
+        container), mixed contents (chicken+rice vs chicken+veggies
+        in one prep session), multi-recipe meals (recipe A + recipe
+        B + food item C in one container, each part with its own
+        portion multiplier).
+      (2) CONSUME MATH per container's OWN line items: partial-
+        consume semantics (ate half the 2-serving container), per-
+        part honest sources (each part keeps its source: packed /
+        fooddb / recipe).
+      (3) UI: a container LIST (each with contents + remaining -
+        an editor, not a badge).
+      (4) SCHEMA: batch entity + containers table with line items
+        - built full, nothing grows later.
+    DECISIONS (verbatim): (a) mixed batches INCLUDED (user) - the
+      complexity is accepted knowingly (schema: batch + containers
+      + per-container line items; partial-consume semantics; per-
+      part sources) Â· (b) both container kinds: recipe-linked (for
+      accuracy) AND free-form (for leftovers) - agreed.
+    LANDS: Database.md (batch/containers/line-items schema -
+      DecisionLog schema entry); Roadmap M3/M4 (scope placement);
+      UIUX.md (pack view).
+- N-10 ONE-TIME RECIPE SUBSTITUTION (LOCKED, user yes - two-scope
+  cascade + macro-range adherence condition):
+    SOURCE: Portions (R03).
+    WHAT: a meal slot fills by ANY recipe/food as a one-time event -
+      the substitution lives on the RECEIPT LINE, not the recipe
+      (copy-in preserved, no fork, no variant) and not the plan
+      (tomorrow's plan unchanged). Flexibility lives at the USE
+      level, never the DEFINITION level; the escape valve that keeps
+      confirm-mode (N-04) sustainable without guilt. History honest:
+      today's line says the substitute with a facts-only note
+      (substituted for planned X).
+    DECISIONS (verbatim): (a) TWO SCOPES - (1) CURRENT-MEAL-ONLY
+      built FIRST (M3): affects today's slot, nothing else; (2)
+      CASCADE built AFTER it (user wants it): substitute for the
+      rest of the week - a deliberate EDIT-PLAN action with
+      confirmation, never a silent side effect of substitution;
+      cascade = separate feature with its own semantics. (b)
+      ADHERENCE CONDITION (user, verbatim): substituted meals
+      count as adhered (done-differently) ONLY WHEN the substitute
+      lands within the INTENDED PLANNED MACRO RANGE (the meal
+      slot's planned macro band, e.g., dinner 600-750 kcal); a
+      substitute OUTSIDE the band logs honestly but does NOT count
+      as adhered (unplanned deviation, not done-differently); the
+      gap-rebalance (N-04) suggests adjustments toward the band.
+    LANDS: Roadmap M3 (substitution) + M3+ (cascade); Database.md
+      (receipt-line substitution field); CoachSystem.md (adherence
+      semantics - done-differently + macro-range rule).
+- N-06 FREE-FOODS LIST (LOCKED, user yes - both decision points agreed):
+    SOURCE: WW ZeroPoint lesson (R04) - the demand is real, the
+      broken part is hidden calories.
+    WHAT: a small, user-editable list of CALORIE-TRIVIAL foods
+      (water, black coffee, tea, plain vegetables, herbs, zero-
+      calorie drinks) that skip logging friction - with the
+      integrity guarantee: NOTHING is actually free - each entry
+      carries its REAL macros (user clarification, verbatim: MACRO
+      COUNTS MUST BE ACCURATE - never fudged to zero); logged
+      entries count honestly. Small (not WW's 350), user-editable,
+      calorie-trivial - the demand met with integrity intact.
+    DECISIONS (verbatim): (a) default seed = small curated default
+      (~20-30: water, black coffee, tea, plain veg, herbs) + user-
+      extendable - agreed Â· (b) skipped by DEFAULT (that is the
+      point) with a log-it-anyway path for completeness days; the
+      daily totals footnote: N trivial items not logged - agreed.
+    CONSTRAINTS: never hides calories (the WW failure mode is
+      explicitly avoided); macro accuracy required on every entry.
+    LANDS: UIUX.md (diary); Roadmap M3; Database.md (list table -
+      trivial-foods flag or separate list).
+    MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-mfp.json
+      (290) — diary/one-screen patterns (N-06 context).
+- N-15 EATING-WINDOW AWARENESS (LOCKED, user yes - both decision
+  points agreed):
+    SOURCE: Yazio (R04 - the diary and the window coexist) + Zero.
+    WHAT: OPTIONAL fasting-window indicator on the diary - the
+      window band shows fasting/window state; logged meals appear
+      inside/outside it with a NEUTRAL marker (facts, no judgment).
+      In-app only (no push, no timers nagging - the no-push rule
+      untouched), quiet-week aware, default OFF (opt-in). It is a
+      DISPLAY AWARENESS LAYER, NOT a fasting product: no window
+      coaching, no window trophies, no streak pressure, no
+      notifications. Composes with N-04 (window-aware plans place
+      meals inside the window - optional).
+    DECISIONS (verbatim): (a) schedule model = SIMPLE DAILY WINDOW
+      (start/end, or two windows) WITH PER-DAY EXCEPTIONS - user
+      agreed Â· (b) outside-window marker = neutral facts-only line,
+      NEVER a warning color (no-shame applies to fasting too) -
+      agreed.
+    LANDS: UIUX.md (diary); Roadmap M3; Settings (toggle).
+    MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-yazio.json
+      (276) — diary+fasting-window coexistence; mobbin-screens-zero.json
+      (139) — fasting ring/timer patterns (N-15).
+- N-17 DIET-MODE RE-DERIVATION - FUTURE-CAPABILITY SCOPED NOW (LOCKED,
+  user yes - both decision points agreed):
+    SOURCE: MyNetDiary (R04 - ships the exact fix-two-flex-one model
+      in production).
+    WHAT: the re-derivation RULE any diet mode would use - fix two
+      macros, flex one (the same shape as the locked architecture):
+      keto = protein g/kg fixed + carb ceiling fixed -> fat as
+      remainder; low-carb = protein fixed + fat floor -> carbs flex
+      within a cap. The architecture does not change; the CONSTRAINT
+      ORDER changes per mode. FEATURE IS FUTURE - recorded now so the
+      macro derivation engine is BORN READY: written with the
+      constraint-order abstraction (protein-fixed + floor-fixed +
+      remainder-flex), never hard-coded to bulk/cut/maintain; zero
+      extra build cost.
+    DECISIONS (verbatim): (a) record-the-abstraction-now, feature-
+      later (free door-open) - agreed Â· (b) net-carbs and similar
+      per-mode displays = FUTURE decision, gated by the honest-
+      macros rule (net-carbs is a display convention, never a stored
+      data change) - agreed.
+    REVISIT: when new phase types / diet modes are actually proposed.
+    LANDS: Architecture.md (macro derivation engine abstraction);
+      Roadmap M3+; DecisionLog.
+- N-12 DENSITY FACTS AS NEUTRAL COACH LINES (LOCKED, user yes -
+  both decision points my takes accepted):
+    SOURCE: Noom lesson (R05) - color-coded density = food
+      moralization (ED-safety flag per clinical reviewers).
+    WHAT: the density heuristic RESTATED NEUTRALLY as facts-only
+      Coach lines - never colors, never good/bad framing, never
+      Life-Score composites: "This meal is 2.1 kcal/g - a dense
+      option." The fact is the same; the judgment is absent. This
+      is the ONLY legitimate form of the feature under the locked
+      no-shame rule.
+    DECISIONS (verbatim): (a) fires on SPECIFIC meals when the
+      Coach has a factual density outlier to state - never a
+      constant label on everything - agreed (b) RELATIVE framing
+      (dense/lighter vs the user's typical meals) rather than
+      absolute cutoffs - relative avoids moral tiers entirely -
+      agreed.
+    CONSTRAINTS: facts-only; derived + explainable (show-your-
+      work); no shame.
+    LANDS: CoachSystem.md (rule-book); UIUX.md (diary).
+- N-14 PER-MEAL PROTEIN PACING COACH FACTS (LOCKED, user yes - both
+  decision points my takes accepted):
+    SOURCE: R06 (per-meal protein distribution evidence).
+    WHAT: facts-only Coach lines about protein DISTRIBUTION over
+      the locked daily g/kg target: "Protein so far: 40g - 60g
+      across the remaining meals keeps the 1.8 g/kg pace." Rides
+      the macro-gap bar's protein line - a pacing NARRATIVE over
+      the existing number; zero new logging (derived from existing
+      protein rows).
+    DECISIONS (verbatim): (a) once daily, evening, when the pattern
+      is visible - never nagging - agreed (b) pace-neutral
+      phrasing ("keeps the pace"), never "you're behind" - the
+      no-shame boundary - agreed.
+    LANDS: CoachSystem.md (rule-book); UIUX.md (gap bar).
+- N-16 VEGGIE SERVINGS + WATER HABIT CHECK-INS (LOCKED, user yes -
+  both decision points my takes accepted):
+    SOURCE: R05 (habit-based nutrition evidence; meta-analyses).
+    WHAT: veggie servings + hydration become habit check-ins
+      INSIDE the nutrition domain - the locked habit engine (daily
+      check-ins, grace, quiet-week, no-shame, zero-XP) applies
+      unchanged; nutrition data sources auto-tick them.
+    DECISIONS (verbatim): (a) auto-tick rules - veggie servings
+      auto-tick from a veggie-tagged food category (seeded, user-
+      adjustable); water auto-ticks from logged water - agreed
+      (b) scope - seed TWO habits (veggies, water) as DEFAULTS-
+      OFF, user-enabled, never forced - agreed.
+    CONSTRAINTS: zero XP for ticking (locked); manual check-in
+      always wins; isImported excluded.
+    LANDS: Gamification.md (habits); Roadmap M3; Database.md (food
+      veggie-tag + water source).
+    MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-lifesum.json
+      (345) — habit-tied nutrition surfaces (N-16).
+- N-08 EXERCISE KCAL DISPLAY-ONLY (LOCKED, user yes - both decision points agreed):
+  candidate fully explained):
+    SOURCE: R06 double-count evidence; MacroFactor philosophy.
+    WHAT: exercise kcal (NU9 band + cardio MET) renders in the
+      macro-gap bar as DISPLAY-ONLY and NEVER expands the day's
+      targets (PAL already embeds exercise; wearables overestimate
+      27%+; eating-back silently stalls cuts / bloats bulks).
+    DECISIONS (verbatim - agreed): (a) SHOW the burn as a labeled
+      fact (honesty is the product; the label prevents misuse) (b)
+      weekly check-up mentions it as a fact line only, never an
+      adjustment - agreed.
+    LANDS: CoachSystem.md (NU9 rule); UIUX.md (gap bar).
+- N-07 IMPLIED-TDEE INSIGHT (LOCKED, user yes - ALL decision points D1-D7 approved; the TDEE deep-dive, complete design):
+    SOURCE: R06 (macro-science report, ~85 sources); MacroFactor's
+      predictor-corrector expenditure model; Carbon's rule-based weekly
+      check-in precedent.
+    CONTEXT - THE THREE-LAYER ARCHITECTURE (recorded):
+      L1 FORMULA SEED (locked, M3): Mifflin-St Jeor RMR x PAL - a guess
+        (+-200-500 kcal error; R06 1.1: >10% error in 20-30% of users;
+        Mifflin unbiased at group level, right default).
+      L2 ROLLING-WEIGHT RECOMPUTE (locked, M3): Mifflin re-run on current
+        rolling weight (F-13 EMA trend value), weekly - better, but the
+        PAL multiplier's frozen error stays inside the number (R06 1.2:
+        PAL = the single biggest error source - self-report overestimation
+        ~80% of users, 1-MET baseline wrong by 10-35%, errors multiply,
+        questionnaires poor at individual level, body-size bias).
+      L3 IMPLIED-TDEE INSIGHT (this candidate; M3+ per D5): SOLVED from
+        intake + trended weight - cancels formula/PAL/activity/adaptation
+        error (MacroFactor median error ~108 kcal/100 days vs formula >500).
+      THE PIVOT (verbatim): a formula TDEE is a guess; weight trend +
+        intake is a measurement. Energy-balance identity rearranged:
+        Calories out = Calories in - change in stored energy.
+    THE MATH (verbatim - complete formula set):
+      L1: RMR_Mifflin = 10*W + 6.25*H - 5*A + 5 (men) / ...-161 (women);
+        TDEE_formula = RMR x PAL (PAL in {1.2,1.375,1.55,1.725,1.9});
+        calorieTarget = TDEE + (rate x 7700) / 7 (signed weekly rate:
+        bulk +0.25-0.5, cut -0.5, maintain 0).
+      L3: impliedTDEE ~= avgLoggedKcal(7-14 d) - dTrendWeight x 7700 / days
+        Worked example (MacroFactor's own): trend +0.2 kg/wk (surplus),
+        avg intake 3,000 kcal/d -> surplus = 0.2 x 7700/7 = +220 kcal/d ->
+        implied TDEE = 3,000 - 220 = 2,780 kcal/d. Cut example: -0.5 kg/wk
+        trend + 2,500 logged -> implied = 2,500 + 550 = 3,050.
+    GUARDRAIL CONSTANTS (verbatim - D1, D2, D3, D6 approved):
+      trendWindow = 20 DAYS (D1 - the change-rate inference signal; NOT
+        the 7-day display EMA - display vs inference are separate derived
+        layers, no conflict, recorded); F-13 EMA stays the display trend.
+      completenessGate = >=6 of 7 logged intake days, else HOLD.
+      weighInGate = >=3 weigh-ins/wk, else HOLD (D3 - a FREQUENCY NUDGE +
+        gate, NOT a change to the locked first-of-day canonical weigh-in
+        rule; the app nudges toward daily weigh-ins - evidence: daily
+        weighing correlates with better outcomes; richer data = better
+        estimates).
+      updateCap = +/-250 kcal/wk ABSOLUTE CEILING with TWO-STEP HEDGE (D2):
+        week 1 moves ~half, week 2 commits if the trend holds.
+      symmetry = gain/loss energy content SYMMETRIC (7700 both ways) -
+        D7 FIXED (not a knob): inherits the fix for MacroFactor's V3
+        ~80 kcal/day asymmetric drift bug; a lean-aware variant would
+        reintroduce exactly that drift; the locked signed additive rate
+        (rate x 7700/7) is symmetric by construction.
+      interpolation = linear gap interpolation on missing weigh-ins.
+      HOLD presentation (D6): insufficient data -> "Insufficient data -
+        holding." No guess, no silent change (pause-don't-guess,
+        MacroFactor guardrail verbatim).
+    THE B4 CONTRACT (non-negotiable, preserved verbatim): L3 is SURFACED,
+      NEVER AUTO-APPLIED. The implied TDEE renders in the weekly check-up
+      as: "Your data suggests maintenance ~ X kcal (from N logged days,
+      trend +-Y kg/wk)." The user adopts it ONLY via the existing manual
+      TDEE override (B4 freeze stays absolute). The recompute pipeline
+      keeps running in the background; the check-up shows implied-from-
+      your-data vs locked-value so a freeze is CONSCIOUS, never forgotten.
+    ADAPTATION ARC + PHASE ENTRY (the trust lines, verbatim):
+      cut entry (phase screen, one line): "Your body will fight the
+      deficit - expect implied TDEE to drift ~10% lower over the first
+      weeks; that's physiology, not a bug." (metabolic adaptation,
+      R06 3.4: ~10-15% TEE reduction beyond mass-based expectation on
+      deficits). Bulk entry: mirror image (transient upward read as
+      glycogen loads). The check-up teaches the arc: weeks 1-3 = early
+      water phase (7700 reads wrong), weeks 3+ = fat-dominated
+      convergence. The #1 cause of users distrusting the math -
+      pre-announced, it becomes a feature.
+    AGGRESSIVE-RATE WARNING (D4 - included): when rate x 7700/7 exceeds
+      ~30% of TDEE (~1% BW/wk equivalent): "Aggressive - the
+      literature associates >1%/wk with greater lean-mass and hormonal
+      cost; consider the slower option." Keeps the math signed-
+      additive while importing the %-based safety envelope (R06 6.3).
+    SCOPE SPLIT (D5 - approved): M3 ships L1+L2 (already locked) + ALL
+      estimate-framing copy (N-13) + the weigh-in policy nudge + the
+      adaptation lines + the aggressive-rate warning (cheap, protects
+      the math immediately). M3+ ships the L3 implied-TDEE insight
+      itself (needs accumulated logging data to mean anything).
+    DRAFTER NOTES (critical): (1) ARCHITECTURE.md drafts the owner
+      catalog entry (impliedTDEE owner; trendWindow 20-day inference
+      signal separate from the F-13 display EMA); (2) COACHSYSTEM.md
+      drafts the weekly check-up block (implied-vs-locked display, HOLD
+      states, adaptation arc copy); (3) DECISIONLOG records the D1-D7
+      verdicts + the B4 contract clarification (surfaced-only); (4)
+      ROADMAP M3+ schedules the insight; (5) all constants (20-day,
+      6/7 gate, 3/wk gate, +/-250 cap, hedge, symmetric 7700) are
+      VERBATIM-CRITICAL.
+    LANDS: Architecture.md (impliedTDEE owner); CoachSystem.md (check-up);
+      DecisionLog (D082+); Roadmap M3+; UIUX.md (check-up card).
+- N-13 ESTIMATE-FRAMING + TAP-TO-EXPLAIN (LOCKED, user yes - part of
+  the approved TDEE deep-dive):
+    SOURCE: R06 (error-framing evidence; explainable-math mandate).
+    WHAT: every derived nutrition number carries honest error framing +
+      a tap-to-explain sheet (formula, inputs, constants, sources).
+      Converts the app's biggest weakness (formula error) into a trust-
+      building feature.
+    THE FRAMING COPY TABLE (verbatim - exact lines):
+      TDEE (formula): "TDEE from Mifflin-St Jeor: +-10-15% typical
+        error (+-200-350 kcal for you) - refines as your weight data
+        accumulates."
+      7700 kcal/kg: "approx. energy content of 1 kg of fat tissue
+        (Wishnofsky 1958); early weeks and water/glycogen swings can
+        diverge 30-40%+; judge rates over 2+ week trends."
+      Exercise kcal: "+-25-50% estimate; your target already
+        assumes this training - the weekly trend is the only adjustment
+        authority." (double-count proof by construction - target
+        embeds PAL; N-08 display-only rule).
+      Implied TDEE (M3+): "your data suggests maintenance ~ X kcal
+        (from N logged days, trend +-Y kg/wk) - +-100-150 kcal typical."
+      Fat floor: absolute grams with rationale (0.6 g/kg = 45 g @ 75 kg,
+        inside the 40-60 g/d sex-hormone band; Trexler's evidence-graded
+        floor table; carb-crowding warning when a deep cut leaves carbs
+        very low: consider raising fat toward 0.8-1.0 g/kg).
+      Protein: phase values with WHY (cut 2.0 / bulk 1.8 / maintain 1.6
+        - validated by the literature; cut > bulk > maintain documented;
+        very-lean users up to 2.4 g/kg BW; g/kg FFM = future precision
+        upgrade if body fat % is ever captured).
+      Per-meal pacing (N-14 tie): soft guidance, never a hard target
+        (long-term evidence mixed; >=0.25-0.4 g/kg per meal across 3-4
+        meals supports ~25% higher 24-h muscle synthesis).
+    CONSTRAINTS: facts-only; every number explainable; no fake
+      precision; the framing is the product.
+    DRAFTER NOTES: UIUX.md drafts the explainer sheet component + the
+      footnote copy (VERBATIM-CRITICAL); CoachSystem.md drafts the
+      check-up lines; the framing table above is verbatim-critical.
+    LANDS: UIUX.md (explainer sheet + footnotes); CoachSystem.md
+      (check-up copy); Architecture.md (derived-number provenance).
+    MOBBIN REFS (verbatim): research-fitness/mobbin-screens-macrofactor.json
+      (402) - check-up/strategy-tab framing surfaces (N-13).
+
+## Incorporate list (journaling C-series - all candidates decided except C-15, deferred to the Life Tree section)
 
 Research source: `research-journaling/MASTER-Journaling-Research.md`
 (candidates C-01…C-15, evidence + references). Entry format follows the
@@ -1300,17 +1803,17 @@ copy the table and paths exactly, never paraphrase or re-derive them.
 | M1 J5 Year Book | R01 Day One calendar/print · R04 1SE grid + mosaic · PART 9 §9.2 |
 | M1 D031 physique timeline | R04 Timehop Then-&-Now · R01 Diaro Atlas · PART 9 §9.5 |
 | M2 Fitness | `research-fitness/MASTER-Fitness-Research.md` PART 9 (logging anatomy, vault, coaching surfaces) + per-report GUI sections (01 §7, 02 §1.6/3.6/7.6, 04 §6, 05 §1.5) + mobbin: Hevy/Fitbod/MacroFactor/NRC/Strava |
-| M3 Nutrition | NOT COVERED by either research pass — needs its own reference pass when M3 UI begins |
-| M4 Routine & Briefing | R05 Ohai morning-briefing GUI · R04 Stoic ritual framing · R01 Day One Today tab |
-| M5 Goals & Tasks | R04 Daylio goals-in-flow · R04 Habitica (cautionary) · R03 Notion database views |
-| M6 Calendar & Periods | R01 Day One Calendar/Map · R01 Diaro Atlas · R04 Presently calendar-grid home · R02 Capacities calendar Day view |
+| M3 Nutrition | `research-nutrition/MASTER-Nutrition-Research.md` PART 9 (logging flow, day summary, check-up, recipe/plan surfaces, trust surfaces) + per-report GUI sections (01 §7 per app, 02 §3.8, 03 §8) + mobbin: MFP/Noom/Yazio/Lifesum/Zero + MacroFactor (fitness set, 402 screens) |
+| M4 Routine & Briefing | `research-lifeos/MASTER-LifeOS-Research.md` PART 8 (routine run, briefing card) + R02 report GUI (Routinery run, Structured replan) · R05 Ohai briefing · R04 Stoic ritual · R01 Day One Today tab |
+| M5 Goals & Tasks | `research-lifeos/MASTER-LifeOS-Research.md` PART 8 (goal surface, today surface) + R01 report GUI (Things 3 today, Strides milestone chart) · mobbin: Todoist (326), Things 3 (166), TickTick (97) |
+| M6 Calendar & Periods | `research-lifeos/MASTER-LifeOS-Research.md` PART 8 (month grid, year heatmap, day view, periods) + R03 report GUI (Fantastical year, Google agenda) · mobbin: Google Calendar (866), Cron (110) |
 | M7 Analytics & Gamification | R04 Daylio stats/Year-in-Pixels · R04 1SE missed-day grid · R03 Ulysses progress ring · R04 Finch streak displays |
 | M8 Coach | R05 AI journals (suggestion cards, briefing, opt-in controls) · R04 wellness (care-based streaks, no-nag returns) · R04 Stoic prompt surfaces · PART 9 §9.6 |
-| M9 Life Tree | R04 Finch birdhouse (care-object home) · R04 Daylio mosaic · R04 1SE mashup · R04 Timehop then-&-now · R01 Day One Today tab · PART 9 §9.6-9.7 |
+| M9 Life Tree | R04 Finch birdhouse (care-object home) · R04 Daylio mosaic · R04 1SE mashup · R04 Timehop then-&-now · R01 Day One Today tab · PART 9 §9.6-9.7 · L-15 Life Calendar grid (lifeos R03) |
 | Settings & trust surfaces | R03 Standard Notes · R01 Daylio privacy onboarding · PART 9 §9.7 · mobbin: Finch (671 screens), stoic. (303), Evernote (352) |
 
 Mobbin data: `research-journaling/mobbin-*.json` (Finch, stoic.,
-Evernote, Apple Notes, Notion, 5 Minute Journal, Bloom, Otter AI) + `research-fitness/mobbin-*.json` (Hevy, Fitbod, MacroFactor, NRC, Strava, workout-family; helper `research-fitness/mobbin-query.mjs`). Only M3 NUTRITION GUI remains uncovered (see table row) — schedule a research pass when M3 UI begins.
+Evernote, Apple Notes, Notion, 5 Minute Journal, Bloom, Otter AI) + `research-fitness/mobbin-*.json` (Hevy, Fitbod, MacroFactor, NRC, Strava, workout-family; helper `research-fitness/mobbin-query.mjs`) + `research-nutrition/mobbin-*.json` (MFP, Noom, Yazio, Lifesum, Zero; helper `research-nutrition/mobbin-query.mjs`) + `research-lifeos/mobbin-*.json` (Todoist, Things 3, TickTick, Google Calendar, Cron; helper `research-lifeos/mobbin-query.mjs`). No uncovered milestone GUI rows remain.
 
 ### Fitness mobbin dataset map (pipeline-draftable design references)
 
@@ -1327,6 +1830,22 @@ VERBATIM-CRITICAL reference block: drafters copy the FILE PATHS and screen count
 | `research-fitness/mobbin-query.mjs` | — | — | Query helper (screens | flows | apps) for future mobbin pulls |
 
 Pipeline note: all six datasets are committed repo files (research-fitness/), readable by drafters at their paths; the GUI-table M2 row above plus this map are the two drafting entry points for mobbin content.
+
+### Nutrition mobbin dataset map (pipeline-draftable design references)
+
+VERBATIM-CRITICAL reference block: drafters copy the FILE PATHS and screen counts exactly (never inline JSON contents — datasets are large reference inventories, cited not embedded). Each dataset serves the listed M3 surfaces; the N-candidate LANDS lines carry the per-candidate mobbin refs.
+
+| Dataset (file) | App | Screens | Serves (M3 surface / candidates) |
+|---|---|---|---|
+| `research-nutrition/mobbin-screens-mfp.json` | MyFitnessPal | 290 | Diary anatomy (meal-type tabs), search sheet, food detail, macro ring (N-01, N-11) |
+| `research-nutrition/mobbin-screens-noom.json` | Noom | 529 | Check-in + lesson surfaces, density display patterns (N-12 — neutral restatement) |
+| `research-nutrition/mobbin-screens-yazio.json` | Yazio | 276 | Meal-plan/recipe surfaces, fasting window patterns (N-15) |
+| `research-nutrition/mobbin-screens-lifesum.json` | Lifesum | 345 | Habit-tied nutrition, weekly review surfaces (N-16) |
+| `research-nutrition/mobbin-screens-zero.json` | Zero | 139 | Fasting window ring/timer patterns (N-15) |
+| `research-fitness/mobbin-screens-macrofactor.json` | MacroFactor | 402 | The M3 logging/check-up gold standard (N-01/N-03/N-13 context) |
+| `research-nutrition/mobbin-query.mjs` | — | — | Query helper for future mobbin pulls |
+
+Pipeline note: all datasets are committed repo files (research-nutrition/, research-fitness/), readable by drafters at their paths; the GUI-table M3 row above plus this map are the two drafting entry points for nutrition mobbin content.
 
 ## Unlocks & extras (user picks)
 
