@@ -1171,3 +1171,35 @@ into process; no package install), cavemen / grill-me / feature-dev (deferred).
 Revisit: strix runtime at M3 design phase; open-design daemon at the M0
 dashboard UI milestone; firecrawl/exa MCPs when a concrete research job needs
 them (API keys pending).
+
+---
+
+## 2026-08-29 — Skill additions from parallel session (retroactive entry)
+
+### D083 — Skills: flutter-expert, security-and-hardening, security-threat-model (accepted, retroactive)
+Installed 2026-08-29 by a parallel session via the skills CLI (sources and
+hashes recorded in `skills-lock.json`):
+
+- **flutter-expert** (jeffallan/claude-skills) — Flutter 3+/Dart expertise:
+  Riverpod/Bloc state, GoRouter, performance profiling, DevTools jank fixes.
+  Rationale: perf-critical Life Tree rendering work needs Flutter-specialist
+  guidance (AGENTS.md "Agent skills").
+- **security-and-hardening** (addyosmani/agent-skills) — web/PWA hardening for
+  auth, storage, import/export, and LLM-output handling. Rationale: same
+  surfaces as the per-commit security gate (owasp-security); adds
+  implementation-side hardening patterns.
+- **security-threat-model** (openai/skills) — repo-grounded threat modeling:
+  trust boundaries, assets, attacker capabilities, abuse paths, mitigations.
+  Rationale: use at the M3 OAuth gate and for the Life Tree engine (AGENTS.md).
+
+This entry is retroactive: the parallel session installed the skills and
+encoded the SKILL-INSTALL SECURITY GATE (AGENTS.md, 2026-08-29) without a
+DecisionLog entry, which violates the no-new-deps rule. User approved the
+installs on 2026-08-29; entry closes the gap. Sources were vetted per the
+install gate (well-known maintainers, no malicious commands found).
+
+Note: `life-tree-design/` (Life Tree design docs) is intentionally NOT
+committed per user directive 2026-08-29 — left untracked and untouched.
+
+Revisit: none. All three skills stay on the M3 gate review path with
+owasp-security.

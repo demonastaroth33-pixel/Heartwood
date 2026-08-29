@@ -89,6 +89,42 @@ dedicated talk — scheduled, not dead).
 
 ### Group A — logging UX (decided batch)
 LANDS CONVENTION (audit finding - recorded): the house rule requires a D-number per decision (D082+); entries below do not repeat "DecisionLog (D082+)" in every LANDS - READ IT AS IMPLIED for every LOCKED entry; the docs pass assigns D-numbers per row.
+D084 SKILL INSTALL - SECURITY SUITE x2 (LOCKED, user yes - 2026-08-29):
+    WHAT: installed (a) openai/skills@security-threat-model (official
+      OpenAI, 25.3K-star repo, 4.9K installs, ALL 3 audits pass) -
+      repo-grounded AppSec threat modeling with evidence anchors and
+      an output contract; serves the M3 OAuth gate + the engine build.
+      (b) addyosmani/agent-skills@security-and-hardening (29.3K
+      installs, 90.5K-star repo, ALL 3 audits pass) - web security
+      hardening for the Flutter Web/PWA surface (input validation,
+      auth, storage, import/export, LLM output handling, supply
+      chain) + its security-checklist.md reference fetched.
+    REJECTED: getsentry/skills@security-review (14.8K installs) -
+      Snyk audit FAIL on skills.sh; content read and clean, but the
+      audit fail fails the preference standard (Gen Agent Trust Hub +
+      Socket passed). Suite already covers review lenses (owasp +
+      strix x9 + hardening).
+    SECURITY PASS: skills.sh audits verified per candidate; actual
+      SKILL.mds + reference files read (no prompt injection, no
+      malicious commands); on-disk re-scan of all installed files
+      clean; the shared checklist reference was fetched from the
+      source repo and scanned clean.
+D083 SKILL INSTALL - FLUTTER-EXPERT (LOCKED, user yes - 2026-08-29):
+    WHAT: installed jeffallan/claude-skills@flutter-expert into
+      .opencode/skills/ (project-level; the skills CLI defaulted to
+      .agents/skills/ and the folder was moved). Riverpod/Bloc state
+      management + performance profiling references - the app's exact
+      stack (Riverpod, Flutter); supports the Life Tree engine build
+      (off-UI-thread derivation via compute(), RepaintBoundary render
+      isolation, DevTools profiling).
+    SECURITY PASS (mandatory for every skill install - see AGENTS.md
+      skill-vet rule): 3 independent audits passed on skills.sh (Gen
+      Agent Trust Hub, Socket, Snyk) + full manual review of SKILL.md
+      and all 6 reference files - no prompt injection, no malicious
+      code, no suspicious file/network operations; on-disk scan after
+      install clean. The skills.sh entry "flutter/agent-plugins@
+      flutter-performance" was REJECTED - stale index (the official
+      repo contains no such skill - verified against the repo tree).
 D060 SUPERSESSION (recorded - Roadmap.md:283-288 fitness surface CLOSED (D060): no new features, revisit only with real usage): the gen-2 fitness mandate (user-approved F-series) SUPERSEDES D060 for the named locked candidates below; the closure list is amended at the docs pass (DecisionLog D082+ entry records the override). Roadmap idea-park items touched by the series (N3 warm-up sets -> F-05, N5 recovery -> F-19) are re-opened by those locks explicitly. Roadmap.md:283-288 itself contains a clause that N3/N5 remain park-able - that clause is amended at the docs pass (they are re-opened, not park-able).
 - F-01 INLINE PREVIOUS-SESSION COMPARISON (LOCKED, user yes):
     SOURCE: Hevy (R01 §Hevy).

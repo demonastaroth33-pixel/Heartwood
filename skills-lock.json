@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "flutter-expert": {
+      "source": "jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/flutter-expert/SKILL.md",
+      "computedHash": "4437ff2f2508680ab1f87e28b7d16bad87a6540ed143a00e4278db9f0197f6ff"
+    },
+    "security-and-hardening": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/security-and-hardening/SKILL.md",
+      "computedHash": "47d027526d7e0be784a19a034f18cba328009b3c8fe483f16e4b12530cf82183"
+    },
+    "security-threat-model": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "skillPath": "skills/.curated/security-threat-model/SKILL.md",
+      "computedHash": "76fad9d4726561fce7442e965bfaf318e8db1b369a7aa95e6a2be241d11a1a9f"
+    }
+  }
+}
