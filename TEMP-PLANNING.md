@@ -1,4 +1,4 @@
-﻿# TEMP-PLANNING — Generation 2 (refactor & Life Tree design)
+﻿MISS: LANDS: Roadmap M4; Database.md (routine  MISS: LANDS: UIUX.md (dashboard); DesignSystem MISS: LANDS: CoachSystem.md (rule-book session # TEMP-PLANNING — Generation 2 (refactor & Life Tree design)
 
 Generation-1 planning is COMPLETE and archived: `audits/TEMP-PLANNING-2026-08-20.md`
 (frozen history — never edit). All gen-1 decisions now live in `docs/`
@@ -1481,6 +1481,334 @@ LANDS: Roadmap M2 (fitness area + weekly check-in); UIUX.md
     MOBBIN REFS (verbatim): research-fitness/mobbin-screens-macrofactor.json
       (402) - check-up/strategy-tab framing surfaces (N-13).
 
+- L-01 NATURAL-LANGUAGE CAPTURE + CURATED TODAY (LOCKED, user yes - both decision points my takes accepted):
+    SOURCE: Todoist (R01 section 4) + Things 3 (R01 section 6).
+    WHAT: (a) a single NL input field parses plain text into M5
+      structure - "Hit 82kg by Dec 1" -> goal kind=weight, target=82,
+      deadline; "Every Mon/Wed bench" -> cadence; the parser is
+      RULE-BASED and OFFLINE (patterns + units + date parsing - no AI,
+      no deps); the structured form stays for precision, the parser
+      pre-fills it. (b) the curated Today view - only due + scheduled
+      items; overdue surfaced gently (no drama, no archive/shame
+      state); deadline-ring days (M6) pull their goal into Today;
+      "This Evening" micro-view (Things) splits today into day/evening.
+    DECISIONS (verbatim - agreed): (a) NL parser scope at M5 = dates +
+      units + cadences (weight/strength targets, "by X", "every Y");
+      free-text-to-goal parsing is future - agreed. (b) curated Today
+      DEFAULT with an "all" toggle - mirrors the dashboard's
+      show-if-not-empty discipline - agreed.
+    CONSTRAINTS: offline rule-based parser; no new deps without
+      DecisionLog; derived-only; facts-only.
+    LANDS: Roadmap M5; UIUX.md (goal/task surfaces); Database.md
+      (parse-output fields - schema decision).
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-todoist.json
+      (326) - NL capture + today surface; mobbin-screens-things.json
+      (166) - curated Today + This-Evening + areas/projects (L-01).
+- L-02 2-DAY SLIP INDICATOR + LOGBOOK WON-ARCHIVE (LOCKED, user yes -
+  decision (a) accepted; (b) noted with future-UI caveat):
+    SOURCE: Streaks 2-Day Rule (R01 section 3) + Things 3 Logbook
+      (R01 section 6).
+    WHAT: (a) the 2-DAY SLIP INDICATOR for goal cadences - one skipped
+      day doesn't break the run; a "2" indicator shows with the neutral
+      line "do it today or it's missed" (recoverable, never shame).
+      (b) the LOGBOOK - a permanent, browsable won-archive where
+      milestone-review "won" cards land with their one-line reflection
+      (the quiet accumulation of wins; Things' reference design).
+    DECISIONS (verbatim): (a) goals only at M5 - habits already have
+      grace; the indicator is the goal-expiry-specific mechanic -
+      AGREED. (b) placement SUGGESTION recorded (inside the goals
+      surface as a "Won" archive section, reachable from vault-adjacent
+      views); FUTURE UI DEVELOPMENT STAGES will likely affect this -
+      noted, not locked.
+    CONSTRAINTS: facts-only; neutral framing; no shame; expired goals
+      keep the locked "window closed" framing.
+    LANDS: Roadmap M5; Gamification.md (grace family); CoachSystem.md
+      (milestone review); UIUX.md (goal surfaces).
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-things.json
+      (166) - Logbook/won-archive reference (L-02).
+- L-03 PACE LINE GOAL VISUALIZATION (LOCKED, user yes - decision (a)
+  accepted; (b) recorded for future UI):
+    SOURCE: Strides (R01 section 1).
+    WHAT: the locked goal-pace + F1 projection rendered as a derived
+      PACE LINE - dashed straight line from start value to target
+      across the deadline (the required rate), actuals plotted against
+      it, on/off-track status; "behind pace" = recoverable, never
+      "failed". Derived stat, zero user effort, fully offline.
+      Composes with the lit-mirror ladder (the target IS a ladder
+      value), F1 projections, and the milestone chart for
+      milestone-bearing goals.
+    DECISIONS (verbatim): (a) Pace Line for ALL dated numeric goals
+      (weight/strength AND generic targets - the math is the same) -
+      AGREED. (b) on/off-track COLORS - suggestion recorded (amber for
+      behind - the neutral drift color from plan-adherence; red
+      reserved for genuinely-expired); LEFT FOR FUTURE UI DEVELOPMENT
+      to decide - recorded, not locked.
+    CONSTRAINTS: derived-only; offline; no shame language.
+    LANDS: Roadmap M5 (goal detail); Architecture.md (owner);
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-todoist.json (326) + mobbin-screens-things.json (166) - goal/today surface patterns (L-03 context)
+      UIUX.md (goal chart).
+- - L-04 LIVE FINISH ESTIMATE (REJECTED (user) - skipped):
+    WHAT WAS: Routinery's running finish-time estimate in the routine
+      run and briefing card.
+    RESTING PLACE: dead - do not resurrect without a new use case.
+      (The briefing's slot list may still show planned end-times; the
+      live-updating estimate itself is rejected.)
+- L-05 POST-RUN EXPECTED-VS-ACTUAL REPORT (LOCKED, user yes - both
+  decision points my takes accepted):
+    SOURCE: Routinery (R02 section 1) - "a near-exact blueprint for
+      the plan-vs-actual toggle."
+    WHAT: after a routine/day runs, a per-step report - expected vs
+      actual minutes per slot ("gym 45 planned · 52 actual · +7"),
+      feeding the plan-vs-actual toggle's data source; the CLOSE of
+      the plan-vs-actual loop (planned -> ran -> compared).
+    DECISIONS (verbatim - agreed): (a) BOTH - the per-step minute-
+      delta report (the data) AND the per-slot summary (done/skipped/
+      different - the glance); (b) lands in the DAY VIEW + the
+      briefing's EVENING CLOSE (the wrap-up card pattern).
+    CONSTRAINTS: neutral tone (never scores); done-differently
+      semantics; no shame.
+    LANDS: Roadmap M4; UIUX.md (day view + briefing evening close);
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-todoist.json (326) - today/task list patterns (L-05 context)
+      CoachSystem.md (adherence semantics).
+- L-08 NEUTRAL DEVIATION BADGES (LOCKED, user yes - both decision
+  points my takes accepted):
+    SOURCE: Structured (R02 section 2) - "moved 3x" badge; the
+      swipe-to-resolve Replan pattern.
+    WHAT: deviations (rescheduled/skipped/done-differently) render as
+      NEUTRAL badges - plain factual counts with zero moral valence;
+      the plan-vs-actual day view shows them on affected slots; the
+      evening close lists them silently.
+    DECISIONS (verbatim - agreed): (a) badges ALWAYS-ON in the day
+      view (facts are facts); the evening close SUMMARIZES them -
+      agreed; (b) moved-count PER-SLOT ("moved 3x" on that slot);
+      day-total only in the close - agreed.
+    CONSTRAINTS: never scored; no color-coded guilt; done-differently
+      semantics.
+    LANDS: UIUX.md (day view); CoachSystem.md; Roadmap M4.
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-gcal.json (866) - day-view line rendering context (L-08)
+- L-13 WEEK-PATTERN ROUTINE SCHEDULING (LOCKED, user yes - both
+  decision points my takes accepted):
+    SOURCE: TimeTune (R02) + TickTick frequency-schedule lesson
+      (R01 section 5).
+    WHAT: routine patterns beyond daily - weekday/weekend variants,
+      specific days (Mon/Wed/Fri), weekly cadence; "which days" as a
+      first-class field; the day template's binding expands from one
+      dayKey to a day-PATTERN; the briefing pre-loads today's
+      applicable template; NL parser (L-01) feeds cadences.
+    DECISIONS (verbatim - agreed): (a) M4 scope = weekday/weekend +
+      specific days + weekly; MONTHLY patterns future - agreed;
+      (b) pattern changes apply FUTURE-ONLY by default with the
+      this/all-future/all scoping choices (the Structured recurrence-
+      edit lesson - a template edited mid-week never corrupts the
+      week) - agreed.
+    LANDS: Roadmap M4; Database.md (routine pattern field - schema
+      decision); UIUX.md (routine editor).
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-todoist.json (326) - recurrence/cadence input patterns (L-13 context)
+- L-06 PLAN-VS-ACTUAL DAY-VIEW LINE (LOCKED, user yes - the signature
+  feature; decision (c) accepted; (a)+(b) recorded with future-UI
+  caveat):
+    SOURCE: UNCLAIMED territory (R03 synthesis - no calendar ships
+      it); blueprints: Routinery post-run report (R02), Sunsama
+      planned-vs-actual counter (R02), Polarsteps plan/track duality
+      (R03), Structured neutral badges (R02).
+    WHAT: in the M6 day view, every planned slot renders its actual
+      outcome as a neutral derived line:
+        [planned: gym 17:00 · actual: done 17:15]
+        [planned: meal 12:30  · actual: skipped]
+        [planned: rest       · actual: cardio]
+      Interleaved with the day's other derived lines (weigh-in, meals,
+      journal, habits); derived from routine_slot_logs + the day's
+      events; NEVER scored, NEVER judged. The locked plan-vs-actual
+      toggle becomes the RENDERING of this data; the L-05 post-run
+      report feeds it; L-08 badges tone it; the evening close
+      summarizes it silently.
+    DECISIONS (verbatim): (a) LINE PLACEMENT - my take recorded
+      (interleaved in the day view's chronological feed, the
+      signature; L-05 report + evening close as the summary surfaces;
+      no separate screen); FUTURE UI DESIGN MAY CHANGE IT - noted,
+      not locked. (b) STATUS COLOR SEMANTICS - my take recorded (done
+      = neutral fill consistent with the activity tint; missed/skipped
+      = neutral outline; done-differently = the L-08 badge; NO
+      red-as-failure anywhere - red reserved for genuinely-expired
+      goals per L-03's pending decision); FUTURE UI DESIGN MAY CHANGE
+      IT - noted, not locked. (c) PERIOD-LEVEL DUALITY - INCLUDED
+      (Polarsteps' plan/track model inside vacation/term periods:
+      "planned schedule vs actual during the trip") - ACCEPTED.
+    CONSTRAINTS: tint-only compliance; done-differently semantics;
+      no shame; derived-only; offline.
+    LANDS: Roadmap M6; UIUX.md (day view); CoachSystem.md (adherence
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-gcal.json (866) - agenda/day-view anatomy (L-06); mobbin-screens-cron.json (110) - calendar+docs day
+      semantics); Database.md (routine_slot_logs reads).
+- L-07 SHOW-IF-NOT-EMPTY BLOCKS (LOCKED, user yes - my takes accepted;
+  subject to future UI/UX development changes - noted):
+    SOURCE: TickTick smart lists (R04); cautionary proofs: Samsung
+      Health hollow cards, Fitbit quarter-screen AI paragraphs.
+    WHAT: dashboard blocks render ONLY when they have data (or a
+      pending signal); otherwise they COLLAPSE entirely. A new user
+      sees Today + capture + habits + storage - no empty strength/
+      goals/weekly cards. The locked one-line what-appears-here
+      explanation survives only for soon-to-fill blocks (or inside
+      the collapsed state's disclosure).
+    DECISIONS (verbatim - agreed): (a) FULL collapse (no compact
+      placeholders); the placeholder line survives only in a
+      "what's coming" disclosure if the user asks - agreed.
+      (b) the heatmap strip ALSO collapses at zero data (a zero-data
+      heatmap is a moral-less blank; it appears with the first
+      activity week) - agreed. FUTURE UI/UX DEVELOPMENT MAY CHANGE
+      THIS - noted, not locked.
+    LANDS: UIUX.md (dashboard); Roadmap M0+.
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-ticktick.json (97) - smart-list/show-if-not-empty reference (L-07)
+- L-12 NUMBERS>CHARTS GLANCE / CHARTS>NUMBERS ANALYSIS (LOCKED, user
+  yes - recorded; future UI/UX may change - noted):
+    SOURCE: glance research (R04; Gouveia et al. 5-second mandate;
+      Apple rings glance->detail consensus).
+    WHAT: the block presentation rule - glance blocks lead with a
+      SINGLE number (streak "14", storage "62%", protein
+      "168/168g"); analysis surfaces (weekly review, strength
+      snapshot, goal detail) get the charts; the macro-gap bar is
+      the hybrid (live number + capacity context - locked).
+    DECISIONS (verbatim): recorded with my takes - (a) dashboard
+      top half (Today, habits, capture, storage) = number-led;
+      bottom half (goals, strength, weekly) = chart-enabled with
+      number-led headlines; (b) the heatmap strip is the EXCEPTION
+      (a chart that IS a glance - tint volume at a glance, validated
+      by the calendar research). FUTURE UI/UX MAY CHANGE THIS -
+      noted, not locked.
+    LANDS: UIUX.md (dashboard); DesignSystem.md.
+- L-14 STRENGTH-VS-HEATMAP ORDER (LOCKED - decision (a) accepted;
+  (b) HELD for the UI/UX ordering pass):
+    SOURCE: Apple Trends-vs-Workouts debate (R04).
+    WHAT: the one open position in the locked M2 block order:
+      strength snapshot (analytical, heavier, shimmer) vs
+      calendar/heatmap strip (glance-level volume). Evidence: the
+      heatmap is a glance surface (volume language, 5-second
+      readable - L-12's exception); the strength snapshot is
+      analysis and belongs below the glance line.
+    DECISIONS (verbatim): (a) CONFIRM the locked order (heatmap
+      ABOVE strength snapshot) with this evidence - ACCEPTED.
+      (b) the final resolution is HELD for the deferred UI/UX
+      ordering pass - the evidence note above is what that pass
+      inherits; not reopened blindly.
+    LANDS: UIUX.md (dashboard blocking order) - carried to the
+      UI/UX ordering pass.
+- L-09 PER-BLOCK SKELETONS, RETURNING-USERS-ONLY (LOCKED, user yes -
+  all UI details recorded; may change during future UI passes -
+  noted):
+    SOURCE: skeleton literature (R04) - "skeletons don't always
+      win."
+    WHAT (plain): the locked shimmer rule refined with three rules
+      about WHEN the gray placeholder ghost shows:
+      (1) NO ghost for brand-new users - a ghost outline of a block
+        they've never seen means nothing; new users see the empty
+        state (L-07) or nothing instead. The ghost only helps people
+        who know what's about to appear.
+      (2) NO ghost for fast blocks - Today, habit ticks, storage,
+        capture read instantly from local data; flashing a loading
+        shimmer for something ready instantly FEELS slower. No
+        shimmer for locally-cached light blocks, ever.
+      (3) GEOMETRY-MATCHED ghosts - the gray outline matches the
+        block's final shape exactly (number on top, chart below), so
+        real content slides in without jumping (the "geometry-
+        matched" rule = same shape, no layout shift).
+    DECISIONS (verbatim): all three rules ACCEPTED - the locked M2
+      shimmer discipline is refined: per-block skeletons for
+      RETURNING users only; never for locally-cached light blocks;
+      shapes match final geometry. FUTURE UI PASSES MAY CHANGE THIS -
+      noted, not locked.
+    LANDS: UIUX.md (dashboard shimmer rule); Roadmap M0+.
+    MOBBIN REFS (verbatim): research-lifeos/mobbin-screens-ticktick.json (97) + mobbin-screens-things.json (166) - block-loading patterns (L-09 context)
+
+- L-10 RULE-BASED CROSS-DOMAIN INSIGHT ENGINE (LOCKED, user yes - all
+  three decision points accepted; STRESS-TESTING REQUIRED - noted):
+    SOURCE: Daylio/WHOOP pattern (R05) - the best cross-domain
+      insight engine is entirely rule-based and privacy-safe.
+    WHAT: the Coach computes cross-domain insights with pure logic -
+      the mechanics, all rule-based:
+      (1) WITH/WITHOUT COMPARISONS: split days into "with X" vs
+        "without X", compare a second metric ("on days you train,
+        journal word count averages 140 vs 90 on rest days").
+      (2) NEXT-DAY LAG: today's habit affects tomorrow's outcome
+        (sleep -> next-day gym performance); comparisons include a
+        lag window.
+      (3) CONFIDENCE TIERS: every insight carries a confidence label
+        from sample size ("based on 14 training days vs 9 rest
+        days") - never stated as truth without the n.
+      (4) DATA THRESHOLDS: insights compute only with enough data -
+        the 5+5/90-day rule (>=5 days in each group OR 90 days of
+        history); a 2-day coincidence never becomes a pattern.
+      (5) CORRELATION-NOT-CAUSATION wording, verbatim: the insight
+        always says "correlates with", never "caused by".
+    DECISIONS (verbatim - all accepted): (a) the insight line lives
+      in the weekly Coach message (F-24, ONE line per week) + the
+      Life Tree branch detail; NOWHERE else (no dashboard block, no
+      notifications - one-notification discipline). (b) FIRST
+      COMPARISON SET = the big five: training <-> journal
+      presence/word count; training <-> mood-proxy; sleep-proxy <->
+      next-day training; protein hit-rate <-> next-day gym
+      performance; weigh-in trend <-> journal cadence - each with
+      thresholds. (c) MOOD-PROXY ACCEPTED: since C-04 (mood
+      tracking) was rejected, mood-family comparisons use DERIVED
+      PROXIES (journal presence, word counts, entry length) - honest
+      data, safe under the correlation wording.
+    STRESS-TESTING REQUIREMENT (user directive, verbatim): the
+      engine must be EXTENSIVELY STRESS-TESTED with SEEDED DATA -
+      synthetic histories designed to produce known patterns,
+      edge cases (tiny samples, lopsided groups, seasonal effects,
+      missing data), and the full threshold/confidence matrix -
+      before it ever ships a real insight; test fixtures become part
+      of the engine's test suite (per the COACH HEURISTIC ENGINE
+      testing discipline - engine-2).
+    CONSTRAINTS: facts-only; thresholds-guarded; correlation wording;
+      quiet week silences; no shame; derived-only; offline.
+LANDS: CoachSystem.md (rule-book session); Architecture.md
+      (owner + test fixtures); TEMP-PLANNING engine-2 (testing
+      discipline tie).
+    MOBBIN REFS (verbatim): research-fitness/mobbin-screens-macrofactor.json
+      (402) — weekly check-in surfaces (L-10 presentation).
+
+- L-11 SPRAWL GUARDRAIL (LOCKED, user yes - all my takes passed):
+    SOURCE: R05 - the top abandonment cause across all sources is
+      "too complex to maintain" (67%), not missing features;
+      disciplined apps (Things 3, Apple Health) win by OMISSION.
+    WHAT: a standing guardrail, not a feature - every proposed
+      feature must pass "does it earn its place in the surface?"
+      before it locks. THREE CHECKS (verbatim - accepted):
+      (1) SURFACE-WORTHINESS: does it earn real estate on a screen
+        (or collapse/disappear per show-if-not-empty)?
+      (2) SCHEMA DISCIPLINE: does it extend the existing model
+        additively, or demand a new unbounded entity?
+      (3) SPRAWL TEST: if every future feature of this kind shipped,
+        would the app survive? (One composite score is fine; a
+        score SYSTEM is sprawl.)
+    DECISIONS (verbatim - accepted): (a) recorded in the ledger's
+      House rules + carried to DevelopmentWorkflow at the docs pass -
+      accepted; (b) the three checks as the standard, verbatim -
+      accepted.
+    LANDS: House rules (TEMP-PLANNING); DevelopmentWorkflow.md;
+      AGENTS.md.
+- L-15 LIFE-SCALE GRID (LOCKED as a DESIGN FEED - user: feed only;
+  tree-session placement decision):
+    SOURCE: Life Calendar (R03 section 11) - the 90-weeks-per-year
+      life grid (a human life as ~4,680 weekly cells); the
+      contribution-graph family's volume-grid + farming lesson.
+    WHAT: a research feed for the LIFE TREE DESIGN SYSTEM session,
+      NOT a locked feature: the weeks-as-cells grid family as the
+      tree's quantitative twin (the tree = organic metaphor,
+      trunk/rings/branches; the grid = the whole life as cells,
+      filled by weeks lived + weeks logged). Takeaways: (1) the
+      spatial-meta layer could appear as a strip or a zoomed-out
+      mode - TREE SESSION DECIDES; (2) the emotional register is
+      the tree's own (awe without guilt - life-scale apps monetize
+      the epiphany moment); (3) the anti-farm lesson (fake-commit
+      painters prove volume-grids attract gaming - the tree's
+      derived-only + anti-farm rules inherit this defense).
+    DECISIONS (verbatim): (a) FEED ONLY - the tree session decides
+      whether the grid appears (strip, zoom mode, or not at all) -
+      ACCEPTED; (b) PLACEMENT in the tree section (tree-2 anatomy /
+      tree-5 render reference notes) MUST BE DECIDED DURING THE
+      LIFE TREE DESIGN SESSION - recorded, deferred.
+    LANDS: LIFE TREE DESIGN SYSTEM section (tree session).
+
 ## Incorporate list (journaling C-series - all candidates decided except C-15, deferred to the Life Tree section)
 
 Research source: `research-journaling/MASTER-Journaling-Research.md`
@@ -1846,6 +2174,21 @@ VERBATIM-CRITICAL reference block: drafters copy the FILE PATHS and screen count
 | `research-nutrition/mobbin-query.mjs` | — | — | Query helper for future mobbin pulls |
 
 Pipeline note: all datasets are committed repo files (research-nutrition/, research-fitness/), readable by drafters at their paths; the GUI-table M3 row above plus this map are the two drafting entry points for nutrition mobbin content.
+
+### LifeOS mobbin dataset map (pipeline-draftable design references)
+
+VERBATIM-CRITICAL reference block: drafters copy the FILE PATHS and screen counts exactly (never inline JSON contents — datasets are large reference inventories, cited not embedded). Each dataset serves the listed M4/M5/M6 surfaces; the L-candidate LANDS lines carry the per-candidate mobbin refs.
+
+| Dataset (file) | App | Screens | Serves (surface / candidates) |
+|---|---|---|---|
+| `research-lifeos/mobbin-screens-todoist.json` | Todoist | 326 | Task/today surface patterns, filters (L-01 context) |
+| `research-lifeos/mobbin-screens-things.json` | Things 3 | 166 | Disciplined today, areas/projects, Logbook won-archive (L-02) |
+| `research-lifeos/mobbin-screens-ticktick.json` | TickTick | 97 | Smart lists show-if-not-empty (L-07), all-in-one today assembly |
+| `research-lifeos/mobbin-screens-gcal.json` | Google Calendar | 866 | Month grid, agenda day view, year dots (M6 / L-06) |
+| `research-lifeos/mobbin-screens-cron.json` | Cron/Notion | 110 | Calendar+docs day, week-focused UI (M6) |
+| `research-lifeos/mobbin-query.mjs` | — | — | Query helper for future mobbin pulls |
+
+Pipeline note: all datasets are committed repo files (research-lifeos/), readable by drafters at their paths; the GUI-table M4/M5/M6 rows above plus this map are the two drafting entry points for LifeOS mobbin content.
 
 ## Unlocks & extras (user picks)
 
