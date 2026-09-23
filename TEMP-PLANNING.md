@@ -2384,3 +2384,1294 @@ This section is the working design space. Dimensions to lock, in order:
 ### tree-6 Implementation plan (SKELETON — design dim, filled at the Life Tree design session; no lock)
 - M2 scope, build order (data owners → mock render → polish), test
   strategy (widget tests for states, perf gate), mockup in the UI/UX pass.
+
+### tree-7 DESIGN SESSION DECISIONS (the schema session record — D-numbers per LANDS)
+SESSION PLAN (recorded - the 10-step implementation map; living
+roadmap with statuses: life-tree-design/PLAN.md):
+  1. The 6 open decisions - DONE (D085-D088)
+  2. Refactor the organ map - DONE (D088; VISION §3 locked table)
+  3. Feature scan (incl. the ACHIEVEMENT-SCAN sub-step) - NEXT
+  4. Archetype mockups (design-time cohesion validation)
+  5. Input map (SCHEMA.md rows, user-approved, D-numbers)
+  6. Engine architecture (derivation cache, state model, renderer
+     design + perf budgets, test harness)
+  7. Trait space + visual design (mockups feed this)
+  8. Engine contract (zero-decision-fatigue spec)
+  9. Build sequencing (phase 0 = renderer perf spike, then organs ->
+     visuals -> navigation -> anatomy -> review mode)
+  10. Record into TEMP-PLANNING tree-1..tree-6 + docs pass
+- D085 SEASONALITY DRIVER (LOCKED, user yes - Option C layered):
+    SKELETON: the calendar year is the tree's botanical cycle -
+      spring bud break + bloom, summer full canopy, autumn fruit +
+      color, winter honest dormancy; the ring closes at the year
+      boundary (calendar-anchored heartbeat, every user, every year).
+    INTENSITY: user data modulates the season visuals - rich
+      journaling spring = dense bloom; heavy gym summer = thick
+      latewood; active winter logging = greener canopy than the
+      calendar allows; quiet year = sparse bloom, honestly shown.
+    BOTANY: MASTER-Botany-Reference.md PART 9 (seasons = the tree's
+      own life; conditions = its health) - the layered model is the
+      botanical reality.
+    ENGINE: season-phase function (calendar) + intensity modifiers
+      (data per season); why-panel explains both halves
+      ("every tree blooms in spring; THIS density is your March
+      journaling").
+    LANDS: life-tree-design/VISION.md §4.1 (resolved); SCHEMA.md §5;
+      tree-1 (visual cycle); tree-3 (season-phase feed).
+- D086 SUPER-HARD ACHIEVEMENT VISUAL (LOCKED, user yes - Option C
+    hybrid): deterministic core + derived accents. The achievement
+    grants its fixed designed transformation (same for every earner -
+    the SHAPE of the event); the user's own data colors it (palette /
+    accent details derived from their domain balance). Fully
+    deterministic + explainable; no two earners' trees show it
+    identically because their lives differ. Anti-farm intact (still a
+    pure function of data). Why-panel explains both halves.
+    USER CORRECTION (recorded - important): the Ghost-in-the-Machine
+    family is NOT the only/named hardest set - there are QUITE A FEW
+    achievements across families that need cohesive mapping. The
+    rarity-tier ladder must be built from the FULL scanned achievement
+    list (every family, every tier), not a single named family. The
+    schema session includes a dedicated ACHIEVEMENT-TO-TIER SCAN step
+    (see tree-7 addendum).
+    LANDS: life-tree-design/VISION.md §4.2 (resolved); SCHEMA.md §6;
+      Gamification.md (achievement list at scan time); F-03 ceremony
+      language (this visual tier).
+- TREE-7 ADDENDUM (plan amendment, user-directed): the feature scan
+    step (Step 3) explicitly includes an ACHIEVEMENT-SCAN sub-step:
+    enumerate EVERY achievement family + every tier in the locked
+    achievement system (not only Ghost-in-the-Machine), and map them
+    cohesively onto the rarity-tier visual ladder (common flower ->
+    special flower -> large visual -> the top-tier transformation).
+    Every achievement family lands somewhere on the ladder; nothing
+    decorative, nothing un-mapped.
+- D087 HABIT MAPPING (LOCKED, user yes - Option C, habits as BUDs):
+    every active habit = a bud on the habit branch. Dormant when
+    unworked; swelling with streak momentum; bursting into new
+    growth/leaves on completion; withering honestly when abandoned;
+    abandoned habits leave BUD SCARS (the tree records habit history
+    like a real tree records its buds - MASTER part 4.3/4.6.11).
+    Habit completions feed the extension engine (growth from the
+    burst). ONE system - the bud is a native part of the tree, not a
+    second visual layer (vs A: understory plants; vs B: habits have
+    no own identity). Keeps the planting soul ("a habit IS a growing
+    thing you tend") with botanical honesty.
+    LANDS: life-tree-design/VISION.md §4.3 (resolved); SCHEMA.md
+      (input map - habits rows); tree-2 (bud visuals); tree-3 (bud
+      state feeds: streak momentum, completion, abandonment).
+- D090 THE MASTER CLOCK + ANCHORS (LOCKED, user yes - 2026-08-29;
+    Resolution #1 of the loophole session):
+    A. ONE master clock: the STAGE clock, derived from growth across
+      ANY domain (never six-domain-gated). Tick rules (each a derived
+      milestone, no trophies involved):
+      SEED -> SEEDLING: first logged event (any class)
+      SEEDLING -> SAPLING: first sustained presence period (the
+        first twig earned on any branch)
+      SAPLING -> POLE: first qualifying year (any-domain, anchored -
+        never calendar-chopped)
+      POLE -> MATURE: DERIVED MATURITY - a structural-growth
+        threshold (e.g., N extended branches + M rings) - pioneer
+        speed: a hyper-consistent user matures fast, a slow user
+        matures slow (the botanical compression, now stated - real
+        botany: pioneers flower early under good conditions)
+      MATURE -> OLD-GROWTH: decade scale (~10 qualifying years)
+    B. ONE frozen birth anchor: the seed date = the account's FIRST
+      EVENT EVER, frozen at creation; deletion never shifts it. The
+      rings read the same anchor. "No events = no tree" (not "no
+      journal = no tree" - a gym-only user gets a tree from day 1).
+    C. RINGS = A BRAND, not the clock: the six-domain qualifying-year
+      ring definition stays locked as the ring's MEANING, but rings
+      no longer control tree growth. Single-domain users reach full
+      maturity - they just never brand rings. Rings are
+      calendar-neutral (anchored windows per E3, never chopped at
+      Dec 31; a partial first year = a thin sliver, visual only).
+    D. CALENDAR SEASONS = VISUAL-ONLY (D085), layered on the stage
+      clock; season expression filtered by the stage's capacity.
+    E. Overhaul-independence: the clock is 100% derived from the
+      event log (no trophy dependencies); the anchor is a shared
+      foundation the achievement system READS; ring definitions are
+      decoupled - an achievement overhaul cannot break this.
+    LANDS: LOOPHOLES.md (master clock); VISION.md (principle 14b
+      expanded); SCHEMA.md (derivation contract - stage ticks).
+- D091 FLOWER OVERLAY, TROPHIES UNCHANGED (LOCKED, user yes -
+    2026-08-29): the 131 trophy names AND the tier labels
+    (Sprout/Root/Branch/Heartwood/Ring/Grove) stay EXACTLY as they
+    are - zero redo. The flower thematic is carried by an OVERLAY:
+    every achievement WEARS its flower identity in the Life Tree via
+    the identity axis (family -> flower family, ACHIEVEMENT-SCAN
+    §1.5) + tier magnitude + derived accents (D086) + the why-panel.
+    The flower-themed tier relabeling proposal (LOOPHOLES §5:
+    Petal/Blossom/Anthesis/In Full Bloom/Annual Bloom/Bouquet) is
+    WITHDRAWN - superseded by the overlay; the naming-collision
+    findings (N-3) are resolved by not renaming.
+    LANDS: LOOPHOLES.md §5 (withdrawn); ACHIEVEMENT-SCAN.md §1.5
+    (identity axis = the overlay); TRAIT-SPACE.md (flower dimension).
+- D092 FIRST-BLOOM CONTRACT + TIER SCHEDULE (LOCKED, user yes -
+    2026-08-29; Resolution #2 of the loophole session):
+    THE SCHEDULE:
+    (1) PRE-MATURITY (seed -> pole): every earned achievement is an
+      ACHIEVEMENT BUD - claimed, visible, why-panel states "blooms
+      at the first bloom". Nothing blooms before maturity.
+    (2) FIRST BLOOM (at derived maturity - D090): ALL banked
+      Sprout/Root/Branch/Heartwood buds burst together - the earned
+      cherry-blossom moment. Magnitude by tier, identity by family
+      (D091 overlay), accents by data (D086). Ring/Grove stay banked.
+    (3) POST-MATURITY: Sprout..Heartwood achievements bloom DIRECTLY
+      on earn.
+    (4) RING TIER: blooms at the next ANNUAL BLOOM (the D085 spring -
+      calendar-guaranteed for every mature tree, rings or not).
+    (5) GROVE TIER: banks until the next annual bloom after maturity,
+      where it manifests as THE TRANSFORMATION - the D086 large
+      visual. Calendar-guaranteed (never stuck); rare because Grove
+      trophies are rare.
+    (6) MULTI-TIER TROPHIES: each tier-step fires per its own
+      threshold; pre-maturity steps bank, post-maturity steps follow
+      the schedule.
+    SUPPORTING RULES: the Coach line fires at the EARN (the claim is
+      the game moment; the bloom is silent visual); the why-panel
+      states the schedule for every banked bud; the first-bloom is a
+      designed stage-transition event (UX in later resolutions).
+    NOTHING UNREWARDED, NOTHING FLATTENED: every trophy has a dated
+    expression; the rarity economy holds (Grove visuals gated behind
+    maturity + the annual bloom, mirroring D089's structural rarity).
+    LANDS: LOOPHOLES.md (L-02/L-05, the tier schedule); SCHEMA.md
+      (rarity tiers §6); TRAIT-SPACE.md (flower dimension timing).
+- D093 MODIFICATIONS SCHEDULE + TENURE-FLOOR REFINEMENT (LOCKED,
+    user yes - 2026-08-29; amends D088 C + D089):
+    A modification is the STRUCTURAL form of a massive achievement -
+    the way a flower is its bloom form. THE FOUR GATES:
+    (1) TRIGGER: the massive achievement/condition fires (claim-time,
+      Coach line as usual; trophy system untouched).
+    (2) TENURE FLOOR (D089 REFINED): the floor reads the TREE's own
+      years - the D090 stage-clock qualifying years (any-domain) -
+      NOT the six-domain ring brand. (Otherwise the D090 starvation
+      returns: a single-domain gym machine with 5 brutal years could
+      never grow thorns.) The most consistent users get the most
+      meaningful modifications - consistency measured by the tree's
+      life; the six-domain ring remains a separate honor (a badge,
+      never a gate).
+    (3) AXIS SIGNATURES (D088): unchanged - the gradient axes decide
+      whether the modification can manifest.
+    (4) STAGE FLOOR (NEW): a modification transforms an organ that
+      must exist and have substance - thorns need branches (SAPLING+),
+      phyllodes/storage leaves need leaves (SEEDLING+), buttress
+      roots need root-system girth (POLE+), caudex needs a
+      substantial trunk (MATURE+). A seedling cannot grow a caudex.
+    MANIFESTATION MOMENT: structural changes are seasonal growth in
+      real botany - they manifest at the NEXT ANNUAL BLOOM (the D085
+      spring growth event), the same event hosting Ring/Grove flowers.
+      ONE YEARLY HEARTBEAT hosts everything: flowers + structural
+      transformations. Before that: a visible PENDING STATE on the
+      organ (why-panel: "your 400-day gym streak earned this branch's
+      armor - the thorns grow at the next spring's growth").
+    SUBTLE DETAILS (reaction wood, epicormic, mycorrhizal character,
+      bracts, bud scales, contractile roots, stolons, spines,
+      storage-taproot detail): no stage floor beyond the organ
+      existing; they manifest when their data condition sustains
+      (reaction wood at the comeback moment, bracts with the blooms).
+      Texture, not transformations.
+    THE MASSIVE-TROPHY LINK: caudex = the unbroken-year trophies;
+      thorns = the streak trophies; buttress = the multi-domain
+      trophies - the rarest achievements produce the rarest
+      structures, gated behind tenure + axes + stage + the annual
+      event, exactly like the flower rarity economy.
+    LANDS: LOOPHOLES.md (the schedules); TRAIT-SPACE.md (adaptation
+      timing); SCHEMA.md (adaptation gates).
+- D094 STAGE-TRANSITION UX (LOCKED, user yes - 2026-08-29; Resolution
+    #3 of the loophole session):
+    (1) THE DAY-1 EXPERIENCE: the SEED is a closed package (coat +
+      embryo + food - botany-correct). Day 1 = one beautiful
+      stylized seed in the tree space (heartwood language), the
+      overview strip with the 5 domains as GHOSTED BRANCH-BUDS
+      ("where your branches will grow") + the bank counter ("earned
+      achievements bud here"), and the why-panel: "This is your
+      tree. It grows from your life - log anything, and it begins."
+      The day-1 tree must be beautiful on its own.
+    (2) THE GERMINATION MOMENT: the first logged event (any domain)
+      plays the first transition - the seed cracks, a root curls
+      down, a tiny stem rises; the SEEDLING arrives with the 5
+      branch-buds on the stem (botany-correct) + the first
+      achievement bud. The first log visibly grows the tree - the
+      hook.
+    (3) EVERY TRANSITION IS A DESIGNED MOMENT (ceremony language,
+      tree-3 rules: celebratory but never spammy):
+      - TRIGGERS: each D090 tick fires (derived); plays live if the
+        app is open, else queued.
+      - REPLAY-ON-OPEN + VIEWED-WATERMARK: unviewed transitions play
+        in chronological order on next open ("your tree grew while
+        you were away"), then settle. This mechanism is the M9
+        launch-day replay engine (N-1) - a veteran user's first
+        open replays their whole journey seed -> today.
+      - THE MOMENTS: germination (crack + rise) · first branch
+        (extends - a visible milestone) · pole-rise (the tree
+        surges) · MATURITY + FIRST BLOOM (the biggest: buds burst
+        family by family, soft bloom rain, the tree settles -
+        skippable, shown once, 8-12s) · old-growth (crown widens,
+        quietly).
+      - NOTIFICATION STORY: no push (on-open delivery); the "grew
+        while you were away" card follows the Coach discipline - one
+        card, concise, silent visuals.
+      - REDUCED-MOTION: every transition has a static fallback (the
+        state changes instantly, no animation - tree-5 lock); no
+        content lost; the why-panel carries the story either way.
+      - DURATION/RHYTHM: germination ~3s, transitions ~2-4s, first
+        bloom ~8-12s (the one long moment). Nothing loops, repeats,
+        or spams.
+    (4) THE WHY-PANEL CARRIES THE SCHEDULE AT EVERY STAGE: stage
+      name, age, the next tick's progress ("the first branch grows
+      at 3/4 weeks of gym presence"), the bank count + bloom
+      schedule. The panel is the connective tissue.
+    (5) THE OVERVIEW STRIP LIVES AT EVERY STAGE: branch-buds ->
+      branches, bank count, stage name, next-tick progress. The
+      tree tab layout (hero + strip + panel, tree-4) holds from day
+      1.
+    LANDS: tree-4 (surfaces & interaction); tree-5 (reduced motion);
+      tree-3 (animation language); LOOPHOLES.md (N-1 launch-day
+      replay engine).
+- D095 SEASONAL ORGAN-STATE MODEL (LOCKED, user yes - 2026-08-29;
+    Resolution #4 of the loophole session; amends D092 rule 3):
+    THE SEASONAL WINDOW: the tree's year has two halves - GROWING
+    SEASON (spring -> autumn: blooms, leaf production, growth flow)
+    and RESTING SEASON (winter: everything banks).
+    PER-ORGAN STATES:
+    (1) FLOWERS (achievements): growing season = blooms happen
+      (post-maturity Sprout..Heartwood on earn; Ring/Grove at the
+      annual bloom - unchanged). WINTER-EARNED achievements do NOT
+      bloom in winter (botany: nothing blooms in winter) - they bank
+      as flower-buds and bloom in the next spring's flush (why-panel:
+      "earned in winter - blooms when the tree wakes"). AMENDS D092
+      rule 3: "bloom on earn during the growing season; winter earns
+      bank to spring." THE BLOOM IS EPHEMERAL: blooms hold through
+      their flowering season, then FADE at the season's end (the
+      cherry blossom's beauty IS its brevity; the tree never floods
+      with thousands of flowers). The achievement's permanence lives
+      in the why-panel, the archive, and the branch's character/rings.
+    (2) LEAVES (entries): growing season = leaves (as locked);
+      autumn = leaf-fall (deciduous honesty); WINTER ENTRIES BECOME
+      LEAF-BUDS on the bare branches (botany: bare winter branches
+      ARE covered in buds - next year's leaves waiting). Visible,
+      honest, promising.
+    (3) FRUITS (goals): ripen in autumn; WINTER-COMPLETED GOALS =
+      WINTER-PERSISTENT FRUITS (real botany: crabapples and hawthorn
+      hips hang through winter on bare branches); they fall at
+      spring.
+    (4) HABIT BUDS (D087): winter = scale-wrapped dormant buds,
+      alive underneath (already locked).
+    THE WINTER BANK -> THE SPRING FLUSH (the unifying concept):
+      everything done in winter is STORED AS BUDS (flower-buds,
+      leaf-buds); spring converts the whole bank at once - winter's
+      entries burst into foliage, winter's trophies bloom, and the
+      annual bloom (Ring/Grove + modifications) joins them. D085's
+      "data modulates intensity" becomes literal: a winter of heavy
+      logging = a dense spring flush.
+    DERIVED OVERRIDE (noted, not overbuilt): a phyllode/evergreen-
+      character tree (the drought adaptation) keeps its leaves
+      through winter - the derived character can soften the
+      deciduous skeleton.
+    LANDS: LOOPHOLES.md (the seasonal model); SCHEMA.md
+      (seasonality system - the organ states); TRAIT-SPACE.md
+      (seasonal phase visuals per organ).
+- D096 EARLY-FIRE EXPRESSION CONTRACT (LOCKED, user yes - 2026-08-29;
+    Resolution #5 of the loophole session):
+    THE GAP: rare-tier trophies can fire before the tree can express
+    them (Ghost in the Machine ~day 182, ceiling rungs - Dragon
+    Slayer, The Brand - on DAY 1, Grove chains at year 3). D092/D093
+    schedule the manifestation; this contract defines what the user
+    SEES between earn and manifestation.
+    THE LADDER:
+    (1) PRE-MATURITY: the earned massive trophy is not a plain bud -
+      a SPECIAL BANKED FORM: the bud wears the trophy's tier + family
+      identity from day one (a Grove bud is visibly different from a
+      Sprout bud - larger, marked, glowing with its family's flower
+      form). Why-panel: "Dragon Slayer - Grove - this bud carries
+      the strongest bloom your tree will ever grow."
+    (2) THE BANK GROWS WITH THE TREE: as the tree matures, the rare
+      buds visibly mature with it (a Ghost bud on a sapling looks
+      promising; on a pole-stage tree it looks imminent). The bank is
+      a living part of the tree, not a sticker.
+    (3) THE ANNUAL BLOOM: the transformation manifests (D092/D093) -
+      the full event.
+    SUPPORTING RULES:
+    (1) TIER-VISIBLE BANKING: every banked bud wears its tier's
+      visual weight + family identity (the D091 overlay applies to
+      buds too - a raceme-family bud already shows its flower's
+      shape in miniature). The rarity of the bank is readable at a
+      glance.
+    (2) THE BANK COUNTER IS A REAL SURFACE: the overview strip shows
+      the bank composition (count by tier) - "5 buds: 3 Sprout, 1
+      Heartwood, 1 Grove" - the Grove bud is the tree's legend
+      before it blooms.
+    (3) THE EARNER'S CEREMONY IS NEVER DELAYED: the Coach line + the
+      trophy claim fire at earn-time (locked); only the visual
+      manifestation waits.
+    (4) THE CEILINGS GET A SPECIAL BUD FORM: the genetic-ceiling
+      trophies (Dragon Slayer 260kg, The Brand 5M kg - the
+      day-1-fireable ones) have the most distinct bud in the game
+      (marked, family-identified, explainable). The rarity economy
+      holds because everyone sees the bud is rare - the
+      transformation is simply scheduled.
+    THE CLOSED LOOP: every trophy - day 1 or year 10 - has a dated,
+      visible, honorable expression at every moment of its life:
+      earned -> banked (tier-marked, growing with the tree) ->
+      bloomed/transformed at its scheduled event. No trophy is ever
+      a silent bud; no trophy is ever flattened.
+    LANDS: LOOPHOLES.md (the tier schedule); ACHIEVEMENT-SCAN.md
+      (the overlay applies to buds); TRAIT-SPACE.md (bud forms);
+      tree-4 (the bank counter surface).
+- D097 LAUNCH-DAY CONTRACT (LOCKED, user yes - 2026-08-29;
+    Resolution #6 of the loophole session; resolves N-1 + N-7):
+    THE PROBLEM: the tree ships in M9, users log from M0. A veteran's
+    first open would render years of history at once; the early
+    journey never plays; first frame = perf worst case.
+    THE CONTRACT:
+    (1) THE TREE IS DERIVED FROM THE FULL HISTORY FROM DAY ONE: the
+      veteran's tree is ALREADY MATURE on first open (they've been
+      growing it unknowingly for years). The rings read the frozen
+      anchor (their first event) - 5 real rings, honestly. No fake
+      fresh start.
+    (2) THE JOURNEY REPLAYS, ONCE, ELEGANTLY: the D094 replay engine
+      runs in sequence - the seed, germination, then TIME-LAPSE
+      MODE: the tree grows year by year (ring by ring, branch by
+      branch, banked buds appearing as earned) in a compressed
+      ~20-40s sequence ending at the current state. Why-panel
+      narration: "2029 - your first year - the gym branch grew.
+      2030 - your first ring." The most moving moment the app has:
+      a veteran watches their whole logged life grow in one take.
+    (3) THE VIEWED-WATERMARK: the replay plays once (skippable;
+      reduced-motion fallback = jump straight to the current state).
+      After it, the tree is simply there.
+    (4) THE PERF CONTRACT: first frame = current state instantly
+      (the D094 skeleton shimmer rule); the replay streams from
+      PRECOMPUTED YEARLY SNAPSHOTS (the time-lapse artifacts already
+      planned), never live re-derivation; background-loaded. The
+      low-end-phone perf agreement holds.
+    (5) THE BACKDATING WINDOW: pre-M9 history = real life, fully
+      derived (rings, branches, buds, adaptations - stage-gated per
+      the locked rules; a veteran is simply already mature with
+      adaptations evaluated). Manual backdating of NEW events (e.g.,
+      logging last week's workout) is governed by D100's two-tier
+      split - content is real (occurredAt truth), presence is earned
+      (the written-in-window guard) - the tree never rewinds.
+    (6) THE LEGEND CARD: after the replay, a one-time card: "Your
+      tree is 5 years old - 4 rings, 12 branches, 37 blooms. The
+      rarest: Ghost in the Machine - blooming at the next annual
+      bloom."
+    LANDS: LOOPHOLES.md (N-1/N-7 resolved); tree-5 (perf - yearly
+      snapshots); tree-3 (replay engine); D094 (the engine reused at
+      scale).
+- D098 RESTORE/BACKUP CONTRACT (LOCKED, user yes - 2026-08-29;
+    Resolution #7 of the loophole session; resolves N-2):
+    THE PROBLEM: restoring an older backup could regress the tree -
+    stage clock rewinds, rings shrink, blooms un-bloom, scars
+    resurrect. The deepest lock: the tree records life; life doesn't
+    rewind.
+    THE CONTRACT:
+    (1) THE TREE STATE IS A DERIVED CACHE, NOT SOURCE DATA: the
+      event log is the source of truth; the tree is always a PURE
+      FUNCTION of the current log. Restore replaces the log; the
+      tree re-derives from whatever log exists afterward. No
+      separate tree state to corrupt.
+    (2) MONOTONICITY BY DESIGN: the birth anchor is frozen at
+      account creation and the backup format carries it; rings
+      derive from the CURRENT log against the frozen anchor. If the
+      log says years didn't happen (restored an older backup), the
+      tree honestly shows fewer rings.
+    (3) THE THREE RESTORE CASES (all defined, all honest):
+      - SAME-ERA restore: nothing changes; re-derives to the same
+        state. No regression, no ceremony.
+      - OLDER restore: the tree re-derives honestly - fewer rings,
+        earlier stage, banked buds un-bloom, scars vanish. The
+        why-panel narrates: "your tree reflects your data as of
+        [date]". Honest re-derivation, not corruption; the D094
+        replay engine offers the "rewind journey" if the user wants
+        to watch.
+      - NEWER restore: re-derives forward - the normal case.
+      - THE GUARDRAIL: restore is an explicit conscious act (the
+        existing confirmation flow); the why-panel stamps the tree's
+        state with the restore date; the legend card notes it. No
+        silent regression ever (import of a backup is never
+        automatic).
+    (4) THE RE-DERIVATION MOMENT IS A DESIGNED TRANSITION: plays
+      through the D094 transition language (a compressed re-growth),
+      never a silent snap.
+    (5) THE CACHE RULE: the tree cache is REGENERABLE - never part
+      of the backup format's integrity story; rebuilds on restore
+      (off-thread, shimmer-first, same as D097 - the rebuild stacks
+      on the heaviest import, so it streams, never blocks).
+    (6) WHAT NEVER SHRINKS: nothing in the CURRENT log. The tree
+      only reflects what the log contains; the log is append-only in
+      normal life; only an explicit restore rewinds it. No
+      background process ever rewinds the tree.
+    LANDS: LOOPHOLES.md (N-2 resolved); tree-5 (perf); D094/D097
+      (the replay engine reuse).
+- D099 THE CAPS + MEDIA AGGREGATION + MIRROR BOUNDARY (LOCKED,
+    user yes - 2026-08-29; Resolution #8 of the loophole session;
+    resolves N-4, N-5, N-6):
+    (N-4a) THE BLOOM-BURST CAP: the annual bloom manifests the bank
+      in MAGNITUDE ORDER (Grove first, then Ring, then the growing-
+      season earns), with a per-bloom VISUAL BUDGET. If the bank
+      exceeds the budget, the overflow blooms in SUCCESSIVE WAVES
+      across the flowering season (the spring bloom becomes a spring
+      SEASON of blooming - botanically real: not all flowers open on
+      the same day). No flower lost; the moment never floods.
+    (N-4b) THE LIVE HABIT-BUD CAP: buds beyond the branch's derived
+      capacity cluster into BUD CLUSTERS (like leaf clusters) - each
+      cluster a countable surface ("12 habits in this cluster") with
+      individual buds revealed on zoom. The branch stays readable;
+      the count stays honest.
+    (N-5) THE MEDIA-AWARE AGGREGATION RULE: the leaf cluster's
+      CHARACTER reflects its media content - a cluster with
+      photos/vlogs renders with the STORAGE-LEAF character (thicker,
+      richer - D088 storage leaves) even at aggregation scale, so
+      media-rich history is visible before per-entry granularity
+      unlocks.
+    (N-6) THE MIRROR BOUNDARY: the why-panel mirrors DERIVED FACTS
+      ONLY - never LLM narrative (the Coach's LLM output never
+      appears on the tree; the Coach's derived coach_outputs facts
+      do). PROTECTED-ABSENCE branch copy: a branch in
+      quiet-week/rest-protected absence says "resting" - never
+      "abandoned" (Coach quiet-week semantics inherited; consistent
+      with D088 dormancy-honesty).
+    LANDS: LOOPHOLES.md (N-4/N-5/N-6 resolved - pipeline CLOSED);
+      TRAIT-SPACE.md (storage-leaf character at scale); tree-3
+      (wave scheduling); tree-4 (bud-cluster surface).
+- D100 THE RETROACTIVE RULE - THE TWO-TIER SPLIT (LOCKED, user yes -
+    2026-08-29; Step-0 arbitration #1 of the wave-2 session; resolves
+    A C-1 + B C-02; overturns wave-1 N-7):
+    THE CONTRADICTION: "retroactive/bulk logging NEVER rewards"
+    (gamification forbidden list) vs "backdating advances honestly"
+    (D097) - the tree could be farmed (a backfilled year manufactures
+    qualifying years, stage ticks, and rings).
+    THE RESOLUTION (inherits the gamification's own two-tier split):
+    (1) PRESENCE ORGANS (twigs, RHYTHM axis, dormancy, bud momentum,
+      qualifying days): read dayKey WITH A WRITTEN-IN-WINDOW GUARD -
+      a day counts as presence only if its events were written
+      within a small grace of that day (candidate: +-3 days - the
+      streak grace philosophy).
+    (2) CONTENT ORGANS (leaves, fruits, the anchor): read occurredAt
+      TRUTH - a real entry from last week IS from last week; its
+      leaf belongs there. Content is real; presence is earned.
+    (3) THE SHARED PREDICATE fixes BOTH systems: one rule ("an event
+      counts as presence for a dayKey only if written within the
+      grace window") kills the manufacture-a-year attack for the
+      tree AND for the gamification's yearly bars - one fix, two
+      systems, no tree special-case.
+    (4) IMPORTS stay excluded everywhere (locked).
+    (5) THE ANCHOR EDGE: the tree's birth = the first IN-WINDOW
+      event - a pure backfill cannot birth the tree; only a real,
+      current-time event can.
+    WORKED EXAMPLE: an honest Sunday catch-up (writing Friday's
+      entry) - the leaf renders on Friday (content truth) AND Friday
+      counts as presence (written 2 days late - inside the grace).
+      The attack (backfilling a whole year in one weekend) - every
+      dayKey outside the grace: zero qualifying days, zero twigs,
+      zero stage ticks; the leaves render (content is real) but the
+      year cannot become a ring - honestly visible, honestly
+      un-earned.
+    LANDS: LOOPHOLES.md (R2 resolved); SCHEMA.md (the presence
+      predicate); INPUT-INVENTORY.md §12 (the forbidden list - the
+      tree's mirror).
+- D101 THE QUALIFYING-YEAR DEFINITION - TWO NAMED YEAR TYPES
+    (LOCKED, user yes - 2026-08-29; Step-0 arbitration #2 of the
+    wave-2 session; resolves F-03):
+    THE PROBLEM: "qualifying year" meant three different things
+    (D090 stage tick / Life-Fully-Logged ring / tenure+floors) and
+    the systems mixed them.
+    THE RESOLUTION - TWO YEAR TYPES, NEVER CONFUSED:
+    (1) STAGE-YEARS (any-domain): a 365-day window, anchored to the
+      frozen birth anchor (E3 - never calendar-chopped), where the
+      user had SUSTAINED PRESENCE IN ANY DOMAIN (per the D100
+      predicate - in-window written days). Drives: the SAPLING->
+      POLE tick · the TENURE axis · the D089 modification floors
+      (per D093 - the floors read the tree's own years).
+    (2) RING-YEARS (six-domain, THE BRAND): the same anchored
+      365-day window with ALL SIX DOMAINS present. Drives: ONLY the
+      trunk rings + the ring-tier trophies. Nothing else.
+    THE THREE RULES:
+    (1) THE STAGE CLOCK NEVER READS RING-YEARS: a single-domain user
+      accumulates stage-years forever - reaches maturity, blooms,
+      grows old - they just never brand a ring (D090's decoupling,
+      now with clean vocabulary).
+    (2) THE FLOORS READ STAGE-YEARS: D089's "2+ qualifying years" =
+      2+ stage-years (the tree's own years) - per D093, now
+      unambiguous.
+    (3) ONE WINDOW MECHANISM, TWO REQUIREMENTS: both year types
+      share the same anchored 365-day window + the D100 predicate -
+      differing ONLY in the domain requirement.
+    THE DEFERRED PIECE (recorded - belongs to the THRESHOLD REGISTER,
+      Step 1 of the input map, where all numbers lock together): the
+      RING-YEAR PER-DOMAIN PRESENCE BAR - how many in-window days
+      make a domain "present" for the ring (the farmable-ring
+      finding, B C-02, needs this number; the D100 guard already
+      blocks manufactured years; the bar itself locks with its
+      siblings: qualifying-day floor, stage-year bar, twig bar).
+    LANDS: LOOPHOLES.md (R1 partial); SCHEMA.md (derivation
+      contract - the year types); tree-2 (rings = ring-years only).
+- D102 THE BIRTH ANCHOR - ONE SHARED ANCHOR FOR THE WHOLE APP
+    (LOCKED, user yes - 2026-08-29; Step-0 arbitration #3 of the
+    wave-2 session; resolves A C-2 + F-04 + H-01):
+    THE PROBLEM: four birth-date definitions - D090 (frozen
+    first-event, correct), the Coach (first JOURNAL entry, SHIFTS on
+    deletion), the input map (stale pre-D090 coach anchor), and live
+    code (daysInHeartwoodProvider - a third entity-based anchor). A
+    gym-only user gets a tree but never a Coach milestone review;
+    deleting an entry re-births the Coach's year (breaking D098
+    monotonicity inside the Coach).
+    THE RESOLUTION:
+    (1) D090's frozen anchor becomes THE anchor for the entire app:
+      the tree, the Coach, the milestone reviews, and the rings all
+      read the same value - the account's FIRST IN-WINDOW EVENT
+      (per D100 - a pure backfill cannot birth it), frozen at first
+      write, never recomputed, never shifted by deletion.
+    (2) The anchor rides in the backup format (D098) so restore and
+      sync never drift it.
+    (3) The Coach's anniversary = the same anchor. A gym-only user
+      gets their milestone review on their tree's birthday - the
+      first day of their life in the app, whatever that life was.
+    (4) The input map's stale rows (§9/§14) are corrected to the
+      D090 definition.
+    (5) Live code migrates to the shared definition (a data
+      migration for existing users: the anchor = their first event,
+      frozen; the Coach's shifting journal anchor is replaced).
+    USER-VISIBLE CHANGE: the Coach's milestone-review date may move
+      for users whose first event wasn't a journal entry (to their
+      actual first event) - and it stops shifting on deletion
+      forever.
+    LANDS: LOOPHOLES.md (R1 resolved); CoachSystem.md (anniversary
+      = the shared anchor - amend at the docs pass); INPUT-INVENTORY
+      §9/§14 (corrected); D090/D098 (the anchor's carriers).
+- D103 THE TRIGGER AUTHORITY, RESTATED (LOCKED, user yes -
+    2026-08-29; Step-0 arbitration #4 of the wave-2 session; resolves
+    F-23):
+    THE PROBLEM: D088's rule ("the achievement system is the trigger
+      authority - NO parallel trigger systems") contradicts D088's
+      own adaptation map - at least 8 of 14 adaptations fire on
+      DERIVED triggers (reaction wood/epicormic = revival, phyllodes
+      = sparse-stubborn pattern, cladodes = streak-without-entries,
+      storage leaves = media richness, contractile = consistency up,
+      stolons = L-10 insights, bud scales = dormant habits,
+      mycorrhizal = coach engagement); only caudex, thorns/spines,
+      buttress, tendrils ride on achievements. The promised
+      achievement-scan correlation table was never produced.
+    THE RESOLUTION - THE RULE RESTATED, NOT BROKEN:
+    (1) The achievement system remains the trigger authority FOR
+      EVERYTHING THAT HAS AN ACHIEVEMENT CONDITION - the flower tier
+      system, the adaptation gates, the ceremony. No feature may
+      invent a trigger where an achievement already encodes the
+      condition (the original intent, preserved).
+    (2) DERIVED TRIGGERS are acknowledged as a second, legitimate
+      family - with one discipline: they fire only on derived
+      patterns the achievement system does NOT cover (a comeback, a
+      sparse-stubborn pattern, media richness, coach engagement,
+      cross-domain insight). Each gets its own row in the
+      TRIGGER-CORRELATION TABLE - the missing deliverable, produced
+      in the input map (the third artifact): every trigger
+      (achievement AND derived), its condition, its gate, and its
+      visual - the whole trigger surface visible in one place.
+    (3) THE NO-DOUBLE-FIRE RULE: if a derived pattern AND an
+      achievement would both trigger something for the same
+      condition, the ACHIEVEMENT WINS (the higher honor) and the
+      derived trigger yields - one visual, one source, no double
+      events.
+    LANDS: LOOPHOLES.md (R5 partial); SCHEMA.md (the trigger-
+      correlation table - an input-map artifact); D088 (amended).
+- D104 THE CANONICAL DOMAIN TABLE - THE TWO-LEVEL MODEL (LOCKED,
+    user yes - 2026-08-29; Step-0 arbitration #5 of the wave-2
+    session; resolves F-02 + F-17):
+    THE PROBLEM: three domain lists fought (5 branches / 6 presence
+      domains / 9 achievement families): the BODY domain had no
+      organ home (family V - 16 trophies - homeless), media was in
+      the same boat (family VII - 12 trophies), GOALS had no
+      presence owner, and the BALANCE axis / tint owner / families
+      each read a different domain set.
+    THE RESOLUTION - ONE CANONICAL TABLE, EVERY SYSTEM READS IT:
+    (1) THE CANONICAL PRESENCE-DOMAINS (7): journal, habits, gym,
+      nutrition, BODY, MEDIA, GOALS - each with a presence owner
+      (which events make a day present) and a tree attachment,
+      filled in the input map's Artifact 1.
+    (2) THE ATTACHMENT RULE (separation only if worth it): BODY =
+      a sub-branch of GYM (the physique/weight track - the gym
+      branch's wood-quality side); its 16 trophies bloom on the gym
+      branch's body-forks. MEDIA = attaches to JOURNAL (media rides
+      on entries); media presence counts as its own domain for
+      rings/axes; media trophies bloom on the journal branch's
+      media-forks. GOALS gets a presence definition (progress
+      events / task completions = goal presence) so the rings can
+      count it honestly.
+    (3) THE TWO-LEVEL MODEL, STATED: PRESENCE-DOMAINS (7 - what
+      counts in rings, axes, tint) vs BRANCHES (5 - what the tree
+      grows). The mapping: 7 -> 5 (body->gym, media->journal, the
+      rest 1:1). Every system reads the same table - the BALANCE
+      axis, the ring-years, the tint owner, the achievement families'
+      attachment, the twig sources.
+    LANDS: LOOPHOLES.md (R5 resolved); SCHEMA.md (Artifact 1 - the
+      canonical domain table at the input map); INPUT-INVENTORY
+      (the rows corrected).
+- D105 THE THRESHOLD REGISTER + DEV-TOOLS TUNING SURFACE (LOCKED,
+    user yes - 2026-08-29; the input map's Artifact 2; groups A-F
+    all approved):
+    THE REGISTER: every number in the tree in one list (SCHEMA 2.4):
+      A presence bars (grace +-3d, qualifying rules, twig bar >=15d/
+      month, stage-year >=200d, ring per-domain >=40d) - B stage
+      gates (SEED->SEEDLING first event, ->SAPLING 1 twig, ->POLE 1
+      stage-year, ->MATURE >=3 branches + >=2 stage-years,
+      ->OLD-GROWTH >=10) - C capacities (bloom <=15/event, <=4
+      waves/season, habit-cluster >=30, 1 legend/bloom + 1 crown,
+      twigs <=12/yr + 3-yr retention window, granularity at POLE,
+      bank counter top-3) - D floors (structural >=2, buttress >=3,
+      caudex >=5 stage-years) - E adaptation signatures (the full
+      14-row gate list) - F windows & formulas (fixed-date seasons,
+      render clock = stored timezone setting, anchored 365-day
+      windows, the 4 axis formulas, replay ~2s/yr).
+    USER NOTES (locked): (1) THE DEV-TOOLS TUNING SURFACE (user
+      directive - important): every register value must be PLAYABLE
+      during the development/visual-testing phase - a dev-only debug
+      panel that tweaks any number and drives a live re-derivation
+      + re-render; the archetype mockups and the perf gate use it;
+      NEVER shipped to users. (2) The RESOURCE normalization ceiling
+      (20 events/day) reads high - kept as-is for now, calibrated
+      via the dev tools at the paper-run step.
+    LANDS: SCHEMA.md 2.4 (the register); LOOPHOLES.md (R4 resolved);
+      PLAN.md (Artifact 2 done).
+- D106 THE TRIGGER-CORRELATION TABLE + F-03 NO-BLOOM (LOCKED, user
+    yes - 2026-08-29; the input map's Artifact 3; D103's
+    deliverable):
+    THE TABLE (SCHEMA 2.5): A the flower triggers (the D092
+      schedule + the D091 overlay + the D096 banking + D095 seasons
+      + the C4 legend cap) - B the 14 adaptation triggers (each
+      with its condition, gate (tenure floor + axis signature +
+      stage floor), manifest moment = the next annual bloom) - C
+      the structural/ceremony triggers (stage transitions, seasonal
+      states, the first bloom, the winter bank -> spring flush, the
+      launch-day replay, the restore re-derivation, the annual
+      bloom) - D the NO-DOUBLE-FIRE MAP (same-visual collisions:
+      the achievement wins; same-condition different-visuals: both
+      fire; contradictory signatures: impossible by construction;
+      the F-03 flourish: no conflict).
+    THE F-03 ARBITRATION (user - NO BLOOM): the PR ceremony fires
+      on PR events (not achievements) - it manifests as a
+      NON-BLOOM BRACT-STYLE FLOURISH at the logging moment (the
+      ceremony's sparkle), ZERO flowers - the flower=achievement
+      contract survives.
+    LANDS: SCHEMA.md 2.5 (the table); LOOPHOLES.md (R5 - the
+      trigger authority delivered); PLAN.md (Artifact 3 done).
+- D107 THE TREE-STATE DATA MODEL - THE LEAN FORM (LOCKED, user yes -
+    2026-08-29; Step-3 deliverable #1 of the wave-2 session; resolves
+    IA-1):
+    THE PRINCIPLE: the tree state holds ONLY what the renderer draws
+      and what the derivation tracks incrementally - every other fact
+      stays in its owning system (achievements, streaks, goal
+      progress, media, the clock), queried on demand. No duplication,
+      no drift, no stale copies.
+    THE LEAN PASS (documented): dropped - bank counts (derivable from
+      bankBuds), tier/family on buds+flowers (achievement-system
+      constants), streakDays (the streak owner), wordCount/media
+      counts (journal/media owners), the season block + growingSeason
+      (a pure function of date+timezone), scaleWrapped/persistent/
+      alive-fallen/waveSlot (seasonal or ceremony render states),
+      extended/firstTwigKey/woodCharacter (derivable), ringYears
+      (rings.length), ring passed-flags/quality (existence+derived),
+      growsWithStage/earnedDateKey (render/order), anchoredYear
+      (index maps via the anchor), the base block (render constant).
+      Changed - revivals: [dateKey] (the comeback record renders),
+      adaptations on their organ only, fruits = completed goals only
+      (swelling = goal-system read), leaves = render-scale only
+      (recent granularity + older cluster aggregates; the log holds
+      the full per-entry mapping), crown -> legendAchievementId
+      (once-set), stageYears + currentWindowDays (the ticks' accrual).
+    THE MODEL (SCHEMA 2.6): meta (schemaVersion, registerVersion,
+      logFingerprint, derivedAt, anchor) · stage, stageYears,
+      currentWindowDays · axes · bankBuds [{achievementId}] (order =
+      earn order) · legendAchievementId · trunk {rings
+      [{index,sliver}], adaptations} · branches [{domain,
+      dormantSince, revivals, twigs [{monthKey,daysPresent}], forks
+      [{type,twigs}], rings, adaptations, fruitSpurs}] · habits
+      [{habitId, state}] · leaves (recent granularity + cluster
+      aggregates) · flowers [{achievementId, bloomDateKey, state}]
+      · fruits [{goalId, dateKey}] · periods [{type, startKey,
+      endKey}].
+    LANDS: SCHEMA.md 2.6 (the model); LOOPHOLES.md (IA-1 resolved);
+      Step 6 (the engine architecture consumes it).
+- D108 THE DERIVATION PROTOCOL (LOCKED, user yes - 2026-08-29;
+    Step-3 deliverable #2 of the wave-2 session; resolves G P-04 +
+    C-3 + IA-10 + IA-9):
+    (1) THE INCREMENTAL UPDATE: the derivation reads the DELTA
+      (events since the cache's logFingerprint) + the CACHE itself
+      (the previous state) -> computes the new state -> ATOMIC SWAP
+      (one transaction; the renderer never sees a half-written
+      tree). Full re-derivation only on: first launch (D097),
+      restore (D098), a fingerprint mismatch, or a register-version
+      bump (the dev tools). Incremental cost per event is bounded.
+    (2) THE FIRST-PAINT CONTRACT (P-04): the cache is PERSISTED
+      (survives app restarts - no on-open re-derivation); first
+      paint = the current state blob instantly (LOD mass, not
+      detail); the derivation runs OFF THE UI THREAD (an isolate);
+      a stale cache re-derives in the background with the shimmer
+      until it lands. The decade-user's tab open never re-derives
+      200k events on the main thread.
+    (3) THE ORDER-INDEPENDENT DERIVATION (C-3): the derivation is a
+      SET-COMMUTATIVE FOLD - it resolves each entity to its FINAL
+      STATE (the newest create, the latest supersede, the
+      tombstone/revoke netting) and folds the resolved set, so the
+      same merged log always produces the same tree regardless of
+      arrival order (delete-before-create, revoke-before-event,
+      parallel supersedes chains cannot resurrect or regress
+      organs). Derived facts converge on every device.
+    (4) THE TWO-TAB CONCURRENCY CONTRACT (IA-10): a SINGLE-WRITER
+      DERIVATION LOCK (only one tab derives at a time; the loser
+      defers and re-checks the fingerprint); the derivation is
+      IDEMPOTENT (two tabs deriving the same delta produce the same
+      state - the loser's result is discarded, never applied
+      twice); CEREMONY DELIVERY IS PER-TAB (the state is shared;
+      the viewed watermarks are per-tab/per-device - Step 4 R9
+      gives them their home). No double derivation, no double
+      ceremony.
+    (5) THE IN-SESSION CEREMONY STATE MACHINE (IA-9): ceremonies
+      never interrupt an active session - they QUEUE (the D094
+      replay-on-open watermark covers offline); an in-session
+      transition fires only at a SAFE MOMENT (the tree tab visible,
+      no modal, no composition in progress); otherwise it joins the
+      queued-replay sequence. The user's writing is never
+      interrupted by a bloom.
+    LANDS: SCHEMA.md 2.6 (the model); LOOPHOLES.md (R3 partial -
+      IA-1/IA-9/IA-10/P-04/C-3 resolved); Step 6 (the architecture
+      implements it).
+- D109 THE DEVICE-STATE CLUSTER (LOCKED, user yes - 2026-08-29;
+    Step-4 of the wave-2 session; resolves R9 C-1 + C-2 + C-4):
+    (1) THE VIEWED-WATERMARK'S HOME (C-1): the watermarks (which
+      transitions/replays the user has seen) become a SYNCED
+      `viewed_moments` table - USER STATE (like settings), never a
+      regenerable cache. The ACCOUNT-ONCE guarantee (the launch
+      replay plays once per account, synced across devices) +
+      PER-DEVICE DELIVERY (a transition seen on the phone still
+      plays on the desktop - a delivery difference, not a state
+      difference).
+    (2) THE FINGERPRINT IN THE BACKUP FORMAT (C-2): formatVersion 3
+      carries a MONOTONIC `logFingerprint` (eventCount + syncSeq) -
+      a restored backup tells the cache it is stale immediately (no
+      blind re-derivation, no stale-tree windows). The cache itself
+      stays OUT of the format (regenerable - D098).
+    (3) THE RESTORE x SYNC CONTRACT (C-4): a restore is
+      ACCOUNT-LEVEL - it supersedes all devices; every device
+      re-derives from the restored log (the D098 "no silent
+      regression" guardrail extends to the fleet - the untouched
+      device re-derives rather than re-merging its live log over
+      the restore).
+    (4) THE DELIVERY/STATE SEPARATION (the cross-cutting rule):
+      DERIVED FACTS CONVERGE on every device from the same merged
+      log; only DELIVERY (watermarks) and PRESENTATION (local
+      bytes) differ.
+    LANDS: SCHEMA.md (the sync contract); the M10-M13 sync
+      milestones (the formatVersion 3 + the viewed_moments table at
+      the docs pass); LOOPHOLES.md (R9 resolved).
+- D110 THE PRIVACY/COPY BOUNDARY + L10N (LOCKED, user yes -
+    2026-08-29; Step-5 of the wave-2 session; resolves H-02, H-05,
+    H-07, IA-2, IA-5, IA-6, IA-8):
+    (1) THE MIRROR'S PAYLOAD-BLINDNESS (H-02 - makes D099
+      implementable): coach_outputs rows store RENDERED TEXT in all
+      9 kinds - "derived coach_outputs facts" had no referent. THE
+      TREE MIRRORS H3 OWNERS ONLY, NEVER coach_outputs rows: the
+      mycorrhizal character, the "resting" copy, and the earn-line
+      behaviors read the derived owners (engagement counts, check-in
+      dates, the anniversary). The tree's read surface never
+      includes coach_outputs - structurally enforced (not "reads
+      facts from it" - NEVER touches it).
+    (2) THE WHY-PANEL VALUE LAW (H-05): the panel may show ONLY (a)
+      facts derivable from the event log (counts, dates, streaks,
+      presence) and (b) the register's values (gates, thresholds) -
+      NEVER (c) free text from any stored system (coach outputs,
+      entry text, media titles beyond the derived count), and never
+      (d) LLM narrative. Every why-panel row is checked against the
+      four clauses.
+    (3) THE SHARING-SAFE DEFAULT (H-07): the tree is a screenshot
+      surface - sensitive rows (body weight trend, nutrition
+      numbers) render their copy COLLAPSED ("derived - see the
+      section") unless the user is in-app with the panel expanded;
+      the tree itself (organs, colors, flowers) is sharing-safe by
+      construction (derived facts only).
+    (4) THE L10N CONTRACT (IA-2): the why-panel copy and the
+      ceremony narration are LOCALIZABLE STRINGS, never inline - the
+      tree-state model contains zero prose (verified in the lean
+      model - IDs, dates, numbers only); localization wraps the
+      render layer only; the derived-copy engine (the why-panel's
+      sentence builder) is the single place where language lives.
+    (5) THE AXES' IMPORT-FILTER (IA-5): the axis formulas (F4-F7)
+      read IN-WINDOW, NON-IMPORTED events only - an imported batch
+      can never skew RESOURCE/RHYTHM/BALANCE.
+    (6) THE READ-SURFACE EXCLUSION (IA-6 + IA-8): the tree's
+      derivation reads the EVENT LOG + its own H3 owners ONLY -
+      never the gamification cache tables (xp_transactions, derived
+      views), never coach_outputs, never goal-system internals
+      beyond the agreed owners (goal progress, streak, coach
+      engagement - the one-owner-per-shared-predicate rule). The
+      M7 analytics cache serves the Coach's windows; the tree
+      derives from the log directly (its own cache), never from the
+      M7 tables.
+    LANDS: SCHEMA.md (the read-surface contract); LOOPHOLES.md (R6
+      resolved); the M7 milestone (the cache-vs-log arbitration at
+      the docs pass).
+- D111 THE SURFACE/RENDER CLUSTER (LOCKED, user yes - 2026-08-29;
+    Step-6 of the wave-2 session; resolves D C-1/C-2/C-3, G P-01/
+    P-03, D M-1/M-3/M-5):
+    (1) THE SEMANTICS SURFACE (D C-1): every organ (branches, buds,
+      leaves, flowers, fruits, rings, the bank) gets a SEMANTIC
+      LABEL + STATUS + TAP ACTION built from the SAME deterministic
+      state model that paints it (one source, two outputs - pixels
+      and semantics cannot diverge); plus a WHOLE-TREE PORTRAIT
+      summary (the screen-reader's one-liner: "the tree: 5 years
+      old, mature, 12 buds banked, 3 blooms this spring") and a
+      KEYBOARD MAP (fully navigable without touch).
+    (2) THE TRANSITION ANNOUNCEMENTS (D C-2): the D094 ceremonies
+      get a TEXT-TWIN ANNOUNCEMENT - a live-region update (in-tab,
+      not a push) narrated as the transition plays ("your tree's
+      first branch grew"); the reduced-motion static fallback gets
+      the same announcement. The bloom is never silent for
+      assistive tech.
+    (3) THE COLOR-ONLY FACTS (D C-3): no meaning rides on color
+      alone - the season is announced in the strip's text line
+      ("Autumn"), the tier differences carry SIZE/MARK differences
+      (not just glow), and a DEUTERANOPIA PASS is a locked gate in
+      the mockup + stress-test steps.
+    (4) THE LOD LADDER (P-01): exactly three render levels -
+      LOD-1 MASS (silhouette + canopy masses - what first paint
+      shows), LOD-2 STRUCTURE (branches, retention-window twigs,
+      individual leaves at the mature granularity), LOD-3 DETAIL
+      (per-entry leaves + organ anatomy - only on zoom/
+      interaction). The hero defaults to LOD-1/2 by distance and
+      device tier - the 45k-draw-op disaster is structurally
+      impossible.
+    (5) THE AUTUMN LEAF-FALL (P-03): leaf-fall is a MASS RE-BAKE -
+      the canopy re-renders as its bare state once (baked picture)
+      with a capped shader-free particle effect (~150-300 sprites -
+      the bloom-rain budget reused); the fallen leaves form the
+      LITTER PICTURE (the ground layer). The fall is a moment, not
+      a 22k-per-frame computation.
+    (6) THE MOTION TIERS (D M-3): THREE tiers - FULL (the D094
+      durations), REDUCED (particles off, transitions as quick
+      fades - the locked 300ms-fade precedent), NONE (instant state
+      changes, announcements only). The reduced-motion preference
+      selects the tier; the full path degrades automatically on
+      low-end devices (an FPS-based ladder, not binary).
+    (7) THE CONTRAST FLOOR (D M-5): tree palette colors meet >=3:1
+      non-text contrast (the design-system floor) in both themes;
+      the D086 accent luminance band is respected - the tree is
+      legible on any screen.
+    (8) THE HIT-AREA GUARANTEE (D M-1): every tappable organ (even
+      at LOD-1 mass) has a >=44px EFFECTIVE TARGET - the cluster
+      map decouples the hit area from the painted size, so a dense
+      mature tree is fully tappable.
+    LANDS: TRAIT-SPACE.md (palette + motion + contrast floors);
+      tree-5 (the LOD ladder + the fall re-bake); tree-4 (the
+      semantics surface); LOOPHOLES.md (R8 resolved).
+- D112 THE DESIGN-IDENTITY CLUSTER (LOCKED, user yes - 2026-08-29;
+    Step-7 of the wave-2 session; resolves DV-C1..C5):
+    (1) THE FLOWER IDENTITY'S COHERENCE FILTER (DV-C1 - approved):
+      every inflorescence family gets an AXIS SIGNATURE (like the
+      adaptations - e.g., the syconium/cross-domain identity needs
+      balance >=0.6; arid-compatible families need resource <=0.6);
+      the D086 fallback extends to the identity axis - a flower
+      family the axes reject manifests instead in a COMPATIBLE
+      SIBLING FAMILY (same tier, harmonized), the why-panel
+      explaining the substitution. Identity is part of the
+      coherence envelope, not an exception to it.
+    (2) THE HEARTWOOD PALETTE (DV-C2 - approved WITH NOTE): a muted
+      ink-wash blush is the ONE allowed "saturation moment" - the
+      bloom palette derives from the Heartwood ink/paper tokens
+      (dark-first), the blush reserved for the flowering events
+      (like gold is for streaks). USER NOTE (locked): this palette
+      decision is OPEN TO EDITS during implementation/visual
+      testing - the tokens join the dev tools' playable surface
+      (like the register numbers), and the final blush treatment
+      gets tuned at the mockup step.
+    (3) THE 17-AUDIT (DV-C3 - approved): a systematic pass at the
+      trait-space step (PLAN Step 7) assigning EVERY trait in the
+      botanical master (all 25 inflorescences, 30 fruits, 46
+      modifications, leaf families/margins/venation/shapes, bark
+      types, crown types) exactly one of three statuses: WIRED (a
+      data driver: which data decides the trait + when it
+      manifests - e.g., the journal branch's leaf family driven by
+      the journal-area mix + branch character), RESERVED-UNMAPPED
+      (deliberately not wired, reason documented - the honest-skip
+      precedent), or STRUCTURAL (always-present anatomy). The
+      output: one table (trait x status x driver x manifestation
+      moment) - the tree's variety bounded by the research, not by
+      our wiring; the drivers are dev-tunable like the register
+      numbers.
+    (4) THE UNIQUENESS GUARANTEE (DV-C4 - approved): high-
+      dimensional deterministic per-user morphology - the trait
+      selection reads MORE of the log than the 4 axes: the per-
+      domain ORDER OF FIRST-USE (which domain started first - the
+      crown's birth order), the LIFE AREA MIX (journal areas become
+      a real driver of leaf-family character per area - no longer
+      vague placement), and the WEEKLY RHYTHM'S TEXTURE (not just
+      the aggregate). Every dimension deterministic, derived,
+      explainable - two similar lives diverge in the details.
+    (5) THE HABIT-SURFACE UNIFICATION (DV-C5 - approved, user
+      adjusted): the growth-ladder unification STAYS (the habit
+      card becomes the bud's local view per the duality principle -
+      the bud states replace the mini-plant stages). The RENAME is
+      DROPPED (user): all three "Heartwood" names stay (the app,
+      the achievement tier, the habit stage) - the ambiguity is
+      DOCUMENTED (a naming note at the docs pass), never renamed.
+      One ladder, one vocabulary - with the vocabulary's overlaps
+      acknowledged in writing.
+    LANDS: TRAIT-SPACE.md (the 17-audit at Step 7; the identity
+      signatures; the blush tokens); LOOPHOLES.md (R7 resolved);
+      the docs pass (the Heartwood naming note).
+- D113 THE ECONOMY RESIDUALS + THE 17-AUDIT AMENDMENT (LOCKED,
+    user yes - 2026-08-29; Step-8 of the wave-2 session; resolves
+    IA-3, IA-4, B M-05, B M-09):
+    (1) IA-3 THE NU4 BACKFILL COLUMN (approved): the event schema
+      gains a stored `isBackfill` flag; the D100 predicate reads it
+      - historical-backfill mode can never arm rings, stage ticks,
+      or presence (B C-02's fix becomes implementable).
+    (2) IA-4 THE M13 ADOPTED-MEDIA `adoptedAt` (approved): the media
+      schema gains a stored adoption timestamp - "qualifies
+      forward-only" becomes computable; adopted rows never backdate
+      presence.
+    (3) B M-05 WITHIN-TIER MAGNITUDE VARIANCE (approved): two
+      trophies of the same tier get a small DETERMINISTIC
+      size/placement variance derived from the achievement's own
+      condition data (the streak length at earn, the count at
+      earn) - same tier, visibly distinct, still deterministic.
+    (4) B M-09 ADOPTED-MEDIA FORWARD-ONLY (approved): with
+      adoptedAt in place, adopted media counts for media presence
+      FORWARD-ONLY from adoption - never before it.
+    (5) THE 17-AUDIT AMENDMENT (user - important): the audit has
+      FOUR statuses, not three. EXCLUDED-BY-DESIGN (PERMANENT) is a
+      distinct status: the marshy/aquatic family (pneumatophores,
+      knee roots, floating/assimilatory roots) and the other
+      purposeful exclusions (haustoria/parasitic, pitcher/bladder/
+      snap traps, rhizomes/bulbils) are PERMANENTLY excluded - they
+      do not fit any life pattern; the audit records them under
+      EXCLUDED-BY-DESIGN with the reason, and they are NOT
+      "reserved-unmapped" (that status implies future availability).
+      RESERVED-UNMAPPED now means only "a real pattern could
+      appear later" (e.g., the epicormic-style future candidates).
+      WIRED + STRUCTURAL unchanged.
+    LANDS: SCHEMA.md (the event/media schema notes); TRAIT-SPACE.md
+      (the four-status audit at Step 7); LOOPHOLES.md (IA-3/IA-4,
+      B M-05/M-09 resolved).
+- D114 THE CLOSURE ROUND (LOCKED, user yes - 2026-08-29; the final
+    re-audit's fixes; resolves the consistency + adversarial audits'
+    findings):
+    THE THREE DECISIONS:
+    (1) QUIET-WEEKS (the one true gap): quiet-weeks do NOT pause the
+      tree's growth - the tree is data-derived; a quiet-week is a
+      Coach DELIVERY discipline, not a data state. BUT: quiet-weeks
+      EXTEND THE PROTECTED-ABSENCE MECHANISM (periods) - the branch
+      copy says "resting" and the RHYTHM axis discounts them like
+      planned rests. One mechanism, three sources (rest flags,
+      vacation periods, quiet-weeks).
+    (2) THE MATURITY GATE FIX (F-11): MATURE = >=2 stage-years AND
+      >=1 branch extended to a STRUCTURAL DEPTH (>=6 twigs). A
+      single-domain user matures with their one deep branch - the
+      first bloom is reachable for EVERY user; the crown's breadth
+      is the BALANCE axis's business, never the maturity gate.
+    (3) THE RING DOMAIN SET (F-12): the ring-year reads THE
+      CANONICAL 7 PRESENCE-DOMAINS (D101's "six" predates D104's
+      body/media canonicalization); the VIII-family trophies'
+      six-domain conditions align to the canonical set at the docs
+      pass. One domain list for the brand and the trophies.
+    THE MECHANICAL FIXES (record errors + stale rows): storage
+      leaves regain the D1 tenure floor (trigger-table B5) ·
+      contractile drops the invented floor (subtle tier, D089) ·
+      the particle cap standardizes to ~150-300 (D111) · INPUT-
+      INVENTORY §9/§14 coach-anchor rows -> D102 · D097's N-7
+      citation -> D100 · SCHEMA §3 secondary-growth text -> the
+      D101/B4 definitions · the matrix G-1: ALL classes bank at SEED
+      (content, completions, measurements, dates, goals - not just
+      achievements; the seed's bank counter holds everything) · the
+      FUTURE-DATING CLAMP (events with occurredAt in the future are
+      excluded from all math) · THE "TREE NEVER DISSOLVES" RATCHET
+      (existence is monotonic once born; the anchor persists in the
+      backup; "no events = no tree" applies only to the first birth)
+      · LOOPHOLES §7/§8 refreshed.
+    THE DEFERRALS (each with a home): the DOCS-PASS AMENDMENT
+      REGISTER (DecisionLog D100-D113 + Gamification/CoachSystem/
+      Roadmap/Database amendments - home: PLAN step 10) · THE OWNER
+      CONTRACTS (qualifyingEntry, streak, goalProgress,
+      coachEngagement, dayActivityScore, mediaPresence - the tree's
+      consumed H3 owners, exact outputs - home: Step 6) · PERF-GATE
+      NUMBERS (frame budgets - home: the register F9/F10 at Step 6)
+      · MAST-YEAR + within-tier variance calibration (home: the
+      paper run with the dev tools) · the TEST STRATEGY's acceptance
+      criteria (home: Step 9) · the EMOTIONAL COPY-LANGUAGE pass
+      (home: the mockup step) · the TERMINOLOGY GLOSSARY (home: the
+      docs pass).
+- D115 THE GATE-DEADLOCK FIX + THE FINAL RECONCILIATIONS (LOCKED,
+    user yes - 2026-08-29; the relentless audits' must-fixes):
+    (1) THE GATES READ DAYS, NOT TWIGS (C-1/M-1 - the deadlock
+      fix): B2 SEEDLING->SAPLING = >=20 in-window days within any
+      30-day window in ANY domain (a genuine month of presence);
+      B4 POLE->MATURE = >=2 stage-years AND >=1 domain with >=90
+      in-window days in its best anchored year (the structural
+      depth, days-based). TWIGS STAY THE CANOPY'S MONTHLY RENDER
+      UNIT (A3 unchanged - a rotating logger honestly has fewer
+      twigs), but NO GATE EVER BLOCKS ON A TWIG COUNT. The
+      body-only user and the every-other-day archetype both mature.
+      All dev-tunable.
+    (2) THE FORK-ROUTING NOTE: body/media days count toward their
+      PARENT branch's presence (gym/journal) - the forks are RENDER
+      STRUCTURE, never a gate (the body-only deadlock closes).
+    (3) THE SEEDLING'S BANKED FORM (M-2): at SEEDLING, banked
+      content renders as LEAF-BUDS on the stem + the branch-buds
+      (the D095 winter-bud mechanism generalized - the seedling's
+      few organs, alive with promise); the leaf-buds burst into
+      clusters at SAPLING with the first twigs; the bank counter
+      shows the composition. The first weeks have a visible form.
+    (4) THE LEAF-FAMILY ENVELOPE (M-3 - the last zombie vector):
+      the tree derives ONE base leaf character from the axes;
+      per-branch variation picks SIBLING FORMS WITHIN THAT FAMILY
+      ONLY (margin/shape variants), never crossing into another
+      family's envelope.
+    (5) THE GROVE-TRANSFORMATION WINTER PERSISTENCE: the crown
+      legend and a manifested transformation PERSIST THROUGH WINTER
+      (the ephemerality rule, D095, applies to ordinary blooms; the
+      legend + transformations are the tree's permanent marks).
+    RECONCILIATIONS (recorded - the historical records keep their
+      text, the reconciliations bind): D085's "ring closes at the
+      year boundary" = the ANCHORED window's boundary (E3/D090 -
+      never calendar-chopped); D085's "greener winter canopy" is
+      SUPERSEDED by D095's leaf-bud model (a winter of logging
+      makes the SPRING FLUSH denser - the bank - not the winter
+      canopy greener).
+    THE MECHANICAL FIXES (applied): D097's record citation -> D100
+      · LOOPHOLES' six-domain/first-event lines -> the canonical 7 +
+      the ratchet · SCHEMA §3 BALANCE "5 domains" -> 7 · INPUT-
+      INVENTORY's coach_outputs mirror + opt-ins rows -> D110/E11 ·
+      PLAN.md statuses (Step 3 done; 19 archetypes) · the model's
+      SCHEMA home (§2.6) · ACHIEVEMENT-SCAN's stale "NOT locked"
+      line -> D091.
+- D089 MODIFICATION RARITY SPLIT (LOCKED, user yes - 2026-08-29;
+    amends D088 C):
+    THE PRINCIPLE: modifications are RARE ITEMS - reserved for
+    genuine years of consistency; at a glance, the structural
+    modifications a stranger sees on the tree are only the ones
+    earned through years.
+    THE SPLIT (two tiers):
+    (1) RARE STRUCTURAL MODIFICATIONS (silhouette-level, visible at
+      a glance): caudex, buttress roots, phyllodes, cladode
+      segments, thorns, storage leaves. HARD TENURE FLOOR: none
+      manifest before real qualifying years exist (floor = 2+
+      qualifying years; caudex and buttress at HIGHER tenure -
+      exact floors in the engine contract).
+    (2) SUBTLE CHARACTER DETAILS (visible in close-up / anatomy
+      views, never the silhouette): reaction wood, epicormic
+      shoots, mycorrhizal/coach detail, bracts, bud scales,
+      contractile roots, stolons, storage-taproot detail, SPINES
+      (100-day streaks - DEMOTED from the structural tier). No
+      tenure gate - the tree's fine texture, rewarding every user
+      without diluting the rarity of the structural layer.
+    AMENDED FROM D088: adaptation rows 3 (thorns stay structural
+      365-day; spines demoted to subtle), 12 (storage leaves moved
+      to structural/rare), 2/8/9/10/11/13/14 (kept as subtle
+      details).
+    LANDS: TRAIT-SPACE.md §3 (tiers); VISION.md (principle 10 -
+      consistency); tree-2 (adaptation visuals at two levels).
+- D088 LIFE TREE BRANCH SYSTEM + ADAPTATION LAYER + GRADIENT COHERENCE
+    (LOCKED, user yes - 2026-08-29; recorded in absolute detail):
+    A. BRANCH SYSTEM v4:
+      - 5 FIRST-ORDER BRANCHES = the 5 FIXED app sections (journal,
+        habits, gym, nutrition, goals) - ALL present from day one.
+        The seedling's structure is set at start; what varies is
+        growth. Grounded correction (user): no "new domains" appear
+        and no domain "dies" - the app's sections are fixed tabs; the
+        tree mirrors EFFORT RHYTHMS across fixed branches, not
+        invented domain life-cycles. No start-dates, no branch scars.
+      - LEADER (apical dominance): the most SUSTAINED domain leads
+        the crown - the silhouette encodes the user's center of
+        gravity (MASTER 4.5; data: per-domain presence + consistency).
+      - FORKS (second-order): derived ONLY from sustained
+        differentiation of genuine sub-features (gym: strength/
+        cardio; nutrition: food/fasting/hydration; journal: photo/
+        voice/text) - no templates, no made-up splits (the L-11
+        sprawl guardrail applied inside the tree).
+      - TWIGS (the canopy mass - the beauty answer): one twig per
+        month of sustained presence per domain; the canopy density
+        IS consistency made visible; gaps are honest. A consistent
+        user has ~10 twigs/year per active branch -> a full, lush,
+        real-looking canopy (real trees look full from twigs, not
+        branches - MASTER 4.1/4.4).
+      - SCALE SEPARATION (each level = a time scale of the data):
+        trunk+rings = years | branches = domains | forks =
+        sub-features | twigs = months | leaves = entries/trophies
+        (days) | buds = habits (streaks) | flowers = achievements
+        (rarity) | fruits = goals (milestones). Zoom out = years;
+        zoom in = days; every scale is data.
+      - BRANCH RINGS: each branch carries its own rings = the years
+        that domain was ACTIVELY PRESENT (real botany: branches have
+        rings too - MASTER 7.2). Trunk rings = all years; branch
+        rings = that domain's years.
+      - DORMANCY + REVIVAL (no death, no scars): an inactive branch
+        stops growing, goes dormant, loses its seasonal leaves
+        (deciduous honesty - D085), keeps its structure, and resumes
+        growth from its TIP BUDS when the user returns (real botany:
+        dormant tip buds resume when conditions improve - MASTER
+        4.3/9.2). Why-panel: "your gym branch has been dormant since
+        June - it will resume when you do."
+      - FRUIT SPURS = completed goals, on the branch they belong to
+        (short stubby fruit-bearing branchlets - MASTER 4.5).
+    B. THE DUALITY PRINCIPLE (the UI relation - user question):
+      every section UI is the LOCAL view of its tree organ - ONE
+      derived state, ONE animation language, TWO scales. Habits tab
+      = the bud garden (the habit card's streak ring IS the bud
+      swelling; the swipe-complete burst IS the bud bursting);
+      journal = leaves (entry states: new = young leaf, photo =
+      mature leaf); nutrition = the sap monitor (the vascular ring
+      state in the nutrition UI AND the tree's cross-section;
+      logging a meal = sap flowing, visible in both); gym = branch
+      growth state (strength standards = branch girth trend); goals
+      = the orchard (progress = fruit swelling, completion = fruit
+      on the spur); achievements = the garden (earned = bloomed, at
+      both scales). The tree is the global view of the sections;
+      each section is the local view of its organ. The app becomes
+      one organism visually AND structurally.
+    C. THE ADAPTATION LAYER (modifications):
+      - DEFINITION: modifications = the tree's LONG-TERM
+        ADAPTATIONS to sustained life patterns - the rarest
+        structural layer, slower than flowers (multi-year
+        commitments, never fast); a TRANSFORM layer (they modify
+        existing organs: trunk -> caudex, branches -> thorns, roots
+        -> buttress, leaves -> phyllodes, wood -> reaction).
+      - GOVERNING RULE (user directive): the achievement system is
+        the TRIGGER AUTHORITY - NO parallel trigger systems. Where
+        an existing achievement already encodes a condition (365-day
+        streaks, qualifying years, decade milestones), the
+        achievement IS the trigger, and the tree's layers visualize
+        that same accomplishment at different scales (flowers =
+        bloom scale; modifications = structural scale). One
+        condition set, two visual layers. The achievement-scan
+        sub-step produces the correlation table directly.
+      - THE ADAPTATION MAP (life pattern -> trigger -> master ref):
+        1. CAUDEX (trunk reserve tank, baobab dignity) - unbroken
+           qualifying years (longevity) - MASTER 4.6.10.
+        2. REACTION WOOD + EPICORMIC SHOOTS - comebacks: a dormant
+           branch resumes, the revival point shows visibly different
+           wood + fresh shoots from old wood - MASTER 7.4/4.5.
+        3. THORNS (365-day) + SPINES (100-day) - TIERED streak
+           armor on a domain - MASTER 4.6.8/6.5.2; existing streak
+           achievements as triggers.
+        4. BUTTRESS ROOTS - sustained multi-domain balance (3+
+           domains active consistently) - MASTER 5.6.5.
+        5. PHYLLODES - sustained sparse-but-stubborn logging (the
+           tree adapts to survive on little) - MASTER 6.5.3.
+        6. CLADODE SEGMENTS - streak-without-entries (the branch
+           lives leafless: habits checked, nothing journaled) -
+           MASTER 4.6.6; derived from streak vs entry-volume
+           divergence.
+        7. TENDRILS - long-horizon goals in progress (the 10-year
+           pledge reaching outward); completed goals = fruit on
+           spurs - MASTER 4.6.7/6.5.1.
+        8. STORAGE TAPROOT + WINTER STORAGE - the foundation years
+           + quiet months banked (root cross-section during winter
+           dormancy shows the reserves) - MASTER 5.6.1/9.5.
+        9. CONTRACTILE ROOTS - consistency trending UP year over
+           year (the tree plants itself deeper) - MASTER 5.6.9.
+        10. MYCORRHIZAL/NODULE CHARACTER - sustained coach
+            engagement (the app's one true symbiont, visible in the
+            root section) - MASTER 5.4.
+        11. STOLONS - sustained CROSS-DOMAIN influences: the L-10
+            insight engine's findings made structural (the
+            influencing branch grows toward the influenced one) -
+            MASTER 4.6.2; feed: L-10 (locked).
+        12. STORAGE LEAVES (succulent) - media-rich entries (the
+            leaf holds the memory's substance) - MASTER 6.5.8;
+            feed: photo/media share of entries.
+        13. BRACTS - the bloom's ceremonial presentation (the F-03
+            flair wrapping the flowers) - MASTER 6.5.10.
+        14. BUD SCALES - dormant habits' winter wrapper (the D087
+            bud's protected state during quiet periods) - MASTER
+            6.5.11/4.3.
+      - SCRAPPED (user): AERIAL ROOTS / velamen - removed from the
+        map.
+      - HONEST SKIPS (documented - no zombie forcing): haustoria
+        (parasitic - the tree has NO parasitic layer by design);
+        pitcher/bladder/snap traps (require detecting "hard times" -
+        no mood data by design, C-04 rejected - underivable);
+        rhizomes/bulbils/offsets (clonal spread needs a second tree
+        - there is only the user's); pneumatophores/knee/floating/
+        assimilatory roots (no flooded-soil/aquatic equivalent);
+        pseudobulb (epiphyte storage - merged into the scrapped
+        aerial roots); scale leaves/bulb scales (structural,
+        merged). Future features may earn new mappings (e.g., a
+        future "phase shift" concept -> epicormic resprouting) but
+        nothing is forced today.
+    D. GRADIENT COHERENCE MODEL (the anti-zombie; user: NO single
+      environment - overlaps must be allowed):
+      - 4 CONTINUOUS AXES (0.0-1.0), each a derived measurement
+        from the event log (positions, NOT categories/buckets):
+        RESOURCE (lush<->sparse: average logging volume per active
+        day across domains - entries/day, photos/day, meals/day,
+        workouts/week), RHYTHM (steady<->bursty: variation of
+        weekly activity across the year - streak patterns, presence
+        gaps), BALANCE (single-focus<->multi-domain: the
+        distribution of activity across the 5 domains), TENURE
+        (young<->ancient: qualifying years + longest continuous
+        presence).
+      - POSITION = where the user lands on each axis; overlaps are
+        natural in the middle ranges (the MEDITERRANEAN position: a
+        user at resource 0.45 + steady rhythm + mid balance is both
+        drought-tolerant AND cold-season adapted - real botany:
+        Mediterranean plants are drought- AND cold-adapted).
+      - ONE CHARACTER PER ORGAN (trunk / root system / leaf family
+        / branch structure) - same-organ contradictions are the
+        hard floor, always forbidden.
+      - CONTRADICTION BY CONSTRUCTION: each adaptation has a
+        required SIGNATURE on the axes; contradictory adaptations
+        cannot co-occur because both read the SAME numbers (caudex
+        requires tenure>=0.7 + resource<=0.6; buttress requires
+        balance>=0.7 + resource>=0.6 - one user cannot be at
+        resource 0.55 AND 0.65 at once). The position itself
+        decides what can grow - no compatibility matrix needed for
+        the hard cases.
+      - RANK RULE: when several adaptations qualify on one organ,
+        the strongest data support wins the DOMINANT character;
+        compatible runner-ups render at a SUBTLE tier (the trunk is
+        caudex-dominant but the leaves carry a phyllode tint). The
+        tree reads as one organism because every adaptation traces
+        to the same data reality.
+      - UNIVERSAL ADAPTATIONS (no axis restrictions - appear
+        anywhere): reaction wood, epicormic shoots, mycorrhizal/
+        coach symbiosis, bracts, contractile roots, bud scales.
+      - WORKED EXAMPLE (the overlap): gym+journal strong (high
+        resource, high balance), nutrition sparse (low resource on
+        that domain pattern), 2 qualifying years. Eligible: buttress
+        (balance+resource), stolons (L-10 gym->journal influence),
+        mycorrhizal (coach engagement), reaction wood (if a
+        dormancy happened). NOT eligible: caudex (tenure too low),
+        phyllodes (resource too high), thorns (no streak
+        achievement). Rich multi-adaptation tree - and caudex+
+        buttress is impossible for ANY user.
+      - VERIFICATION: the archetype mockups + seeded-data stress
+        tests include a botanical-contradiction check (a generated
+        tree must pass every adaptation's axis signature or the
+        engine does not ship).
+    E. INTEGRATION RULES:
+      - ACHIEVEMENT-TRIGGER + GRADIENT-FILTER: the achievement
+        EARNS the right to the adaptation; the axis position
+        decides MANIFESTATION; FLOWER-LAYER FALLBACK - every
+        achievement is visualized at the flower layer at minimum,
+        so NO achievement is ever unrewarded (a 365-day streak in a
+        rainforest-character tree grows a thorn-flower, not thorns).
+      - WHY-PANEL explains both halves: the trigger ("your 400-day
+        gym streak") + the position ("your resource 0.58 position
+        allows thorns, not rainforest roots").
+    F. THE CONSISTENCY PRINCIPLE (user directive, verbatim intent):
+      THE MOST CONSISTENT USERS GET THE MOST BEAUTIFUL TREES WITH
+      THE MOST MEANINGFUL MODIFICATIONS. Consistency compounds at
+      every layer: tenure axis, branch rings, canopy density
+      (twigs), caudex, reaction-wood history, winter storage. A
+      consistent user's tree is structurally richer at EVERY level
+      - the tree is the mirror of sustained effort, and sustained
+      effort is rewarded with depth, not decoration.
+    LANDS: VISION.md §2 principle 10 (expanded - consistency),
+      §4.2/4.3/4.4/4.5 resolved; SCHEMA.md (input map rows: habits
+      -> buds, gym -> branch growth, nutrition -> vascular, goals ->
+      fruits, achievements -> flowers; derivation contract - axes);
+      TRAIT-SPACE.md §3 (coherence envelopes = axis signatures;
+      lineage character = axis position); tree-2 (anatomy: branches,
+      twigs, adaptations, dormancy), tree-3 (derivation: axes, twig
+      feed, branch rings), tree-4 (duality principle), tree-5
+      (render: twig LOD); MASTER-Botany-Reference.md parts cited
+      per row above; L-10 (stolon feed); Gamification.md
+      (achievement-scan at the feature-scan step).
