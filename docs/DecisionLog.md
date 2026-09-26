@@ -2765,4 +2765,3 @@ D213 = CoachSystem.md meal-slot substitution adherence (N-10) - D216 = Roadmap.m
 D219 = UIUX.md NL-capture composer surface (L-01) - D220 = UIUX.md curated-Today briefing (L-01) - D221 = UIUX.md voice-note entry type surface (C-11).
 D222 = MediaStorage.md voice-note media path (C-11) - D223 = MediaStorage.md audio-container rule (C-11) - D224 = MediaStorage.md voice-note storage tiers (C-11).
 Deliberately unassigned: D141 (gap), D175-D179 (Roadmap range), D186-D189 (UIUX range), D197-D199 (CoachSystem range), D202-D204 (Database range), D206-D209 (MediaStorage range), D214-D215 (CoachSystem range).
-(L-11) · D170 = DevelopmentWorkflow.md dev-only tooling (INT-04/D105).
