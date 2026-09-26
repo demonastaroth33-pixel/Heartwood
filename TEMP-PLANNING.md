@@ -56,9 +56,12 @@ separate DECISIONS chunk — both variants are compliant.
 |---|---|---|
 | candidate-C | C-01 … C-15 | Research-incorporation candidates from research-journaling/MASTER-Journaling-Research.md (never conflate with backup-C, audit-C, or spec-E families from gen-1 — those are archived) |
 | candidate-F | F-01 … F-32 | Fitness research candidates from research-fitness/MASTER-Fitness-Research.md (new gen-2 family) |
+| candidate-N | N-01 … N-18 | Nutrition research candidates from research-nutrition/MASTER-Nutrition-Research.md (gen-2 family; N-01..N-18 entries in the body) |
+| candidate-L | L-01 … L-15 | LifeOS research candidates from research-lifeos/MASTER-LifeOS-Research.md (gen-2 family; L-01..L-15 entries in the body) |
 | audit | audit-1 … audit-13 | Refactor-audit checklist anchors (open-items checklist incl. incorporate/unlocks/life-tree; maps to APP MAP areas) |
 | tree | tree-1 . tree-7 | Life Tree DESIGN SYSTEM subsections (tree-1..tree-6 = the design dims - FILLED BY tree-7 decision records D085-D117; tree-7 = the DESIGN SESSION DECISIONS - the authoritative record) |
 | engine | engine-1, engine-2 | Cross-cutting discipline blocks (logging friction; Coach heuristic engine — engine-2 token: NOTED = required-discipline flag, details locked at the rule-book session) |
+| D-records | D085 … D117 | The decision-log records (33 headers in the body — the tree-7 decision records; D060 exists only as a supersession cross-ref, D082+ implied for LOCKED entries) |
 | - | AGREED IN PRINCIPLE - PENDING | Additional status tokens in use: AGREED IN PRINCIPLE = concept approved, full setup deferred to its activation milestone (F-27); PENDING = deferred to another section decision (example: C-15 was deferred to the Life Tree section and is now RESOLVED-ABSORBED - the PENDING token is no longer in active use, every candidate is decided). Both carry an activation/revisit note; neither is draftable as decided content. |
 
 Rejected entries carry a RESTING PLACE line (do-not-resurrect contract).

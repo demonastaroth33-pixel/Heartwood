@@ -42,8 +42,11 @@ family audit-1–audit-13; the Life Tree family tree-1–tree-7 (tree-7 = the
 authoritative design record — the D085–D117 decisions; tree-1..tree-6 are
 superseded skeletons, still enumerated with their FILLED BY tree-7
 markers); the cross-cutting engine-1/engine-2 blocks; and the D-record
-family D060–D117 (the decision records — enumerate EVERY D-number, with
-its status token: LOCKED/SKIPPED/REJECTED/AGREED-IN-PRINCIPLE/PENDING).
+family D085-D117 (the 33 decision-record headers - enumerate EVERY
+D-number header, with its status token: LOCKED/SKIPPED/REJECTED/
+AGREED-IN-PRINCIPLE/PENDING. D060 exists only as a supersession
+cross-ref, NOT a ledger header; D082+ numbers are implied for LOCKED
+entries, not written headers).
 Also enumerate the closing "Research leftovers" section (recorded, no
 decision yet). The gen-1 families (plain items 1–37, O/I/NU-series,
 backup-A…spec-E, TENSION, clash, G/J/R/H, M0–M7…) are ARCHIVED — do not

@@ -1,5 +1,5 @@
 ---
-description: Stage F of the TEMP-PLANNING integration pipeline — Cross-doc Consistency Pass. Dangling-reference checks + terminology normalization across all 15 docs + docs/LifeTree.md. MEDIUM-effort stage.
+description: Stage F of the TEMP-PLANNING integration pipeline — Cross-doc Consistency Pass. Dangling-reference checks + terminology normalization across all 23 live docs + docs/LifeTree.md. MEDIUM-effort stage.
 mode: subagent
 model: opencode-go/deepseek-v4-flash
 ---
@@ -28,7 +28,7 @@ Unchanged from v4 (§12), plus:
   removed from life-tree-design/, confirm no doc still quotes the old
   number).
 - Terminology normalization: the same concept must carry the same name
-  across all 15 docs + docs/LifeTree.md (e.g. the register terms: "twig
+  across all 23 live docs + docs/LifeTree.md (e.g. the register terms: "twig
   bars" vs "mixed days", "stage-year" vs "year", the crown/medal/trophy
   ladder names, the ring-fold and canopy rules — the register locks these;
   the docs must not still name them three ways). Flag, don't silently

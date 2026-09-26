@@ -138,7 +138,9 @@ judgment.
   independent audits (Gen Agent Trust Hub / Socket / Snyk on skills.sh)
   and high install counts; (4) re-scan the installed files on disk
   after install. Any install also needs a DecisionLog entry (D-number
-  recorded in TEMP-PLANNING.md per LANDS) + user approval. If a skill
+  recorded in the active TEMP-PLANNING ledger per LANDS — each
+  generation's ledger archives to audits/ date-suffixed on close) +
+  user approval. If a skill
   is not genuinely needed, do not install it — dead weight is rejected.
 
 ## Commands

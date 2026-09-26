@@ -48,8 +48,9 @@ Produce docs/IntegrationLedger.md:
   the docs pass (they collide with the DecisionLog's recorded D083).
 - Verbatim-critical: YES if exact precision matters (register values,
   thresholds, the derivation math, the launch-day contract numbers — YES).
-- Likely target doc: one of the 15 real docs/*.md files (including UIUX.md
-  and DecisionLog.md as live targets), "NEW: docs/LifeTree.md" for the
+- Likely target doc: one of the live docs/*.md files (the docs/ folder
+  currently holds 23 files - read the whole folder, don't trust a stale
+  count; UIUX.md and DecisionLog.md are live targets), "NEW: docs/LifeTree.md" for the
   tree-7 decision rows (the anticipated Life Tree doc family — register,
   state model, trigger table, derivation contract; detail lives in the
   life-tree-design/ sources, the row points at it), "EXTERNAL: <path>" for

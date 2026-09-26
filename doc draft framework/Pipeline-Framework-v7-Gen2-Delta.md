@@ -11,7 +11,9 @@ wins.
 ## 1. The ledger this pipeline drafts from
 
 - Source: `TEMP-PLANNING.md` (the gen-2 ledger — the C/F/N/L series
-  + the tree-7 design decisions + the D-number records D060–D117).
+  + the tree-7 design decisions + the D-number records D085–D117; D060
+  exists only as a supersession cross-ref inside the ledger, D082+ is
+  the implied convention for LOCKED entries).
 - The Life Tree design's authoritative detail lives OUTSIDE the
   ledger and is part of the drafting surface:
   - `life-tree-design/VISION.md` (17 principles, the organ map)
@@ -41,7 +43,7 @@ wins.
 | audit | audit-1..audit-13 | refactor-audit checklist anchors |
 | tree | tree-1..tree-7 | the Life Tree design system (tree-7 = the decisions) |
 | engine | engine-1, engine-2 | cross-cutting discipline blocks |
-| D-records | D060..D117 | the decision log records (statuses: LOCKED/SKIPPED/REJECTED/AGREED IN PRINCIPLE/PENDING) |
+| D-records | D085..D117 | the decision log records (33 headers; statuses: LOCKED/SKIPPED/REJECTED/AGREED IN PRINCIPLE/PENDING) |
 
 The gen-1 families (backup-A, census-A, routine-A, audit-B/C/E,
 resolve-B/E, spec-E, TENSION, clash, G/J/R/H…) are ARCHIVED and do
@@ -87,3 +89,33 @@ The A1a stage enumerates the ledger's IDs by family (including
 tree-7 — the legend now includes it). The census must also list
 the life-tree-design/ sources as drafting inputs (they carry the
 register/model/trigger detail the ledger points to).
+
+## 7. The archival surface (two ledgers in audits/)
+
+After this gen-2 run closes, `audits/` holds TWO complete pipeline
+sets — never collide them:
+
+- Gen-1 (closed 2026-08-20): `TEMP-PLANNING-2026-08-20.md` +
+  `Integration*-2026-08-20.md` (census, ledger, intent brief,
+  structural proposal, audit report).
+- Gen-2 (this run): `TEMP-PLANNING-2026-09-26.md` +
+  `Integration*-2026-09-26.md`.
+
+Rules: the G Part-C archive names are date-suffixed and explicit;
+docs/README.md's provenance note lists BOTH sets by generation;
+AGENTS.md's LANDS pointer references "the active TEMP-PLANNING
+ledger" (not the root filename — the root file disappears at G).
+The gen-1 2026-08-20 ledger is FROZEN HISTORY — never edited, never
+re-opened.
+
+## 8. The live docs/ set
+
+v6-final's "15 docs" was the 2026-08-era count. The docs/ folder
+now holds 23 files (DesignSystem.md, DesignWorkflowGuide.md,
+DevelopmentWorkflow.md, DevicePace.md, IntegrationSummary.md,
+M0ScopeGapReview-2026-08-21.md, PerfBacklog.md,
+PerformanceOptimizationBrief.md, Retrospectives.md, StorageDecision.md,
+StorageSpikeSessionA.md, StorageSpikeStatus.md + the 11 core spec
+docs). Agents read the WHOLE current docs/ folder — never a fixed
+count. Drafting targets gain the docs/LifeTree.md family (NEW) on
+top of the existing 23.

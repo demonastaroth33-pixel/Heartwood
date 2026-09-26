@@ -1,4 +1,4 @@
----
+﻿---
 description: Stage G of the TEMP-PLANNING integration pipeline — ID-Census Reconciliation + No-Holes Gate. Parts A (consume E Part 4), B (residual re-read), C (archive & close). MAX-effort stage.
 mode: subagent
 model: opencode/deepseek-v4-flash-free
@@ -28,8 +28,8 @@ confirm E's output and clear the gate.
 un-numbered-prose scan now explicitly including: the candidate families'
 entries (C-01–C-15, F-01–F-32, N-01–N-18, L-01–L-15), the tree-1..tree-7
 skeletons (verified superseded, not live), the engine-1/engine-2 blocks,
-the D-records' prose (D060–D117 — every decision record's body, not just
-the headers), the LANDS conventions (every LANDS line lands somewhere),
+the D-records' prose (D085-D117 - every decision record's body, not just
+the headers; D060 is a supersession cross-ref only, not a record), the LANDS conventions (every LANDS line lands somewhere),
 and the "Research leftovers" closing section (each item has a resting
 place — DecisionLog open item or SequencingNotes).
 
@@ -47,8 +47,17 @@ final approval:
   `IntegrationAuditReport.md`) move to `audits/` alongside it,
   date-suffixed as a set (`Integration*-2026-09-26.md`).
 - `docs/README.md`'s doc map is updated: retired entries removed, the new
-  docs (docs/LifeTree.md family) added, one line pointing at the archived
-  integration set for provenance.
+  docs (docs/LifeTree.md family) added, ONE line per archived generation
+  for provenance (gen-1 `*-2026-08-20` set + the gen-2 `*-2026-09-26`
+  set — after this run audits/ holds TWO TEMP-PLANNING ledgers; label
+  both, never bare "the archived ledger").
+- The Project Status "Integration" line in docs/README.md is updated:
+  the gen-1 closure (2026-08-20) stays, the gen-2 closure (this run's
+  date) is added as its own line.
+- AGENTS.md's LANDS pointer is re-checked: any "recorded in
+  TEMP-PLANNING.md" reference must now read "the active TEMP-PLANNING
+  ledger (archived date-suffixed on close)" — the root file no longer
+  exists after this move.
 - Final commit covers the archive move (see §14 for the full end-state).
 
 **Final sign-off condition:** Stage G is not complete until — Part A

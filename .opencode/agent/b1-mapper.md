@@ -1,5 +1,5 @@
 ---
-description: Stage B1 of the TEMP-PLANNING integration pipeline — Mapping & Conflict Detection. Annotates the ledger against all 15 docs, proposes D118+ decision IDs. HIGH-effort stage.
+description: Stage B1 of the TEMP-PLANNING integration pipeline — Mapping & Conflict Detection. Annotates the ledger against all 23 live docs, proposes D118+ decision IDs. HIGH-effort stage.
 mode: subagent
 model: opencode/deepseek-v4-flash-free
 ---
@@ -9,7 +9,7 @@ model: opencode/deepseek-v4-flash-free
 Framework effort assignment: **HIGH** (per §1 effort table of
 TempPlanning-Integration-Framework-v6). One stage = one fresh session;
 on-disk artifacts are the only handoff. TEMP-PLANNING.md is frozen — do not
-edit it. If reading the ledger + all 15 docs exceeds your context window,
+edit it. If reading the ledger + all live docs exceeds your context window,
 process per-doc-family in chunks and append annotations incrementally to
 the ledger file — never hold the whole mapping in memory.
 
@@ -26,8 +26,8 @@ D083/D084 renumber to D118/D119 at the docs pass.
 Execute the framework's Stage B1 instruction exactly:
 
 You are the Mapper agent. Input: docs/IntegrationLedger.md and the full
-current docs/ folder (all 15 files, including UIUX.md — read it directly,
-don't rely on secondhand description) plus AGENTS.md.
+current docs/ folder (all 23 files - read every one directly, including
+UIUX.md, don't rely on secondhand description) plus AGENTS.md.
 
 IF "Self-directed mapping" = YES: verify, don't guess. Confirm the named
 target section exists (or needs creating), confirm the described edit is
