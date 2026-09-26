@@ -82,6 +82,18 @@ macro-gap bar, and one-tap log/pack actions. Quiet meal reminders point here
   rows summed vs `deriveMacros(dateKey)` targets — Architecture.md §Energy
   balance & macro derivation). Zero storage (derived); the single
   highest-visibility budgeting surface; home for reminders + Coach nudge; no XP.
+- **Exercise kcal — display-only (N-08, L049; docs-pass D182):** the macro-gap
+  bar renders exercise kcal (NU9 band + cardio MET) as a LABELED FACT —
+  display-only, NEVER expanding the day's targets (PAL already embeds exercise;
+  wearables overestimate 27%+; eating-back silently stalls cuts / bloats bulks).
+  The weekly check-up mentions it as a fact line only, never an adjustment.
+- **Protein pacing narrative (N-14, L055; docs-pass D182):** the gap bar's
+  protein line carries a pacing NARRATIVE over the existing number — facts-only
+  Coach lines about protein DISTRIBUTION over the locked daily g/kg target
+  ("Protein so far: 40g - 60g across the remaining meals keeps the 1.8 g/kg
+  pace."). Zero new logging; once daily, evening, when the pattern is visible —
+  never nagging; pace-neutral phrasing ("keeps the pace"), never "you're behind"
+  — the no-shame boundary.
 - **Session pre-load (A7, L115):** the card's Gym slot TAP opens the session
   screen pre-loaded with that day's linked workout template (exercises, target
   sets/reps in order, last-time hints, PO suggestions ready) — logging =
@@ -91,6 +103,13 @@ macro-gap bar, and one-tap log/pack actions. Quiet meal reminders point here
   marks its slot done in THAT date's routine view, never today's; the macro-gap
   bar always sums the day's target vs the day's full receipt via
   `deriveMacros(dateKey)` — display may lag, numbers never disagree.
+- **Evening close (L-05, L064 + L-08, L067; docs-pass D185):** the briefing card's
+  wrap-up card at day's end — the CLOSE of the plan-vs-actual loop (planned → ran →
+  compared). It carries the per-slot summary glance (done / skipped / different —
+  never scored) and lists the day's deviation badges SILENTLY as a day-total only;
+  the per-step minute-delta report (the data — "gym 45 planned · 52 actual · +7")
+  lives in the day view (Calendar — Memory Map). Neutral tone; done-differently
+  semantics; no shame.
 - **Prompt discipline (routine-A2, L109):** no weekly prompt on unbroken
   indefinite runs; the app asks only at first-ever setup, when a period ends
   (falls to the default), on user-opened override, or an explicit want-change.
@@ -173,6 +192,19 @@ everything from existing H3 owner functions — zero new storage, zero writes
   color; the day view lists "deadline: reach 75kg" as the first line. Coach
   outputs render as a quiet line under the day's events (Coach notes in calendar
   day view — Settings Group 2). No glyphs.
+- **Post-run expected-vs-actual report (L-05, L064; docs-pass D185):** after a
+  routine/day runs, a per-step report — expected vs actual minutes per slot
+  ("gym 45 planned · 52 actual · +7") — feeding the PLAN-vs-ACTUAL toggle's data
+  source. BOTH render here: the per-step minute-delta report (the data) AND the
+  per-slot summary (done/skipped/different — the glance). Neutral tone, never
+  scores; done-differently semantics; no shame. (The briefing's evening close
+  carries the summary half — see Today — Briefing Card & Daily Log.)
+- **Neutral deviation badges (L-08, L067; docs-pass D185):** deviations
+  (rescheduled / skipped / done-differently) render as NEUTRAL badges — plain
+  factual counts with zero moral valence — shown on the affected slots of the
+  plan-vs-actual day view. ALWAYS-ON in the day view (facts are facts); moved-count
+  PER-SLOT ("moved 3x" on that slot); the evening close summarizes them as a
+  day-total only; never scored, no color-coded guilt.
 - **Year heatmap:** month → year = 12 mini-months of the same tint
   (GitHub-contribution style), same owner, no new data.
 - **Month-header fact line (audit 2.3/8.3):** e.g. "22/31 days logged this
@@ -497,6 +529,66 @@ bursting / scarred); the habit card and the tree's habit branch never
 disagree (one derived state). Gentle-return + pause surfaces land in Empty &
 First-Run States and Settings (C-09, D130).
 
+## Nutrition Diary
+
+The diary is the nutrition logging surface: planned meals, the plan-confirm flow,
+and the day's food rows. The macro-gap bar surface lives in Today — Briefing Card &
+Daily Log; the check-up copy lives in CoachSystem.md; this section carries the
+diary's surface rules.
+
+<!-- D181 (UIUX diary-surface family, docs-pass): N-04 plan-confirm logging + gap
+rebalance (L044), N-12 density facts (L053), N-15 eating-window awareness (L056).
+D183 (docs-pass): N-13 estimate-framing + tap-to-explain (L054; sequencing note
+S042 — the framing copy table is VERBATIM-CRITICAL, exact lines). -->
+
+- **Plan-confirm logging (N-04, L044; docs-pass D181):** logging by CONFIRMING the
+  plan — template-bound days show the planned meals; one-tap confirm /
+  log-all-planned (the locked batch catch-up becomes the confirm flow). Confirm is
+  a MODE, not a template feature — it applies to free-form days too.
+- **Gap rebalance (N-04, L044; docs-pass D181):** a skipped/swapped meal's macro
+  gap reshapes the REMAINING meals' suggested composition — the macro-gap bar made
+  PROACTIVE (report card → steering wheel). Rebalance = SUGGESTED adjustments, the
+  user confirms — NEVER auto-applied (the report-never-auto-change principle shared
+  with the PO kill-switch and F-08).
+- **Density facts (N-12, L053; docs-pass D181):** the density heuristic restated
+  NEUTRALLY as facts-only Coach lines — never colors, never good/bad framing, never
+  Life-Score composites ("This meal is 2.1 kcal/g - a dense option."); the ONLY
+  legitimate form under the locked no-shame rule. Fires on SPECIFIC meals when the
+  Coach has a factual density outlier — never a constant label; RELATIVE framing
+  (dense/lighter vs the user's typical meals) rather than absolute cutoffs;
+  facts-only, derived + explainable (show-your-work), no shame.
+- **Eating-window awareness (N-15, L056; docs-pass D181):** an OPTIONAL
+  fasting-window indicator on the diary — the window band shows fasting/window
+  state; logged meals appear inside/outside it with a NEUTRAL marker (facts, no
+  judgment); in-app only (no push, no timers nagging), quiet-week aware, default
+  OFF (opt-in; Settings Group 4 toggle). A DISPLAY AWARENESS LAYER, NOT a fasting
+  product — no window coaching, no window trophies, no streak pressure, no
+  notifications. Schedule model = SIMPLE DAILY WINDOW (start/end, or two windows)
+  WITH PER-DAY EXCEPTIONS; the outside-window marker is a neutral facts-only line,
+  NEVER a warning color (no-shame applies to fasting too). Composes with N-04
+  (window-aware plans place meals inside the window — optional).
+
+### Estimate-framing — the explainer sheet + footnotes (N-13, L054; docs-pass D183)
+
+Every derived nutrition number carries honest error framing + a tap-to-explain
+sheet (formula, inputs, constants, sources). The explainer sheet renders the
+number's derivation; the footnotes carry the framing lines below. THE FRAMING
+COPY TABLE — verbatim-critical lines (exact; do not paraphrase):
+
+| Number | Framing copy (verbatim) |
+|---|---|
+| TDEE (formula) | "+-10-15% typical error (+-200-350 kcal for you) - refines as your weight data accumulates" |
+| 7700 kcal/kg | "(Wishnofsky 1958); early weeks and water/glycogen swings can diverge 30-40%+; judge rates over 2+ week trends" |
+| Exercise kcal | "+-25-50% estimate; your target already assumes this training - the weekly trend is the only adjustment authority" |
+| Implied TDEE (M3+) | "+-100-150 kcal typical" |
+| Fat floor | absolute grams with rationale: 0.6 g/kg = 45 g @ 75 kg, inside the 40-60 g/d sex-hormone band; carb-crowding warning |
+| Protein phase values | with WHY: cut 2.0 / bulk 1.8 / maintain 1.6; very-lean users up to 2.4 g/kg; g/kg FFM = future precision upgrade |
+| Per-meal pacing (N-14 tie) | soft guidance: ≥0.25-0.4 g/kg per meal across 3-4 meals |
+
+The check-up half of the framing copy lands in CoachSystem.md (check-up copy); the
+derived-number provenance lands in Architecture.md. The explainer sheet is a
+surface component — tap any derived nutrition number → sheet + footnote.
+
 ## Session UI & Fitness Logging
 
 - **Daily logging flow — session anatomy (F-02, L008; docs-pass D147):** the
@@ -542,6 +634,14 @@ card-level comparison stays visible, staleness-labeled. -->
   progressive-overload suggestions pause (~90% of last-time starting baseline
   instead of +2.5 kg extrapolation). Constants configurable in settings —
   Architecture.md §Fitness data entry.
+- **Inferred effort detail (F-09, L016; docs-pass D180):** the expected-vs-actual
+  effort table is engine-internal and SILENT by default — it only feeds the locked
+  Epley e1RM owner (confirm/correct, never replace; Architecture.md §Strength
+  measurement & records). OPTIONALLY VISIBLE per set as a derived detail line
+  ("this set inferred ~RPE 8") when a set's detail is opened — never a required
+  input, never an overlay on the set table. The number is a pure lookup (load% ×
+  reps → expected effort) + delta rule (actual ≥2 off → e1RM adjusts down; easier
+  → up); zero extra logging, no self-rated RPE trusted.
 - **Session comparison (N4, L059):** "Compare" on any past session →
   side-by-side vs the previous same-template session (per-exercise weight/reps/
   est-1RM deltas, volume delta, PR flag); stale gaps (O4)/deload/injury contexts
@@ -606,7 +706,9 @@ Groups (L254–L261, D055):
    TDEE override (freezes auto-recompute + the protein/fat basis until cleared —
    Architecture.md §Energy balance & macro derivation) · protein g/kg per phase
    (cut 2.0 / bulk 1.8 / maintain 1.6) · fat floor g/kg (0.6, editable up) ·
-   quiet meal reminders (default on — CoachSystem.md §Named rules). ADVANCED:
+   quiet meal reminders (default on — CoachSystem.md §Named rules) ·
+   eating-window indicator (default OFF — N-15, L056; docs-pass D181; a display
+   awareness layer, never a fasting product). ADVANCED:
    fully-logged streak window (±10% default — Advanced-only knob clamped 5–15%;
    Gamification.md §Streaks) · backfill bound (normal ≤24h vs historical —
    Database.md §Nutrition) · macro-collision priority (default keep protein,
@@ -630,7 +732,12 @@ Groups (L254–L261, D055):
 7. **DATA & STORAGE** — manual backup/export/restore (Database.md §Backup /
    Restore Format) · storage meter (MediaStorage.md §Storage Meter & Warnings) ·
    batch journal import (J3) · year-book export (J5). "Settings → Data" from
-   J3/J5 anchors here. (audit fix 1, L260.)
+   J3/J5 anchors here. (audit fix 1, L260.) NUTRITION EXPORT (N-18, L059;
+   docs-pass D184): a dedicated human-readable export for the nutrition
+   namespace — foods + recipes (name, macros, servings, gram references) as
+   readable/re-importable docs — riding the existing export machinery;
+   vendor-resilient by design (extinction evidence: PlateJoy shut July 2025,
+   PlanEatMore defunct).
 8. **SYNC** — skeleton only: sync on/off, Wi-Fi-only, last-sync time. Renders
    ONLY when the entity-sync plane ships (H4; Architecture.md §Entity-sync
    plane). (L261.)

@@ -269,6 +269,41 @@ A compact section of the merged weekly surface mirroring the fitness check-in:
 kcal vs target %, protein hit-rate, weekly compliance, plus the 3–5-line
 weekly Coach message (§The weekly Coach message) (L092).
 
+**Adherence-neutral compliance math (N-03, docs-pass D191)** — the weekly
+check-up's denominator rules make compliance a neutral fact, never a
+punishment metric:
+
+- Missed rows NEVER count as zero: unlogged days are typical intake or
+  excluded; compliance = logged days' performance only.
+- Missing days are EXCLUDED from the denominator when <5 logged days
+  (thin-week rule); a typical-average is used only when the week is
+  otherwise complete.
+- No streak displays for nutrition — the check-up reports compliance, never
+  a streak.
+
+**Estimate-framing copy (N-13, docs-pass D194)** — every derived nutrition
+number carries honest error framing; the explainer sheet and footnotes live
+in UIUX.md, the check-up carries these lines (verbatim):
+
+| Number | Framing |
+|---|---|
+| TDEE (formula) | "±10–15% typical error (±200–350 kcal for you) — refines as your weight data accumulates" |
+| 7700 kcal/kg | "(Wishnofsky 1958); early weeks and water/glycogen swings can diverge 30–40%+; judge rates over 2+ week trends" |
+| Exercise kcal | "±25–50% estimate; your target already assumes this training — the weekly trend is the only adjustment authority" |
+| Implied TDEE (M3+) | "±100–150 kcal typical" |
+
+- **Fat floor** — absolute grams with rationale: 0.6 g/kg = 45 g @ 75 kg,
+  inside the 40–60 g/d sex-hormone band; carb-crowding warning included.
+- **Protein phase values with WHY** — cut 2.0 / bulk 1.8 / maintain 1.6
+  g/kg; very-lean users up to 2.4 g/kg; g/kg FFM = a future precision
+  upgrade.
+- **Per-meal pacing (N-14 tie)** — soft guidance: ≥0.25–0.4 g/kg per meal
+  across 3–4 meals.
+
+<!-- E-audit GAP-closing requeue: L043 (N-03) + L054 (N-13) drafted into the
+check-up, docs-pass D191 + D194. The framing table is verbatim-critical; the
+ledger's ASCII "+-" renders as "±" here (doc typography), numbers unchanged. -->
+
 ### Phase-close report (`phase_close`)
 
 Closing a phase renders the full report: weight trend (+kg via rolling avg),
@@ -371,6 +406,31 @@ deviations are "done differently", not missed. A single reasonable miss is
 context; a pattern ("skipped chest 3 of 4 weeks") is a warning. Deload-tagged
 weeks are exempt. Analytics → rules → reflection; no schema change.
 
+**Post-run expected-vs-actual (L-05, docs-pass D195):** after a routine/day
+runs, the Coach reports per-step — expected vs actual minutes per slot
+("gym 45 planned · 52 actual · +7") — feeding the plan-vs-actual toggle's
+data source. This closes the plan-vs-actual loop (planned → ran → compared):
+BOTH the per-step minute-delta report (the data) AND the per-slot summary
+(done/skipped/different — the glance), landing in the day view + the
+briefing's evening close (the wrap-up card pattern). Neutral tone (never
+scores); done-differently semantics; no shame.
+
+**Neutral deviation badges (L-08, docs-pass D195):** deviations
+(rescheduled/skipped/done-differently) render as NEUTRAL badges — plain
+factual counts with zero moral valence. The plan-vs-actual day view shows
+them on affected slots; the evening close lists them silently. Badges are
+ALWAYS-ON in the day view (facts are facts); the evening close SUMMARIZES
+them — moved-count PER-SLOT ("moved 3x" on that slot), day-total only in the
+close. Never scored; no color-coded guilt; done-differently semantics.
+
+**Adapted sessions (F-23, docs-pass D196):** an adapted session (TIRED /
+SHORT-ON-TIME) logs honestly with an "adapted" marker and auto-marks "done
+differently" in adherence — never a miss, never scolded.
+
+<!-- E-audit GAP-closing requeue: L064 (L-05) + L067 (L-08) drafted, docs-pass
+D195 (shared — plan-vs-actual adherence semantics); the S029/L030 CoachSystem
+portion (adapted-session adherence) drafted, docs-pass D196. -->
+
 ### Volume balance
 
 Seeded minimum-effective-sets-per-week baselines per muscle group (MRV-style,
@@ -390,6 +450,51 @@ zero core schema change" is SUPERSEDED — F-05 adds the setType column
 <!-- Display reconciliation (F-28/F-30, docs-pass D152): F-28's chart IS the
 data visualization (interactive, in the fitness area); F-30's readouts live
 ONLY inside the weekly message. -->
+
+### Training-max (TM) adjustment (F-10)
+
+The est-1RM/TM split is the Coach's progression vocabulary (L017): e1RM
+(locked Epley) is the measurement; TM (Training Max) is the decision number
+anchored at 85–90% of e1RM. The Epley formula set lives in Architecture's
+est-1RM owner — the Coach carries the rule and cites the owner's number,
+never re-derives it.
+
+- **RTF mode (hypertrophy, DEFAULT):** beat target reps → TM +0.5%/rep;
+  miss → TM −1%/rep.
+- **RIR mode (strength blocks — only if optional post-session RIR logging is
+  ever added):** 6+ RIR → +2%; <4 RIR → −5%; 4–6 → hold.
+- **Overwarm single** = a TM recalibration event.
+- **F sets feed the miss logic** (F-05): a failure set counts as the miss
+  that adjusts TM down.
+- The Coach line cites the rule (show-your-work); derived-only; history
+  never rewritten; verifiable by hand.
+
+<!-- E-audit GAP-closing requeue: L017 (F-10) drafted, docs-pass D190. -->
+
+### PO suggestion freshness decay (F-11)
+
+Inactivity lowers the suggested starting load (days-since-e1RM multiplier);
+after a deload, PR resets to a reachable baseline with history preserved
+(L018). This completes the locked N2 return ramp: the return ramp (§Post-
+deload return ramp) rules the ramp back up; F-11 rules the starting
+suggestion itself.
+
+- **Decay correlates with the existing absence systems** (deload_markers,
+  periods, planned-rest, quiet week J4): marked/planned absence decays
+  differently (or not at all) vs true unplanned absence.
+- **Decay steepness = settings knob** (~10–20% per week off defaults).
+- **The Coach explains decay** — the suggestion says why when decay applies.
+- **Sensitive numbers warn:** 3+ weeks off shows a warning + explanation
+  before any suggested load.
+- **History/vault/PRs NEVER change** — only suggested starting loads move;
+  no punishment framing.
+
+**Constant reconciliation (docs-pass D190):** the >4wk freshness tier governs
+HINT DISPLAY (collapsed); F-11's decay governs the SUGGESTED STARTING LOAD —
+three surfaces, no conflict.
+
+<!-- E-audit GAP-closing requeue: L018 (F-11) drafted, docs-pass D190 (shared
+with L017 — the fitness-progression theme). -->
 
 ### Rest-day pattern detection
 
@@ -458,6 +563,46 @@ closed app). App opens → a known meal window passed unlogged → quietly offer
 batch catch-up; always in-app, non-naggy (L093, L126). Known meal windows are
 the routine-bound meal slots; no routine → seeded defaults (breakfast/lunch/
 dinner/snack) so it works day one.
+
+### Macro-gap bar rules (N-04 / N-08 / N-14)
+
+The macro-gap bar is the diary's Coach surface; the Coach's rules for it
+(docs-pass D192):
+
+- **Gap rebalance (N-04):** a skipped/swapped meal's macro gap reshapes the
+  REMAINING meals' suggested composition — the bar is a steering wheel, not
+  just a report card. Rebalance = SUGGESTED adjustments, the user confirms —
+  NEVER auto-applied (report-never-auto-change, shared with the PO
+  kill-switch and F-08).
+- **Exercise kcal display-only (N-08, the NU9 rule):** exercise kcal (NU9
+  band + cardio MET) renders in the bar as DISPLAY-ONLY and NEVER expands the
+  day's targets — PAL already embeds exercise; wearables overestimate 27%+;
+  eating-back silently stalls cuts / bloats bulks. SHOW the burn as a labeled
+  fact; the weekly check-up mentions it as a fact line only, never an
+  adjustment.
+- **Per-meal protein pacing (N-14):** facts-only lines about protein
+  DISTRIBUTION over the locked daily g/kg target, riding the bar's protein
+  line as a pacing narrative over the existing number — zero new logging;
+  once daily, evening, when the pattern is visible; never nagging;
+  pace-neutral phrasing ("keeps the pace"), never "you're behind".
+
+<!-- E-audit GAP-closing requeue: L044 (N-04) + L049 (N-08) + L055 (N-14)
+drafted, docs-pass D192 (shared — the macro-gap bar theme). -->
+
+### Density facts (N-12)
+
+The density heuristic is RESTATED NEUTRALLY as facts-only Coach lines —
+never colors, never good/bad framing, never Life-Score composites: "This
+meal is 2.1 kcal/g — a dense option." This is the ONLY legitimate form
+under the locked no-shame rule (docs-pass D193).
+
+- Fires on SPECIFIC meals when the Coach has a factual density outlier —
+  never a constant label.
+- RELATIVE framing (dense/lighter vs the user's typical meals), not
+  absolute cutoffs.
+- Facts-only; derived + explainable (show-your-work); no shame.
+
+<!-- E-audit GAP-closing requeue: L053 (N-12) drafted, docs-pass D193. -->
 
 ### Physique-photo nudge (F5)
 

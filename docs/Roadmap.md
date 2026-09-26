@@ -128,7 +128,12 @@ facts-only, no new tables.
   `health`+`physique` (hidden system tag) — zero new tables, zero new media
   paths. This category is exempt from any future general-photo compression
   tier. The F5 monthly nudge rule (default OFF, no nagging) ships with the Full
-  Coach milestone (M8).
+  Coach milestone (M8). Then & now selfie compare (C-06, L081; docs-pass D174):
+  inside the physique timeline, a dated "compare" action per historical photo +
+  a "snap a new one" action pairs the current photo against any selected
+  historical one (side-by-side / slider — the D031 comparison already
+  designed); nearly free (D031 already has side-by-side/slider); feeds the Life
+  Tree "then & now" layer later (M9).
 
 **Includes:** Settings Group 7 (DATA & STORAGE) already anchors the import and
 year-book homes (M0); Group 2 (COACH) gains the quiet-week range; Group 5
@@ -146,6 +151,8 @@ gains the calendar-media defaults that M6 consumes.
   (dependency decision recorded before build).
 - Physique timeline shows tagged photos over time; the F5 nudge exists as a
   documented Coach rule (built in M8).
+- Then & now compare (C-06) pairs the current photo against any selected
+  historical photo inside the physique timeline (side-by-side / slider).
 
 ---
 
@@ -184,6 +191,14 @@ structured entry only (D041); no NLP; no Apple Health; no device APIs (D009).
   history, calendar day, records vault); template cloning (F4) one-tap incl.
   pairings; "Track this exercise" in the session menu → dashboard "Your lifts"
   block; copy weekly check-in / phase-close report as plain text (F6).
+- **Pre-session adapt affordance (F-23, L030; docs-pass D171):** one "Adapt"
+  button always on the session screen → TIRED (session-level load multiplier
+  ~85% of planned — keeps volume, drops intensity) · SHORT ON TIME (condensed
+  variant — fewer sets or superset pairing, pairWith locked) · NO EQUIPMENT
+  (movement-pattern replacement — LATER; F-32 rejected 2026, the no-equipment
+  path is parked); adapted sessions log honestly with an "adapted" marker; M2
+  ships TIRED + SHORT-ON-TIME; an adapted session auto-marks "done
+  differently" in adherence (never a miss, never scolded).
 - **Auto-assort paste parser (D076):** rule-based loose-grammar paste
   ("4x8@60kg") → exercises/sets/reps/weight assigned; fuzzy match + "Did you
   mean?" confirm; inline create flow with muscle assignment; NEVER silent
@@ -197,6 +212,22 @@ structured entry only (D041); no NLP; no Apple Health; no device APIs (D009).
   derived by walking sessions — `workout.pr` events exist for Coach/gamification/
   toast ONLY, never the truth for vault or achievements; deleting/editing a
   session simply re-derives everything; negative-XP symmetry handled by M7.
+- **Expected-vs-actual effort table (F-09, L016; docs-pass D171):** Prilepin-
+  style lookup (load% × reps → expected effort) over the live session's
+  rep/set entry; actual ≥2 off → e1RM adjusts down; easier → up; SILENT by
+  default (engine-internal), OPTIONALLY VISIBLE as a derived detail ("this set
+  inferred ~RPE 8"); pure lookup + delta rule; feeds the locked Epley e1RM
+  owner (confirm/correct, never replace); no extra logging; the engine's
+  honesty without trusting self-rated RPE.
+- **Training-Max adjustment on Epley (F-10, L017; docs-pass D171):** e1RM
+  (locked Epley) = measurement; TM (Training Max) = decision number anchored
+  85–90% of e1RM; RTF mode (hypertrophy, DEFAULT): beat target reps → TM
+  +0.5%/rep; miss → TM −1%/rep; RIR mode (strength blocks, only if optional
+  post-session RIR logging is ever added): 6+ RIR → +2%, <4 RIR → −5%,
+  4–6 → hold; overwarm single = TM recalibration event; F sets feed the miss
+  logic; Coach line cites the rule; derived-only; history never rewritten;
+  verifiable by hand. (Formula set lives in Architecture's e1RM/TM owners;
+  Roadmap carries the milestone scope.)
 - **Records vault:** derived-only view — all-time est-1RM ladder per tracked
   exercise (with dates), PR history timeline from the session-walk, milestone
   trophies (1st/5th/10th PR, 1.5×/2× bodyweight, 100th workout, all-time tonnage
@@ -228,7 +259,26 @@ structured entry only (D041); no NLP; no Apple Health; no device APIs (D009).
   suggestion auto-generates each session); override at EVERY level
   (per-session accept/change, per-exercise style + step, GLOBAL KILL-SWITCH in
   Group 3, default on); conservative, deload-aware, suggestion-only, never XP;
-  increments user-configurable (2.5 kg step default, +2 rep-first threshold).
+  increments user-configurable (2.5 kg step default, +2 rep-first threshold);
+  **weight-mode default = linear progression with GZCLP stage-cascade on
+  failure (F-12, L019; docs-pass D171):** on failure, a denser scheme at the
+  SAME weight (5×3 → 6×2 → 10×1), deload/reset only after the last stage;
+  reactive-deload complement (2–3 week stall → deload); triggered by F sets
+  (F-05); Coach announces the cascade ("5×5 failed → next session 6×2 at the
+  same weight"); F = hold/cascade, never punish; deloads only from stall rules.
+<!-- AMENDED 2026-09-26 (gen-2 E-audit requeue; docs-pass D171): the PO default-style record is amended per sequencing note S019 (ledger L019) — "weight-mode default = linear progression with GZCLP stage-cascade on failure (F-12)", compatible with the locked LINEAR-WEIGHT compound default above. Superseding source: F-12 (L019). -->
+- **Inactivity decay + PR reset-to-baseline (F-11, L018; docs-pass D171):** time
+  off lowers suggested starting loads (days-since e1RM multiplier); post-deload
+  PR reset to a reachable baseline with history preserved; completes the locked
+  N2 return ramp; DECAY CORRELATES with the existing absence systems
+  (deload_markers, periods, planned-rest, quiet week J4) — marked/planned
+  absence decays differently (or not at all) vs true unplanned absence; decay
+  steepness = settings knob (~10–20% per week off, default); Coach explains
+  decay; SENSITIVE NUMBERS WARN (3+ weeks off shows a warning + explanation
+  before any suggested load); history/vault/PRs NEVER change — only suggested
+  starting loads; no punishment framing. **Constant reconciliation (recorded):**
+  the >4wk freshness tier governs HINT DISPLAY (collapsed); F-11's decay
+  governs the SUGGESTED STARTING LOAD — three surfaces, no conflict.
 - **Cardio (D045):** workouts gain kind strength|cardio + additive
   durationSec?/distanceKm?/avgEffort?/kcalBurned?; cardio types
   Run/Cycle/Row/Swim/Walk/Stairs; MET estimate verbatim — `MET × 3.5 ×
@@ -320,6 +370,10 @@ in backups (the formatVersion-2 enumeration in `Database.md`).
 - Auto-assort: paste → assign → "Did you mean?" → never silent auto-create;
   works offline.
 - No Apple Health, no device APIs, no NLP — manual entry only (D009/D041).
+- F-09 effort-table deltas + F-10 TM adjustments + F-11 inactivity decay match
+  the locked numbers (unit-tested); F-12 cascade announces on F sets; F-23
+  adapted sessions (TIRED / SHORT-ON-TIME) log with the "adapted" marker and
+  count as done-differently, never a miss.
 
 ## Milestone 3 — Nutrition & Energy Balance
 
@@ -350,6 +404,26 @@ line nutrition + the energy-balance math core (DecisionLog D046, D062, D063).
   school-end batch and the morning pack, M4); backfill bound: same-day/last-24h
   = normal, OLDER dates = distinct "historical backfill" mode that NEVER extends
   streak/check-up compliance.
+- **Plan-confirm logging + gap rebalance (N-04, L044; docs-pass D172):** the
+  locked batch catch-up becomes the CONFIRM flow — logging by CONFIRMING the
+  plan (template-bound days show planned meals; one-tap confirm /
+  log-all-planned); GAP REBALANCE: a skipped/swapped meal's macro gap reshapes
+  the REMAINING meals' suggested composition (the macro-gap bar made proactive
+  — report card → steering wheel); rebalance = SUGGESTED adjustments, user
+  confirms — NEVER auto-applied (the report-never-auto-change principle shared
+  with the PO kill-switch and F-08); confirm is a MODE, not a template feature
+  (applies to free-form days too).
+- **Eating-window awareness (N-15, L056; docs-pass D172):** OPTIONAL
+  fasting-window indicator on the diary — the window band shows
+  fasting/window state; logged meals appear inside/outside it with a NEUTRAL
+  marker (facts, no judgment); in-app only (no push, no timers nagging),
+  quiet-week aware, default OFF (opt-in); a DISPLAY AWARENESS LAYER, NOT a
+  fasting product (no window coaching, no window trophies, no streak pressure,
+  no notifications); schedule model = SIMPLE DAILY WINDOW (start/end, or two
+  windows) WITH PER-DAY EXCEPTIONS; outside-window marker = neutral facts-only
+  line, NEVER a warning color (no-shame applies to fasting too); composes with
+  N-04 (window-aware plans place meals inside the window — optional); Settings
+  toggle in Group 4 (default OFF).
 - **Energy math (D046):** Mifflin-St Jeor BMR (+5 male / −161 female) ×
   NON-TRAINING activity factor → TDEE baseline (height/age/sex/activity as
   Group 4 settings keys, never profile fields — D003); training expenditure
@@ -369,6 +443,14 @@ line nutrition + the energy-balance math core (DecisionLog D046, D062, D063).
   <!-- AMENDED 2026-09-26 (gen-2 docs pass; D121 F-13): the absolute "only rolling-average math" claim is superseded — the engine keeps the shared windowed util; the body weight-trend owner uses the time-indexed EMA. Superseding decision: D121 (F-13 — Libra EMA trend). -->
   `rollingWindowMean` = the only windowed rolling-average util in the engine;
   the body trend owner uses the time-indexed EMA (F-13).
+- **Implied-TDEE insight (N-07; docs-pass D172) — M3+:** M3 ships L1+L2 (the
+  Mifflin formula seed + the rolling-weight recompute above) + ALL
+  estimate-framing copy (N-13) + the weigh-in policy nudge + the adaptation
+  lines + the aggressive-rate warning; the L3 implied-TDEE insight itself ships
+  AFTER M3 ("M3+", needs accumulated logging data to mean anything); the B4
+  contract: L3 is SURFACED, never auto-applied (renders in the weekly check-up;
+  adopted only via the existing manual TDEE override). Formula set + guardrail
+  constants verbatim in DecisionLog D123; the owner in Architecture.md.
 - **Events (D058):** `nutrition.logged` (mealType, kcal/macro totals, source,
   actual eat dateKey — no recipe detail) + `nutrition.removed`; `body.weighed`
   (per canonical first-of-day weigh-in) + `body.weighed_revoked`; all written
@@ -388,12 +470,17 @@ line nutrition + the energy-balance math core (DecisionLog D046, D062, D063).
   manual entry, behavior switch, never deletes data). **Build gate:** open-
   source DATA dependency — DecisionLog entry + user approval before
   formalizing (recorded open item).
+- **Vendor-resilient nutrition export (N-18, L059; docs-pass D172):** dedicated
+  human-readable export for the nutrition namespace — foods + recipes (name,
+  macros, servings, gram references) as readable/re-importable docs; rides the
+  existing export machinery; motivation: vendor extinction evidence (PlateJoy
+  shut July 2025, PlanEatMore defunct) — your food data survives the app.
 - **Settings Group 4 (NUTRITION):** Mifflin inputs · manual TDEE override ·
   protein g/kg per phase · fat floor · quiet meal reminders (default on — the
   mechanism lands with M4's meal windows; seeded defaults work before any
   routine) · Advanced: fully-logged streak window (±10% default, Advanced-only
   knob clamped 5–15%), backfill bound, macro-collision priority, food lookup
-  toggle.
+  toggle · eating-window indicator (N-15, L056; docs-pass D172 — default OFF).
 
 **Includes:** the macro-gap bar (D063) is specified here but RENDERS inside the
 R12 briefing card — it lands with the Routine milestone (M4); the zero-XP
@@ -413,6 +500,10 @@ R12 briefing card — it lands with the Routine milestone (M4); the zero-XP
 - The 00:30-snack display mismatch is documented and accepted (logs under the
   actual date, shows under the previous day's routine slots — both numbers
   correct).
+- Plan-confirm logging round-trip works; gap rebalance is suggested-only,
+  never auto-applied; eating-window markers render neutral (never a warning
+  color); the N-18 nutrition export re-imports; the L3 implied-TDEE insight is
+  scheduled for M3+ (B4 surfaced-only).
 
 ---
 
@@ -484,6 +575,12 @@ the week recap (DecisionLog D061, D063).
   routine; otherwise they continue indefinitely; prompt discipline: no weekly
   prompt on unbroken runs — the app asks only at first-ever setup, when a
   period ends, on user-opened override, or an explicit want-change.
+  Day-PATTERN binding (L-13, L072; docs-pass D173): "which days" becomes a
+  first-class field — weekday/weekend variants, specific days (Mon/Wed/Fri),
+  weekly cadence (M4 scope; MONTHLY patterns future); pattern changes apply
+  FUTURE-ONLY by default with this/all-future/all scoping (a template edited
+  mid-week never corrupts the week); the briefing pre-loads today's applicable
+  template; the NL parser (L-01, M5) feeds cadences.
 - **Performed days (routine-A1):** `routine_days` (dateKey, templateUsedId —
   SNAPSHOT copy of the applied template, frozen) + `routine_slot_logs` (status
   planned | done | skipped | packed | eaten); past days stay frozen; pack→meal
@@ -509,6 +606,21 @@ the week recap (DecisionLog D061, D063).
   explicitly); backfill semantics: a backfilled meal marks its slot done in
   THAT date's view, never today's; the macro-gap bar always sums the day's
   target vs the day's full receipt — display may lag, numbers never disagree.
+- **Post-run expected-vs-actual report (L-05, L064; docs-pass D173):** after a
+  routine/day runs, a per-step report — expected vs actual minutes per slot
+  ("gym 45 planned · 52 actual · +7"), feeding the plan-vs-actual toggle's data
+  source; the CLOSE of the plan-vs-actual loop (planned → ran → compared);
+  BOTH the per-step minute-delta report (the data) AND the per-slot summary
+  (done/skipped/different — the glance); lands in the day view + the briefing's
+  EVENING CLOSE (the wrap-up card pattern); neutral tone (never scores);
+  done-differently semantics; no shame.
+- **Neutral deviation badges (L-08, L067; docs-pass D173):** deviations
+  (rescheduled/skipped/done-differently) render as NEUTRAL badges — plain
+  factual counts with zero moral valence; the plan-vs-actual day view shows
+  them on affected slots; the evening close lists them silently; badges
+  ALWAYS-ON in the day view (facts are facts); the evening close SUMMARIZES
+  them; moved-count PER-SLOT ("moved 3x" on that slot); day-total only in the
+  close; never scored; no color-coded guilt; done-differently semantics.
 - **Week recap (R11/A6):** week-view strip above the displayed week grid —
   glance: gym X/Y · packs eaten · weigh-ins X/7 · PR count · protein hit-rate;
   denominators count only days that HAVE the slot (single owner
@@ -535,6 +647,10 @@ the week recap (DecisionLog D061, D063).
 - Weigh-in slot writes body_metrics; the first-of-day canonical rule holds.
 - Week strip numbers match adherenceWeek() denominators exactly; glance vs
   verdict windows are labeled.
+- Post-run report (L-05) shows per-step minute deltas + the per-slot summary;
+  deviation badges (L-08) render neutral and always-on in the day view;
+  week-pattern binding (L-13) supports weekday/weekend + specific days with
+  future-only pattern changes.
 
 ---
 
