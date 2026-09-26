@@ -1,4 +1,4 @@
-# PersonalOS — Decision Log
+﻿# PersonalOS — Decision Log
 
 Every architectural decision: accepted and rejected, with rationale. Before
 reversing any decision, read its entry. Every new decision gets an entry on the
@@ -2752,4 +2752,17 @@ DesignSystem.md Life Tree palette tokens (D085/D095/D112) · D166 =
 DesignSystem.md LOD render & accessibility tokens (D111) · D167 =
 DesignSystem.md duality tokens (INT-06/D088) · D168 = DesignSystem.md block
 presentation rule (L-12). D169 = DevelopmentWorkflow.md sprawl guardrail
+(L-11) · D170 = DevelopmentWorkflow.md dev-only tooling (INT-04/D105).
+
+**Register completeness - D171-D224 (E-audit + C2 requeue rounds; assigned by the target docs' drafters, recorded here at the G-prep):**
+D171 = Roadmap.md M2 engine family (F-09/F-10/F-11 + F-12/F-23, S019/S029) - D172 = Roadmap.md M3 nutrition family (N-04/N-15/N-18 + N-07 M3+, S040) - D173 = Roadmap.md M4 routine family (L-05/L-08/L-13, S045) - D174 = Roadmap.md M1 C-06 then-and-now compare.
+D180 = UIUX.md session effort detail (F-09) - D181 = UIUX.md Nutrition Diary surface family (N-04/N-12/N-15) - D182 = UIUX.md gap-bar family (N-08/N-14) - D183 = UIUX.md estimate-framing explainer (N-13, S042) - D184 = UIUX.md Settings export (N-18) - D185 = UIUX.md day-view family (L-05/L-08).
+D190 = CoachSystem.md fitness progression rules (F-10 TM adjustment + F-11 PO decay) - D191 = CoachSystem.md adherence-neutral compliance math (N-03) - D192 = CoachSystem.md macro-gap bar rules (N-04/N-08/N-14) - D193 = CoachSystem.md density facts (N-12) - D194 = CoachSystem.md estimate-framing copy (N-13) - D195 = CoachSystem.md plan-vs-actual adherence (L-05/L-08) - D196 = CoachSystem.md adapted sessions (F-23, S029).
+D200 = Database.md PO freshness decay reads (F-11) - D201 = Database.md adherence-neutral compliance math schema (N-03).
+D205 = MediaStorage.md then-and-now compare media half (C-06).
+D210 = Architecture.md e1RM effort feed owner (F-09) - D211 = Architecture.md TM owner contract (F-10) - D212 = Architecture.md derived-number provenance contract (N-13).
+D213 = CoachSystem.md meal-slot substitution adherence (N-10) - D216 = Roadmap.md one-time recipe substitution milestone (N-10) - D217 = Roadmap.md M5 natural-language capture + curated Today (L-01) - D218 = Roadmap.md M5 pace line (L-03).
+D219 = UIUX.md NL-capture composer surface (L-01) - D220 = UIUX.md curated-Today briefing (L-01) - D221 = UIUX.md voice-note entry type surface (C-11).
+D222 = MediaStorage.md voice-note media path (C-11) - D223 = MediaStorage.md audio-container rule (C-11) - D224 = MediaStorage.md voice-note storage tiers (C-11).
+Deliberately unassigned: D141 (gap), D175-D179 (Roadmap range), D186-D189 (UIUX range), D197-D199 (CoachSystem range), D202-D204 (Database range), D206-D209 (MediaStorage range), D214-D215 (CoachSystem range).
 (L-11) · D170 = DevelopmentWorkflow.md dev-only tooling (INT-04/D105).
