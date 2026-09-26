@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage A3 of the TEMP-PLANNING integration pipeline — Process/Sequencing Extraction. Finds HOW/WHEN instructions, produces docs/IntegrationSequencingNotes.md. MEDIUM-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage A3 — Process/Sequencing Extraction (Sequencer)

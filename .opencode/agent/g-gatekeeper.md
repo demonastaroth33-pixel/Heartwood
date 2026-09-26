@@ -1,7 +1,7 @@
 ﻿---
 description: Stage G of the TEMP-PLANNING integration pipeline — ID-Census Reconciliation + No-Holes Gate. Parts A (consume E Part 4), B (residual re-read), C (archive & close). MAX-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage G — ID-Census Reconciliation + No-Holes Gate

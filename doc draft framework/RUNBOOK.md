@@ -1,4 +1,4 @@
-# RUNBOOK — TEMP-PLANNING → /docs Integration Pipeline
+﻿# RUNBOOK — TEMP-PLANNING → /docs Integration Pipeline
 
 Operational companion to
 `doc draft framework/TempPlanning-Integration-Framework-v6-final.md`
@@ -11,7 +11,7 @@ prompts in `.opencode/agent/` are already gen-2-keyed.
 
 ## Setup summary
 
-- **Model:** `opencode/deepseek-v4-flash-free` for every agent (set in each
+- **Model:** `opencode-go/deepseek-v4-flash` for every agent (set in each
   agent file — no per-stage model upgrades).
 - **Agents:** `.opencode/agent/` — one file per pipeline stage, prompts
   preserved verbatim from the framework.

@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage B1 of the TEMP-PLANNING integration pipeline — Mapping & Conflict Detection. Annotates the ledger against all 23 live docs, proposes D118+ decision IDs. HIGH-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage B1 — Mapping & Conflict Detection (Mapper)

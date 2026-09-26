@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage A1a of the TEMP-PLANNING integration pipeline — ID Census. Reads UIUX.md + TEMP-PLANNING.md in full, enumerates every ID in every family, produces docs/IntegrationIDCensus.md. MAX-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage A1a — ID Census (Indexer)

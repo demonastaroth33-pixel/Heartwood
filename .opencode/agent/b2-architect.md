@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage B2 of the TEMP-PLANNING integration pipeline — Cross-Doc Structural Impact Analysis. Produces docs/StructuralImpactProposal.md from the Intent Brief against live docs. MAX-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage B2 — Cross-Doc Structural Impact Analysis (Architect)

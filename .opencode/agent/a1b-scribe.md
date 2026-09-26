@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage A1b of the TEMP-PLANNING integration pipeline — Atomic Extraction. Turns docs/IntegrationIDCensus.md + TEMP-PLANNING.md into docs/IntegrationLedger.md with census reconciliation. HIGH-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage A1b — Atomic Extraction (Scribe)

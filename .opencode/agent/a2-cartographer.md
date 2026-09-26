@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage A2 of the TEMP-PLANNING integration pipeline — Intent & Structure Extraction. Reads ledger + census + TEMP-PLANNING.md, produces docs/IntegrationIntentBrief.md. HIGH-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage A2 — Intent & Structure Extraction (Cartographer)

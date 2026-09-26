@@ -1,7 +1,7 @@
----
+﻿---
 description: Stage C2 of the TEMP-PLANNING integration pipeline — optional fresh-session cross-auditor. Samples 10-20 ledger rows (verbatim-critical, REMOVES-existing, E-flagged) and verifies them against final docs. HIGH-effort stage.
 mode: subagent
-model: opencode/deepseek-v4-flash-free
+model: opencode-go/deepseek-v4-flash
 ---
 
 # Stage C2 — Fresh-session cross-auditor (optional)
