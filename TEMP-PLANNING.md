@@ -3810,6 +3810,90 @@ roadmap with statuses: life-tree-design/PLAN.md):
       carry the D116 values + the cadence armor + the exclusion).
     (i) The state model's bankBuds now aggregated by achievementId
       with the count badge (C9's home).
-    ALL audit residuals closed; the register, the trigger table, and
-    the records agree.
-      (achievement-scan at the feature-scan step).
+- D117 THE DEVELOPMENT HANDOFF PLAN (LOCKED, user yes - 2026-08-29;
+    the clean step plan to launch AT the Life Tree milestone (M9)
+    and during Heartwood development; the design chapter is COMPLETE
+    - D085-D116 + the validated register; nothing below gates the
+    first engine line of code; each step consumes the locked
+    artifacts and is sequenced so future sessions can act without
+    the session context):
+    A. PRE-M9 (opportunistic - any docs pass / adjacent milestone):
+      A1 THE DOCS-PASS AMENDMENT REGISTER: DecisionLog entries for
+        D085-D116; the doc amendments (Gamification.md anchor/six-
+        domain/qualifyingEntry; CoachSystem.md anniversary = the
+        shared anchor; Roadmap.md M7/M9 premises + the formatVersion
+        3 + viewed_moments; Database.md the isBackfill column +
+        adoptedAt + the event schema; UIUX.md the tree tab + the
+        semantics contract; StorageDecision.md formatVersion 3).
+        HOME: the docs pass (PLAN step 10).
+      A2 THE TERMINOLOGY GLOSSARY (stage-year/ring-year, bank/
+        bankBuds, legend/crown, gates/signatures, manifest/bloom,
+        ladder/waves - one definition each). HOME: the docs pass.
+      A3 THE OWNER CONTRACTS groundwork: the H3 owners the tree
+        consumes can be designed alongside their systems -
+        qualifyingEntry (with the M7 analytics engine), streak
+        (with M7 gamification), goalProgress (with M5), coach
+        Engagement (with M8 coach), dayActivityScore (the calendar
+        tint owner, M6), mediaPresence (with M10-M13 media).
+      A4 The emotional copy-language pass (the dormancy copy,
+        the bank counter's framing, the empty-spring copy, the
+        legend card) - with the UI copy work.
+    B. M9 PHASE 0 - THE ENGINE FOUNDATION (the milestone's first
+      phase):
+      B1 THE RENDERER PERF SPIKE: prove the perf budget (<=16ms at
+        LOD-1/2 on the target device tier - the F9 gate) with a
+        minimal derived tree on a real device; the LOD ladder
+        (LOD-1 mass / LOD-2 structure / LOD-3 detail), the
+        instanced procedural leaves, the autumn leaf-fall re-bake
+        + the capped particles.
+      B2 THE STATE MODEL IMPLEMENTATION: the derived cache
+        (SCHEMA 2.6), the logFingerprint, the atomic swap, the
+        set-commutative fold, the single-writer lock (D108/D109).
+      B3 THE DEV-TOOLS TUNING SURFACE (D105 - the debug panel that
+        tweaks any register value and drives a live re-derivation
+        + re-render; MUST exist before any visual tuning).
+      B4 THE DERIVATION ENGINE: the incremental protocol, the
+        axes (F4-F7 with the D116 pins), the stage clock (B1-B5
+        with the D116 values), the banking + the tier schedule
+        (D092/D095/D096).
+    C. M9 PHASE 1-2 - THE ORGANS: the trunk/rings renderer, the
+      branches/twigs/forks (the canopy rule), the buds (D087), the
+      leaves (the clusters + the storage-leaf character), the
+      seasonal organ states (D095), the adaptation manifests
+      (D093/D116).
+    D. M9 PHASE 3 - THE VISUALS: (order matters)
+      D1 THE TRAIT-SPACE 17-AUDIT (Step 7): every trait WIRED with
+        a data driver / EXCLUDED-BY-DESIGN / RESERVED-UNMAPPED /
+        STRUCTURAL - MUST precede the trait-driven visuals.
+      D2 THE ARCHETYPE MOCKUPS: the visual validation from the
+        validated register numbers (the 19 paper-run archetypes as
+        the gallery: gym-heavy year 6, sparse-stubborn's honest
+        bare branches, balanced's first bloom, decade's old-growth,
+        the Mediterranean tree's thin-by-design branches...); the
+        heartwood language; the cohesion check (the D112 identity
+        filters); the deuteranopia + contrast gates (D111).
+      D3 The flowers/fruits/adaptations/seasonal-state visuals +
+        the ceremony language (D094) + the why-panel copy engine.
+    E. M9 PHASE 4 - THE NAVIGATION/FEEDS (the duality principle,
+      D088 B): each section UI as the local view of its organ (the
+      bud garden, the sap monitor, the orchard, the garden).
+    F. M9 PHASE 5 - THE ANATOMY VIEWS (VISION 16): the root/stem/
+      leaf cross-sections + the time-lapse replay (D097, the yearly
+      snapshots, the launch-day journey).
+    G. M9 PHASE 6 - THE REVIEW MODE: the yearly review artifacts
+      (the rings + the cross-sections + the legend card).
+    H. THE STANDING GATES (throughout):
+      H1 THE SEEDED-DATA STRESS TESTS - the CODE VERSION of the
+        paper run: the 19 archetypes become the test fixtures; the
+        tests must REPRODUCE the paper run's outcomes (the stage
+        timings, the bank schedules, the honest no-rings, the
+        anti-farm defeats, the restore ratchet).
+      H2 The perf gates (F9) as milestone gates.
+      H3 The coherence checks (the axis signatures + identity
+        filters across generated trees).
+      H4 The deuteranopia + contrast passes (D111).
+      H5 The test strategy's acceptance criteria (the paper run's
+        fixtures ARE the acceptance criteria).
+    LANDS: PLAN.md (the steps 4-9); SCHEMA.md (the register + the
+      model + the trigger table); LOOPHOLES.md (the resolutions);
+      the M9 roadmap rows; the docs pass (A1/A2).
