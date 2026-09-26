@@ -98,6 +98,18 @@ The event log is the foundation everything else reads. Contract:
   of the action. Under sync, `dayKey` is computed per device at capture time;
   LWW (below) resolves conflicting writes. Exception: nutrition backdating
   files under the **actual eat date**, not the capture date.
+- **Future-dating clamp (D114):** events with `occurredAt` in the future are
+  excluded from all math — an architecture-level constraint on every consumer;
+  no derived stat, ring, or stage may count a future-dated event.
+- **Written-in-window guard (D100):** presence predicates (twigs, rhythm,
+  dormancy, bud momentum, qualifying days, yearly bars) read `dayKey` with a
+  written-in-window guard — a day counts as presence only if its events were
+  written within a small grace of that day (candidate ±3 days; the streak-grace
+  philosophy, VERBATIM-CRITICAL — locks in the tree threshold register). Content
+  organs read `occurredAt` TRUTH — content is real; presence is earned. The
+  shared predicate fixes BOTH the tree and the gamification yearly bars — one
+  rule, two systems, no tree special-case; imports stay excluded everywhere.
+  (Event-schema notes, D163.)
 - **Tombstone rule (L044):** a delete ALWAYS wins over an earlier-timestamped
   edit arriving late from another device — an entity never resurrects if the
   incoming write's timestamp predates the tombstone. Applies to
@@ -173,12 +185,14 @@ a named owner. The catalog below is the consolidated authority (C13.5 / S024):
 |---|---|
 | `rollingAvgWeight(dateKey)` | shared 7-day rolling bodyweight; thin-data guards inside |
 | `deriveMacros(dateKey)` | THE day-target owner; collision detection (L084) |
+| `impliedTDEE()` | implied-TDEE owner (N-07, M3+); three-layer architecture + guardrails in DecisionLog D123 — this doc carries the owner only (D159) |
 | `adherenceWeek()` | weekly adherence; denominators count days WITH the slot |
 | `strengthSnapshot(exerciseId, {asOf})` | canonical strength reader; record-mode aware (L247) |
 | `dayActivityScore` | per-day activity score for calendar tint (L250) |
 | `totalVolume` | tonnage: weight-mode sets only (L161) |
+| `trainingLoad(dateKey)` | training-load / recovery-readiness owner — CTL/ATL/TSB from logged sessions only; numbers in DecisionLog D121 (F-19, D160) |
 | `goalProgress(goalId)` | computed-only goal progress per goal kind (L155) |
-| `paceVerdict(target, rollingTrend)` | ahead / on-track / behind verdict (L005, L006) |
+| `paceVerdict(target, rollingTrend)` | ahead / on-track / behind verdict — reads the F-13 rate layer (L020, D161) |
 | `sameMonthDay` | leap-day-safe month-day matcher (L149) |
 | `dayDomainPresence` | six-domain presence check (L146) |
 | `phaseStartWindow` | phase-start window check (L178) |
@@ -186,10 +200,35 @@ a named owner. The catalog below is the consolidated authority (C13.5 / S024):
 | `yearlyPass` | anchored-year window pass (L179) |
 | `consecutiveYears` | consecutive anchored years (L179) |
 | `anniversaryWindow` | ±7 days exact-day distance (L180) |
-| `rollingWindowMean(series, windowDays)` | the ONLY rolling-average math in the engine (L145) |
+| `rollingWindowMean(series, windowDays)` | the ONLY windowed rolling-average util in the engine (L145; amended D161) |
+| `bodyTrendEMA(dateKey)` | time-indexed EMA trend owner for body — trend ≠ rate ≠ prediction, separate derived layers (F-13, D161; math in DecisionLog D121) |
 | `est1RM` | the only Epley conversion; record-mode routing (L144) |
 | `qualifyingEntry` | ONE qualifying-entry definition per domain (L187) |
 | `robotOverlapWindow` / `runAlive` | robot-consistency run anchoring (L192, L208) |
+
+### Engine discipline
+
+The two cross-cutting engine disciplines recorded here (D162); their DecisionLog
+records are D126 (engine-1) and D127 (engine-2).
+
+- **engine-1 — Logging-friction discipline (L005, D126):** for ALL M2 logging
+  work — session is the cost, data is the payoff; the default path is ≤2
+  interactions per set; pre-filled weights (F-01), steppers not keypads,
+  pre-filled reps, auto-suggested set labels (F-05), checkbox rows + auto rest
+  timer (F-02), batch ops; a friction budget (every live-logging field removes
+  more friction than it adds; optional fields go post-session); minimal mode
+  (pure-checkmark view). Every future logging candidate must pass this
+  discipline.
+- **engine-2 — Coach heuristic engine (L006, D127 APPROVE-as-record):** the
+  Coach commits to **~25 named rules by M2** (gen-1 locks + F-08/F-09/F-10/
+  F-11/F-12/F-19/F-20/F-23/F-24; the rejected pair F-21/F-22 excluded); **ONE
+  rule-execution architecture** (event → rule catalog, condition→action,
+  strictness-parameterized) — never scattered conditionals; H3 single-owner
+  vocabulary; graceful degradation; **LLM = VOICE LAYER only**
+  (render-never-decide), OFF by default, offline = complete product; a concrete
+  test plan (determinism/table-driven/boundary/fixture/provenance) locks at the
+  rule-book session (M8 anchor). No rule content is drafted at this pass — the
+  rule catalog + test plan live in CoachSystem.md.
 
 ### Day activity score
 
@@ -259,22 +298,34 @@ a named owner. The catalog below is the consolidated authority (C13.5 / S024):
 - **Manual TDEE freeze (L087, L120):** a manual override FREEZES
   auto-recompute AND the protein/fat g/kg basis until cleared — no silent
   overwrite of a real measurement.
+- **Implied-TDEE owner (L047, L048 / N-07; D159):** `impliedTDEE()` is the
+  Analytics Engine owner for the implied-TDEE computation — the three-layer
+  architecture (L1 formula seed + L2 rolling-weight recompute locked M3; L3
+  implied-TDEE insight M3+). Architecture carries the OWNER only: the math,
+  guardrail constants (20-day trendWindow, ≥6/7 gate, ≥3 weigh-ins/wk, ±250
+  kcal/wk cap, symmetric 7700), and the B4 contract (surfaced, never
+  auto-applied) live in DecisionLog D123. The owner's 20-day trendWindow is an
+  INFERENCE signal — a separate derived layer from the F-13 display EMA; the
+  layers never mix.
 - **Strength burn (L088, L118, L131):** tight estimate band, always LABELED
   estimate; manual `kcalBurned` REPLACES the band entirely. Reviewed — no
   change; error absorbs over ~2 weeks.
 
 ### Rolling weight, thin data & pace
 
-- **rollingWindowMean (L145, L038):** the only rolling-average math in the
-  engine; serves phase pace, goal pace, ratios, trophies, weight-goal pace.
-  7-day default, 14-day optional for pace.
+- **rollingWindowMean (L145, L038):** the ONLY windowed rolling-average util
+  in the engine; serves phase pace, goal pace, ratios, trophies, weight-goal
+  pace. 7-day default, 14-day optional for pace. The body TREND owner uses the
+  time-indexed EMA instead (F-13, D161): trend ≠ rate ≠ prediction — separate
+  derived layers; pace-owner consumers read the new rate layer (L020).
 - **Thin-data rule (L039 RESTATED):** with <7 weigh-ins the rolling average
   uses available days (min 1) and always carries "Adjusting"; NO
   verdict/projection/pace line from a single point.
-- **Pace (L005, L006):** pace lives in the existing Coach pipeline —
+- **Pace (L020, F-13; D161):** pace lives in the existing Coach pipeline —
   Analytics Engine computes → Rule Engine decides → Reflection Generator
-  phrases. No new subsystem. Bulk/cut pace status = rolling 7–14 day weight
-  average vs phase target weekly rate → ahead / on-track / behind.
+  phrases. No new subsystem. Bulk/cut pace status = the F-13 RATE layer (slope
+  over the last N trend points, default 30-day window) vs phase target weekly
+  rate → ahead / on-track / behind.
 
 ### Fitness data entry
 
