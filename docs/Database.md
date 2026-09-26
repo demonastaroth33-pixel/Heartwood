@@ -264,7 +264,7 @@ finite and no two labels mean the same thing:
 | `nutrition_checkup` | weekly nutrition stats: kcal vs target %, protein hit-rate, weekly compliance |
 | `milestone_review_goal` | goal-end review card: WON or EXPIRED vintage, computed final value beside target |
 | `milestone_review_anniversary` | "since you started" review anchored to the shared birth anchor — the account's FIRST IN-WINDOW EVENT per D100, frozen at first write, never shifted by deletion (D102); a gym-only user gets their review on the tree's birthday |
-| `phase_close` | phase close report (derived summary + one Coach line) |
+| `phase_close` | phase close report (derived summary + the 3-5-line weekly Coach message — F-24, docs-pass D152; see CoachSystem.md §Phase-close report) |
 | `pattern_alert` | pattern alerts (rest-day training, stall recovery, adherence patterns) |
 
 The former "weekly review" label is replaced by `check_in_weekly` (L156).

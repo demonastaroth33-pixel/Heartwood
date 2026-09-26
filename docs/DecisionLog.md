@@ -2675,7 +2675,10 @@ incorporate list (user picks; APP MAP 13 goals) · audit-12 unlocks & extras
 (the ledger's `_TO FILL_` placeholder carries NO content — nothing drafted) ·
 audit-13 LIFE TREE DESIGN SYSTEM (the main-goal audit — the tree-7 session +
 D117 effectively complete the goal; completion is marked when the
-docs/LifeTree.md family lands).
+docs/LifeTree.md family lands). **COMPLETED 2026-09-26 (gen-2 docs pass):** the
+docs/LifeTree.md family landed (all 19 sections per the StructuralImpactProposal
+§2.1 outline); the main-goal audit is marked complete — this checklist item
+closes (ledger L104).
 Revisit: when each audit runs (refactor phase; post-M0 per the roadmap); D070
 discipline applies.
 
@@ -2717,3 +2720,36 @@ D132 = the 7-skip record. Audits (audit-1..13) + research leftovers (RL-1..17)
 carry NO D-number (DecisionLog open items, D070/D038/D039 precedent). All
 other implied rows are assigned by their target doc's drafter per the
 C-approved decision-ID list (one shared ID per same-theme rows).
+
+**Register completeness — D133–D170 (assigned by the target docs' drafters at
+this docs pass; recorded here so the register is complete and cross-doc
+citations resolve):** D133 = Database.md `setType` column (F-05) · D134 =
+Database.md pack model — batches/containers/line items (N-05) · D135 =
+Database.md trivial-foods list (N-06) · D136 = Database.md receipt-line
+substitution field (N-10) · D137 = Database.md gram-reference field (N-11) ·
+D138 = Database.md veggie-tag + water source (N-16) · D139 = Database.md
+parse-output fields (L-01) · D140 = Database.md day-pattern binding (L-13) —
+the Database schema set lands as ONE versioned group (Database.md "Format v3 —
+the tree-era schema set"); D141 is UNASSIGNED (deliberate gap, no row carries
+it). D142 = UIUX.md tree-tab surface family (INT-01) · D143 = UIUX.md
+identity-axis filters (INT-15) · D144 = UIUX.md dev-only tuning panel (INT-04)
+· D145 = UIUX.md L-10 insight-line home (L069) · D146 = UIUX.md memory
+hygiene / C-05 hide-controls (L080) · D147 = UIUX.md session anatomy / F-02
+(L008) · D148 = UIUX.md plate + warm-up calculators / F-04 (L010) · D149 =
+UIUX.md weekly-surface copy (INT-17) · D150 = UIUX.md habit-card duality /
+bud's local view (INT-06). D151 = CoachSystem.md authority re-point (INT-16) ·
+D152 = CoachSystem.md weekly-message template / F-24+F-30+L-10 · D153 =
+CoachSystem.md rule-book-session locking anchor (engine-2/D127) · D154 =
+CoachSystem.md volume-balance schema note (F-08/F-05). D155 = Gamification.md
+F-27 adherence/schedule-run planning seed (L034) · D156 = Gamification.md
+weight-ladder hero ring (F-15) · D157 = Gamification.md PR celebration (F-03) ·
+D158 = Gamification.md goals-only 2-day slip (L-02). D159 = Architecture.md
+impliedTDEE owner (N-07) · D160 = Architecture.md training-load owner (F-19) ·
+D161 = Architecture.md rollingWindowMean/bodyTrendEMA amendment (F-13) · D162 =
+Architecture.md engine disciplines (engine-2) · D163 = Architecture.md
+event-schema notes. D164 = DesignSystem.md ceremony tokens (INT-07) · D165 =
+DesignSystem.md Life Tree palette tokens (D085/D095/D112) · D166 =
+DesignSystem.md LOD render & accessibility tokens (D111) · D167 =
+DesignSystem.md duality tokens (INT-06/D088) · D168 = DesignSystem.md block
+presentation rule (L-12). D169 = DevelopmentWorkflow.md sprawl guardrail
+(L-11) · D170 = DevelopmentWorkflow.md dev-only tooling (INT-04/D105).
