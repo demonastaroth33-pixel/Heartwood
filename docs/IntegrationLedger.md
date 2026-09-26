@@ -470,10 +470,10 @@ All 166 rows carry the Self-directed mapping result verified against the live do
 - L074 L-15 (life-scale grid): **REFER** — design feed only; placement deferred to D117 D1/D2 (the M9 trait-space + mockup step). Not drafted into any product doc.
 - F-26 (progression-edge table): **not draftable** — SKIPPED for now (user), recorded with its REVISIT trigger (rep-mode exercise work).
 - L092-L104 (audit checklist anchors) + L150-L166 (research leftovers): **DecisionLog open items** (D038/D039 precedent) — recorded as open, not drafted as scope. Confirmed.
-- L078 (C-03 weather chip) + L084 (C-08 mention-suggestion): **PENDING user verdict** — held for explanation before any decision.
+- L078 (C-03 weather chip): **REJECTED (user)** - recorded in DecisionLog with the reason (weather data dependency vs offline-first + the no-new-dependencies rule); resting place = DecisionLog rejected entry, do-not-resurrect contract.
+- L084 (C-08 unlinked-mention suggestions): **REFER (user)** - stays in the sequencing notes; natural fit for the M8 rule-book session / Coach analysis pipeline when the pass-over mechanism exists.
 
-**3. Decision-ID list: PENDING user confirmation** (held for explanation).
-
+**3. Decision-ID list: APPROVED (user).** D085-D117 kept exactly as recorded; D118 = flutter-expert install, D119 = security-suite install (the D083/D084 collision pair); implied D118+ assigned sequentially per theme at drafting (shared ID per same-theme rows; one shared for the 8 rejections, one for the 7 skips); audits + research leftovers get NO D-number (DecisionLog open items, D070/D038/D039 precedent).
 **4. D060 override: APPROVED, scoped exactly to the ledger record (TEMP-PLANNING.md:131).**
 - The gen-2 F-series supersedes D060 ONLY for the named locked candidates.
 - Roadmap idea-park N3 (warm-up sets -> F-05) and N5 (recovery -> F-19) are RE-OPENED by those locks explicitly; the Roadmap.md:283-288 clause saying they remain park-able is amended.
