@@ -416,6 +416,48 @@ R12 briefing card — it lands with the Routine milestone (M4); the zero-XP
 
 ---
 
+## Milestone 3b — Batch Containers & Micronutrients
+
+**Scope:** nutrition round two — the pack model's first-class flow (batch →
+containers → line items) + the micronutrients milestone (DecisionLog D122,
+D134). Sits after M3 (needs the M3 diary/receipt-line foundation) and before M4
+(the routine pack flow consumes this model) — self-contained after that
+(sequencing S036). Large GUI/UIX section; Cronometer has NO mobbin screens —
+dedicated mobbin pull at activation (D122).
+
+- **Pack model — batch → containers → line items (D134, N-05):** prepped
+  batches are first-class: a `batch` (recipe × N servings, or free-form) →
+  `batch_containers` → consume-decrement. MIXED BATCHES use the FULL containers
+  model — the containers table carries per-container LINE ITEMS (partial
+  servings, mixed contents, multi-recipe meals — each part with its own portion
+  multiplier). CONSUME MATH runs per container's own line items
+  (partial-consume semantics, per-part honest sources: packed / fooddb /
+  recipe). Both container kinds: recipe-linked AND free-form. Consumed portions
+  become `nutrition_logs` rows (source='packed') at eat time — slot logs
+  reference, never duplicate. Built full, nothing grows later. (Schema:
+  `batches` + `batch_containers` + `batch_container_line_items` in
+  `Database.md`.)
+- **Micronutrients (D122, N-02):** micros get their own milestone M3b — after
+  M3, before M4; the data is already CC0 + complete in FDC. The micro surface is
+  a LARGE GUI/UIX section, with a dedicated mobbin pull + research pass at
+  activation (Cronometer has NO mobbin screens). The M3 food-lookup build ships
+  the food-database tiering (bundled core ~15k / ~10–15 MB brotli, growing
+  local mirror, online pass-through) + the online-exception contract + the FDC
+  CC0 / OFF ODbL licensing note per D122 (seed plan + tiering in
+  `Database.md`; the exception contract + licensing in `DecisionLog.md` D122).
+
+**Exit criteria:**
+- Pack round-trip: create a batch (recipe × N servings or free-form) →
+  containers → consume-decrement; mixed batches log per-container line items
+  with per-part portion multipliers; per-part honest sources (packed / fooddb /
+  recipe) preserved; recipe-linked AND free-form containers both work.
+- Consumed portions write `nutrition_logs` rows (source='packed') at eat time —
+  never double-entered; routine slot logs reference the pack, never duplicate.
+- Micronutrient surface specified and built (large GUI/UIX section); the
+  dedicated mobbin pull + research pass completed at activation.
+
+---
+
 ## Milestone 4 — Daily Routine & Briefing
 
 **Scope:** nutrition closed → routine session (S009). The daily planning
@@ -996,6 +1038,15 @@ anywhere.
 **Scope:** Google OAuth (personal app, no verification), Drive upload of JSON
 backups, restore-from-Drive option. Cloud remains optional.
 
+**Format v3 / device state (D109):** backups ride the formatVersion 3 format —
+a restored install reads the MONOTONIC `logFingerprint` (eventCount + syncSeq)
+and knows its derived caches are stale immediately (no blind re-derivation, no
+stale-tree windows); a restore is ACCOUNT-LEVEL — it supersedes all devices,
+and every device re-derives from the restored log (the D098 "no silent
+regression" guardrail extends to the fleet). The synced `viewed_moments`
+user-state table rides the backup enumeration (account-once + per-device
+delivery — Database.md "Format v3 — the tree-era schema set", D109).
+
 **Exit criteria:**
 - Backup auto-upload on schedule + manual button; offline fails safe.
 - Restore from a Drive backup into a fresh install works.
@@ -1016,6 +1067,16 @@ One-writer-per-device stays the base assumption; no existing behavior is
 re-derived because sync exists. Settings Group 8 (sync skeleton) renders only
 after this milestone ships.
 
+**Format v3 / device state (D109):** the M11 sync plane is where the
+formatVersion 3 format is USED — the synced `viewed_moments` user-state table
+rides the plane (account-once guarantee: the launch replay plays once per
+account, synced across devices; per-device delivery: a transition seen on the
+phone still plays on the desktop — a delivery difference, not a state
+difference). Delivery/state separation (D109 C-4): derived facts converge on
+every device from the same merged log; only DELIVERY (watermarks) and
+PRESENTATION (local bytes) differ — Database.md "Format v3 — the tree-era
+schema set".
+
 **Exit criteria:**
 - Phone → PC round-trip of entity edits converges via the append-only event
   UNION (distinct event ids only, no merge).
@@ -1024,6 +1085,8 @@ after this milestone ships.
 - Offline behaves identically on both devices; queued additions replay on
   reconnect.
 - Backend decision unchanged; no new cloud architecture.
+- `viewed_moments` syncs account-once + per-device delivery; the
+  `logFingerprint` staleness check runs on merge (formatVersion 3, D109).
 
 ---
 
@@ -1035,6 +1098,13 @@ media blobs only** — the previous "synchronizes ONLY media_attachments metadat
 blobs transfer across the user's devices (phone + PCs) via the lightweight
 Drive data pool; deviceId-flagged foreign-device items surface as stubs (see
 `MediaStorage.md`).
+
+**Format v3 / device state (D109):** the blob plane rides the same
+formatVersion 3 contract — the monotonic `logFingerprint` (eventCount +
+syncSeq) staleness check applies to the merged log, and a restore remains
+ACCOUNT-LEVEL (supersedes all devices; every device re-derives from the
+restored log). formatVersion 2 enumeration stays valid for old backups —
+Database.md "Format v3 — the tree-era schema set".
 
 **Exit criteria:**
 - Big media blobs sync between iPhone and a PC; plain-text/stat entity data is
@@ -1066,6 +1136,13 @@ of truth); honest "file missing" stubs; "do-not-readopt" list for removed
 files; vlog local-buffer nudges (rolling 3–5 day rewatch buffer, configurable,
 nudge-only — never silent deletion) wire into the vault browser here; export
 documents PC-archived blobs as `exported: false` stubs.
+
+**Format v3 / device state (D109):** the vault tier inherits the device-state
+contract — derived facts converge on every device from the same merged log;
+only DELIVERY (the `viewed_moments` watermarks: account-once + per-device) and
+PRESENTATION (local bytes) differ. The formatVersion 3 backup set rides through
+P3 unchanged (logFingerprint staleness + account-level restore) — Database.md
+"Format v3 — the tree-era schema set".
 
 **Exit criteria:**
 - Record → auto-sync → offload → view-back (re-download) loop works on iPhone.
