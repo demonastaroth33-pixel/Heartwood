@@ -110,11 +110,14 @@ facts-only, no new tables.
   shield streaks (the streak shield is the Grace setting, M7). Includes the
   calendar day-view drought line — every drought poke routes through the Coach
   rule pipeline (full Coach rule integration completes with M8).
+<!-- AMENDED 2026-09-26 (gen-2 docs pass; C-05/L080): the J5 "packages a copy" clause is amended to EXCLUDE hidden memories — C-05 memory hygiene (hide controls) applies EVERYWHERE memories surface, including exports / Year Book PDFs (a hidden memory is really hidden; display-level flag only, data never deleted). Superseding source: C-05 (memory hygiene — hide controls only). -->
 - **J5 Year Book export:** Settings → Data → "Year book" → pick a year → a
   READABLE human PDF: journal entries in date order, embedded photos/vlogs, a
   small stats page (days journaled, habits, gym sessions, milestones).
   READ-ONLY — packages a copy, never moves or rewrites real data; honest media
-  stubs for PC-archived items; no Coach/XP — pure artifact. **Build gate:** PDF
+  stubs for PC-archived items; no Coach/XP — pure artifact. Hidden memories
+  (C-05 hide controls) are EXCLUDED from the Year Book — hidden-ness applies
+  everywhere memories surface, including exports / PDFs. **Build gate:** PDF
   generation on Flutter requires a package — DecisionLog entry + user approval
   at build time (no-new-dependencies rule; recorded open item).
 - **J6 Tag/area filter chips:** on the Journal page, filter chips for #tags and
@@ -280,12 +283,17 @@ structured entry only (D041); no NLP; no Apple Health; no device APIs (D009).
   plan + seeded tracked exercises — user can customize/replace/clear ALL from
   day one; nothing forced; energy math alive day 1 (macros land in M3); the
   proposed weekly plan binds when the Routine milestone ships (M4).
-- **Fitness surface CLOSED (D060):** no new features for the fitness side — the
-  surface is complete (workouts, sets, exercises, templates, plans, phases, PR,
-  vault, PO, cardio, volume, deload, injuries, adherence, goals, habits bridge,
-  check-in, phase report; media deferred). N3/N5/N6/N8 + periodization remain
-  park-able (Idea Park); rest-day patterns (F2) + recovery readiness (N5) cover
-  rest from this milestone onward; add only when real usage says so.
+<!-- AMENDED 2026-09-26 (gen-2 docs pass; D120): the D060 fitness-surface closure is OVERRIDDEN FOR THE NAMED LOCKED CANDIDATES ONLY — idea-park N3 is RE-OPENED by F-05 (setType) and N5 by F-19 (Training Form); EVERYTHING ELSE under the closure stays CLOSED. Superseding decision: D120 (D060 fitness-surface override — gen-2 F-series supersession). -->
+- **Fitness surface CLOSED (D060), amended by the gen-2 override (D120):** no
+  new features for the fitness side beyond the gen-2 F-series candidates the
+  user approved (recorded in D121+; drafted into M2 above + its target docs) —
+  the surface is complete (workouts, sets, exercises, templates, plans, phases,
+  PR, vault, PO, cardio, volume, deload, injuries, adherence, goals, habits
+  bridge, check-in, phase report; media deferred). Specifically: idea-park
+  **N3** (warm-up sets → F-05 `setType`) and **N5** (recovery → F-19 Training
+  Form) are RE-OPENED by those locks; N6/N8 + periodization remain park-able
+  (Idea Park); rest-day patterns (F2) cover rest from this milestone onward;
+  add only when real usage says so.
 
 **Includes:** Settings Group 3 (FITNESS: units, PO kill-switch, weight step,
 rep-first threshold, physique-photo nudge OFF, rolling pace window 7d/14d;
@@ -358,7 +366,9 @@ line nutrition + the energy-balance math core (DecisionLog D046, D062, D063).
   (editable up), carbs as remainder (Atwater 4/9/4); no-phase fallback (goals
   first → "maintain" default; targets stay elevated); manual TDEE override
   FREEZES auto-recompute AND the protein/fat g/kg basis until cleared (B4);
-  `rollingWindowMean` = the only rolling-average math in the engine.
+  <!-- AMENDED 2026-09-26 (gen-2 docs pass; D121 F-13): the absolute "only rolling-average math" claim is superseded — the engine keeps the shared windowed util; the body weight-trend owner uses the time-indexed EMA. Superseding decision: D121 (F-13 — Libra EMA trend). -->
+  `rollingWindowMean` = the only windowed rolling-average util in the engine;
+  the body trend owner uses the time-indexed EMA (F-13).
 - **Events (D058):** `nutrition.logged` (mealType, kcal/macro totals, source,
   actual eat dateKey — no recipe detail) + `nutrition.removed`; `body.weighed`
   (per canonical first-of-day weigh-in) + `body.weighed_revoked`; all written
@@ -811,9 +821,11 @@ fixes the voice-rule wording.
   (M2) · `pattern_alert`. All auto-written + deletable, stored, exported with
   backups; the daily dashboard note (1–3 sentences) or a neutral "day on
   track" placeholder.
+<!-- AMENDED 2026-09-26 (gen-2 docs pass; D102): the milestone-review anchor is no longer the FIRST journal entry's date — it is the app-wide shared birth anchor (the account's FIRST IN-WINDOW EVENT per D100, frozen at first write, never shifted by deletion; a gym-only user gets their review on the tree's birthday). Superseding decision: D102 (the birth anchor — one shared anchor for the whole app). -->
 - **Milestone review (D050):** the long-form "since you started" anniversary
-  review — anchored to the FIRST journal entry's date (derived, not stored;
-  falls back to the next-earliest if deleted; no journal entries → no review);
+  review — anchored to the app-wide shared birth anchor (D102: the account's
+  first in-window event, frozen, never shifts on deletion; derived, not
+  stored);
   cadence ladder +1m · +3m · +6m · +1y · then yearly — editable in Settings
   Group 2 (enable/disable individual milestones or a flat interval); smart
   catch-up (an anniversary passing while away generates the review on the
@@ -853,10 +865,12 @@ fixes the voice-rule wording.
 - **M2-phase items (D050/D052/D055/D066):** weekly-review-day config ·
   milestone-review cadence · the reviews-give-no-XP ruling (locked in the
   docs; implemented here).
+<!-- AMENDED 2026-09-26 (gen-2 docs pass; D117 D2): the "includes the Life Tree mockup (M9)" clause is SUPERSEDED — the archetype mockups defer to M9 phase D2 (the in-M9 trait-space + mockup step, D117 D1/D2); the M8-closing UI/UX ordering pass handles the Life Tree tab's NAV PLACEMENT only. Superseding decision: D117 (the development handoff plan). -->
 - **UI/UX ordering pass (L170):** the deferred navigation-bar + layout
   ordering decision happens at the END of this milestone — after ALL features
   are planned (dashboard ordering, nav placement, toolbar/drawer); the last
-  design item in the project; includes the Life Tree mockup (M9).
+  design item in the project; closes M8 with the Life Tree tab's NAV PLACEMENT
+  only (the archetype mockups themselves land in M9 phase D2).
 
 **Exit criteria:**
 - Rule-book session completes; every named rule exists as a citable,
@@ -875,30 +889,105 @@ fixes the voice-rule wording.
 
 ## Milestone 9 — Life Tree
 
-**Scope:** (D071 — idea-recorded user vision, former-M2-phase scope; its own
-milestone because it is the biggest UI-heavy feature; blocks nothing in
-M0–M8). A dedicated full tab with a large stylized life-tree graphic that
-ACTIVELY GROWS as everything is logged and achieved — essentially a big review
-surface of the user's logged life. It incorporates the Growth-Rings / 10-ring
-structure (trunk rings, Pith → Yew — one ring = one Life-Fully-Logged
-qualifying yearly window) and reflects ALL domains + achievement tiers
-(Sprout → Grove). CONFIRMED PREMISES ONLY (locked, nothing new invented):
-100% derived from real qualified non-imported history (an Analytics-Engine-
-derived cache from M7 — never a write-path entity, no new tables, imports
-never grow it, nothing user-editable, no XP anywhere); rings never shrink (a
-missed year leaves the ring count untouched); no guilt UI (a thin domain
-looks young/dormant, never "failed"); its own nav tab. Placement/wireframe/
-paint strategy/art style/interaction (taps, detail sheets, render cost,
-theme) are ALL decided during this build — the mockup is produced in the
-UI/UX ordering pass that closes M8.
+**Scope:** a dedicated full tab with a large stylized life-tree graphic that
+ACTIVELY GROWS as everything is logged and achieved — the big review surface
+of the user's logged life. The gen-2 design chapter makes this a fully
+specified, locked milestone (D071's "idea-recorded" verdict is re-pointed:
+the tree-7 decision records D085–D117 in DecisionLog + the canonical spec
+`docs/LifeTree.md`, with `life-tree-design/` as the authoritative working
+design). Blocks nothing in M0–M8. It incorporates the ring brand (trunk rings
+— one ring per Life-Fully-Logged qualifying yearly window; D090/D101/D116 D10)
+and reflects ALL domains + achievement tiers (Sprout → Grove). The build
+follows D117's clean step plan; the design chapter is COMPLETE — nothing here
+gates the first engine line.
+
+- **A. Pre-M9 (opportunistic — any docs pass / adjacent milestone):** A1 the
+  docs-pass amendment register (this pass: DecisionLog D085–D117 records; the
+  Gamification / CoachSystem / Roadmap / Database / UIUX amendments); A3 the
+  owner-contract groundwork (qualifyingEntry + streak with M7, goalProgress
+  with M5, coachEngagement with M8, dayActivityScore with M6, mediaPresence
+  with M10–M13); A4 the emotional copy-language pass (dormancy copy, bank
+  counter framing, empty-spring copy, legend card).
+- **B. Phase 0 — engine foundation:** B1 the renderer perf spike (≤16 ms at
+  LOD-1/2 on the target device tier — the F9 gate; the LOD ladder, instanced
+  procedural leaves, the autumn leaf-fall re-bake + capped particles); B2 the
+  state-model implementation (the derived cache, the logFingerprint, the
+  atomic swap, the set-commutative fold, the single-writer lock — D107/D108/
+  D109); **B3 the dev-tools tuning surface (D105 — MUST exist before any
+  visual tuning):** a dev-only debug panel that plays every register/palette
+  value and drives a live re-derivation + re-render; build-time only, NEVER
+  shipped to users; B4 the derivation engine (the incremental protocol, the
+  axes with the D116 pins, the stage clock with the D116 values, the banking +
+  the tier schedule D092/D095/D096).
+- **C. Phases 1–2 — the organs:** trunk/rings renderer; branches/twigs/forks
+  with the canopy rule; buds (D087); leaves with clusters + storage-leaf
+  character; flowers + the banking; fruits + spurs; periods.
+- **D. Phase 3 — the visuals (order matters):** **D1 the trait-space 17-audit
+  (D112/D113 — every trait WIRED / RESERVED-UNMAPPED / STRUCTURAL /
+  EXCLUDED-BY-DESIGN) MUST precede the trait-driven visuals;** D2 the archetype
+  mockups — the visual validation from the validated register numbers, the 19
+  paper-run archetypes as the gallery (the mockup is produced HERE, in M9 — not
+  in the M8-closing UI/UX ordering pass, which handles nav placement only); the
+  L-15 grid feed's placement is decided here (D117 D1/D2); D3 the
+  flower/adaptation/seasonal visuals + the ceremony language + the why-panel
+  copy engine.
+- **E. Phase 4 — navigation/feeds:** the duality principle — every section UI
+  is the local view of its tree organ (one derived state, one animation
+  language, two scales).
+- **F. Phase 5 — anatomy views:** root/stem/leaf cross-sections + the
+  time-lapse replay (D097 — from PRECOMPUTED YEARLY SNAPSHOTS, ~20–40 s, once,
+  skippable; first frame = the current state instantly).
+- **G. Phase 6 — review mode:** the yearly review artifacts.
+
+**Schema note (supersedes the placeholder's "no new tables" premises):** the
+tree's state is a PERSISTED, engine-written derived cache (D107/D108) + the
+synced `viewed_moments` user-state table (D109) — the tree DOES add tables
+(Database.md, the formatVersion 3 set). This is NOT a write-path entity: the
+user never writes tree state, the cache is regenerable and never part of
+backup integrity, imports never grow the tree, nothing user-editable, no XP
+anywhere.
+
+**Standing gates (D117 H0–H5, throughout):**
+- **H0 — D-number collision note:** the ledger skill-install pair D083/D084
+  collides with DecisionLog's D083 — renumbered D118/D119 at the docs pass.
+- **H1 — seeded-data stress tests:** the CODE version of the paper run — the
+  19 archetypes become the test fixtures; the tests must REPRODUCE the
+  paper-run outcomes (stage timings, bank schedules, honest no-rings,
+  anti-farm defeats, restore ratchet).
+- **H2 — perf gates (F9) as milestone gates.**
+- **H3 — coherence checks:** the axis signatures + identity filters across
+  generated trees (incl. the botanical-contradiction check).
+- **H4 — deuteranopia + contrast passes (D111).**
+- **H5 — test-strategy acceptance criteria:** the paper-run fixtures ARE the
+  acceptance criteria.
 
 **Exit criteria:**
-- Tree renders fully derived from the M7 owner catalog (rings = count of
-  Life-Fully-Logged anchored years; tiers = earned achievement tiers);
-  imports never grow it.
-- Rings never shrink across missed years; no guilt copy anywhere.
-- No write-path entity, no new tables, no XP, nothing user-editable.
-- Nav tab live on both platforms; render performance acceptable on the phone.
+- Tree renders from the event log + its own H3 owner FUNCTIONS (qualifyingEntry,
+  streak, goalProgress, coachEngagement, dayActivityScore, mediaPresence —
+  D117 A3); it NEVER reads the M7 cache tables (D110(6)); rings = count of
+  Life-Fully-Logged anchored years; tiers = earned achievement tiers; imports
+  never grow it. (The placeholder's "renders fully derived from the M7 owner
+  catalog" premise is re-pointed: owner FUNCTIONS yes, cache TABLES never.)
+- Rings never shrink across missed years; no guilt copy anywhere (a thin domain
+  looks young/dormant, never "failed").
+- No user-write-path entity, no XP, nothing user-editable; the only new tables
+  are the engine-written tree cache (D107/D108) + `viewed_moments` (D109).
+- Launch-day contract: full-history derivation from day one (a veteran's tree
+  is already mature on first open); the journey replays ONCE via time-lapse
+  mode from PRECOMPUTED YEARLY SNAPSHOTS; first frame = current state
+  instantly; the legend card; manual backdating of NEW events per D100's
+  two-tier split (D097).
+- Restore/backup contract: tree state is a derived cache, never source data;
+  the three restore cases (same-era / older / newer) all honest with
+  why-panel narration + a restore-date stamp; re-derivation is a designed
+  transition; the cache is regenerable, never part of backup integrity (D098).
+- Perf budget (D111): ≤16 ms at LOD-1/2 (the F9 gate); the LOD ladder
+  (mass / structure / detail) makes the 45k-draw-op disaster structurally
+  impossible; motion tiers (FULL/REDUCED/NONE) + reduced-motion fallbacks.
+- Standing gates H0–H5 pass — incl. the seeded-data stress tests reproducing
+  the 19 paper-run archetypes (H1/H5).
+- Nav tab live on both platforms (phone↔PC parity, D060); render performance
+  acceptable on the phone.
 
 ---
 
@@ -1022,11 +1111,18 @@ MVP-quality bar, and justify itself against the Core Loop. A DecisionLog entry
   block dimension; the biggest item by far — revisit when the user is 12+
   months of consistent training in. Light alternative noted: week-level
   intensity labels (deload/heavy/medium) without a full block layer.
-- **N3 — Warm-up sets** (setType working|warmup column + exclusions from
-  volume/PR/est-1RM/adherence) — skipped, door open.
+<!-- AMENDED 2026-09-26 (gen-2 docs pass; D120/D121): the idea-park N3 "skipped, door open" line is RE-OPENED and LOCKED by F-05 — extended from two to three values (warmup|working|failure). Superseding decisions: D120 (D060 override) + D121 (F-05). -->
+- **N3 — Warm-up sets** (setType warmup|working|failure column + exclusions
+  from volume/PR/est-1RM/adherence) — RE-OPENED and LOCKED by F-05 (D120/D121):
+  the `setType` column + W-set exclusions ship with the M2 build (see M2 above;
+  Database.md schema entry).
+<!-- AMENDED 2026-09-26 (gen-2 docs pass; D120/D121): the idea-park N5 "skipped, door open" line is CLOSED by F-19 (Training Form, training-load only); the FUT-2 non-duplication note is carried forward, not repealed. Superseding decisions: D120 (D060 override) + D121 (F-19). -->
 - **N5 — Recovery readiness** (morning 1–5 recovery_log + PO/Coach branches +
-  M2 correlation analysis + deload trigger + check-in line) — skipped, door
-  open; do not duplicate with FUT-2.
+  M2 correlation analysis + deload trigger + check-in line) — CLOSED by F-19
+  (D120/D121): Training Form (CTL/ATL/TSB) from logged sessions ships with the
+  M2 build (rule + copy in CoachSystem.md). FUT-2 (sleep/rest-day/readiness
+  hardware-style tracking) stays OUT of F-19 — the do-not-duplicate note is
+  carried forward, not repealed.
 - **N6 — Exercise cues/notes** (cueNotes text column, dimmed at block top,
   editable everywhere) — skipped, door open.
 - **N8 — Session media** (widen `media_attachments` to a polymorphic entity
