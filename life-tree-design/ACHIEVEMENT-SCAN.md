@@ -40,12 +40,12 @@ proposal adds the identity axis:
 KNOWN OPEN PROBLEMS (the user's loophole list, 2026-08-29) — ALL
 RESOLVED by the stage-gated manifestation model (see
 life-tree-design/LOOPHOLES.md):
-01 tier/achievement names vs flower thematic — RESOLVED: no redo of
-   trophy names; the flower visual carries the botany; PLUS the
-   flower-themed tier relabeling proposal (Bud/Bloom/Blossom/Flower/
-   Flowering/Inflorescence) pending user approval (LOOPHOLES §5)
-02 early achievements are flowers but trees flower at maturity —
-   RESOLVED: achievement buds → first bloom at the flowering stage
+01 tier/achievement names vs flower thematic - RESOLVED (D091): no redo of
+   trophy names; the flower visual carries the botany via the OVERLAY
+   (identity axis + tier magnitude + derived accents); the tier
+   relabeling proposals (the Bud/Bloom set and the Petal/Blossom set
+   from the earlier drafts) are WITHDRAWN (D091 - LOOPHOLES 5); the
+   names stay exactly as they are
 03 branches don't exist on a seedling — RESOLVED: branch-buds on the
    trunk from day one; branches extend on earned presence
 04 leaf-per-entry overflows early growth — RESOLVED: leaf clusters

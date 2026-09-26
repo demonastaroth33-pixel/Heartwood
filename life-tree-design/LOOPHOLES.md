@@ -36,7 +36,7 @@ cherry-blossom moment.
 
 **The master clock (LOCKED - D090):** one STAGE clock, derived from
 growth across ANY domain. Tick rules: SEED->SEEDLING = first logged
-event - SEEDLING->SAPLING = first sustained presence period (>=15 in-window days in any 30-day window, any-domain-mixed - D115; the window completes INCLUSIVELY on the day the 15th in-window day lands - the D116 day-29/day-30 pin) - SAPLING->POLE = first qualifying year
+event - SEEDLING->SAPLING = first sustained presence period (>=15 in-window days in any 30-day window, any-domain-mixed - D115; the window completes INCLUSIVELY on the day the 15th in-window day lands - the paper-run pin, now in the register B2) - SAPLING->POLE = first qualifying year
 (any-domain, anchored) - POLE->MATURE = DERIVED MATURITY (structural
 threshold, pioneer-speed) - MATURE->OLD-GROWTH = decade scale. One
 frozen birth anchor (the first in-window event; never shifts;

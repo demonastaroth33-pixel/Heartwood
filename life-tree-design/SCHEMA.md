@@ -119,7 +119,8 @@ B1 SEED->SEEDLING: first in-window event
 B2 SEEDLING->SAPLING: >=15 in-window days within any 30-day
   window, ANY-DOMAIN-MIXED (the A3 month bar itself - the rotating
   logger qualifies; a genuine month of presence - D115, days not
-  twigs)
+  twigs; the window completes INCLUSIVELY on the day the 15th
+  in-window day lands - the paper-run pin)
 B3 SAPLING->POLE: 1 stage-year (A4)
 B4 POLE->MATURE: >=2 stage-years AND >=90 in-window days
   ANY-DOMAIN-MIXED in the best anchored year (D116 - the mixed-domain

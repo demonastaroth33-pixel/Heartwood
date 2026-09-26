@@ -1,4 +1,4 @@
-﻿MISS: LANDS: Roadmap M4; Database.md (routine  MISS: LANDS: UIUX.md (dashboard); DesignSystem MISS: LANDS: CoachSystem.md (rule-book session # TEMP-PLANNING — Generation 2 (refactor & Life Tree design)
+﻿# TEMP-PLANNING — Generation 2 (refactor & Life Tree design)
 
 Generation-1 planning is COMPLETE and archived: `audits/TEMP-PLANNING-2026-08-20.md`
 (frozen history — never edit). All gen-1 decisions now live in `docs/`
@@ -57,9 +57,9 @@ separate DECISIONS chunk — both variants are compliant.
 | candidate-C | C-01 … C-15 | Research-incorporation candidates from research-journaling/MASTER-Journaling-Research.md (never conflate with backup-C, audit-C, or spec-E families from gen-1 — those are archived) |
 | candidate-F | F-01 … F-32 | Fitness research candidates from research-fitness/MASTER-Fitness-Research.md (new gen-2 family) |
 | audit | audit-1 … audit-13 | Refactor-audit checklist anchors (open-items checklist incl. incorporate/unlocks/life-tree; maps to APP MAP areas) |
-| tree | tree-1 … tree-6 | Life Tree DESIGN SYSTEM subsections (main goal; design dims; SKELETON status until the design session fills them) |
+| tree | tree-1 . tree-7 | Life Tree DESIGN SYSTEM subsections (tree-1..tree-6 = the design dims - FILLED BY tree-7 decision records D085-D117; tree-7 = the DESIGN SESSION DECISIONS - the authoritative record) |
 | engine | engine-1, engine-2 | Cross-cutting discipline blocks (logging friction; Coach heuristic engine — engine-2 token: NOTED = required-discipline flag, details locked at the rule-book session) |
-| — | AGREED IN PRINCIPLE · PENDING | Additional status tokens in use: AGREED IN PRINCIPLE = concept approved, full setup deferred to its activation milestone (F-27); PENDING = deferred to another section's decision (C-15 → Life Tree). Both carry an activation/revisit note; neither is draftable as decided content. |
+| - | AGREED IN PRINCIPLE - PENDING | Additional status tokens in use: AGREED IN PRINCIPLE = concept approved, full setup deferred to its activation milestone (F-27); PENDING = deferred to another section decision (example: C-15 was deferred to the Life Tree section and is now RESOLVED-ABSORBED - the PENDING token is no longer in active use, every candidate is decided). Both carry an activation/revisit note; neither is draftable as decided content. |
 
 Rejected entries carry a RESTING PLACE line (do-not-resurrect contract).
 Skipped entries carry a REVISIT line (trigger that re-opens them). Both
@@ -88,7 +88,7 @@ SKIPPED for now (user) · REJECTED (user) · IN DISCUSSION (user wants a
 dedicated talk — scheduled, not dead).
 
 ### Group A — logging UX (decided batch)
-LANDS CONVENTION (audit finding - recorded): the house rule requires a D-number per decision (D082+); entries below do not repeat "DecisionLog (D082+)" in every LANDS - READ IT AS IMPLIED for every LOCKED entry; the docs pass assigns D-numbers per row.
+LANDS CONVENTION (audit finding - recorded, GENERALIZED): the house rule requires a D-number per decision (D082+, continuing through D117) - READ IT AS IMPLIED for every LOCKED entry across ALL series (C/F/N/L + the tree-7 decisions); entries that repeat "DecisionLog (D082+)" explicitly are redundant but harmless; the docs pass assigns the final D-numbers per row.
 D084 SKILL INSTALL - SECURITY SUITE x2 (LOCKED, user yes - 2026-08-29):
     WHAT: installed (a) openai/skills@security-threat-model (official
       OpenAI, 25.3K-star repo, 4.9K installs, ALL 3 audits pass) -
@@ -341,11 +341,12 @@ D-VS-F RATIONALE (user Q&A, documented): the taxonomy is W = not
 - engine-2 COACH HEURISTIC ENGINE — REQUIRED DISCIPLINE (NOTED — needed;
   details locked later at the Coach rule-book session):
     THE NEED (user-stated, agreed): the Coach's brain is the heuristic
-      engine — ~25 named rules committed by M2 alone (gen-1 locks +
-      F-08/F-09/F-10/F-11/F-12 + F-19…F-24). It must be a really
-      solid, well-tested, super thorough engine — the rules ARE the
+      engine - ~25 named rules committed by M2 (gen-1 locks +
+      F-08/F-09/F-10/F-11/F-12 + F-19/F-20/F-23/F-24; the rejected
+      pair F-21/F-22 is excluded). It must be a really
+      solid, well-tested, super thorough engine - the rules ARE the
       product (research: every "AI" fitness app is a rules engine,
-      cosmetic AI branding).
+      not an LLM - cosmetic AI branding is the norm).
     ARCHITECTURE REQUIREMENT (state of need): ONE rule-execution
       architecture (event → rule catalog, condition→action,
       strictness-parameterized; the CoachSystem.md shape built as the
@@ -408,13 +409,14 @@ D-VS-F RATIONALE (user Q&A, documented): the taxonomy is W = not
       drops (e.g., 3+ weeks off) show a warning + explanation before
       any suggested load, so a big decay never lands silently.
     CONSTRAINTS: history/vault/PRs NEVER change — only suggested
-      starting loads; no punishment framing (breaks are safCONSTANT RECONCILIATION (audit finding - recorded, corrected): the
-      locked freshness tier says ">4wk COLLAPSED AND PO suggestions
-      pause (~90% of last-time starting baseline)" (Roadmap.md:175-
-      177, UIUX.md:261-263) while F-11 decays ~10-20%/week (4 weeks =
-      60-80%). RULING (corrected): the freshness tier governs the
-      HINT DISPLAY (what's shown when logging) - at >4wk the per-set
-      hint is COLLAPSED (hidden); the ~90% figure is the PO-
+      starting loads; no punishment framing (breaks are safe - the
+      tone rule). CONSTANT RECONCILIATION (audit finding - recorded,
+      corrected): the locked freshness tier says ">4wk COLLAPSED
+      AND PO suggestions pause (~90% of last-time starting baseline)"
+      (Roadmap.md:175-177, UIUX.md:261-263) while F-11 decays
+      ~10-20%/week (4 weeks = 60-80%). RULING (corrected): the
+      freshness tier governs the HINT DISPLAY (what is shown when
+      logging) - at >4wk the per-set hint is COLLAPSED (hidden); the
       suggestion BASELINE, not a display value. F-11's decay governs
       the SUGGESTED STARTING LOAD (what's proposed on return).
       Interaction: the suggestion uses F-11's decay; the display uses
@@ -785,14 +787,14 @@ LANDS: Roadmap M2 (N5 revival); CoachSystem.md (rule);
       multiplier, ~85% of planned — keeps volume, drops intensity) ·
       SHORT ON TIME (condensed variant — fewer sets or superset
       pairing, pairWith already locked) · NO EQUIPMENT (movement-
-      pattern replacement — later, with F-32) · adapted sessions log
-      honestly with an "adapted" marker.
+      pattern replacement - LATER, but F-32 was REJECTED (2026) - the
+      no-equipment path is parked with the rejection noted) - adapted
+      sessions log honestly with an "adapted" marker.
     DECISIONS (my takes, accepted): (a) M2 ships TIRED +
       SHORT-ON-TIME (load multiplier + condensed); no-equipment
-      later with F-32 · (b) adapted session auto-marks "done
-      differently" in adherence (maps to the LOCKED plan-adherence
-      semantics) — never a miss, never scolded.
-    CONSTRAINTS: honest logging; no shame; quiet week wins.
+      later - parked (F-32 rejected, 2026); (b) adapted session
+      auto-marks "done differently" in adherence (maps to the
+      LOCKED plan-adherence semantics) - never a miss, never scolded.
     LANDS: Roadmap M2; UIUX.md (session screen — with F-02);
       CoachSystem.md (adherence semantics).
 - F-21 SIX-LEVEL CHECK-IN LADDER (REJECTED (user) — flexibility
@@ -1056,11 +1058,11 @@ LANDS: Roadmap M2 (fitness area + weekly check-in); UIUX.md
       as zero (unlogged days = typical intake or excluded); compliance
       = logged days' performance only; no streak displays for
       nutrition.
-    DECISIONS (my take, pending user confirm at walkthrough): missing
-      days EXCLUDED from the denominator when <5 logged days (thin-
-      week rule); typical-average only when the week is otherwise
-      complete. [REVIEW - user accepted the candidate; confirm this
-      decision point or adjust]
+    DECISIONS (my take, CONFIRMED at the N-series walkthrough - the
+      series closed LOCKED with user approval; the marker below was
+      pre-walkthrough text): missing days EXCLUDED from the
+      denominator when <5 logged days (thin-week rule); typical-
+      average only when the week is otherwise complete.
     LANDS: CoachSystem.md (weekly check-up denominator); Database.md.
     MOBBIN REFS (verbatim): research-fitness/mobbin-screens-macrofactor.json
       (402) — the adherence-neutral check-in card reference (N-03).
@@ -1072,12 +1074,11 @@ LANDS: Roadmap M2 (fitness area + weekly check-in); UIUX.md
       anchor (1.5x of 125g cup = 187.5g exact); text-based portion
       input (evidence: beats image-based); seed data brings FNDDS
       portion weights (N-02).
-    DECISIONS (my take, pending user confirm): grams as canonical
-      entry, presets as shortcuts. [REVIEW - confirm or adjust]
+    DECISIONS (my take, CONFIRMED at the N-series walkthrough - the
+      series closed LOCKED with user approval; the marker below was
+      pre-walkthrough text): grams as canonical entry, presets as shortcuts.
     LANDS: UIUX.md (food detail); Database.md (gram reference field);
       Roadmap M3.
-    MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-mfp.json
-      (290) — food-detail/portion-picker anatomy (N-11).
 - N-18 VENDOR-RESILIENT EXPORT FOR FOODS/RECIPES (LOCKED, user yes):
     SOURCE: R03 (vendor extinction - PlateJoy shut July 2025,
       PlanEatMore defunct).
@@ -1376,7 +1377,6 @@ LANDS: Roadmap M2 (fitness area + weekly check-in); UIUX.md
     MOBBIN REFS (verbatim): research-nutrition/mobbin-screens-lifesum.json
       (345) — habit-tied nutrition surfaces (N-16).
 - N-08 EXERCISE KCAL DISPLAY-ONLY (LOCKED, user yes - both decision points agreed):
-  candidate fully explained):
     SOURCE: R06 double-count evidence; MacroFactor philosophy.
     WHAT: exercise kcal (NU9 band + cardio MET) renders in the
       macro-gap bar as DISPLAY-ONLY and NEVER expands the day's
@@ -1775,7 +1775,7 @@ LANDS: Roadmap M2 (fitness area + weekly check-in); UIUX.md
       (5) CORRELATION-NOT-CAUSATION wording, verbatim: the insight
         always says "correlates with", never "caused by".
     DECISIONS (verbatim - all accepted): (a) the insight line lives
-      in the weekly Coach message (F-24, ONE line per week) + the
+      in the weekly Coach message (F-24, the 3-5 line weekly message; the L-10 insight line is ONE line within it - RECONCILED: the L-10 output is a single insight line carried inside F-24's message, not a separate message) + the
       Life Tree branch detail; NOWHERE else (no dashboard block, no
       notifications - one-notification discipline). (b) FIRST
       COMPARISON SET = the big five: training <-> journal
@@ -1820,16 +1820,18 @@ LANDS: CoachSystem.md (rule-book session); Architecture.md
       House rules + carried to DevelopmentWorkflow at the docs pass -
       accepted; (b) the three checks as the standard, verbatim -
       accepted.
-    LANDS: House rules (TEMP-PLANNING); DevelopmentWorkflow.md;
-      AGENTS.md.
 - L-15 LIFE-SCALE GRID (LOCKED as a DESIGN FEED - user: feed only;
-  tree-session placement decision):
+  tree-session placement decision; PLACEMENT DEFERRED to D117 D1/D2
+  - the M9 trait-space + mockup step, where the spatial-meta layer
+  is designed against the real renderer; recorded 2026-09-26; the
+  "LOCKED as a DESIGN FEED" token = the standard LOCKED with a
+  feed-only scope note - recorded for the pipeline)
     SOURCE: Life Calendar (R03 section 11) - the 90-weeks-per-year
       life grid (a human life as ~4,680 weekly cells); the
-      contribution-graph family's volume-grid + farming lesson.
+      contribution-graph family volume-grid + farming lesson.
     WHAT: a research feed for the LIFE TREE DESIGN SYSTEM session,
       NOT a locked feature: the weeks-as-cells grid family as the
-      tree's quantitative twin (the tree = organic metaphor,
+      tree quantitative twin (the tree = organic metaphor,
       trunk/rings/branches; the grid = the whole life as cells,
       filled by weeks lived + weeks logged). Takeaways: (1) the
       spatial-meta layer could appear as a strip or a zoomed-out
@@ -1845,7 +1847,7 @@ LANDS: CoachSystem.md (rule-book session); Architecture.md
       LIFE TREE DESIGN SESSION - recorded, deferred.
     LANDS: LIFE TREE DESIGN SYSTEM section (tree session).
 
-## Incorporate list (journaling C-series - all candidates decided except C-15, deferred to the Life Tree section)
+## Incorporate list (journaling C-series - ALL candidates decided; C-15 resolved ABSORBED 2026-09-26)
 
 Research source: `research-journaling/MASTER-Journaling-Research.md`
 (candidates C-01…C-15, evidence + references). Entry format follows the
@@ -2085,11 +2087,16 @@ DECISIONS (verbatim): SETTING = clear toggle in Settings, ON by
       rings.
     REVISIT: anytime; it is a natural Life Tree annual-ring visual if
       the tree design wants it.
-- C-15 LIFE TREE EMOTIONAL ENGINE (PENDING — feeds the main-goal
-  section): care-object growth (Finch), ring visuals (Daylio mosaic),
-  year artifacts (1SE mashup), then-&-now comparisons (Timehop),
-  10-year pledge (Standard Notes). Decided inside the LIFE TREE DESIGN
-  SYSTEM section, not here.
+- C-15 LIFE TREE EMOTIONAL ENGINE (RESOLVED - ABSORBED, user yes -
+  2026-09-26; the components are locked across D085-D117):
+  care-object growth (Finch) -> the bank + tier-marked buds (D096)
+  + the ceremony language (D094); ring visuals (Daylio mosaic) ->
+  the ring brand (D101/D116); year artifacts (1SE mashup) -> the
+  time-lapse + the yearly review (D097); then-&-now (Timehop) ->
+  C-06 + the revisit moments; 10-year pledge (Standard Notes) ->
+  the tendrils (E8). The entry purpose was to feed the Life Tree
+  section - the section consumed every component; nothing phantom
+  to draft.
 
 ## Research leftovers — recorded, NO decision yet (nothing lost)
 
@@ -2342,12 +2349,12 @@ structure built into the graphic; implementation deferred to M2.
 
 This section is the working design space. Dimensions to lock, in order:
 
-### tree-1 Vision & metaphor (SKELETON — design dim, filled at the Life Tree design session; no lock)
+### tree-1 Vision & metaphor (SKELETON - design dim; FILLED BY tree-7 (D085-D117) + life-tree-design/VISION.md - see the decision records; superseded)
 - What the tree IS (life archive as a growing organism), what it is NOT
   (decoration — every element must mean real data).
 - Tone: awe without guilt; dormant ≠ failed.
 
-### tree-2 Tree anatomy (visual system) (SKELETON — design dim, filled at the Life Tree design session; no lock)
+### tree-2 Tree anatomy (visual system) (SKELETON - design dim; FILLED BY tree-7 (D085-D117) + SCHEMA 2.3/2.4/2.5 - see the decision records; superseded)
 - Trunk + the 10-ring structure (Pith → Yew; one ring = one Life, Fully
   Logged qualifying yearly window — locked definition, v2).
 - Branches: one per achievement domain (which domains exactly, how they
@@ -2358,7 +2365,7 @@ This section is the working design space. Dimensions to lock, in order:
   scale without cramping); iPhone PWA ↔ desktop responsive behavior.
 - Theme: dark-first tokens, ring/leaf palettes, seasonal or state tints.
 
-### tree-3 Growth data (100% derived — never write-path) (SKELETON — design dim, filled at the Life Tree design session; no lock)
+### tree-3 Growth data (100% derived - never write-path) (SKELETON - design dim; FILLED BY tree-7 (D085-D117) + SCHEMA 2.6 + D108 - see the decision records; superseded)
 - Exact H3 owner feeds: ring count, dayDomainPresence per domain,
   per-tier claim counts, yearly presence, milestone dates.
 - Mapping table: data → visual element (every pixel traces to a number).
@@ -2368,7 +2375,7 @@ This section is the working design space. Dimensions to lock, in order:
   extending, leaf appearing), triggers (unlock event, open tab), and
   duration/rhythm — celebratory but never spammy.
 
-### tree-4 Surfaces & interaction (SKELETON — design dim, filled at the Life Tree design session; no lock)
+### tree-4 Surfaces & interaction (SKELETON - design dim; FILLED BY tree-7 (D085-D117) + D094/D095/D099 - see the decision records; superseded)
 - Full tab layout: hero tree, overview strip, detail panel.
 - Tapping a ring/branch/leaf → derived facts-only detail (domain yearly
   presence, trophy list, ring history); no journal text, no media.
@@ -2376,12 +2383,12 @@ This section is the working design space. Dimensions to lock, in order:
 - Navigation: tab existence (gen-1), placement per the deferred UI/UX
   ordering pass.
 
-### tree-5 Render & performance (SKELETON — design dim, filled at the Life Tree design session; no lock)
+### tree-5 Render & performance (SKELETON - design dim; FILLED BY tree-7 (D085-D117) + D111 + the F9 gate - see the decision records; superseded)
 - Heaviest derived block in the app: paint strategy (canvas vs layers),
   skeleton shimmer, never blocking first paint; decade-scale data cost
   bounds; reduced-motion accessibility.
 
-### tree-6 Implementation plan (SKELETON — design dim, filled at the Life Tree design session; no lock)
+### tree-6 Implementation plan (SKELETON - design dim; FILLED BY tree-7 (D085-D117) + D117 the development handoff - see the decision records; superseded)
 - M2 scope, build order (data owners → mock render → polish), test
   strategy (widget tests for states, perf gate), mockup in the UI/UX pass.
 
@@ -2390,9 +2397,9 @@ SESSION PLAN (recorded - the 10-step implementation map; living
 roadmap with statuses: life-tree-design/PLAN.md):
   1. The 6 open decisions - DONE (D085-D088)
   2. Refactor the organ map - DONE (D088; VISION §3 locked table)
-  3. Feature scan (incl. the ACHIEVEMENT-SCAN sub-step) - NEXT
-  4. Archetype mockups (design-time cohesion validation)
-  5. Input map (SCHEMA.md rows, user-approved, D-numbers)
+  3. Feature scan (incl. the ACHIEVEMENT-SCAN sub-step) - DONE (3-pass audited + the artifacts 1-3 + the register + the model + the paper run, D085-D117)
+  4. Archetype mockups (design-time cohesion validation) - DEFERRED to the M9 milestone (D117 D2)
+  5. Input map (SCHEMA.md rows, user-approved, D-numbers) - STRUCTURE DONE (the 3 artifacts); the consolidation + the paper run DONE (D116); the mockups deferred
   6. Engine architecture (derivation cache, state model, renderer
      design + perf budgets, test harness)
   7. Trait space + visual design (mockups feed this)
@@ -2673,7 +2680,7 @@ roadmap with statuses: life-tree-design/PLAN.md):
 - D096 EARLY-FIRE EXPRESSION CONTRACT (LOCKED, user yes - 2026-08-29;
     Resolution #5 of the loophole session):
     THE GAP: rare-tier trophies can fire before the tree can express
-    them (Ghost in the Machine ~day 182, ceiling rungs - Dragon
+    them (Ghost in the Machine ~day 182 (REFUTED by the paper run - the third leg is IV-5 nutrition, the honest earliest is ~d96-97 per D116; the same-time robot is Ghost-proof), ceiling rungs - Dragon
     Slayer, The Brand - on DAY 1, Grove chains at year 3). D092/D093
     schedule the manifestation; this contract defines what the user
     SEES between earn and manifestation.
@@ -2715,10 +2722,8 @@ roadmap with statuses: life-tree-design/PLAN.md):
       bloomed/transformed at its scheduled event. No trophy is ever
       a silent bud; no trophy is ever flattened.
     LANDS: LOOPHOLES.md (the tier schedule); ACHIEVEMENT-SCAN.md
-      (the overlay applies to buds); TRAIT-SPACE.md (bud forms);
-      tree-4 (the bank counter surface).
 - D097 LAUNCH-DAY CONTRACT (LOCKED, user yes - 2026-08-29;
-    Resolution #6 of the loophole session; resolves N-1 + N-7):
+    Resolution #6 of the loophole session; resolves N-1 + N-7, with the N-7 backdating premise OVERTURNED by D100 (the two-tier split governs - cross-referenced)):
     THE PROBLEM: the tree ships in M9, users log from M0. A veteran's
     first open would render years of history at once; the early
     journey never plays; first frame = perf worst case.
@@ -2827,7 +2832,7 @@ roadmap with statuses: life-tree-design/PLAN.md):
     (N-6) THE MIRROR BOUNDARY: the why-panel mirrors DERIVED FACTS
       ONLY - never LLM narrative (the Coach's LLM output never
       appears on the tree; the Coach's derived coach_outputs facts
-      do). PROTECTED-ABSENCE branch copy: a branch in
+      do - SUPERSEDED by D110(1): the tree NEVER touches coach_outputs rows (payload-blindness); the derived owners carry the mirror). PROTECTED-ABSENCE branch copy: a branch in
       quiet-week/rest-protected absence says "resting" - never
       "abandoned" (Coach quiet-week semantics inherited; consistent
       with D088 dormancy-honesty).
@@ -2878,11 +2883,11 @@ roadmap with statuses: life-tree-design/PLAN.md):
     the systems mixed them.
     THE RESOLUTION - TWO YEAR TYPES, NEVER CONFUSED:
     (1) STAGE-YEARS (any-domain): a 365-day window, anchored to the
-      frozen birth anchor (E3 - never calendar-chopped), where the
-      user had SUSTAINED PRESENCE IN ANY DOMAIN (per the D100
-      predicate - in-window written days). Drives: the SAPLING->
-      POLE tick · the TENURE axis · the D089 modification floors
-      (per D093 - the floors read the tree's own years).
+      frozen birth anchor (E3 - never calendar-chopped; the literal
+      windowed reading SUPERSEDED by D116 S2 - the CUMULATIVE-
+      ACCRUAL reading governs, ~13.2 months per stage-year for the
+      sparse life), where the user had SUSTAINED PRESENCE IN ANY
+      DOMAIN (per the D100 predicate - in-window written days).
     (2) RING-YEARS (six-domain, THE BRAND): the same anchored
       365-day window with ALL SIX DOMAINS present. Drives: ONLY the
       trunk rings + the ring-tier trophies. Nothing else.
@@ -2990,18 +2995,20 @@ roadmap with statuses: life-tree-design/PLAN.md):
       filled in the input map's Artifact 1.
     (2) THE ATTACHMENT RULE (separation only if worth it): BODY =
       a sub-branch of GYM (the physique/weight track - the gym
-      branch's wood-quality side); its 16 trophies bloom on the gym
-      branch's body-forks. MEDIA = attaches to JOURNAL (media rides
+      branch wood-quality side); its 16 trophies bloom on the gym
+      branch body-forks. MEDIA = attaches to JOURNAL (media rides
       on entries); media presence counts as its own domain for
-      rings/axes; media trophies bloom on the journal branch's
+      rings/axes; media trophies bloom on the journal branch
       media-forks. GOALS gets a presence definition (progress
-      events / task completions = goal presence) so the rings can
-      count it honestly.
+      events / task completions = goal presence) - the goals
+      domain counts for the AXES/presence; the RING brand reads the
+      SIX CORE domains only (D116 D10 - goals excluded from the
+      brand, present in the axes - cross-referenced).
     (3) THE TWO-LEVEL MODEL, STATED: PRESENCE-DOMAINS (7 - what
       counts in rings, axes, tint) vs BRANCHES (5 - what the tree
       grows). The mapping: 7 -> 5 (body->gym, media->journal, the
       rest 1:1). Every system reads the same table - the BALANCE
-      axis, the ring-years, the tint owner, the achievement families'
+      axis, the ring-years, the tint owner, the achievement families
       attachment, the twig sources.
     LANDS: LOOPHOLES.md (R5 resolved); SCHEMA.md (Artifact 1 - the
       canonical domain table at the input map); INPUT-INVENTORY
@@ -3012,8 +3019,8 @@ roadmap with statuses: life-tree-design/PLAN.md):
     THE REGISTER: every number in the tree in one list (SCHEMA 2.4):
       A presence bars (grace +-3d, qualifying rules, twig bar >=15d/
       month, stage-year >=200d, ring per-domain >=40d) - B stage
-      gates (SEED->SEEDLING first event, ->SAPLING 1 twig, ->POLE 1
-      stage-year, ->MATURE >=3 branches + >=2 stage-years,
+      gates (SEED->SEEDLING first event, ->SAPLING >=15 mixed days in a 30-day window (D115/D116 final), ->POLE 1
+      stage-year, ->MATURE >=2 stage-years + >=90 mixed days (D116 final),
       ->OLD-GROWTH >=10) - C capacities (bloom <=15/event, <=4
       waves/season, habit-cluster >=30, 1 legend/bloom + 1 crown,
       twigs <=12/yr + 3-yr retention window, granularity at POLE,
@@ -3365,14 +3372,18 @@ roadmap with statuses: life-tree-design/PLAN.md):
     (2) THE MATURITY GATE FIX (F-11): MATURE = >=2 stage-years AND
       >=1 branch extended to a STRUCTURAL DEPTH (>=6 twigs). A
       single-domain user matures with their one deep branch - the
-      first bloom is reachable for EVERY user; the crown's breadth
-      is the BALANCE axis's business, never the maturity gate.
-    (3) THE RING DOMAIN SET (F-12): the ring-year reads THE
-      CANONICAL 7 PRESENCE-DOMAINS (D101's "six" predates D104's
-      body/media canonicalization); the VIII-family trophies'
-      six-domain conditions align to the canonical set at the docs
-      pass. One domain list for the brand and the trophies.
-    THE MECHANICAL FIXES (record errors + stale rows): storage
+      first bloom is reachable for EVERY user; the crown breadth
+      is the BALANCE axis business, never the maturity gate.
+      SUPERSEDED by D115/D116: MATURE = >=2 stage-years AND >=90
+      in-window days ANY-DOMAIN-MIXED in the best anchored year
+      (the final formula - the paper run proved the single-branch
+      bar locked out the sparse, rotating, and body-only lives).
+    (3) THE RING DOMAIN SET (F-12) - SUPERSEDED BY D116 D10 (the
+      RING FOLD): the final ring brand = the SIX CORE domains
+      (journal, habits, gym, nutrition, body, media - goals and
+      periods excluded); the canonical-7 stays for the axes/
+      presence only.
+    THE MECHANICAL FIXES (applied - D114):
       leaves regain the D1 tenure floor (trigger-table B5) ·
       contractile drops the invented floor (subtle tier, D089) ·
       the particle cap standardizes to ~150-300 (D111) · INPUT-
@@ -3463,7 +3474,7 @@ roadmap with statuses: life-tree-design/PLAN.md):
       never the bursty or the lush) + PERSIST-INTENSITY reversion
       (once manifested, stays; the intensity scales with the axes
       at each bloom checkpoint; the why-panel narrates).
-    D5 E2 RESOURCE LEG (recommendation accepted): >=0.4 - the
+    D5 E2 RESOURCE LEG (recommendation accepted, AMENDED by the recording audit): >=0.4 initially, FINAL = balance >=0.7 ONLY - the
       balance leg carries the signature; the balance champion can
       grow the wide-crown roots.
     D6 REPEAT-BLOOM AGGREGATION (recommendation accepted): the
@@ -3566,9 +3577,11 @@ roadmap with statuses: life-tree-design/PLAN.md):
       views, never the silhouette): reaction wood, epicormic
       shoots, mycorrhizal/coach detail, bracts, bud scales,
       contractile roots, stolons, storage-taproot detail, SPINES
-      (100-day streaks - DEMOTED from the structural tier). No
-      tenure gate - the tree's fine texture, rewarding every user
-      without diluting the rarity of the structural layer.
+      (100-day streaks - DEMOTED from the structural tier; the
+      100-day referent SUPERSEDED by D116 D9 cadence armor: 26
+      consecutive weeks). No tenure gate - the tree fine texture,
+      rewarding every user without diluting the rarity of the
+      structural layer.
     AMENDED FROM D088: adaptation rows 3 (thorns stay structural
       365-day; spines demoted to subtle), 12 (storage leaves moved
       to structural/rare), 2/8/9/10/11/13/14 (kept as subtle
@@ -3655,8 +3668,10 @@ roadmap with statuses: life-tree-design/PLAN.md):
         2. REACTION WOOD + EPICORMIC SHOOTS - comebacks: a dormant
            branch resumes, the revival point shows visibly different
            wood + fresh shoots from old wood - MASTER 7.4/4.5.
-        3. THORNS (365-day) + SPINES (100-day) - TIERED streak
-           armor on a domain - MASTER 4.6.8/6.5.2; existing streak
+        3. THORNS + SPINES - TIERED armor (the 365-day/100-day
+           referents SUPERSEDED by D116 D9 cadence armor: thorns =
+           52 consecutive weeks + tenure>=2; spines = 26 consecutive
+           weeks) on a domain - MASTER 4.6.8/6.5.2; existing streak
            achievements as triggers.
         4. BUTTRESS ROOTS - sustained multi-domain balance (3+
            domains active consistently) - MASTER 5.6.5.
@@ -3727,7 +3742,7 @@ roadmap with statuses: life-tree-design/PLAN.md):
         required SIGNATURE on the axes; contradictory adaptations
         cannot co-occur because both read the SAME numbers (caudex
         requires tenure>=0.7 + resource<=0.6; buttress requires
-        balance>=0.7 + resource>=0.6 - one user cannot be at
+        balance>=0.7 + resource>=0.6 (SUPERSEDED - the paper run proved any resource leg excludes the balance champion; FINAL: balance >=0.7 ONLY per D116 D5-amended) - one user cannot be at
         resource 0.55 AND 0.65 at once). The position itself
         decides what can grow - no compatibility matrix needed for
         the hard cases.
@@ -3819,16 +3834,17 @@ roadmap with statuses: life-tree-design/PLAN.md):
     the session context):
     A. PRE-M9 (opportunistic - any docs pass / adjacent milestone):
       A1 THE DOCS-PASS AMENDMENT REGISTER: DecisionLog entries for
-        D085-D116; the doc amendments (Gamification.md anchor/six-
-        domain/qualifyingEntry; CoachSystem.md anniversary = the
-        shared anchor; Roadmap.md M7/M9 premises + the formatVersion
-        3 + viewed_moments; Database.md the isBackfill column +
-        adoptedAt + the event schema; UIUX.md the tree tab + the
-        semantics contract; StorageDecision.md formatVersion 3).
-        HOME: the docs pass (PLAN step 10).
-      A2 THE TERMINOLOGY GLOSSARY (stage-year/ring-year, bank/
-        bankBuds, legend/crown, gates/signatures, manifest/bloom,
-        ladder/waves - one definition each). HOME: the docs pass.
+        D085-D117 (INCLUDING THIS RECORD - the register is never
+        complete without itself);
+        Gamification.md (anchor/six-domain/qualifyingEntry);
+        CoachSystem.md (anniversary = the shared anchor);
+        Roadmap.md (M7/M9 premises + the D060 supersession - the
+        fitness-surface closure clause, gen-2 F-series override);
+        Database.md (formatVersion 3 + the logFingerprint + the
+        isBackfill column + adoptedAt + the event schema + the
+        viewed_moments table - NOT StorageDecision.md, which
+        carries no format); UIUX.md (the tree tab + the semantics
+        contract). HOME: the docs pass (PLAN step 10).
       A3 THE OWNER CONTRACTS groundwork: the H3 owners the tree
         consumes can be designed alongside their systems -
         qualifyingEntry (with the M7 analytics engine), streak
@@ -3883,16 +3899,20 @@ roadmap with statuses: life-tree-design/PLAN.md):
     G. M9 PHASE 6 - THE REVIEW MODE: the yearly review artifacts
       (the rings + the cross-sections + the legend card).
     H. THE STANDING GATES (throughout):
+      H0 THE D-NUMBER COLLISION NOTE: the ledger skill-install records
+        D083/D084 collide with the DecisionLog already-recorded D083
+        (docs/DecisionLog.md) - the docs pass RENUMBERS the ledger
+        pair (D118/D119) to avoid duplicate IDs.
       H1 THE SEEDED-DATA STRESS TESTS - the CODE VERSION of the
         paper run: the 19 archetypes become the test fixtures; the
-        tests must REPRODUCE the paper run's outcomes (the stage
+        tests must REPRODUCE the paper run outcomes (the stage
         timings, the bank schedules, the honest no-rings, the
         anti-farm defeats, the restore ratchet).
       H2 The perf gates (F9) as milestone gates.
       H3 The coherence checks (the axis signatures + identity
         filters across generated trees).
       H4 The deuteranopia + contrast passes (D111).
-      H5 The test strategy's acceptance criteria (the paper run's
+      H5 The test strategy acceptance criteria (the paper run
         fixtures ARE the acceptance criteria).
     LANDS: PLAN.md (the steps 4-9); SCHEMA.md (the register + the
       model + the trigger table); LOOPHOLES.md (the resolutions);
