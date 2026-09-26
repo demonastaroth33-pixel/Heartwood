@@ -29,6 +29,9 @@ sequencer; read the doc for your task before touching code.
   (1:1 with lib/ per the handoff + PerformanceOptimizationBrief)
 - Friendly design-workflow usage guide       -> docs/DesignWorkflowGuide.md
 - Milestones, what is/isn't built            -> docs/Roadmap.md
+- Milestone development process, phases,
+  gates, run artifacts                      -> doc draft framework/AMIF.md (+
+  AMIF-PROMPTS.md for role prompts); live run state in docs/agentic-runs/
 - Project philosophy, core loop              -> docs/Vision.md
 - Any decision rationale                     -> docs/DecisionLog.md
 - Milestone retrospectives                   -> docs/Retrospectives.md
@@ -147,6 +150,12 @@ judgment.
 
 - flutter test       (engines, repositories, export/restore round-trip)
 - flutter analyze    (must be clean before commit)
+- AMIF (milestone pipeline): `doc draft framework/AMIF.md` (framework) +
+  `doc draft framework/AMIF-PROMPTS.md` (role prompts, paste-as-is). Roles:
+  amif-planner (P0/P1/P2), amif-implementer (P3), code-reviewer (P4/P8),
+  amif-security-auditor (P9), amif-heuristics-tester (P10), perf-* (P7 perf
+  workstream). Run artifacts live in `docs/agentic-runs/<milestone>/`;
+  STATE.md there is the anti-redo ledger. Human gates 1–6 are load-bearing.
 - powershell -File tools/restart_web.ps1   (restart the dev web server on
   8080; kills only the process owning the port)
 - Open Design (local UI-mockup workspace, .tools/open-design):

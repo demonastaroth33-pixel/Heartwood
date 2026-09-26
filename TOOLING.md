@@ -60,9 +60,14 @@ never whole libraries.
 
 | Agent | What it does | Your move |
 |---|---|---|
-| code-reviewer | Audits the uncommitted diff: bugs, security, AGENTS.md compliance. Can't edit anything | Type `/code-review` in opencode |
+| amif-planner | AMIF Phase 0/1/2 — state reconciliation, plan authoring, recursive plan audit (prompt from AMIF-PROMPTS.md §1-3) | Dispatch per milestone, gate at Phase 2 |
+| amif-implementer | AMIF Phase 3 — executes the approved plan (prompt from AMIF-PROMPTS.md §4) | Dispatch after Human Gate 1 |
+| amif-security-auditor | AMIF Phase 9 — security testing (owasp pre-M3 / Strix M3+; prompt §8) | Dispatch at Phase 9 |
+| amif-heuristics-tester | AMIF Phase 10 — Nielsen heuristics + cross-milestone consistency (prompt §9) | Dispatch at Phase 10 |
+| code-reviewer | AMIF Phases 4/8 — landing + optimization audits; also audits the uncommitted diff. Can't edit anything | Type `/code-review` in opencode |
 | code-simplifier | Cleans up recently changed code (nesting, naming, ternaries) without changing behavior | Run after milestone tests are green, before your diff read |
-| a1a–g (pipeline) | TEMP-PLANNING integration pipeline stages (census → ledger → audit). Docs work only | Used during that pipeline, ignore otherwise |
+| perf-planner / perf-implementer / perf-reviewer / perf-verifier / perf-escalator (+ perf-orchestrator) | AMIF Phase 7's perf workstream for rendering-heavy surfaces (CanvasKit etc.) | AMIF Phase 7 routing check decides; see PerfBacklog.md |
+| a1a–g (pipeline) | TEMP-PLANNING integration pipeline stages — CLOSED (gen-1 2026-08-20 + gen-2 2026-09-26, archives in audits/) | Historical — ignore for milestone work |
 
 ## 5. MCP servers (opencode.json)
 
@@ -97,6 +102,7 @@ folder inspection at P3, (3) dropping fixtures. **Rules:** only
 
 | Ritual | When | Where |
 |---|---|---|
+| AMIF phase | Milestone development (M0-M13) | `doc draft framework/AMIF.md` — 12 phases, 6 human gates, artifacts in `docs/agentic-runs/<milestone>/` |
 | Retrospective | After every milestone phase | docs/Retrospectives.md — write what went wrong, encode one lesson |
 | DecisionLog entry | Any new decision (incl. tooling changes) | docs/DecisionLog.md |
 
