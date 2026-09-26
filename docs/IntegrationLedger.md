@@ -1,4 +1,4 @@
-# Integration Ledger — TEMP-PLANNING.md (gen-2 ledger)
+﻿# Integration Ledger — TEMP-PLANNING.md (gen-2 ledger)
 
 **Stage:** A1b — Atomic Extraction (Scribe) · **Framework:** TempPlanning-Integration-Framework-v6-final + Pipeline-Framework-v7-Gen2-Delta (where the delta disagrees with v6-final, the delta wins) · **Date:** 2026-09-26 · **Source:** `TEMP-PLANNING.md` (3922 lines, generation-2 ledger — refactor & Life Tree design) · **Checklist:** `docs/IntegrationIDCensus.md` (A1a artifact; its family boundaries and line ranges are treated as verified ground truth) · **Artifact:** this file, `docs/IntegrationLedger.md`
 
@@ -453,3 +453,32 @@ All 166 rows carry the Self-directed mapping result verified against the live do
 **No LANDS line (inferred from real doc structure):** the rejected rows (L028/L029/L038/L039/L063/L075/L076/L079 — RESTING-PLACE contract → DecisionLog D069-style), the audit rows (L092–L104 — open checklist → DecisionLog D070-style), the research leftovers (L150–L166 — PIPELINE line → DecisionLog D038/D039-style), and the tree skeletons' self-supersession notes (L105–L110).
 
 *Stage B1 complete. Artifact: this file (ledger annotated with the mapping above). STOP — do not proceed to Stage B2 (Architect) or any later stage without human review. No doc was edited; no conflict was resolved.*
+
+---
+
+## Stage C — Human verdicts (2026-09-26, user-approved)
+
+**1. REMOVES-existing sign-off: APPROVED (all 4 groups).**
+- tree-1..tree-6 skeleton records (L105-L110): approved for removal — superseded by tree-7 D085-D117 + life-tree-design/ sources; evidence preserved in the archived ledger.
+- DecisionLog D071 "Life Tree — not a spec" verdict: approved re-point to the gen-2 design chapter (D085-D117 + the M9 spec).
+- DevelopmentWorkflow S021 (gen-1 M2-bound Life Tree sequencing): approved supersession by D117's M9 plan.
+- Roadmap.md M9 placeholder premises ("no new tables" :887/:900, "M7 owner catalog" :896, "mockup in M8-closing pass" :859): approved — the placeholder is FILLED with the real M9 spec (renames-placeholder, not deletion).
+
+**2. Draft/pending-approval verdicts:**
+- L006 engine-2 (Coach heuristic engine): **APPROVE-as-record** — the docs record the ~25-rule commitment + the rule-book session (M8) as the locking anchor; no rule content drafted.
+- L034 F-27 (adherence + situation trophies): **APPROVE-as-record** — concept approved (AGREED IN PRINCIPLE), full setup deferred to its activation milestone; the docs record the approved-concept + deferral, nothing more.
+- L074 L-15 (life-scale grid): **REFER** — design feed only; placement deferred to D117 D1/D2 (the M9 trait-space + mockup step). Not drafted into any product doc.
+- F-26 (progression-edge table): **not draftable** — SKIPPED for now (user), recorded with its REVISIT trigger (rep-mode exercise work).
+- L092-L104 (audit checklist anchors) + L150-L166 (research leftovers): **DecisionLog open items** (D038/D039 precedent) — recorded as open, not drafted as scope. Confirmed.
+- L078 (C-03 weather chip) + L084 (C-08 mention-suggestion): **PENDING user verdict** — held for explanation before any decision.
+
+**3. Decision-ID list: PENDING user confirmation** (held for explanation).
+
+**4. D060 override: APPROVED, scoped exactly to the ledger record (TEMP-PLANNING.md:131).**
+- The gen-2 F-series supersedes D060 ONLY for the named locked candidates.
+- Roadmap idea-park N3 (warm-up sets -> F-05) and N5 (recovery -> F-19) are RE-OPENED by those locks explicitly; the Roadmap.md:283-288 clause saying they remain park-able is amended.
+- Everything else under D060's fitness-surface closure stays CLOSED — no feature is touched unless the ledger itself decided to change it.
+
+**5. Sequencing-notes placement: append to DevelopmentWorkflow.md** as a "Sequencing notes from the gen-2 TEMP-PLANNING integration" section (gen-1 precedent).
+
+**6. The 12 amend-at-docs-pass conflicts: acknowledged** — deferred to the drafting stages (D1/D2) with superseding decision IDs cited; no action at C.
