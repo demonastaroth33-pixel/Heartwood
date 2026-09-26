@@ -147,6 +147,79 @@ class ThemeValues {
 }
 ```
 
+### 2.5 Ceremony tokens — the ONE shared ceremony language (L009/L022, INT-07; docs-pass D164)
+
+<!-- docs-pass D164 (ceremony tokens): L009 (F-03) + L022 (F-15) + INT-07 ceremony half. Superseding sources: LifeTree.md §10 (ceremony language), D094 (stage-transition UX + durations), D106 (F-03 NO-BLOOM arbitration), D112 DV-C2 (blush), D111(5) (particle budget). -->
+
+The tree decisions define ONE ceremony language, owned by LifeTree.md §10: the F-03 PR flourish, the F-15 weight-ladder hero ring, and the ink-wash blush as the one saturation moment. DesignSystem.md carries its tokens. **NOT confetti — never.**
+
+| Token | Color role | Where it renders |
+|---|---|---|
+| `ceremonyBract` | `accent` family (a bract is a modified leaf — the flourish is accent-toned, never gold) | F-03 bract-style flourish at the logging moment — the ceremony's sparkle, **ZERO flowers** (D106 no-bloom arbitration; the flower = achievement contract survives) |
+| `ceremonyRing` | `accent` family (active/milestone channel) | F-15 milestone hero ring — current rung + % to next; completes with the differentiator copy ("80kg — confirmed by 2 consecutive weeks"); the forecast is a DATE RANGE, never a single date |
+| `blush` | see §2.6 | the saturation moment — flowering events ONLY (D112 DV-C2) |
+| gold | — | **never** in the ceremony; gold stays streaks-only (the tree's gold boundary, §2.6) |
+
+Ceremony motion (D094, verbatim-critical durations): germination ~3s · transitions ~2–4s · maturity + first bloom 8–12s — **nothing loops, repeats, or spams.** Particles: capped to the shared ~150–300-sprite budget (the bloom-rain budget, D111(5)); a bloom that reads as confetti fails the ceremony. Ceremonies queue and never interrupt an active session (D108(5)); unviewed transitions replay on the next open + viewed watermark (D094(3)/D109). Reduced motion: the REDUCED tier's static fallback (§2.7). No push notifications for transitions.
+
+The functional rules stay in their owning docs (F-03: Roadmap M2 + UIUX session screen; F-15: Roadmap M2 body + Gamification weight ladder); this token set is the visual contract only, tuned at the M9 mockup step.
+
+### 2.6 Life Tree palette tokens — the blush, the seasons, the identity axis (L142/D112, D085/D095, INT-07/08; docs-pass D165)
+
+<!-- docs-pass D165 (Life Tree palette tokens): L142 (D112 heartwood palette note) + D085/D095 (seasonal states) + INT-07 blush half + INT-08 (season palette). Superseding sources: LifeTree.md §9/§10/§14, ACHIEVEMENT-SCAN §5 (gold discipline), relentless-design-audit M-8 (palette derivation rule), loophole-findings-wave2/E-design-vision DV-C2/DV-M8 (bloom palette + gold boundary). -->
+
+Every tree palette derives from the Heartwood ink/paper tokens, dark-first — the M-8 palette rule extends DV-C2's token derivation from the bloom to the whole tree: muted greens/rusts/ambers within the accent + gold families, dev-tunable, deuteranopia-passed (D111(3)). Nothing saturated, nothing neon. These tokens join the ThemeValues palette list (§2.4) when the tree ships (M9); every value is dev-tunable (D105 — the dev-tools panel plays them, never shipped).
+
+**The blush — the ONE allowed saturation moment (D112 DV-C2).** A muted, desaturated ink-wash blush (dusty rose / pale blush that sits on the dark ink-green), reserved for the flowering events — the same privilege gold has for streaks. The tree never uses gold for achievements (ACHIEVEMENT-SCAN §5); the blush is its substitute. Values below are PROVISIONAL — the D112 user note locks this open to edits during implementation/visual testing, the tokens join the dev-tools playable surface, and the final blush treatment is tuned at the M9 mockup step:
+
+| Token | Ink (provisional) | Paper (provisional) | Role |
+|---|---|---|---|
+| `blush` | `#C99A9A` | `#8A5C60` | the saturation moment: the bloom palette, flowering events (buds → bloomed flowers), the first-bloom cherry-blossom moment |
+| `blushDim` | `#C99A9A` @ 22% | `#8A5C60` @ 14% | wash-level blush — the canopy bloom wash / spring-flush atmosphere, mirroring `accentDim` |
+
+**Seasonal state color roles (D085/D095).** The season-phase function (register F1 — fixed dates + the stored timezone setting, never the live device clock) keys the render states; the user's data modulates intensity (rich journaling spring = dense bloom; heavy gym summer = thick latewood; quiet year = sparse bloom, honestly shown). All roles derive from the existing tokens:
+
+| Role | Season (F2) | Token derivation | Renders |
+|---|---|---|---|
+| `seasonSpring` | growing · Mar 1–May 31 | `blush` + `accent` (the spring green merges with the accent) | the flush: buds burst, the winter bank converted at once |
+| `seasonSummer` | growing · Jun 1–Aug 31 | `accent` family, muted-ink greens | full canopy (never saturated forest); thick latewood on the gym branch |
+| `seasonAutumn` | growing · Sep 1–Nov 30 | muted rust/amber — `danger`-family rust + the `gold` family | fruit + color, the leaf-fall re-bake (D111 P-03 + the ~150–300-sprite litter), winter-persistent fruits (crabapples/hawthorn hips) |
+| `seasonWinter` | resting · Dec 1–Feb 28/29 | desaturation of the canopy + `blushDim`/leaf-bud tones | honest dormancy: bare branches, leaf-buds, scale-wrapped habit buds; everything banks |
+
+**The gold boundary on the tree (DV-M8, token-level lock).** gold appears on the tree ONLY for streak-derived signals (a habit bud's swelling ring, the app's streak ring on the dashboard dual) — NEVER on achievement flowers, year rings, or the bloom; those use the blush/rust palette. The renderer must not spend gold on the flower layer.
+
+**Identity-axis color roles (D112 + D086).** The identity-axis filter chips (UIUX.md tree tab / LifeTree §16 — flower family, tier magnitude, branch/domain) use the existing chip grammar: `surfaceRaised` pill track, active = `accent`, inactive `textSecondary`. The flower-family identity's color is the D086 derived accent: a deterministic core (same for every earner) + accents derived from the user's domain balance, within the accent luminance band (D111(7)), never gold. Tier magnitude carries size/mark differences, not color alone (D111(3)) — a Grove bloom is visibly larger and structurally distinct, not just brighter.
+
+### 2.7 LOD render & accessibility tokens (D111, INT-09; docs-pass D166)
+
+<!-- docs-pass D166 (LOD render & accessibility tokens): D111 (surface/render cluster) + INT-09 (motion tiers). Superseding sources: LifeTree.md §15, UIUX.md render states. -->
+
+**Motion tiers (D111 M-3).** The duration/curve tokens (§2.2) are the shared base; the tree and its ceremonies add three explicit tiers:
+
+| Tier | Rule |
+|---|---|
+| FULL | the D094 durations (§2.5); the tree's growing/seasonal motion |
+| REDUCED | particles off, transitions as quick fades (the locked 300ms-fade precedent); the reduced-motion preference selects it |
+| NONE | instant state changes, announcements only (the semantics surface still narrates) |
+
+The full path degrades automatically on low-end devices (an FPS-based ladder, not binary).
+
+**The LOD-ladder typography contract.** LOD-1 MASS = silhouette + canopy masses only (first paint — the current state blob instantly, shimmer for detail); LOD-2 STRUCTURE = branches, retention-window twigs, leaves at mature granularity; LOD-3 DETAIL = per-entry leaves + organ anatomy, on zoom/interaction only. Labels and numbers render legible at their LOD (the label type tokens + `tabularFigures` for counts); the semantics surface (one deterministic source → pixels and semantics, LifeTree §15) supplies every organ's label + status + tap action — the pixels and semantics cannot diverge.
+
+**Contrast + hit-area floors (D111(7)/(8)).** Tree palette colors meet **≥3:1 non-text contrast** in both themes (the design-system floor; the existing text floors in §7 stay). The D086 accent luminance band is respected. A deuteranopia pass is a locked gate at the mockup + stress-test steps. Every tappable organ has a **≥44px effective target** even at LOD-1 mass — the cluster map decouples the hit area from the painted size.
+
+### 2.8 Duality tokens — one animation language, two scales (INT-06, D088 B; docs-pass D167)
+
+<!-- docs-pass D167 (duality tokens): INT-06 + D088 B + D112 DV-C5. Superseding sources: LifeTree.md §4.3 (the duality principle). -->
+
+The section UI is the local view of its tree organ: habits tab = bud garden · journal = leaves · nutrition = sap monitor · gym = branch growth · goals = orchard · achievements = garden. ONE derived state, ONE animation language, TWO scales. Token implication: the same duration/curve tokens (§2.2) + the motion tiers (§2.7) govern the tree AND the section-local views — the habit card's bud states (dormant / swelling / bursting / scarred, replacing the mini-plant stages per D112 DV-C5) animate with the same tokens as the tree's habit branch, so the local view and the tree never disagree.
+
+### 2.9 Block presentation rule — numbers > charts glance (L071; docs-pass D168)
+
+<!-- docs-pass D168 (block presentation rule): L071 (L-12). Extends the token section; future UI/UX may change — noted, not locked. -->
+
+Glance blocks lead with a **SINGLE number** — streak "14", storage "62%", protein "168/168g" — number-led headlines use the `title`/`display` type tokens with `tabularFigures`; **analysis surfaces** (weekly review, strength snapshot, goal detail) get the charts; the **macro-gap bar is the hybrid** (live number + capacity context — locked); the dashboard's top half is number-led, the bottom half chart-enabled with number-led headlines; the **heatmap strip is the EXCEPTION** — a chart that IS a glance.
+
 ## 3. App shell composition
 
 ```
@@ -385,6 +458,7 @@ in a `Row` only when both are empty-state cards (cheap, honest).
 - **Vlog recording:** red dot pulse 600ms loop — the one ambient motion on
   that surface; stops on capture.
 - **Atmosphere drift:** §2.3 (Ink only).
+- **Ceremony language:** §2.5 — the D094 durations, the queue + replay-on-open + viewed watermark, the REDUCED-tier static fallback; never confetti, never a push.
 - All gated by `disableAnimations`.
 
 ## 7. Accessibility & targets
@@ -392,6 +466,9 @@ in a `Row` only when both are empty-state cards (cheap, honest).
 - All interactive targets ≥44×44 logical px.
 - Contrast: `textSecondary` on `surface` ≥ 4.5:1 (Ink ≈ 7:1); accent-on-bg
   ≈ 4.6:1; gold only at bodySmall+ with text labels.
+- Tree surface (M9): the tree palette meets ≥3:1 non-text contrast in both
+  themes (the §2.7 floor); every tappable organ keeps a ≥44px effective target
+  even at LOD-1 mass; a deuteranopia pass is a locked gate (D111).
 - Keyboard focus: 2px `accent` outline, desktop.
 - No color-only semantics: streaks = gold + text; storage = color + numbers;
   dots = semantic tooltips.
