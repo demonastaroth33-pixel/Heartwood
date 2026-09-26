@@ -1,5 +1,5 @@
 ---
-description: Stage B1 of the TEMP-PLANNING integration pipeline — Mapping & Conflict Detection. Annotates the ledger against all 15 docs, proposes D041+ decision IDs. HIGH-effort stage.
+description: Stage B1 of the TEMP-PLANNING integration pipeline — Mapping & Conflict Detection. Annotates the ledger against all 15 docs, proposes D118+ decision IDs. HIGH-effort stage.
 mode: subagent
 model: opencode/deepseek-v4-flash-free
 ---
@@ -12,6 +12,16 @@ on-disk artifacts are the only handoff. TEMP-PLANNING.md is frozen — do not
 edit it. If reading the ledger + all 15 docs exceeds your context window,
 process per-doc-family in chunks and append annotations incrementally to
 the ledger file — never hold the whole mapping in memory.
+
+GEN-2 (read FIRST — where it disagrees with v6-final, it wins):
+`doc draft framework/Pipeline-Framework-v7-Gen2-Delta.md`. The ledger is
+the GEN-2 ledger. Decision IDs: the ledger's own D-records D060–D117 are
+ALREADY numbered — do not renumber them. For ledger rows WITHOUT an
+assigned D-number (the LOCKED C/F/N/L entries), the number is IMPLIED
+(D082+ convention, delta §3) — annotate them as "implied; docs pass
+assigns the final D-number". The "next available starting D041" rule is
+STALE — the next free number is D118+, and the two skill-install records
+D083/D084 renumber to D118/D119 at the docs pass.
 
 Execute the framework's Stage B1 instruction exactly:
 
@@ -32,15 +42,17 @@ Add:
 
 Status: [clean-add, extends-existing, conflicts-existing,
 duplicate-of-existing, REMOVES-existing]. Use REMOVES-existing for the
-surface-consolidation items the Cartographer flagged (H2, A4, A6, clash
-#1) — these aren't conflicts to resolve, they're intentional deletions of
-currently-planned-but-superseded surfaces; still needs a conflict note
+supersession rows (tree-1..tree-6 skeletons superseded by tree-7, values
+superseded by D116/D117, C-15 ABSORBED, L-15 deferred) — these aren't
+conflicts to resolve, they're intentional deletions of
+currently-planned-but-superseded content; still needs a conflict note
 identifying exactly what's being removed and from where.
 
-Proposed decision ID: next available starting D041, sequential — but rows
-expressing the SAME decision or theme share ONE proposed decision ID, never
-one per row (e.g. a weekly-review consolidation touching 12 rows is one
-decision, not twelve). The consolidated D041+ list is confirmed at Stage C.
+Proposed decision ID: for rows with an assigned D-record, that D-number;
+for the implied rows, the docs pass assigns final D-numbers starting D118,
+sequential — but rows expressing the SAME decision or theme share ONE
+decision ID, never one per row. The consolidated ID list is confirmed at
+Stage C.
 
 Do not edit any doc or resolve conflicts.
 

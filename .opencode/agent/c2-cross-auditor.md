@@ -11,12 +11,20 @@ primarily human; this agent is the optional fresh-session cross-auditor
 variant from §11). One stage = one fresh session — you share zero context
 with the drafting sessions by design.
 
+GEN-2 (read FIRST — where it disagrees with v6-final, it wins):
+`doc draft framework/Pipeline-Framework-v7-Gen2-Delta.md`. The ledger is
+the GEN-2 ledger; the verbatim-critical rows are the Life Tree register
+values (delta §4).
+
 Context: E is a self-audit — the same model that drafted validates its own
 output, which structurally misses systematic errors. Your job is the
 model-independent check (Stage C2):
 
 - Sample 10–20 ledger rows from docs/IntegrationLedger.md. Prioritize:
-  verbatim-critical rows, REMOVES-existing rows, and any rows E flagged as
+  verbatim-critical rows (the Life Tree register values, thresholds, the
+  derivation math, the launch-day contract numbers — these MUST be exact
+  in the final docs/LifeTree.md), REMOVES-existing rows (the tree-1..6
+  supersessions, the value supersessions), and any rows E flagged as
   marginal in docs/IntegrationAuditReport.md.
 - For each sampled row, verify it is faithfully represented in the final
   docs via `git diff`/read — the claim in the ledger row must be findable

@@ -11,6 +11,12 @@ TempPlanning-Integration-Framework-v6). One stage = one fresh session;
 on-disk artifacts are the only handoff. TEMP-PLANNING.md is frozen — do not
 edit it.
 
+GEN-2 (read FIRST — where it disagrees with v6-final, it wins):
+`doc draft framework/Pipeline-Framework-v7-Gen2-Delta.md`. The ledger is
+the GEN-2 ledger — the v6-final Part 5 cross-checked a "COACH SYSTEM —
+CONSOLIDATED FUNCTIONALITY MAP" section that does not exist in gen-2; the
+gen-2 Part 5 is specified below.
+
 Execute the framework's Stage E instruction exactly:
 
 Same four parts as v4 (item coverage / intent fidelity / dependency
@@ -30,24 +36,26 @@ re-running the same check (see §13).
   onward into the docs; unreconciled IDs listed with reasons. This is the
   authoritative census gate for Stage G.
 
-**PART 5 — Self-citation cross-check (new):**
+**PART 5 — Life Tree register cross-check (gen-2):**
 
-Input, in addition to the standard audit inputs: the "COACH SYSTEM —
-CONSOLIDATED FUNCTIONALITY MAP" section of TEMP-PLANNING.md (re-read it
-directly) and the final drafted CoachSystem.md.
+Input, in addition to the standard audit inputs: the life-tree-design/
+sources (SCHEMA.md §2.4 the threshold register, §2.3 the canonical domain
+table, §2.5 the trigger table, §2.6 the state model, §3 the derivation
+contract) and the final drafted docs/LifeTree.md (+ the amended docs that
+carry tree decisions, e.g. UIUX.md's tree surface, Database.md's
+formatVersion 3).
 
-For every `ledger:NNN-NNN` citation in that section, confirm the claim it
-supports is represented in the final CoachSystem.md (or wherever else it
-was mapped, if not CoachSystem.md). Verdict per citation:
-- ✅ REPRESENTED — the cited claim shows up in the final docs.
-- ❌ ORPHANED-CITATION — the source cited this line range as evidence for
-  a Coach capability, but nothing in the final docs reflects it.
+For every register value / threshold / schedule / contract number in the
+sources, confirm it is represented in the final docs. Verdict per item:
+- ✅ REPRESENTED — the value shows up in the final docs/LifeTree.md (or
+  the amended doc it mapped to).
+- ❌ ORPHANED-VALUE — the register locked this value but nothing in the
+  final docs reflects it.
 
 This is an independent check against the ledger's own extraction — a
-mismatch here means either the ledger missed something the source author
-already flagged as important (bad) or the self-citation was stale/wrong in
-the source itself (worth noting but not a drafting failure). Distinguish
-the two where you can.
+mismatch here means either the ledger missed something the register
+already locked (bad) or the value was superseded in the ledger (worth
+noting, not a drafting failure). Distinguish the two where you can.
 
 Output as Part 5 of docs/IntegrationAuditReport.md.
 

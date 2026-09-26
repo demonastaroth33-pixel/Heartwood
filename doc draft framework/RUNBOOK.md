@@ -4,6 +4,11 @@ Operational companion to
 `doc draft framework/TempPlanning-Integration-Framework-v6-final.md`
 (read it first — this runbook only covers execution mechanics).
 
+GEN-2: the ledger is the gen-2 TEMP-PLANNING.md (refactor & Life Tree
+design). Read `doc draft framework/Pipeline-Framework-v7-Gen2-Delta.md`
+first — it maps v6-final to gen-2 and wins where they disagree. The agent
+prompts in `.opencode/agent/` are already gen-2-keyed.
+
 ## Setup summary
 
 - **Model:** `opencode/deepseek-v4-flash-free` for every agent (set in each
@@ -58,8 +63,9 @@ structural proposal and record verdicts:
   not in scope" line or DecisionLog open item) / REFER (stays in
   ledger/SequencingNotes for a future pass). Nothing draft-sourced is
   drafted silently.
-- Confirm the consolidated D041+ decision list from B1 (same-theme rows
-  share one D-number).
+- Confirm the consolidated decision list from B1 — D060–D117 are already
+  assigned (keep them); implied rows get final D-numbers starting D118
+  (same-theme rows share one D-number).
 - Decide placement of `IntegrationSequencingNotes.md` (DevelopmentWorkflow
   section vs standalone file).
 
@@ -87,11 +93,14 @@ model cross-auditor instead.
 ## End-state (G Part C + §14)
 
 With the user's final approval, G's gatekeeper moves TEMP-PLANNING.md and
-all six pipeline artifacts to `audits/` (date-suffixed set), updates
-`docs/README.md`'s doc map, and the final commit covers the archive move.
-After that: docs/ = single source of truth; DecisionLog holds D041+ and
-the open items; unbuilt/undecided material lives only as DecisionLog open
-items or Roadmap "explicitly not in scope" lines.
+all six pipeline artifacts to `audits/` as the `*-2026-09-26` gen-2 set
+(alongside the existing gen-1 `*-2026-08-20` set — never colliding),
+updates `docs/README.md`'s doc map (retired entries removed, the
+docs/LifeTree.md family added), and the final commit covers the archive
+move. After that: docs/ = single source of truth; DecisionLog holds
+D060–D117 + the docs-pass D118+ numbers and the open items;
+unbuilt/undecided material lives only as DecisionLog open items or
+Roadmap "explicitly not in scope" lines.
 
 ## After config changes
 

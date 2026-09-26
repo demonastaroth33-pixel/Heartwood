@@ -12,6 +12,11 @@ on-disk artifacts are the only handoff. TEMP-PLANNING.md is frozen — do not
 edit it. If re-reading the source plus the docs exceeds your context
 window, process in contiguous chunks and append findings incrementally.
 
+GEN-2 (read FIRST — where it disagrees with v6-final, it wins):
+`doc draft framework/Pipeline-Framework-v7-Gen2-Delta.md`. The ledger is
+the GEN-2 ledger. The v6-final Part B section list was gen-1-era — the
+gen-2 sections are listed below.
+
 Execute the framework's Stage G instruction exactly:
 
 **Part A (census gate):** consume E's Part 4 — verify it is present,
@@ -20,30 +25,36 @@ coverage check from scratch (same dedupe principle as Part 5 vs G); only
 confirm E's output and clear the gate.
 
 **Part B (residual re-read):** unchanged mechanism from v4 (§13), with the
-un-numbered-prose scan now explicitly including: Periods, Milestone Review,
-the Coach Consolidated Map (cross-checked against Part 5 above rather than
-re-scanned independently — avoid doing the same check twice), Calendar UI,
-Settings tab, and both "Remaining open items" / "Future ideas" closing
-sections.
+un-numbered-prose scan now explicitly including: the candidate families'
+entries (C-01–C-15, F-01–F-32, N-01–N-18, L-01–L-15), the tree-1..tree-7
+skeletons (verified superseded, not live), the engine-1/engine-2 blocks,
+the D-records' prose (D060–D117 — every decision record's body, not just
+the headers), the LANDS conventions (every LANDS line lands somewhere),
+and the "Research leftovers" closing section (each item has a resting
+place — DecisionLog open item or SequencingNotes).
 
 **Part C (archive & close):** after A and B clear, and with the user's
 final approval:
 
-- `TEMP-PLANNING.md` moves to `audits/` with a date suffix (precedent:
-  `audits/audit-2026-08-14.md`) — the repo never keeps a second source of
-  truth at root.
-- The pipeline artifacts (`IntegrationIDCensus.md`, `IntegrationLedger.md`,
-  `IntegrationIntentBrief.md`, `IntegrationSequencingNotes.md`,
-  `StructuralImpactProposal.md`, `IntegrationAuditReport.md`) move to
-  `audits/` alongside it, date-suffixed as a set.
-- `docs/README.md`'s doc map is updated: retired entries removed, one line
-  pointing at the archived integration set for provenance.
+- `TEMP-PLANNING.md` moves to `audits/TEMP-PLANNING-2026-09-26.md`
+  (date-suffixed, the gen-2 run) — do NOT collide with the gen-1 archive
+  set already at `audits/TEMP-PLANNING-2026-08-20.md` + the gen-1
+  `Integration*-2026-08-20.md` artifacts. The repo never keeps a second
+  source of truth at root.
+- The gen-2 pipeline artifacts (`IntegrationIDCensus.md`,
+  `IntegrationLedger.md`, `IntegrationIntentBrief.md`,
+  `IntegrationSequencingNotes.md`, `StructuralImpactProposal.md`,
+  `IntegrationAuditReport.md`) move to `audits/` alongside it,
+  date-suffixed as a set (`Integration*-2026-09-26.md`).
+- `docs/README.md`'s doc map is updated: retired entries removed, the new
+  docs (docs/LifeTree.md family) added, one line pointing at the archived
+  integration set for provenance.
 - Final commit covers the archive move (see §14 for the full end-state).
 
 **Final sign-off condition:** Stage G is not complete until — Part A
 (census) empty, Part B (residual) empty, Part 5 of the audit report has
-zero ❌ ORPHANED-CITATION entries that trace to a genuine ledger miss rather
-than a stale source citation, C2's sampled rows all verify clean, AND
+zero ❌ ORPHANED-VALUE entries that trace to a genuine ledger miss rather
+than a stale register value, C2's sampled rows all verify clean, AND
 Part C's archive move is committed.
 
 Part C happens only with the user's explicit final approval — if it has

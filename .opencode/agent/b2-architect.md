@@ -11,6 +11,13 @@ TempPlanning-Integration-Framework-v6). One stage = one fresh session;
 on-disk artifacts are the only handoff. TEMP-PLANNING.md is frozen — do not
 edit it.
 
+GEN-2 (read FIRST — where it disagrees with v6-final, it wins):
+`doc draft framework/Pipeline-Framework-v7-Gen2-Delta.md`. The ledger is
+the GEN-2 ledger. The v6-final specifics below (entity-sync plane before
+P2.5 per clash #5, the Coach Consolidated Map restructure) were written
+against the ARCHIVED gen-1 ledger — those items do not exist in gen-2.
+The gen-2 structural items are listed instead.
+
 Execute the framework's Stage B2 instruction exactly:
 
 You are the Architect agent. Input: docs/IntegrationIntentBrief.md and the
@@ -22,27 +29,29 @@ For each Intent Brief item × affected doc, produce:
 | Doc | Current state | Proposed change | Type | Depends on (other rows) |
 
 Type now includes REMOVAL alongside [new-addition, extends-existing,
-renames-placeholder, restructures-existing] — for the surface-
-consolidation items, be explicit about exactly what UIUX.md/CoachSystem.md
-content is being retired and where its replacement lives.
+renames-placeholder, restructures-existing] — for the supersession rows,
+be explicit about exactly what content is being retired and where its
+replacement lives.
 
-For the Coach Consolidated Map item specifically: propose it as a
-restructuring guide for CoachSystem.md — list which of that section's
-subsections (Philosophy / Architecture & pipeline / Event-log discipline /
-Named rules / Outputs & surfaces / Achievement tie-in / Context switches /
-Privacy & the never-list / Settings / Scheduling) map to which existing
-CoachSystem.md headings, and where CoachSystem.md needs new headings.
+GEN-2 structural items:
+- docs/LifeTree.md as a NEW doc family: the tree-7 decisions (D085–D117)
+  draft into it — register, state model, trigger table, derivation
+  contract, organ map, launch-day + restore contracts. Propose its
+  section outline (from life-tree-design/SCHEMA.md §2.3–2.6 + §3 and
+  VISION.md), rewritten in docs/ voice, not copied.
+- UIUX.md: the tree screen + identity-axis filters as new surfaces; the
+  D105 dev-tools tuning panel as a dev-only surface (never shipped).
+- Roadmap.md: the M9 milestone (the Life Tree launch) per D117's launch
+  sequence — distinguish "authoring new scope" (M9, the design doc exists
+  in life-tree-design/) from "restructuring locked milestones" (M0–M5).
+- Database.md: the formatVersion 3 amendment (D117 A1) + the D060
+  supersession.
+- The tree-1..tree-6 skeleton records: REMOVAL rows (superseded by
+  tree-7) — where their content was already absorbed into
+  life-tree-design/, note the absorption so D2 doesn't delete evidence.
 
-For Roadmap.md: distinguish "authoring new scope" (Milestone 6+, was a
-one-line placeholder) from "restructuring locked milestones" (M0–M5) as in
-prior versions — plus now: the entity-sync plane (O6-ADD-ON) as a required
-NEW milestone inserted before P2.5, per the source's own explicit
-ROADMAP ORDERING resolution (clash #5).
-
-For DecisionLog.md: confirm D041+ IDs and dated-section grouping.
-
-Flag every placeholder-reconciliation case (Database.md's `future:`
-comments resolving into real event types).
+Flag every placeholder-reconciliation case (superseded register values
+whose new home is life-tree-design/SCHEMA.md §2.4).
 
 Do not touch any doc. Proposal only.
 
