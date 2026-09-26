@@ -182,14 +182,25 @@ also exist locally; thumbnails exist everywhere, always).
   `storageRef` → the user's folder path, `archivedOnDevice` = this PC,
   `exported: false` stubs in exports.
 
+<!-- AMENDED 2026-09-26 (C2 cross-audit MISMATCH requeue; L087 / C-11; docs-pass
+D223): `durationSec` was vlog-only — the voice-note audio-container rule is
+added here (the media-pipeline half; the composer surface lives in UIUX.md,
+docs-pass D221). -->
+
 ### Vlog duration & lifecycle
 
-- `media_attachments` gains an additive nullable `durationSec` column.
+- `media_attachments` gains an additive nullable `durationSec` column — the one
+  duration column for videos **and** voice notes.
 - Duration is measured **exactly once**, the moment a file first enters the
   library:
   - phone capture returns the finished duration from the recorder;
   - PC adoption (J7) parses the MP4/MOV container header once (a ~50-line parse,
-    no ffmpeg).
+    no ffmpeg);
+  - **voice-note audio-container rule (D223):** an audio file entering the
+    library without a recorder-provided duration (adopted/imported audio)
+    parses its audio container header once (e.g. M4A/MP4 — the same ~50-line,
+    no-ffmpeg discipline). `durationSec` covers voice notes; the full voice-note
+    pipeline is in "Voice-note entry type" below.
 - Every later tier move **copies the stored row** — no re-measurement, no
   re-download, no cross-device drift. Consumers that sum duration read the
   column only.
@@ -266,6 +277,75 @@ explicitly NOT included; it is an open item (see Open Items).
 - The buffer **is not a deletion policy** — it is a prompt/nudge. Older vlogs
   remain available until archived, and are shown in the storage meter as
   archivable. The no-silent-deletion principle is absolute here.
+
+## Voice-note entry type (C-11; docs-pass D222–D224)
+
+<!-- AMENDED 2026-09-26 (C2 cross-audit MISMATCH requeue; L087 / C-11; docs-pass
+D222–D224): the voice-note media-pipeline half lands here — the composer
+surface lives in UIUX.md (docs-pass D221). Closes the IntegrationAuditReport
+L087 MISMATCH for MediaStorage.md (the S058/S059 build-time call). -->
+
+Voice notes are the journal's third entry type beside text and vlog (C-11,
+L087): record (hold/release), audio preserved on-device as a media item, inline
+playback in the entry — the record/playback surface lives in `UIUX.md` (D221).
+This section is the **media-pipeline half** (D222–D224): how a voice note
+enters the media library, how its duration is measured, and which
+storage/compression rules apply.
+
+### Media path (D222)
+
+- A voice note is **on-device audio as a media item — the same media path as a
+  vlog, through `MediaRepository`** (save, load, delete, resolve; the Journal
+  never touches file storage). There is no separate audio pipeline.
+- The entry stores the audio blob **plus small metadata (duration, date)** in a
+  `media_attachments` row, created transactionally with the journal entry —
+  exactly like any other media item.
+- **Raw audio is always kept** (APA advisory: AI is adjunct). The captured
+  audio is the primary artifact: no lossy audio re-encoding tier, no
+  transcript-replaces-audio, nothing downstream may discard or degrade it.
+- **No XP** for recording, keeping, or replaying voice notes.
+- **On-device only.** Transcription + time-sync (tap transcript → scrub audio)
+  is a **FUTURE-ONLY optional addition, NOT now** — it needs an STT engine
+  decision (DecisionLog + approval) when/if pursued (S058); there is no cloud
+  STT without that decision. Until then a voice note is audio + metadata only.
+
+### Duration — the audio-container rule (D223)
+
+- `durationSec` covers voice notes. Phone capture returns the finished duration
+  from the recorder; an audio file entering the library without a
+  recorder-provided duration (adopted/imported audio) parses its audio
+  container header once (e.g. M4A/MP4 — the same ~50-line, no-ffmpeg discipline
+  as the vlog MP4/MOV parse). The rule is drafted in place in "Vlog duration &
+  lifecycle" above.
+- Corrupt/unreadable files store `NULL` and never count — the absolute-honesty
+  rule (no estimates, no user-typed values) applies unchanged.
+
+### Storage & compression tier application (D224)
+
+- **Same tier logic as vlog** (S059 build-time call; recommended at build:
+  "same tier logic as vlog, buffer exempt"). Voice notes live on the same three
+  tiers — Tier 1 local device (default; every device caches its own copy), Tier
+  2 Drive vault at P3 (small media auto-syncs), Tier 3 PC archive (manual, same
+  access model). Tier moves copy the stored row; `syncState`/`storageRef`
+  semantics unchanged.
+- **Buffer exempt:** the Vlog Local Buffer (the rolling 3–5-day cache and the
+  active PC-archive nudge) does **not** apply to voice notes. That machinery
+  exists for multi-hundred-MB vlog volume; voice notes are small audio files
+  and are never prompted for PC archival.
+- **Compression/limits:** media storage rules apply — capture-time encoding via
+  browser MediaRecorder (audio-only constraints; no raw intermediate stage
+  during capture), content-hash dedup on the audio blob (a re-imported
+  identical capture dedups), and **raw audio always kept — no lossy audio
+  compression tier** (D222).
+- **Meter math:** voice-note bytes count in the storage meter like any other
+  media row; an adopted/imported audio row carries the same `adopted` marker
+  semantics and meter exclusion as adopted videos (J7c).
+- **Delete is tier-aware**, same as vlog: local → row + local file + tombstone;
+  Drive-vaulted → metadata row only, never destroys the blob; PC-adopted → the
+  app never removes the file (folder = truth, J7).
+- **Export/backup:** voice-note blobs ride the normal media export (sha256
+  manifest, hash-verified); a PC-archived voice note exports metadata-only
+  (`exported: false`), identical to PC-archived vlogs.
 
 ## Physique-Photo Timeline
 
