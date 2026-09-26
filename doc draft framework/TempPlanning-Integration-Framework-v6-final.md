@@ -1,4 +1,4 @@
-# TEMP-PLANNING.md → /docs Integration Framework (v6 — Final)
+﻿# TEMP-PLANNING.md → /docs Integration Framework (v6 — Final)
 
 **HOW TO USE THIS FILE:** paste this entire document into DeepSeek (via
 opencode, with repo access to the Heartwood project) as the first message
@@ -6,7 +6,7 @@ of a fresh session. Tell it to execute Stage A1a first and stop for review
 before continuing — do not run all stages unattended in one pass. Each
 stage's "Prompt" block is written to be copy-pasted as-is (or handed to
 DeepSeek directly, since it already has the whole framework in context).
-Model is fixed at `opencode/deepseek-v4-flash-free` for every stage; per-stage
+Model is fixed at `opencode-go/deepseek-v4-flash (SUPERSEDED by the v7 delta 2026-09-26: the model is opencode-go/deepseek-v4-flash for every stage)` for every stage; per-stage
 effort levels are assigned in §1's "Agent model & effort assignment" table —
 apply them when launching each stage.
 
@@ -52,7 +52,7 @@ didn't know to use:
    and `StorageSpikeSessionA.md` (NOT a drafting target) added, with the
    non-doc elements (`audits/`, `tools/`, `lib/`, `web/`, root `Edit.md`)
    declared out of drafting scope.
-2. **Model pinned:** every stage runs `opencode/deepseek-v4-flash-free`;
+2. **Model pinned:** every stage runs `opencode-go/deepseek-v4-flash (SUPERSEDED by the v7 delta 2026-09-26: the model is opencode-go/deepseek-v4-flash for every stage)`;
    per-stage effort table added in §1 (MAX for A1a/B2/E/G, HIGH for
    A1b/A2/B1/D2, MEDIUM for A3/D1/F; C is human).
 3. **Stage execution rules added in §1:** one stage = one fresh session
@@ -167,7 +167,7 @@ checks against it (see §11).
 
 ### Agent model & effort assignment (all stages)
 
-**Model:** every stage runs on `opencode/deepseek-v4-flash-free` (DeepSeek V4
+**Model:** every stage runs on `opencode-go/deepseek-v4-flash (SUPERSEDED by the v7 delta 2026-09-26: the model is opencode-go/deepseek-v4-flash for every stage)` (DeepSeek V4
 Flash, free tier) — no exceptions, no per-stage model upgrades. Effort is the
 only knob, and it is assigned per stage below. C is human — no model.
 
