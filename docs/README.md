@@ -7,6 +7,7 @@ Entry point for all project documentation. Read this first.
 - **Phase:** Architecture refinement — COMPLETE
 - **Documentation:** COMPLETE (this set)
 - **Integration:** TEMP-PLANNING pipeline CLOSED 2026-08-20 — census + no-holes gates cleared; docs/ are the source of truth; design-lock granted 2026-08-21 (DecisionLog D077, closes gate S001)
+- **Integration (gen-2):** TEMP-PLANNING pipeline CLOSED 2026-09-26 — the gen-2 ledger (refactor & Life Tree design; C/F/N/L + tree-7 D085–D117) closed with this run; docs/ remain the single source of truth
 - **Implementation:** M0 IN PROGRESS — `lib/` is active (features, repositories,
   engines, media pipeline per `Roadmap.md`); docs/ remain the contract for the
   current milestone. Where an HTML mockup is the visual source of truth, it lives
@@ -54,6 +55,7 @@ conflicts with one of these, the principle wins.
 | `Database.md` | Schema, event log, migrations, backup format, restore |
 | `CoachSystem.md` | Coach architecture, MVP rules, strictness modes, AI adapter |
 | `Gamification.md` | Meaningful-progress philosophy, XP, streaks |
+| `LifeTree.md` | The Life Tree design system spec: register, state model, trigger table, derivation contract, launch-day/restore contracts, M9 handoff |
 | `MediaStorage.md` | Media pipeline, compression, repository abstraction, storage limits |
 | `StorageDecision.md` | Locked storage decision (Drift + SQLite WASM, DecisionLog D040), M0 spike spec, persistence test |
 | `StorageSpikeStatus.md` | Living spike-status doc: Drift vs IndexedDB metrics, iPhone persistence gate, open items |
@@ -71,6 +73,13 @@ Provenance: the TEMP-PLANNING integration set — `TEMP-PLANNING.md`,
 date-suffixed in `audits/` (2026-08-20). The docs above are now the single
 source of truth; the sequencing notes (S001–S082) live in
 `DevelopmentWorkflow.md`.
+
+A second integration set — the gen-2 ledger (the refactor & Life Tree
+design generation, this run) — is archived date-suffixed in `audits/`
+(2026-09-26): `TEMP-PLANNING.md`, `IntegrationLedger.md`,
+`IntegrationIDCensus.md`, `IntegrationIntentBrief.md`,
+`IntegrationSequencingNotes.md`, `StructuralImpactProposal.md`. The docs
+above remain the single source of truth.
 
 ## How to Read the Docs
 
