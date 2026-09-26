@@ -82,20 +82,37 @@ every number in this register must be playable during the
 development/visual-testing phase — a dev-only debug panel that
 tweaks any value and drives a live re-derivation + re-render (the
 archetype mockups and the perf gate use it); never shipped to users.
-(2) The RESOURCE normalization ceiling (F4) reads high at 20
-events/day — kept for now, calibrated via the dev tools at the
-paper-run step.
+(2) The RESOURCE normalization ceiling (F4) was calibrated by the
+paper run — LOCKED at 12 (D116): at 20 nearly every life read as
+sparse; at 12 the decade user lands ~0.6–0.8. Still dev-tunable.
 
 GROUP A — THE PRESENCE BARS:
 A1 grace window: +-3 days (written-in-window presence, D100)
 A2 qualifying-event rule: journal >=40 words non-imported (locked) ·
   gym >=1 real logged set · nutrition >=1 real food-log · body >=1
   canonical weigh-in · habits 1 completion · media 1 add
-A3 twig bar: >=15 in-window days per 30-day month (one twig per
-  month of sustained presence)
-A4 stage-year bar: >=200 active days in the anchored 365-day window
-A5 ring-year per-domain bar: >=40 in-window days per domain (the
-  V-8 body pattern; D101's deferred piece, now locked)
+A3 twig bar - PER-CLASS (D116, the paper-run fix - the bar matches
+  the domain natural cadence, so the canopy never lies about a
+  consistent domain): journal/habits/nutrition/goals >=15 in-window
+  days/CALENDAR month (the calendar-month reading pinned - the
+  February dip is an honest feature, never a lottery); GYM >=8
+  days/month (2x/week passes — the audit C-11; 3x/week = 12-13,
+  comfortably over); BODY/MEDIA >=4 active weeks/month. PLUS THE CANOPY
+  RULE (the rotating-logger fix, D116 + the recording audit): any
+  month with >=15 in-window days ANY-DOMAIN-MIXED grows the tree -
+  a twig on the month's most-active branch (the rotating logger
+  logs 30 days/month - its canopy grows; the per-class bars still
+  gate the per-domain branches). Dev-tunable.
+A4 stage-year bar: >=200 in-window days, CUMULATIVE-ACCRUAL reading
+  (D116 pin - the count accumulates from the anchor; a stage-year
+  completes at 200, the counter resets; the every-other-day life
+  takes ~13.2 months - the literal 365-day-window reading is dead).
+  Active day = a day with >=1 in-window event.
+A5 ring-year per-domain bar: ≥40 in-window days per domain over the
+  SIX CORE DOMAINS (journal, habits, gym, nutrition, body, media —
+  the D116 RING FOLD: goals and periods are excluded from the ring
+  brand so the trunk rings and the trophy ladder ALWAYS agree; the
+  canonical-7 stays for the axes/presence)
 
 GROUP B — THE STAGE GATES:
 B1 SEED->SEEDLING: first in-window event
@@ -104,14 +121,13 @@ B2 SEEDLING->SAPLING: >=15 in-window days within any 30-day
   logger qualifies; a genuine month of presence - D115, days not
   twigs)
 B3 SAPLING->POLE: 1 stage-year (A4)
-B4 POLE->MATURE: >=2 stage-years AND >=1 domain with >=90
-  in-window days in its best anchored year (the structural depth,
-  DAYS-BASED - D115; no gate ever blocks on a twig count; the
-  body-only user matures; the every-other-day archetype matures
-  (A4 is reachable-but-slow for sparse patterns - ~13.2 months per
-  stage-year - honest calibration, dev-tunable); crown breadth =
-  the BALANCE axis's business) (pioneer-speed ~year 2 for hyper-
-  consistent users)
+B4 POLE->MATURE: >=2 stage-years AND >=90 in-window days
+  ANY-DOMAIN-MIXED in the best anchored year (D116 - the mixed-domain
+  fix: the sparse-stubborn, rotating, every-other-day, and body-only
+  users ALL mature - the caudex own archetype reaches its first
+  bloom; no gate ever blocks on a single domain or a twig count;
+  crown breadth = the BALANCE axis business) (pioneer-speed ~year
+  2 for hyper-consistent users)
 B5 MATURE->OLD-GROWTH: >=10 stage-years
 
 GROUP C — THE CAPACITIES & BUDGETS:
@@ -123,8 +139,10 @@ C3 habit-bud cluster threshold: >=30 buds per branch -> clusters
   (individual buds <=29; clusters reveal on zoom; the count stays
   honest)
 C4 legend transformations: 1 per annual bloom + 1 all-time CROWN
-  (the first/rarest Grove; other Groves get large blooms, not the
-  transformation)
+  (the EARLIEST-EARNED Grove is the crown - D116 tiebreak; other
+  Groves get large blooms, not the transformation; the crown is
+  DERIVED - the restore walk proved it re-sets honestly, never
+  stored in the backup)
 C5 twig capacity: <=12 twigs/branch/year (the monthly unit) + a
   RETENTION WINDOW (candidate: the last 3 years' twigs render
   individually; older twigs merge into the branch's woody character
@@ -132,7 +150,10 @@ C5 twig capacity: <=12 twigs/branch/year (the monthly unit) + a
 C6 leaf-cluster granularity unlock: at POLE (the stage gate, the
   zoom mechanic)
 C7 bank-counter display: top 3 by tier + the count ("+47 more");
-  the why-panel lists the full bank
+  the why-panel lists the full bank; a CLOSED bucket shows
+  restore-foreclosed trophies (D116 - never silence); the LEGEND
+  CARD computes its numbers FROM the tree state, never templates
+  (D116)
 
 GROUP D — THE TENURE FLOORS:
 D1 structural-modification floor: >=2 stage-years
@@ -141,17 +162,38 @@ D3 caudex floor: >=5 stage-years
 
 GROUP E — THE ADAPTATION AXIS SIGNATURES (gates, not triggers —
 D103): see the full per-adaptation rationale in the session record.
-E1 caudex: tenure >=0.7 AND resource <=0.6
-E2 buttress: balance >=0.7 AND resource >=0.6
-E3 phyllodes: resource <=0.4
+E1 caudex: tenure >=0.7 AND resource <=0.6 (the ~8.3-year cadence
+  pinned — D116; the MATURE floor dissolves with B4's mixed-domain
+  bar, so the sparse-ancient user reaches the first bloom and the
+  caudex's gate becomes the honest 7+ stage-years + sparse)
+E2 buttress: balance >=0.7 ONLY (D116 + the recording audit — the
+  balance leg IS the whole signature: at the F4 ceiling 12 the
+  rotating logger sits at 0.083 resource — any resource leg excludes
+  the balance champion; the wide-crown roots belong to the balanced
+  life, period; the resource dimension does its work in E1/E3)
+E3 phyllodes: resource <=0.4 AND rhythm >=0.5 (D116 - the drought
+  adaptation fires only for the STEADILY-sparse (the acacia), never
+  the bursty feast-famine or the lush; the F4 calibration keeps
+  normal lives out of the band) + PERSIST-INTENSITY reversion rule:
+  once manifested the adaptation stays (the history is real) but its
+  visual intensity scales with the current axes at each bloom
+  checkpoint, the why-panel narrating (the leaves grew richer as the
+  logging deepened)
 E4 cladodes: streak-without-entries divergence >=0.6
-E5 storage leaves: media share >=0.5 of entry content
-E6 thorns: the 365-day streak achievement + tenure >=2
-E7 spines (subtle): the 100-day streak achievement
+E5 storage leaves: media share >=0.5 of entry content, metric =
+  ATTACHMENT-MIX (D116 pin: media attachments / total attachments,
+  not bytes, not words)
+E6 thorns: 52 CONSECUTIVE WEEKS of sustained presence in a domain
+  (ANY domain - the cadence-relative armor, D116) + tenure >=2
+  stage-years. The armor is rare: a full year of never-missing
+  weekly presence on a 2+ year tree.
+E7 spines (subtle): 26 CONSECUTIVE WEEKS of sustained presence in a
+  domain (ANY domain - D116; half a year of every-week consistency)
 E8 tendrils: a live long-horizon goal (>1 year, in progress)
-E9 reaction wood + epicormic: a revival (universal — no gate)
-E10 contractile: 3 consecutive stage-years with rising active-day
-  counts
+E9 reaction wood + epicormic: a revival - an UNPROTECTED dormancy ending (D116: planned returns from rests/vacations/quiet-weeks are NOT revivals - the protected-absence exclusion; the vacation-heavy walk fired 16 false comebacks)
+E10 contractile: 3 consecutive ANCHORED 365-day windows with rising
+  active-day counts (D116 pin - the accrual unit killed it for every
+  user; the anchored-window reading makes it real)
 E11 mycorrhizal: coach engagement >= the threshold per the
   coachEngagement owner (H-03; one derived owner; opt-ins/deletes
   never feed it)
@@ -159,6 +201,9 @@ E12 stolons: a sustained L-10 insight confirmed >=3 monthly windows
   in a row
 E13 bracts: no gate (ceremony display)
 E14 bud scales: no gate (the dormant-habit state)
+E15 DORMANCY THRESHOLD (D116 + the recording audit pin): a dormancy
+  = >=14 consecutive days with no in-window presence (a fortnight
+  of quiet); a REVIVAL = the dormancy ends - the E9 trigger unit.
 
 GROUP F — THE TIME WINDOWS & FORMULAS:
 F1 season-phase: FIXED DATES (spring Mar 1 / summer Jun 1 / autumn
@@ -169,11 +214,15 @@ F2 growing season: spring->autumn (Mar 1 - Nov 30); winter = the
   resting/banking season (D095)
 F3 anchored windows: 365 days anchored to the frozen birth anchor
   (E3 — never calendar-chopped; both year types share it)
-F4 RESOURCE: avg in-window events per active day, normalized 0-1
-  (ceiling currently 20 events/day — reads high, kept for now,
-  CALIBRATED VIA THE DEV TOOLS at the paper-run step)
-F5 RHYTHM: 1 - (stddev/mean of weekly active-day counts), clamped
-F6 BALANCE: Shannon evenness across the 7 presence-domains
+F4 RESOURCE: avg in-window events per active day, normalized 0-1,
+  CEILING 12 (D116 - the paper run proved the 20 ceiling made
+  nearly every life read as sparse and decided whole characters;
+  at 12 the decade user lands ~0.6-0.8 where buttress is reachable)
+  + the EVENT UNIT pinned: per-input-class events, one count each
+  (a meal = 1, a set = 1, a photo = 1 - no double-counting, no
+  hidden multipliers)
+F5 RHYTHM: 1 - (stddev/mean of weekly active-day counts), clamped; ACTIVE DAY pinned: a day with >=1 in-window event (D116); the D114 protected-absence discount lives HERE: planned rests, vacations, and quiet-weeks are discounted from the weekly counts
+F6 BALANCE: Shannon evenness across the CANONICAL-7 presence-domains, PRESENT OR NOT (D116 pin - the normalization choice flipped the 0.70 gate; the pinned reading is stable)
   (Artifact 1's list)
 F7 TENURE: stage-years / 10, clamped at 1
 F8 replay pacing: ~2s per year (the D097 time-lapse; tuneable at
@@ -196,7 +245,9 @@ schedule; nothing fires twice, nothing is hidden)
 A. THE FLOWER TRIGGERS (achievements → flowers; D092 schedule):
 - Every achievement → a flower at its tier magnitude + family
   identity (D091 overlay). Pre-maturity: banked as tier-marked buds
-  (D096). First bloom at maturity: Sprout→Heartwood burst. Post-
+  (D096). First bloom at maturity: Sprout→Heartwood burst — WITH
+  THE WINTER-DEFERRAL (D116/C13: a winter maturity defers the first
+  bloom to the next spring flush — winter-exempt). Post-
   maturity: growing-season earns bloom on-earn; winter earns bank to
   spring. Ring tier → the annual bloom. Grove → the next annual
   bloom as the transformation (C4 legend cap: 1 per bloom + 1
@@ -214,30 +265,39 @@ GATES; the manifest moment = the next annual bloom per D093):
   Cousin achievements noted: VIII-4 Ten Years (anchor-age, different
   condition — no double-fire). Gate: D3 (5 stage-years) + E1.
 2 buttress — DERIVED (sustained multi-domain balance): balance >=0.7
-  + resource >=0.6 + stage floor POLE. Gate: D2 + E2.
-3 phyllodes — DERIVED (sparse-stubborn): resource <=0.4, sustained.
-  Gate: D1 + E3 + stage floor SEEDLING (leaves exist).
+  ONLY (D116 — the resource leg removed: at the F4 ceiling 12 the
+  balance champion sits at 0.083 resource; the balance leg IS the
+  whole signature). Gate: D2 + E2 + stage floor POLE.
+3 phyllodes — DERIVED (sparse-stubborn): resource <=0.4 AND rhythm
+  >=0.5 (D116 — the steadily-sparse acacia; never the bursty or the
+  lush) + the PERSIST-INTENSITY reversion rule. Gate: D1 + E3 + stage
+  floor SEEDLING (leaves exist).
 4 cladodes — DERIVED (streak-without-entries divergence >=0.6). Gate:
   D1 + E4 + stage floor SAPLING (branches exist).
 5 storage leaves — DERIVED (media share >=0.5 of entry content).
   Gate: D1 + E5 + stage floor SEEDLING (leaves exist) — D114 restored
   the structural-tier floor (D089: 2+ stage-years).
-6 thorns — ACHIEVEMENT (the 365-day streak trophy, family II's
-  long-haul tier) + tenure >=2. Gate: D1 + E6 + stage floor SAPLING
-  (branches exist). Same condition also produces the trophy's own
-  flower — DIFFERENT visuals (armor vs bloom) — both fire (no
-  conflict; the no-double-fire rule covers same-visual collisions
-  only).
-7 spines (subtle) — ACHIEVEMENT (the 100-day streak trophy, II-3 A
-  Hundred Days). No tenure gate (subtle tier, D089). Stage floor:
-  SAPLING.
+6 thorns — DERIVED (D116 — the refuted 365-day trophy replaced by
+  cadence armor): 52 CONSECUTIVE WEEKS of sustained presence in a
+  domain (ANY domain) + tenure >=2. Gate: D1 + E6 + stage floor SAPLING
+  (branches exist). Same condition also produces the domain's flower
+  — DIFFERENT visuals (armor vs bloom) — both fire (no conflict;
+  the no-double-fire rule covers same-visual collisions only).
+7 spines (subtle) — DERIVED (D116): 26 CONSECUTIVE WEEKS of
+  sustained presence in a domain (ANY domain — the refuted II-3
+  referent replaced by cadence armor). No tenure gate (subtle tier,
+  D089). Stage floor: SAPLING.
 8 tendrils — DERIVED (a live long-horizon goal, horizon >1 year).
   Gate: E8. Stage floor: SAPLING (branches exist).
-9 reaction wood + epicormic — DERIVED (the revival event — a
-  dormancy period ends). UNIVERSAL (no gate). Stage floor: the organ
+9 reaction wood + epicormic — DERIVED (the revival event — an
+  UNPROTECTED dormancy period ends; >=14 consecutive quiet days per
+  E15; planned returns from rests/vacations/quiet-weeks are NOT
+  revivals — D116). UNIVERSAL (no gate). Stage floor: the organ
   exists.
-10 contractile — DERIVED (3 consecutive stage-years with rising
-  active-day counts). NO D1 FLOOR (subtle tier per D089 — D114).
+10 contractile — DERIVED (3 consecutive ANCHORED 365-day windows
+  with rising active-day counts — D116; the accrual-unit reading
+  killed it for every user). NO D1 FLOOR (subtle tier per D089 —
+  D114).
 11 mycorrhizal — DERIVED (coachEngagement owner >= the threshold).
   Universal (no axis gate). Feed: H-03's single owner; opt-ins/
   deletes never feed it.
@@ -273,12 +333,15 @@ The derived cache's schema (the only place the renderer and the
 why-panel read): meta (schemaVersion, registerVersion,
 logFingerprint, derivedAt, anchor) - stage, stageYears,
 currentWindowDays - axes (resource, rhythm, balance, tenure) -
-bankBuds [{achievementId}] (order = earn order) -
+bankBuds [{achievementId, count}] (order = earn order; AGGREGATED
+  by achievementId per C9 — the repeat-bloom count badge lives here) -
 legendAchievementId (the crown, once-set) - trunk {rings
 [{index,sliver}], adaptations} - branches [{domain, dormantSince,
 revivals [dateKey], twigs [{monthKey,daysPresent}], forks
 [{type,twigs}], rings, adaptations, fruitSpurs}] - habits [{habitId,
-state: dormant|swelling|bursting|scarred}] - leaves (recent
+state: dormant|swelling|bursting|scarred, clusterRef}] (clusterRef
+per C3 — buds beyond 30 per branch cluster; the count stays honest)
+- leaves (recent
 granularity rows + older cluster aggregates) - flowers
 [{achievementId, bloomDateKey, state: bud|bloomed|faded}] - fruits
 [{goalId, dateKey}] - periods [{type, startKey, endKey}]. The
@@ -307,8 +370,10 @@ life-tree-design/audits/scan-audit-2026-08-29.md (3 passes).
   activity volume) + THICKENING (ring quality — year-round
   consistency).
 - **Secondary growth trigger (LOCKED - D101/D114):** the trunk's rings
-  form at RING-YEAR closings (the anchored 365-day window with the
-  CANONICAL 7 presence-domains present, per D104/D114); the stage
+form at RING-YEAR closings (the anchored 365-day window with the
+SIX CORE domains present — the D116 ring fold: journal, habits, gym,
+nutrition, body, media — goals and periods excluded from the brand;
+the trunk rings and the trophy ladder ALWAYS agree); the stage
   clock runs on STAGE-YEARS (any-domain, >=200 in-window days per A4)
   - the two clocks never mix (D101). Maturity (B4) gates the first
   bloom; ring-years brand the trunk.
@@ -374,3 +439,45 @@ trunk rings, time-lapse — which data each layer shows (VISION §16).
 
 Every approved row becomes a numbered decision (D08x+) with status;
 open points from VISION §4 get resolved here first.
+
+D116 ADDITIONS (the paper-run corrections - all 19 walks, 2026-08-29):
+C8 SPUR ECONOMY: a fruit spur = ONE PER MILESTONE/PHASE of a goal
+  (D116, user decision - the goal-focused walk produced 10,950
+  spurs from per-task counting; milestones bring a real life to
+  ~54-90 spurs; a cluster rule covers the rest)
+C9 REPEAT-BLOOM AGGREGATION (D116, user decision - the faucet
+  flood): the same achievement's re-fires MERGE into ONE flower
+  with a COUNT BADGE (II-6 x120 -> one flower, badge x24), capped
+  per achievement per bloom event; the C3 cluster surface extends
+  to the flower-bank; the bloom queue drains (the habit-hoarder's
+  99.9% re-fire bank becomes readable); per-habit caps apply
+C10 COACH-LINE CAP (D116): Ring/Grove Coach lines capped per bloom
+  event (the hoarder's 1,001-line flood becomes one line per
+  event - the one-line discipline extended)
+C11 EMPTY-SPRING RULE (D116): an annual bloom with nothing earned
+  gets a QUIET-SPRING copy ("the tree rests this year - every
+  year it blooms is earned"), never silence
+C12 NEVER-MATURE MANIFEST FALLBACK (D116): if a pending adaptation
+  has no annual bloom to manifest at (the never-mature sparse
+  case), it manifests at the NEXT SPRING check regardless - a
+  pending adaptation is never pending forever
+C14 BRANCH-RING BAR (D116 + the recording audit pin - the walks
+  flagged it 3x): a branch ring = an anchored year in which the
+  domain had >=40 in-window days (the A5 per-domain logic, no
+  six-domain requirement) - the journal-only user's branch rings
+  record the years honestly.
+C13 SCHEDULE PINS (D116): the FIRST BLOOM defers to the next
+  spring flush when maturity lands in winter (winter-exempt); the
+  bank is evaluated AT BLOOM OPENING (the same-day boundary)
+  - both pins settle the 6-walk recurring edges
+A6 THE BACKFILL-TROPHY PREDICATE (D116 - the winter-bomber W1): the
+  isBackfill exclusion extends to TROPHY conditions - qualifying
+  content fires trophies only for IN-WINDOW days; a PR-rich
+  backfill can no longer reach a Grove through the content channel
+A7 GOALS = FRUITS ONLY (D116, user decision - no G-family): the
+  goals branch carries fruits + spurs + tendrils; goal completions
+  NEVER produce flowers; the why-panel is the goal storyteller
+E15 MEDIA TROPHY CENSUS (D116 - the vlog-lock): the VII Proof of
+  Life family counts KEPT PHOTOS + VLOGS (the census always said
+  "vlogs & photos"; the conditions drifted - the photo-rich user
+  is un-starved)

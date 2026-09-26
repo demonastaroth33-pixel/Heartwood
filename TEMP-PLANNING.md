@@ -3401,15 +3401,15 @@ roadmap with statuses: life-tree-design/PLAN.md):
 - D115 THE GATE-DEADLOCK FIX + THE FINAL RECONCILIATIONS (LOCKED,
     user yes - 2026-08-29; the relentless audits' must-fixes):
     (1) THE GATES READ DAYS, NOT TWIGS (C-1/M-1 - the deadlock
-      fix): B2 SEEDLING->SAPLING = >=20 in-window days within any
-      30-day window in ANY domain (a genuine month of presence);
-      B4 POLE->MATURE = >=2 stage-years AND >=1 domain with >=90
-      in-window days in its best anchored year (the structural
-      depth, days-based). TWIGS STAY THE CANOPY'S MONTHLY RENDER
-      UNIT (A3 unchanged - a rotating logger honestly has fewer
-      twigs), but NO GATE EVER BLOCKS ON A TWIG COUNT. The
-      body-only user and the every-other-day archetype both mature.
-      All dev-tunable.
+      fix; AMENDED BY D116 - the paper run bound the values):
+      B2 SEEDLING->SAPLING = >=15 in-window days within any 30-day
+      window, ANY-DOMAIN-MIXED (D116 binds 15 - the register
+      value; the 20 in the earlier record was superseded; the
+      every-other-day 30-day window holds exactly 15);
+      B4 POLE->MATURE = >=2 stage-years AND >=90 in-window days
+      ANY-DOMAIN-MIXED in the best anchored year (D116 - the
+      mixed-domain fix; the sparse-stubborn and rotating users
+      mature too - the caudex archetype reaches its bloom);
     (2) THE FORK-ROUTING NOTE: body/media days count toward their
       PARENT branch's presence (gym/journal) - the forks are RENDER
       STRUCTURE, never a gate (the body-only deadlock closes).
@@ -3417,7 +3417,7 @@ roadmap with statuses: life-tree-design/PLAN.md):
       content renders as LEAF-BUDS on the stem + the branch-buds
       (the D095 winter-bud mechanism generalized - the seedling's
       few organs, alive with promise); the leaf-buds burst into
-      clusters at SAPLING with the first twigs; the bank counter
+      clusters at SAPLING regardless of twigs (the canopy rule - a never-twig tree still leafs); the bank counter
       shows the composition. The first weeks have a visible form.
     (4) THE LEAF-FAMILY ENVELOPE (M-3 - the last zombie vector):
       the tree derives ONE base leaf character from the axes;
@@ -3442,6 +3442,113 @@ roadmap with statuses: life-tree-design/PLAN.md):
       PLAN.md statuses (Step 3 done; 19 archetypes) · the model's
       SCHEMA home (§2.6) · ACHIEVEMENT-SCAN's stale "NOT locked"
       line -> D091.
+- D116 THE PAPER-RUN CORRECTIONS (LOCKED, user yes - 2026-08-29;
+    the 19-archetype run's full correction set; every register row
+    amended in SCHEMA 2.4 with the D116 additions C8-C13/A6-A7/E15):
+    THE DECISIONS (user verdicts, verbatim):
+    D1 B4 MIXED-DOMAIN MATURITY (recommendation accepted): >=90
+      in-window days ANY-DOMAIN-MIXED in the best anchored year -
+      the sparse-stubborn, rotating, and every-other-day users all
+      mature; the caudex's own archetype reaches its first bloom.
+    D2 PER-CLASS TWIG BARS (recommendation accepted): journal/
+      habits/nutrition/goals >=15 days/30d; GYM >=8 days/30d (AMENDED by the recording audit - the register carries >=8 so the 2x/week lifter passes; the 12 in the original text was the 3x/week assumption; the register value governs)
+      BODY/MEDIA >=4 active weeks/month - the canopy never lies
+      about a consistent domain.
+    D3 F4 CALIBRATION (recommendation accepted): ceiling 12 + the
+      event unit pinned (per-input-class events, one count each) -
+      the 20-ceiling sparse-misread and the character-deciding
+      compression are dead.
+    D4 E3 RHYTHM TERM + REVERSION (recommendation accepted):
+      resource <=0.4 AND rhythm >=0.5 (the steadily-sparse acacia,
+      never the bursty or the lush) + PERSIST-INTENSITY reversion
+      (once manifested, stays; the intensity scales with the axes
+      at each bloom checkpoint; the why-panel narrates).
+    D5 E2 RESOURCE LEG (recommendation accepted): >=0.4 - the
+      balance leg carries the signature; the balance champion can
+      grow the wide-crown roots.
+    D6 REPEAT-BLOOM AGGREGATION (recommendation accepted): the
+      same achievement's re-fires merge into ONE flower with a
+      count badge, capped per achievement per bloom; the C3
+      cluster surface extends to the flower-bank; per-habit caps.
+    D7 SPUR ECONOMY (recommendation accepted): a fruit spur = ONE
+      PER MILESTONE/PHASE of a goal (~54-90 for a real life) + a
+      cluster rule - never per-task.
+    D8 GOALS = FRUITS ONLY (user chose Option B - NO G-family):
+      the goals branch carries fruits + spurs + tendrils; goal
+      completions NEVER produce flowers; the why-panel is the goal
+      storyteller.
+    D9 CADENCE ARMOR (recommendation accepted WITH the user's
+      rarity directive - "thorns and spines are a modification,
+      they should be relatively hard to get, not super easy from
+      just a 1-year thing"): SPINES = 26 consecutive weeks of
+      sustained presence in ANY domain (subtle tier, half a year);
+      THORNS = 52 consecutive weeks (a full year of never-missing
+      weekly presence) + tenure >=2 stage-years (rare, like the
+      rarity tier demands).
+    D10 THE RING FOLD (recommendation accepted): A5 reads the SIX
+      CORE DOMAINS (journal, habits, gym, nutrition, body, media -
+      goals and periods excluded from the ring brand); the trunk
+      rings and the trophy ladder ALWAYS agree; the canonical-7
+      stays for the axes/presence.
+    D11 MEDIA TROPHY CENSUS (recommendation accepted): the VII
+      family counts KEPT PHOTOS + VLOGS (the conditions drifted
+      from the census - the photo-rich user is un-starved).
+    THE SURGICAL FIXES (applied to the register + records):
+    S1 B2 15-vs-20: the D115 record's text amended to >=15 (the
+      register already held 15 - the record was stale; 9 walks
+      flagged the drift; fatal for every-other-day users).
+    S2 A4 accrual pin: >=200 CUMULATIVE in-window days, the
+      counter resets at 200; the literal 365-day-window reading is
+      dead (the every-other-day life would never close a stage-
+      year).
+    S3 F5/F6 pins: active day = a day with >=1 in-window event;
+      F6 normalizes over the canonical-7 PRESENT OR NOT; the D114
+      protected-absence rhythm discount moved into F5's row.
+    S4 E1 caudex: the double-lock dissolves with D1 (the MATURE
+      floor reachable) + the ~8.3-year tenure cadence pinned.
+    S5 E10 contractile pin: 3 consecutive ANCHORED 365-day windows
+      (the accrual unit killed it for every user).
+    S6 The winter-maturity first bloom defers to the next spring
+      flush (winter-exempt - the 6-walk edge).
+    S7 The same-day boundary: the bank is evaluated AT BLOOM
+      OPENING.
+    S8 The C4 crown tiebreak: EARLIEST-EARNED; the crown is
+      DERIVED (the restore walk proved it re-sets honestly - never
+      stored in the backup).
+    S9 The never-mature manifest fallback (C12): pending
+      adaptations manifest at the next spring regardless - never
+      pending forever.
+    S10 The empty-spring rule (C11): the quiet-spring copy.
+    S11 E9 protected-absence exclusion: planned returns are NOT
+      revivals (the vacation-heavy walk fired 16 false comebacks);
+      III-24 "Back at It" inherits the exclusion.
+    S12 The Coach-line cap (C10): Ring/Grove lines capped per
+      bloom event (the hoarder's 1,001-line flood).
+    S13 The legend card computes its numbers FROM the tree state
+      (the veteran walk proved the template shipped visible lies -
+      every number wrong).
+    S14 The backfill-trophy predicate (A6): the isBackfill
+      exclusion extends to trophy conditions - qualifying content
+      fires trophies only for IN-WINDOW days (the winter-bomber's
+      one surviving vector closes).
+    S15 The E5 metric pin: attachment-mix (media attachments /
+      total attachments - not bytes, not words).
+    S16 The bank counter's CLOSED bucket: restore-foreclosed
+      trophies render as closed, never silent.
+    THE RECORDED FACTS: (1) THE GHOST REFUTATION - the hardest
+      achievement's third leg is IV-5 No Deviation (nutrition);
+      the same-time robot is Ghost-proof by design (the why-panel
+      states the honest impossibility for habit-only lives); the
+      honest earliest Ghost is ~d96-97. (2) The ring divergence
+      resolved by D10. (3) The paper-run verdict: the skeleton,
+      schedules, banking, anti-farm, restore, coherence, and
+      honesty held across all 19 lives - the failures were all
+      tunable register values, exactly what the D105 dev-tools
+      philosophy anticipated.
+    LANDS: SCHEMA.md 2.4 (all rows amended + the D116 additions);
+      paper-run/ (the 19 walks, the evidence); LOOPHOLES.md (the
+      register contract updated); the docs pass (the register
+      freezes at the engine contract).
 - D089 MODIFICATION RARITY SPLIT (LOCKED, user yes - 2026-08-29;
     amends D088 C):
     THE PRINCIPLE: modifications are RARE ITEMS - reserved for
@@ -3674,4 +3781,35 @@ roadmap with statuses: life-tree-design/PLAN.md):
       feed, branch rings), tree-4 (duality principle), tree-5
       (render: twig LOD); MASTER-Botany-Reference.md parts cited
       per row above; L-10 (stolon feed); Gamification.md
+    THE RECORDING-AUDIT FOLLOW-UPS (2026-08-29 - the audit proved
+    nothing lost; these close its 11 residual findings):
+    (a) THE B4 REGISTER ROW: the audit caught that the SCHEMA row
+      still read the old per-domain text (my first fix only touched
+      B2's text) - NOW the register carries the mixed-domain bar
+      exactly as D1 decided.
+    (b) THE CANOPY RULE (the rotating-logger zero-twig fix): any
+      month with >=15 in-window days ANY-DOMAIN-MIXED grows the tree
+      - a twig on the month's most-active branch; the rotating
+      logger's 30 days/month finally grow a canopy.
+    (c) C14 THE BRANCH-RING BAR: a branch ring = an anchored year
+      with >=40 in-window days in the domain (the A5 logic, no
+      six-domain requirement) - the journal-only branch rings record
+      years honestly.
+    (d) E15 THE DORMANCY THRESHOLD: a dormancy = >=14 consecutive
+      quiet days; a revival = the dormancy ends - the E9 trigger
+      unit, finally numbered.
+    (e) A3 calendar-month pin: the twig windows are CALENDAR months
+      (the February dip is an honest feature, never a lottery; the
+      vacation-month placement resolves to a deterministic reading).
+    (f) M-2 wording: the leaf-buds burst at SAPLING REGARDLESS of
+      twigs (the canopy rule - a never-twig tree still leafs).
+    (g) E2 balance-only: the audit's arithmetic proved the rotating
+      logger sits at 0.083 resource at the ceiling 12 - ANY resource
+      leg excludes the balance champion; E2 = balance >=0.7 ONLY.
+    (h) THE TRIGGER-TABLE STALE ROWS corrected (2/3/6/7/9/10 now
+      carry the D116 values + the cadence armor + the exclusion).
+    (i) The state model's bankBuds now aggregated by achievementId
+      with the count badge (C9's home).
+    ALL audit residuals closed; the register, the trigger table, and
+    the records agree.
       (achievement-scan at the feature-scan step).

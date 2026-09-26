@@ -36,13 +36,13 @@ cherry-blossom moment.
 
 **The master clock (LOCKED - D090):** one STAGE clock, derived from
 growth across ANY domain. Tick rules: SEED->SEEDLING = first logged
-event - SEEDLING->SAPLING = first sustained presence period (>=15 in-window days in any 30-day window, any-domain-mixed - D115) - SAPLING->POLE = first qualifying year
+event - SEEDLING->SAPLING = first sustained presence period (>=15 in-window days in any 30-day window, any-domain-mixed - D115; the window completes INCLUSIVELY on the day the 15th in-window day lands - the D116 day-29/day-30 pin) - SAPLING->POLE = first qualifying year
 (any-domain, anchored) - POLE->MATURE = DERIVED MATURITY (structural
 threshold, pioneer-speed) - MATURE->OLD-GROWTH = decade scale. One
 frozen birth anchor (the first in-window event; never shifts;
 existence is monotonic once born - D114). Rings = a BRAND
-(decoupled from the clock; the CANONICAL 7 presence-domains per
-D104/D114, calendar-neutral, never chopped). Calendar seasons =
+(decoupled from the clock; the SIX CORE domains - the D116 ring fold:
+  journal, habits, gym, nutrition, body, media - calendar-neutral, never chopped). Calendar seasons =
 visual-only.
 
 ---
@@ -224,4 +224,4 @@ resolved by not renaming.
 | L-01…L-05 resolutions | RESOLVED |
 | Flower-themed relabeling | WITHDRAWN (D091) |
 | Stage × class matrix | DRAFT — becomes contract at the input-map step |
-| Open hot zones | tint rule (→ mockup step) · notification ambiguity (→ D094(3), resolved) · RESOURCE ceiling (→ paper run) · particle cap (→ paper run) · matrix promotion (→ docs pass) · 17-audit (→ Step 7) · perf numbers (→ Step 6) · mast-year (→ engine contract) — ALL deferred with homes (D114) |
+| Open hot zones | C8-C14/A6/A7/E15 CLOSED (D116) - tint rule (→ mockup step) · notification ambiguity (→ D094(3), resolved) · RESOURCE ceiling (→ D116: LOCKED at 12) · particle cap (→ paper run) · matrix promotion (→ docs pass) · 17-audit (→ Step 7) · perf numbers (→ Step 6) · mast-year (→ engine contract) — ALL deferred with homes (D114) |
