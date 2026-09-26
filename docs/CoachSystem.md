@@ -427,6 +427,33 @@ close. Never scored; no color-coded guilt; done-differently semantics.
 SHORT-ON-TIME) logs honestly with an "adapted" marker and auto-marks "done
 differently" in adherence — never a miss, never scolded.
 
+**Meal-slot substitutions (N-10, docs-pass D213):** a one-time substitution
+fills a meal slot by ANY recipe/food as a one-time event. The substitution
+lives on the receipt line (`nutrition_logs.substitutedForRecipeId?` — the
+schema half is Database.md D136: copy-in preserved, no fork, no variant),
+never on the recipe and never on the plan — tomorrow's plan is unchanged.
+Adherence for a substituted meal is measured against the PLANNED macro range
+of the slot it fills, not the substitute's own macros:
+
+- **Adhered = inside the band.** A substituted meal counts as adhered —
+  done-differently, never a miss — ONLY when the substitute lands within the
+  intended planned macro range of the slot it fills (e.g., dinner
+  600–750 kcal).
+- **Outside the band logs honestly, does NOT count as adhered.** A substitute
+  outside the range keeps its real macros on the receipt line and is reported
+  as-is — a neutral deviation, never a miss, never a scold.
+- **Gap-rebalance suggests toward the band.** After an outside-band substitute,
+  the macro-gap bar's gap-rebalance (N-04, §Macro-gap bar rules) suggests
+  adjustments toward the band — suggested, user confirms, never auto-applied.
+
+Build order (S038): current-meal-only first (M3); cascade after (M3+ — a
+deliberate EDIT-PLAN action with confirmation, never a silent side effect of a
+substitution).
+
+<!-- E-audit GAP-closing requeue (C2 cross-audit MISMATCH): L051 (N-10) — the
+CoachSystem adherence half (macro-range rule) — drafted into Plan adherence,
+docs-pass D213. The schema half is Database.md D136 (receipt-line substitution
+field); the M3/M3+ build-order halves live in Roadmap/Database (S038). -->
 <!-- E-audit GAP-closing requeue: L064 (L-05) + L067 (L-08) drafted, docs-pass
 D195 (shared — plan-vs-actual adherence semantics); the S029/L030 CoachSystem
 portion (adapted-session adherence) drafted, docs-pass D196. -->

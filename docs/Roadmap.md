@@ -396,6 +396,18 @@ line nutrition + the energy-balance math core (DecisionLog D046, D062, D063).
   for traceability — editing a recipe NEVER rewrites past rows); favorites/
   recents bar of top-logged recipes; "re-log since <date>" batch back-fill =
   future opt-in, never auto-rewrite history.
+- **One-time recipe substitution (N-10, L051; docs-pass D216):** a meal slot
+  fills by ANY recipe/food as a one-time event — the substitution lives on the
+  RECEIPT LINE, not the recipe (copy-in preserved, no fork, no variant) and
+  not the plan (tomorrow's plan unchanged); schema: `substitutedForRecipeId`
+  on the receipt line (Database.md D136). TWO SCOPES: (1) CURRENT-MEAL-ONLY
+  built FIRST (M3); (2) CASCADE built after (M3+) — substitute for the rest of
+  the week: a deliberate EDIT-PLAN action with confirmation, never a silent
+  side effect. ADHERENCE CONDITION: substituted meals count as adhered
+  (done-differently) ONLY when the substitute lands within the INTENDED
+  PLANNED MACRO RANGE (e.g. dinner 600–750 kcal); a substitute OUTSIDE the
+  band logs honestly but does NOT count as adhered; gap-rebalance (N-04)
+  suggests adjustments toward the band.
 - **Catch-up / backfill (NU4, NU4a):** meals file under the ACTUAL eaten date;
   gentle "you logged a meal for yesterday" nudge against double-counting;
   school-end batch flow ("lunch to school + afternoon snack" in one flow); soft
@@ -504,6 +516,11 @@ R12 briefing card — it lands with the Routine milestone (M4); the zero-XP
   never auto-applied; eating-window markers render neutral (never a warning
   color); the N-18 nutrition export re-imports; the L3 implied-TDEE insight is
   scheduled for M3+ (B4 surfaced-only).
+- One-time substitution (M3) logs on the receipt line — copy-in preserved, no
+  fork, no variant, tomorrow's plan unchanged; a substituted meal counts as
+  adhered (done-differently) only inside the intended planned macro range
+  (outside the band logs honestly, not adhered); the cascade stays M3+ — a
+  deliberate edit-plan action with confirmation, never a silent side effect.
 
 ---
 
@@ -661,8 +678,10 @@ body/exercise data; user-directed re-order). Goals (milestone-based,
 deadlines), Tasks (due dates), Life Area wiring everywhere, journal ↔ goal
 linking, `task.completed` events. Journal text stays manual structured entry;
 journal free-text parsing is explicitly deferred — real NLP stays out ("AI
-optional, never required" per D004). Rule-based paste auto-assort shipped with
-M2.
+optional, never required" per D004); the M5 NL capture field (L-01, L060;
+docs-pass D217) is GOALS/TASKS-ONLY — a rule-based, offline parser (dates +
+units + cadences) that pre-fills the structured form, never journal parsing
+(that stays deferred). Rule-based paste auto-assort shipped with M2.
 
 - **Goals (D048):** goals gain kind `generic | weight | strength` from the
   FIRST goals build (additive nullable columns only — kind, exerciseId?,
@@ -685,11 +704,31 @@ M2.
   extrapolation; strength: est-1RM regression) with honest-estimate labeling —
   needs ≥2wk data else "more data", stale/deload = uncertain, always derived
   never stored; also a line in the phase close report (M2).
+- **Pace line goal visualization (L-03, L062; docs-pass D218):** the locked
+  goal-pace + F1 projection rendered as a derived PACE LINE — dashed straight
+  line from start value to target across the deadline (the required rate),
+  actuals plotted against it, on/off-track status; "behind pace" = recoverable,
+  never "failed"; derived stat, zero user effort, fully offline; composes with
+  the lit-mirror ladder, F1 projections, and the milestone chart; Pace Line
+  for ALL dated numeric goals (weight/strength AND generic — the math is the
+  same); on/off-track COLORS = suggestion recorded (amber for behind; red
+  reserved for genuinely-expired), LEFT FOR FUTURE UI DEVELOPMENT.
 - **Tasks:** simple tasks with due dates; complete offline; `task.completed`
   events documented and exported in backups.
+- **Natural-language capture (L-01, L060; docs-pass D217):** a single NL input
+  field parses plain text into M5 structure — RULE-BASED, OFFLINE (patterns +
+  units + date parsing — no AI, no deps); the structured form stays for
+  precision, the parser pre-fills it; parser scope at M5 = dates + units +
+  cadences (weight/strength targets, "by X", "every Y"); free-text-to-goal
+  parsing future; parse-output fields on goals + tasks (`parsedFrom?` /
+  `parseOutput?`, Database.md D139).
 - **Dashboard:** goal progress + today's tasks blocks become real (replace the
   M0 placeholders); goal deadlines ring calendar cells once the Calendar ships
   (M6).
+- **Curated Today (L-01, L060; docs-pass D217):** the Today section shows ONLY
+  due + scheduled items; overdue surfaced gently; deadline-ring days (M6) pull
+  their goal into Today; "This Evening" micro-view; curated Today DEFAULT with
+  an "all" toggle.
 - **Goal-end review card (`milestone_review_goal`, D050):** appears ONLY at
   goal end — won (computed final value beside the target; the declaration is
   only the trigger) or expired (zero blame, "window closed, here's where you
@@ -703,6 +742,16 @@ M2.
   render with honest labels; deadline grading correct.
 - Tasks complete offline and sync state remains consistent (no sync yet).
 - Dashboard shows real goal/task blocks (replaces placeholders).
+- NL capture (L-01) parses dates + units + cadences offline (rule-based, no
+  AI, no deps) and pre-fills the structured goal/task form; free-text-to-goal
+  parsing stays future.
+- Curated Today defaults to due + scheduled items with the "all" toggle;
+  overdue items surface gently; M6 deadline-ring days pull their goal into
+  Today.
+- Pace line (L-03) renders for every dated numeric goal (weight/strength AND
+  generic) as a derived stat — dashed required-rate line start→target,
+  actuals plotted, on/off-track status; "behind pace" is recoverable, never
+  "failed"; on/off-track colors deferred to future UI development.
 - Events for M5 types documented and exported in backups.
 
 ## Milestone 6 — Calendar & Periods

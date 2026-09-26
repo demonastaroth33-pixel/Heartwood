@@ -103,6 +103,15 @@ macro-gap bar, and one-tap log/pack actions. Quiet meal reminders point here
   marks its slot done in THAT date's routine view, never today's; the macro-gap
   bar always sums the day's target vs the day's full receipt via
   `deriveMacros(dateKey)` — display may lag, numbers never disagree.
+<!-- D220 (UIUX curated-Today briefing surface, docs-pass): L-01 curated Today
+view — due/scheduled-only, gentle overdue, deadline-ring pull, "This Evening"
+micro-view, curated default + all toggle (L060). -->
+- **Curated Today (L-01, L060; docs-pass D220):** when goals/tasks exist (the
+  "Today's tasks" block fills in from M1; the NL parser is M5 — Journal above),
+  the Today section's goal/task surface shows ONLY due + scheduled items;
+  overdue surfaced GENTLY (honest, never guilt UI); deadline-ring days (M6)
+  pull their goal into Today; "This Evening" micro-view included. Curated Today
+  is the DEFAULT with an "all" toggle — the full list stays one tap away.
 - **Evening close (L-05, L064 + L-08, L067; docs-pass D185):** the briefing card's
   wrap-up card at day's end — the CLOSE of the plan-vs-actual loop (planned → ran →
   compared). It carries the per-slot summary glance (done / skipped / different —
@@ -390,10 +399,38 @@ the perf gate.
 ## Journal
 
 - Chronological timeline; multiple entries per day grouped under the date.
-- Compose flow: text + photos + vlogs (MediaRecorder with compression
-  constraints), tags, Life Area picker, timestamp defaults to now (editable).
+- Compose flow: text + photos + vlogs + voice notes (MediaRecorder with
+  compression constraints), tags, Life Area picker, timestamp defaults to now
+  (editable).
 - Edit/delete/remake supported; edits append events (see `Database.md`).
 - Viewing: media plays inline; object URLs resolved via MediaRepository.
+
+<!-- D219 (UIUX NL-capture composer surface, docs-pass): L-01 natural-language
+capture — the NL input field + parse-output display (L060; Database D139
+`parsedFrom`/`parseOutput` schema reference). D221 (UIUX voice-note composer
+surface, docs-pass): C-11 voice-note entry type — record/playback surface,
+transcription future-only (L087). -->
+
+- **Natural-language capture (L-01, L060; docs-pass D219):** the composer gains
+  a single NL input field — free-text journal entries parsed into M5 goal/task
+  structure. RULE-BASED and OFFLINE (patterns + units + date parsing — no AI,
+  no deps); the structured form stays for precision and the parser PRE-FILLS
+  it. Parser scope at M5 = dates + units + cadences (weight/strength targets,
+  "by X", "every Y"); free-text-to-goal parsing future. The PARSE OUTPUT
+  (extracted dates/units/cadences — `parsedFrom?`/`parseOutput?`, Database.md
+  §Logical Schema, D139) displays in the composer before confirm, so a parse is
+  never silent; the user confirms or adjusts the structured result.
+- **Voice-note entry type (C-11, L087; docs-pass D221):** the composer's third
+  entry type beside text and vlog. RECORD (hold/release) → audio preserved
+  ON-DEVICE as a media item (same media path as vlog, MediaRepository); INLINE
+  PLAYBACK in the entry; the entry stores the audio + small metadata (duration,
+  date). TRANSCRIPTION + TIME-SYNC (tap transcript → scrub audio) = FUTURE-ONLY
+  optional addition, NOT now — it needs an STT engine decision (DecisionLog +
+  approval) when/if pursued; raw audio always kept (APA advisory: AI is
+  adjunct); on-device only (no cloud STT without a decision); no XP. Media
+  storage rules apply — compression/limits per MediaStorage.md's media pipeline
+  (the voice-note audio-container rule + tier application are MediaStorage's
+  build-time call, S058/S059; UIUX carries the surface only).
 
 Journal features (J1–J7 family, D056):
 
