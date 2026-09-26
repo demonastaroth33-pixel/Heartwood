@@ -553,7 +553,7 @@ Not XP sources:
   (`achievement.unlocked`, `level.reached`) as recognition material; it NEVER
   creates trophies and NEVER grants XP.
 - Loudness: ONLY Ring and Grove receive Coach appreciation — one sincere
-  derived line; ALL other tiers (Sprout / Root / Recognition / Heartwood) are
+  derived line; ALL other tiers (Sprout / Root / Branch / Heartwood) are
   a silent in-game toast with no Coach speech. The Coach never judges XP or
   points. One Coach line AT MOST per trophy fire; celebrations fire once per
   run/landing and never repeat congratulations. Celebrations respect the

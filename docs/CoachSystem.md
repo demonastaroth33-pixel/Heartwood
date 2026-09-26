@@ -666,7 +666,7 @@ grants XP (L166).
   `level.reached` as recognition material.
 - **Loudness taxonomy**: ONLY Ring and Grove receive Coach appreciation — one
   sincere derived line from H3 owner results, never hype. All other tiers
-  (Sprout / Root / Recognition / Heartwood) are silent in-game toasts with NO
+  (Sprout / Root / Branch / Heartwood) are silent in-game toasts with NO
   Coach speech.
 - One Coach line AT MOST per trophy fire; celebrations never repeat congrats
   (L137).

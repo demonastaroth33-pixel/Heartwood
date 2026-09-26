@@ -1048,7 +1048,7 @@ fixes the voice-rule wording.
   `achievement.unlocked` / `level.reached` as recognition material; it NEVER
   creates trophies and NEVER grants XP. Loudness taxonomy: ONLY Ring and Grove
   receive Coach appreciation — one sincere derived line from H3 owner results,
-  never hype; ALL other tiers (Sprout / Root / Recognition / Heartwood) are a
+  never hype; ALL other tiers (Sprout / Root / Branch / Heartwood) are a
   silent in-game toast with NO Coach speech. One Coach line AT MOST per trophy
   fire; celebrations fire once per run/landing, never repeat congratulations;
   respect quiet-week + facts-only privacy; trophy lines ride the same

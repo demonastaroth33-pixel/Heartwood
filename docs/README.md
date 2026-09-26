@@ -78,8 +78,9 @@ A second integration set — the gen-2 ledger (the refactor & Life Tree
 design generation, this run) — is archived date-suffixed in `audits/`
 (2026-09-26): `TEMP-PLANNING.md`, `IntegrationLedger.md`,
 `IntegrationIDCensus.md`, `IntegrationIntentBrief.md`,
-`IntegrationSequencingNotes.md`, `StructuralImpactProposal.md`. The docs
-above remain the single source of truth.
+`StructuralImpactProposal.md`, `IntegrationAuditReport.md`. The docs
+above remain the single source of truth; the gen-2 sequencing notes
+(S001–S121) live in `DevelopmentWorkflow.md`.
 
 ## How to Read the Docs
 
