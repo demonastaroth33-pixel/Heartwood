@@ -1,0 +1,206 @@
+[
+  {
+    "id": "756a586d-5e29-47bc-a51a-3d66770ae605",
+    "appId": "144ebd79-4e2e-45ba-a7d0-8b445041d4ca",
+    "appName": "Fabulous",
+    "platform": "ios",
+    "screenPatterns": [
+      "Progress",
+      "Other Content"
+    ],
+    "screenElements": [
+      "Card"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.oHbMu1jOk74QDphP.fM9-LlLaeVXTP0U0lMcbssOzgyn0RppIkLAYxtYIwbTfheebbkgnXaL7TZNsHg_-esNudnHzH5eqHAilx-JNIEvZU_e4S2vkCNClcgMIX5o92KEMfc69yqCmnL7UYsiyB02JESw8wM_DKg-BHuPF0oOJfVNGT8TtS4PM_LMoJJR7NUKl4gfaPiSPGckTtQdDJXrzym-KR2zOv-Ti6SUC6smF8pIPwgF701Qzw3LN8Peow2e3lcMYbboSRFFASw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "0041aafe-ceb4-479b-b508-f342d0fbeaf2",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Calendar"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/6a89baa4-55cc-49f7-a1e7-399e00afcde9.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "a19e1bda-a8e2-4491-b931-3d7c16a1fd60",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Progress"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/89d22ef3-c0c6-4e55-a715-5d9f20151fc5.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "476ab335-4917-4757-ae1e-caea1751334f",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Calendar"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.N8pma2vsLQO5dixU.yEzbmZzoxR1yX7c3UJzDZOujZp6ch3pk1gEDv7DGDK4gQoJX7eWIGX0NyyOSL_6KZoPkuhfM72J7D8el9cFw78zzP2BXqs20XgXlLbIhHtNkcIKxq2dt_cNHhRYThr900N2Dj67H5qmRkH4EhcGOsaHgWM-mdZ1m7H7IPV1PzjX7am-R0znsySxozAFgAqYKlISH2qWkdXKs0M5O0N_61kamNEoE41kvFvPAU9FijWaS2SHJoK3W0UGvdbHrsQ",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "a4b92251-7dc8-4ed4-a6b9-f50e90577e7a",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Progress"
+    ],
+    "screenElements": [
+      "Progress Indicator"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.Q2kr8r5rHPiAA6C9.z51t0Wj3Z8nT5W4nvPhTOzcuBeiTDrSSXp6fY0kVEo-Rzr0Nj9WfkXrZaW0FiYPNrnzBsjHsS-LJFSYdzK3tq_hVr-1l4qHNzoaMN3c9UULID5h7oR9WOcfejsxj4cje8hT0c-jjJXsZw4_PHEHUToP4BKYXGkXY3KbAVKYDaXFj_QCAbS9lBve4QzYlLNoTLl1EbKVAhe0gGsxGJBv1LDfHNrGhgcJllekx3RFouEj0mOkV4ix__DGVCrs9gw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "7cf9905c-0c7a-4544-b759-cceb6a4d5aea",
+    "appId": "cba16317-f54c-4ba0-961d-b9792324c662",
+    "appName": "Habitify",
+    "platform": "ios",
+    "screenPatterns": [
+      "Calendar"
+    ],
+    "screenElements": [
+      "Bottom Sheet",
+      "Segmented Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.KCK1dXgrndqmMMFc.YcwjkiNugcEcY-JcgNa67lNAry-BaWTdS6cjwyMEbYpCqBI_lGAFy7hVQe2xhd03n1_NOBNgswB7PEJkHCWk8tdbIvIWidTzqiDh3u9DFCS7BbLzRquh5b0UD93AXRseGeKPytLWStbKhQHjXYwpMUmih7LX9qHPPz3t8mePtHtSYhLhy2d_-PQv0U9awmDM1_9ceqrIKlcqEC7_akSm-VxUA4b00ngG4uyiZ-eNdRPWWXrOfCmLS-OEMNrn3g",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "c4be97c8-dfbd-479d-86cd-3b0ee74b46e2",
+    "appId": "cba16317-f54c-4ba0-961d-b9792324c662",
+    "appName": "Habitify",
+    "platform": "ios",
+    "screenPatterns": [
+      "Reminder"
+    ],
+    "screenElements": [
+      "Button",
+      "Switch"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.zUmI68VSF6l8mxmB.CoouhpDIAxTKrI3YV5YCLKEhdf77o64vkV_koGFjiT3BjB35XD8V9ZNqDHDpdmDfcnHxd9twwlrY-j_9CcY52i-pb3-JC1lG7x0EUvt6y5S7ThlH0NWuQsf1uOqX93Y2LIbgeVXqDJob0uqdULp48N0t2RQoORdjtTTFxGrT0yVz0LBf9BhYL6tUUHAh4gY2Dq1JgZP6BvxSQd_im-dTgSuKlh0VXAJ8RcdlYtT2UTuP2BtrGeCBY9tJo5gQkw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "b197a313-1c85-475e-9fd9-8a6bc91f1ccc",
+    "appId": "cba16317-f54c-4ba0-961d-b9792324c662",
+    "appName": "Habitify",
+    "platform": "ios",
+    "screenPatterns": [
+      "Calendar",
+      "Goal & Task"
+    ],
+    "screenElements": [
+      "Bottom Sheet",
+      "Segmented Control",
+      "Carousel"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.9SDL5iBcvwDtvtqc.D8B-CWyZzKIj2mlAFBcsVAy6oH7n7esM2SI9vr8h5V91QAHodKar6qBv3WZkiAV6tjjbnnY8Iqtow5x-eqtjNR6aXQDujapoj8vZ18vPwcrvcmwGpwxYwcVa010jM3mcNgepSF0auxtQ5YteqVuUY3Z0RXB_IhzMFNM6hpQ9U3dr3MoeW8r3lg8akshEPpx_x6vAfMiS7c68XVYhbdq54iTBxq0pgHPhB63j61XKVxtvGvhzu0QKMYpcYD4w4A",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "f8140e72-bb18-4efc-bc2a-161d2dad6c96",
+    "appId": "cba16317-f54c-4ba0-961d-b9792324c662",
+    "appName": "Habitify",
+    "platform": "ios",
+    "screenPatterns": [
+      "Add & Create",
+      "Progress"
+    ],
+    "screenElements": [
+      "Text Field",
+      "Bottom Sheet",
+      "Button"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.DmeDA0GYh83wdZlu.dri7WwTmWW7iV9OpCDj3ZlkOrYqn14bpDa3ntc0ELE5CFUg3W06x1y7EisIRnr4ddLEzGsA2sfKY6FgsugtAiwnfjhuwNjPsU4xFvcfKZrPmZgTKufNxE5Su8P54YtdoX523lWWfj5FlsQ4Bh-hR3SdNfQQxkKNbM1phk8xR8lTr6B7aiokCFC9YbBr4ar94jXPUE-Ru6YD3TKulhXnEZtg4zKqvwQ0PBaXOQ8Qb8QZokYmdo4x5vuMlRypRGg",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "ed2d861c-0c8d-4f88-8c15-6ab09d86da0e",
+    "appId": "cba16317-f54c-4ba0-961d-b9792324c662",
+    "appName": "Habitify",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Empty State",
+      "Goal & Task",
+      "Progress"
+    ],
+    "screenElements": [
+      "Segmented Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.eILQdxIDg7YZ3SqW.xei4FiYe9_4UrCzXs1wmA0ZAAEK8BmOosNtdLyyAul0G8K5wti7LU9X4muTy5qOcxfgE78NTisVWpx_C6HI22P8ysjDU5TmV8k18lxOpDR0CB5EBAwm-cDog4mGYXUpCGR2K88opmKwlGfLcDSZ_a7zhq2-yqwDEBtmgVlvHzNIujZ6O6bs_bQLkslLeoBdnqzuFDCAps49RzJJtbRyHTOJnK9IjyF5nZBNlZ_Fa2LfygH10XVVNoRtMjHE4pA",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "45dd3cb9-b861-41b8-9565-a8456ecce2e2",
+    "appId": "cba16317-f54c-4ba0-961d-b9792324c662",
+    "appName": "Habitify",
+    "platform": "ios",
+    "screenPatterns": [
+      "Calendar",
+      "Goal & Task",
+      "Progress"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.p1lqY5WAWVEbOS_3.8JNhACQDQZ0CRbGCrjeqmrooDdGiDsRqsXvsUkAcNA9nIamx2T-fGwTqAfUtgK9ub9oKCusnkhlDa7YHFI6l2vwqmixe8BfSmAHNw2Id_vAck6oHSPDoIBj7eshiWC1yuNWqnIHaKW7lg710uA_ktfRtc_5dBw6bpVoitKvGQcdPkO7KiWHGkSLLZheszk0Bg04w6JvDfzRSHScvW5IaplIhVXmWpATZYUH-0AbNca9gAECUHd2RKP-xoEg7jw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  }
+]

@@ -1,0 +1,278 @@
+[
+  {
+    "id": "1cba404f-413c-4a8b-be36-d791e9ca4fed",
+    "appId": "28986bf8-81b2-4af0-84df-b5654a8c98f9",
+    "appName": "Headspace",
+    "platform": "ios",
+    "screenPatterns": [
+      "Timeline & History",
+      "Progress",
+      "Home"
+    ],
+    "screenElements": [
+      "Progress Indicator",
+      "Tab Bar",
+      "Top Navigation Bar"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/32436167-d98c-4f1d-a622-cb0ae2258acc.png",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "9aa70f7b-071a-4879-8c2e-f8dcc3d8ef0a",
+    "appId": "28986bf8-81b2-4af0-84df-b5654a8c98f9",
+    "appName": "Headspace",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Achievements & Awards",
+      "My Account & Profile"
+    ],
+    "screenElements": [
+      "Avatar",
+      "Icon"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/f48c44a8-2344-49a1-8810-ea4d1e5046cd.png",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "2f89f6df-02f3-4998-8aa1-79de275916de",
+    "appId": "3d0e353c-3974-4fef-bad3-6c590d095e3d",
+    "appName": "pillowtalk",
+    "platform": "ios",
+    "screenPatterns": [
+      "Home"
+    ],
+    "screenElements": [
+      "Toolbar",
+      "Tab Bar",
+      "Floating Action Button",
+      "Button"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/1727bd41-a424-48aa-a31f-ef5e98b26444.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "34bc1cd1-d954-49fb-b4b3-d33a3e927185",
+    "appId": "3d0e353c-3974-4fef-bad3-6c590d095e3d",
+    "appName": "pillowtalk",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/d2b48035-a641-463b-ab9b-8bd10b6408c8.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "18a10a4b-2247-45d0-859f-8c817500525b",
+    "appId": "3d0e353c-3974-4fef-bad3-6c590d095e3d",
+    "appName": "pillowtalk",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard",
+      "Date & Time"
+    ],
+    "screenElements": [
+      "Card"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/4978aa93-5099-40cc-a9d3-7ba997cffbdb.png",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "82e555db-347c-4690-95fe-fb1d395b9c7e",
+    "appId": "3230191e-73d8-430e-811a-0fbdd39628c1",
+    "appName": "Calm",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Home"
+    ],
+    "screenElements": [
+      "Photo"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/1f05643f-36a5-4a86-b625-6dd54942171e.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "e378a36f-528f-4b22-920e-cb4cad3144f8",
+    "appId": "3230191e-73d8-430e-811a-0fbdd39628c1",
+    "appName": "Calm",
+    "platform": "ios",
+    "screenPatterns": [
+      "Home"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/2b7d6849-e40b-4294-8336-5a22ab142ccf.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "1022d14b-484f-42c5-857c-165486a41450",
+    "appId": "3230191e-73d8-430e-811a-0fbdd39628c1",
+    "appName": "Calm",
+    "platform": "ios",
+    "screenPatterns": [
+      "Home",
+      "Suggestions & Similar Items"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/09c096a2-d897-467f-b2d4-79544ee133ec.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "38edc186-e331-4d9b-8fec-3b1a5412c6b8",
+    "appId": "3230191e-73d8-430e-811a-0fbdd39628c1",
+    "appName": "Calm",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/9223df09-db52-41c6-9a76-28cfa665d943.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "36e5a755-9c0d-4afb-ba4e-dff42cd39a47",
+    "appId": "9adfcd9a-7f95-467a-985d-9c4664f6ebf2",
+    "appName": "Ultrahuman",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts",
+      "Home"
+    ],
+    "screenElements": [
+      "Tab Bar"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/f170b12d-1b72-4845-b5ac-da0538775e28.png",
+    "metadata": {
+      "width": 1180,
+      "height": 2556
+    }
+  },
+  {
+    "id": "cb6f4dbd-b77c-4012-86a0-84d2c825159b",
+    "appId": "9adfcd9a-7f95-467a-985d-9c4664f6ebf2",
+    "appName": "Ultrahuman",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.bmrxD2i-2wV2Ykoh.Iyc8wTXENaejFHbMY9VLYmn1AcNg47hUaA2gLz8CJIFRMKKdh_zda9s3mFfTlss1WuZtvNDASx_3iXy-rcokmNuUt9c9QgiZHko6sUynyUBAwrSncmEZO92fPXTTtYbKBcFO7qkmRwRWqG6LWJUQLzmJdPT-SSQp3DUdhYtPyQp0WqoFOjLFetGcqyyHkINdATby0ZEJXxLWbAd1e-HXACMqlJNCxSJadj2lO_1aumTHwgJ_n_hinBSAdPHTQA",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "0799f6e7-19ce-4ac1-8582-eef54d0a2955",
+    "appId": "9adfcd9a-7f95-467a-985d-9c4664f6ebf2",
+    "appName": "Ultrahuman",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Badge"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/ad8d5e5a-2195-4ff0-9577-daf4aecf05da.png",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "a2e7b673-c4e2-4c28-87c9-f8ae3f7e773c",
+    "appId": "9adfcd9a-7f95-467a-985d-9c4664f6ebf2",
+    "appName": "Ultrahuman",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.o0ptKLRFkE7FiWxN._l9Tc6IOE1asoMpEDZICul3DQVkUKv46VqrK9TPSlGQ3XUaEbE3UI8KfcI8RNM_hKpVlCT_QfaBU7k48F58JyugM5NuOEP5N1I_tGWxfMhbEipJ_T_fIxaRx7ORx4C7pwAzI8VgNh9dVX2FbGsxBlGMh5QoVdPl79Le5rrJ58Zjk7Aues5egR2aQ_-ASskLEElML415W91vtXF8FLQkrR9KzEw2ygX7NCBJchNr7FlQUp3azsOOJm_3PagCZHQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "f25cbc3d-61e0-4d7e-bd50-c0fad550457d",
+    "appId": "88c3f1f7-6c90-42f5-aeba-8a8f683c294e",
+    "appName": "Mindvalley",
+    "platform": "ios",
+    "screenPatterns": [
+      "Home"
+    ],
+    "screenElements": [
+      "Card"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/f1aa719c-5839-4327-bde5-42e6522132fb.png",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "15b37d80-6b50-4618-82c6-06db8da02423",
+    "appId": "88c3f1f7-6c90-42f5-aeba-8a8f683c294e",
+    "appName": "Mindvalley",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Progress"
+    ],
+    "screenElements": [
+      "Progress Indicator"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.u8nW637sZiDDjCIG.i-vnDPT4zmT57Aus8IFIFiywMdh1pUmwCF5mvOrYlvG8dUJ4dKV7eKB3HiTwHheuixycBLBQvPhrxPICSYkamyMiky-P4vnUcBTtZT7MgpN-bQGRT1NCXr65NvGTzcOojTRPzLGJgMe5H3kFu2N42H9FpseZ2IJgDMyUQBeQoTMFnqoI0zcFSY0sAboeXg4quSy1-KcoK19vXt-yd-PXfUnGpIdMkP1gE3q9xYKYaSZWUaWFSyXr6Xmat3aAMQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  }
+]

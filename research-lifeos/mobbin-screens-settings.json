@@ -1,0 +1,620 @@
+[
+  {
+    "id": "fc708116-f6f4-426e-9970-d3e98b4ad28a",
+    "appId": "f8b3622e-9edd-41af-b49e-41f6528b1da3",
+    "appName": "Apple Fitness",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.g75qJLpM-DJswDgs.AEuSHDVh-u4t-vC8tdVyOcnjJj-xMRQT4WqPy9VaveSqzLQjD4HQsK4pOhbVItN75aPysWdntYJQ7PgH3sSpOQyEOsOD4OM7pFf0o2qWC_ibWrou4itj4S0XobH9CEWbUEU8zspmQRNe_byfTvu1EG0M6D4xBcy1Fw3T3UYeNqOqO_7bkFKSnFkIdm1OuNTTW748IC6PrAS16OPDP7dzl4jOahXtkAsPtr0ucXMnZCJgKrtJwi5992i8qngy7A",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "f618bfa8-e996-4cb6-b7b8-f138e29963b1",
+    "appId": "f8b3622e-9edd-41af-b49e-41f6528b1da3",
+    "appName": "Apple Fitness",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.vqE8kI8Bfy793BdY.kT4xuLS9dbkCZTSDNGFQWKJSKkd8k8hfN45Mr9t-3fn7BXUnPeI34ZBPiLeeeFfV3brG7oqvisZsQVswT2k-tMmafp4_tw1deum4DWtO6cWx25uN8aNRnBChKRHVp5yopzEhxEtraPJc_q6wSNrUyLjJmhDPHIOWZwcg8hjpeAmFDakd9xY9dbD4nyzM9-VH3lTUM8qA4RmjrzkUi4wKbMEQnCzxZJ8HxRzPve86-ZTqei0kiYhls9oeLdZulQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "c922783c-55ac-401c-b36f-a31ee3a78383",
+    "appId": "f8b3622e-9edd-41af-b49e-41f6528b1da3",
+    "appName": "Apple Fitness",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Switch"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.J-rC00_pDNq81c18.UPj_PGqsJKyk1SRLAHEBQstpoL0iOXBOgPOPQe_UrYAV7u6wbPYjW0WOJfPfEfUXZr3I8_BUR-D-GoexWRer8MDLCyttrdipuWZv0bln2sn0gCDuXJT3DuUYmj-HCeHnnsjD5cEm3RrrHdlYWrGcVOuFjG4u9Tg9n37CHpgm-mHQbOhELMWn5SIs9DNG9H1_d44t44cCzT_tm0wVVEfFXsMWzYVJyYv71sqAQoenxXv7M_BD6ca9Ce2PVm0ltw",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "c633105e-67eb-42a6-a9d9-930bd6f3f946",
+    "appId": "f8b3622e-9edd-41af-b49e-41f6528b1da3",
+    "appName": "Apple Fitness",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.jm6a9mJtoiXAoeI7.XXzyeAc18dkzoMS3oKJyJyuzQo6pnhGGrn6oNedpg3rojxQ0GYOZQ9JjfReEPoaOP1zVVnWLxTqYGXboxFQKzLEkV3O15gun5QH6HPpbDKRXtYJrk4bD72iyIY3XUTu9flsxkGbQBc8pLJN3LQhHwz9LEaZyYkdE5tnu3sLPq1HuO8l_da5W1iI_Q7Zi5aUvK8KgTBNrErY7XgTEVwQPAz0eTlJiMe05DTiOpCz6_PVbln03DX9Z3Aomnzo5oQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "cc7db1cb-11cb-4dc8-b322-3090ae61088f",
+    "appId": "4d3d6d86-7db6-425f-b4c5-c42d1d2ce20e",
+    "appName": "Gymshark Training and Fitness",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Tile",
+      "Radio Button"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.myFZpaIEeo4vBXuw.TrfkW61BOPjiMuya7oGOtSRG3XThTw4JTItlLampfI3RrJxwS9huGa4dll77J6DPOzN0f4swBJxZmHP3Ee46btQjwLhd1wFsH3TJoTVcYBVTo6ldHuju29HARNDPxiMqcPnjbVlt_f5AXIYde6dbIvGxE-G8mA0kA8z_yeOw23zjN76tP5QEwFxQQJ-PoD6vd6gTS5AmtTTlkFFC8TsQfP9db-1lfWie7nQPMoriy4kELdT0p6sKtWib7jv6AA",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "697c80f6-6259-4419-9325-0979f0db45b4",
+    "appId": "4d3d6d86-7db6-425f-b4c5-c42d1d2ce20e",
+    "appName": "Gymshark Training and Fitness",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq._3XlO02qQE5g-zow.FfWxZHrMswP7UbATtIVPMCl3gVqVjfrYx-t_hMvE4MRCuz6UzgEewLX9kNoeOdbSvS6FIAM_QQceF6yxYLIF1uNQvQMbbKs9sPSgRQhW0j3l4to9CKFv05Wo30Lscr7OdoOHhnD5LlNP-yeYLffWD2PZai6NYOaF2AadHnDWB0Y6upfY6God3dRCaxA5NF34DqIsGVpxJ5J2_U1eWZKh5sCb7oQo6PeqF6ga4tx0aHtFE_aJTHNrKsBzsA9mPg",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "fa6e6a1f-dc3f-490d-9c0c-527f4f00270b",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Switch",
+      "Slider"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.OBsyIwHiBQzmmdbA.uV5c6Bdd-Nn61y4b9g2_5hAhdSDjNX7N4teSrm49orNLMoMz-edqg_M3kVo-umI3PfGhmAZGPLB9TivrDXcnSl-R8QZ9rHQjwCJVRjBmnueC7V6XwlXAX9MO7j8xxGt5gowCK3jR8CTmR_f85X5WwoSa_c0kOL26aqNIU3YKUWKUX_fd-DX1pQIxNHEyr9K02Qx_WC-U56UOKAq1UCLsZG_wa1ig45cET752ywnw9AFUEUaNHsCVSVrRmApkjQ",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "029540e8-e82a-4036-8eb7-c746662783b1",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Avatar",
+      "Icon"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.Bl4salYbjmf9CUR3.V2zuxpG2AWdaY-grvtSygrSltl3sGuMya3tuBqCgBebHBqQgTOrmto-BM2mIXvMs49wvrtJmHtsAqyvJdMJdophOKIyAMBb8Q99oxomFJE7JCBMtat_z5ft9DhSvtgHNzJ8tX0bxHvcxbrEZQpugorAKBxRWpxayNJ74CtZD7ac7kOt4cpMkcDKbwlIVWvUXTurgaOxtECy20PsR-LdKACsJhVqM-Dkkp6Yh5jsR17ZAfC6ppKIlvK5oOLWY_g",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "380f4129-6044-472b-9339-cc10d3df6563",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.hnRyEIPlavf853CT.pzRTB0qFDmxnZHc-CPpsIkkrxivvZnAD340bJhuWufooiYTK-zARGcdm0A8s-TBmDdiGZd-LjRlOi9jETZTKs1nfdGl2ajLz0Ar2akXIDuUgyTtHeHd93rvtQpMQ-d1fxkrkfkRsoG7JrYtAHMhQZPp5lX7BcIcUgn2suUzSJh8jaAoUiPb8jjrHf5NtAnd_HBQXBQi1BmIAHC3qBPRnBGvj4Nlu3TNjcP4xgFo8NmFDuo08TF4ACr-p9OScFg",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "7ff53d9f-3bac-4062-bbf1-a840fa6ea91a",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Dialog"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.J9at3UfiIZMu27wn.JTgr2EmMgjfDYdU0wiAlaLn5jvAtBSoki8RgtBCkb9l6NTvPe3JVAqlRbvbgsgzH8nHxSNwK--UDZ9VzIWEfQgR1LMsyrsd0ysUqOnRL12y4YGromj-UKpcr1PI-W4yMCY1ecwTOUFnltnyU6OFLo5mYwtPpXrQgjzElpvjwMkJRgdNZ-dvxvA0yRjP1_K9Udpzv16OEazRqBYDPhWFqbr_tf2UeqxKfEtAJYQpD3DcyMway5FEpcUXaiOgyqQ",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "358c2ce7-5abc-4f1d-afc8-a84ea2167bf3",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.D_IjPiE4g1dpCvbR.J3uVC4HLlGjEP41dYMA5UrRyDHjDUe8PXSxBV1EhBROqxRG3caVjWtwLgkFHAkHETRn_1QZmW0tKExhSxRhts5IrG569dlCbKxiGMtYVvUw10q40ST8H-JCHcXRl4Rnjm34JH2wW4Hv8vRobJAMZpOD1ukfkiFo9nizWsrMacR321vOpdg0pWdaQ0XxhoRDez8ZrcQtUmKEZQPOHXO13ZPuMSDGADSHn-OL25hz65bbhH0BM0g9WxbwxjB1EVw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "01f62308-d0dc-488f-aceb-40408b286530",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Checkbox",
+      "Slider"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.Q5InL3HcRl8Vn2Zy.gLfHc3zNrQ6L6p4M7sb7H64tHDx1VcfJ7Wt4lQ8SX9HcLIUc98dplFU-gh-EER8reLvBZwBlOt4yyGvEMof4ijMCSj7_IFqNd1xXiUrIs1h0cZ935Yjn5rVn-N3CR21LjmCBPtaYj765DUaUPRRUR5Kl5_2vxtqKtRK8Z55_Q3htwraSjt2s6Zjj7z-kbogq9ajmmL_qE9E1Js6uxTlCq4zP5SxaHaSc9DuLUoZ2vn38Xqu0JDkZgH5FbVEyqA",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "a05d879b-6e68-4052-9035-364a661af500",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Text Field",
+      "Dialog"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.dEWqDz5MlRnFs576.FRk5uACXccgpPoqVn8pdvOxceDmOA2sQT11tCDQcJM8oh3HkhmGFZbcvf4NXAIf1fpRBbU8R-UUEEKxq9IPHqNUoS3y7-p_ELeMR_cnFWrPeiNaDu6xl-M71zupB-tc3qv9h2__GEUnxYu0sf32zo9R6rBdxDOHBxo7Y8TkCr2vCEy-cIcu448z1_F3qfBgs9A41HLNCrBwgaSkhOYFYWWTWlJyWpXPxujlYy_j6SZtMBIzXv5PXQGGAmi4bVw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "869694c7-411c-4342-8d3b-19179bfe5c81",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Switch"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.iTbayCa3yRcsk-8h.5GcdLeAmR6pPf7qJG8jncCTiLB6-2mAOv0K-vRZhHdtKznl305rfaZJ_oF9zW8H9_bDq6_y9SkkQayWAqJHl7gvsb8mjQKAqOF35HYNkHXC9mOO__tJDwSKObASQAMkXZZUNhDFu3SI3aO2hJnyyaDvTvH0jG7q1cdWsoOubaMae2tRW8l0fseh9L9m8RT66XwkTmJHcNpaqglYkt9_B6LzWMf2FVNBhqPj0k474RyekyWl3DFSdp92yV9wP3Q",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "a666f36f-588d-41ea-860b-44683892fe04",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.qeWuzCETr_hA1q83.KD2ZiGW5v4apCg7i_DAhTGpe8uE0ud2jZrlN18cP2jdzHDxgp7WWTLu2vqb85hf3NPABBcZiaR_hzmKJV4LojO7_Uc_M0PsOeSvvvgQT23zF55SUrA0oc5kZTLJClvkThb8llv5bgioH6CmgrRm0gMARdwiEaefj228w7EPbr1ViDwnEQZPvs5ucXWLsBTZjC9HnHSLv4Ak9KBdXgrDxfvb7LOHWNpyWqDPGEWGoeXo1qj6syzaI0S2xme_iGg",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "03dac05f-1d6b-47fb-ae4e-a63844e5d222",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.Bzq1ypigsxOAXlFx.ggFj0R0heEJfpEbOmaiTyyC4mkuNoLxUy9wo63fJrrdombpgsckIs-lteSYhpsb32Vod6crqPyAmFCJN9bckgMyxSb7Ar5cXNLkCYCwvWql6p1L8LFSKvy2--Aw3JsHRsVFPd91dgnJo6At8BGSwRjXIqzXiMWZFf8yQN6jbz4bKq7HnzcX9sCKMMNK3aED3Wijy2o_iKODkPZVzU2iGb9QR8ymbZKiSyx3e7KoaqtcphOt2o8-y7f9T5QImfA",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "fcdaab45-daab-412c-a96d-cf93243bae5c",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Slider"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.DKElzeLbBKmyF7QL.ABjjdb6c-Xe-AHT7gz_RMBBCiQeByyETVbffG3hUspKwuLWAjrNU1jyfBDOdYk1B3Y-h3WFytIwA7GcoY3Y-xDqmWpQv9JSHn4Kg6HnAMGx4nSvqWoo4bUB7eV2G84lKZcqfK9fHvYa_Faohcl6JsthWyoXXXYJtkKPwVqq4i8ATzdJyOSB7obiKO0OvjqPVQzdkIKth_nTTVRBa_MAxiFS8hWjLRUqFv0K3wVKS1wgc3z_zes2k7ARnAbwLTQ",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "68125f38-70c6-4a78-83f1-f5f0e8006f2b",
+    "appId": "1f1267a3-fa68-4112-a355-9b2d8bb1fecb",
+    "appName": "Lifesum",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.9v0ziVvwKtwQRGNR.C4mX4qaxZwKGOiFCL1PRwl_zE632XHFZQUBFGAi5TVkGgdDtUZ4OWbc5DaSvbONw7S5EzYiDzWU6Zo58QpTm5aEB0bMMxXZXBHxglE7MHhpqjDzhTkRxHCkJTcMGpWQx4Rm1sCGTWpJBnPbMcTolVMephCnUuGYD-s0N2f_7H9Be9z6ujHOQ3IuRMw3IyPIrUdqp5xs_TpdkkalOhUB5I-fdQu-O6CEiOsHxjUXm1O-Hy49V5clW1BSN2Sw-Cw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "3b2f8178-4b6a-4e54-94e6-47ea00ab55fc",
+    "appId": "1ac190cf-46ee-4c65-845d-38bb8354219d",
+    "appName": "Strava",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.ZSDQUA_JSq_uqwCX.-ZcgvOfsHuonnrijfo71q_JTKEv3uHinXCau155PXsJuus3h1XPA1L7n43KqsV0a0syaTZ3-ppokzywpalG7nnHHL1hvjJKt4hVtkuJvaM3jMYTTxTHI9fZVv4YgE_Be0TxTMWeQb5g2D5ESZvmDsxnsieSswwr8furgVyjtMYwvs7G-j5vrLQTF4ENyWZDMOFFtNiOp34W65ngmc0wizF25XBBYJ15C0ewoCPngkD41CNc7KWgjLWkGTp7fUw",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "4264992f-b654-4ede-a2a4-a75e56325d6a",
+    "appId": "1ac190cf-46ee-4c65-845d-38bb8354219d",
+    "appName": "Strava",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences",
+      "Edit"
+    ],
+    "screenElements": [
+      "Text Field"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.wTs4nELOJlI3uE_0.gDtklIUXCEUBlrDk2rFZiatPCtKf98pdtAev145Z7zbwDB-Q6Lqdr9SGZWzuJ0Y6xcJzD-w978iplrlgOzIyECrIb2mP6QdDnxszdCNRS7AwFmmv9xGqJaioTTCuuYRRHMaITz7j9k1K2bAyF-uaZVEeukoGN5JUOUlKahHZOV4R-Gf7vcFhI3LPKGyXK13IfObICNhcHE2B9C9fjJBDbzpRJD0t-K80YZm4wIZeKVk1Ru_DPSuEXAddyJyFqQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "5bf142e8-5f6c-434b-9693-0a2239bb6ba2",
+    "appId": "1ac190cf-46ee-4c65-845d-38bb8354219d",
+    "appName": "Strava",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.KphvhKEUdG8DNQ5t.zJ0iA61A-CG30wsPR56gmlGQS6xRPHU4L4n5OEIce9_mMXi0uRNiWlMqqd1RwI7Tu8pjKI4n3jxCjeSDlqo-pdYA7QXpEZAc_rY6Gi0OGA8gTviok1uevAd-QPnXXkpSuXKyu-cBtdCMKQXcPDmTp6UxaXWioFHkTC4mAmhVsp8MKCblQInFBs7N1-gDM2GX4Ng5RNyjfwBt4lRZFcm3yn9MBhVf2imORAYllHkYIvCIwcY23kjyHfLbXDPE7Q",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "b530956a-d4ff-46d6-9f93-e6fef3eeb23e",
+    "appId": "1ac190cf-46ee-4c65-845d-38bb8354219d",
+    "appName": "Strava",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Switch"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.F2uKbbEzr4jk7ko1.mFYHTK2VY3WxAxO-_zhEzzEpuLvPK9bbRBRhG-Tcl62det7xL9O7totJsoeDOI2xIrMfgvTd3n5d2mwJIwuvMwxbgF66tyiIrVhRgnMJq0klnT_V2VMIyvHbUsh9N2Bx-n0LfNBcw008wiU5xfx_lehsmUGZ0kVmVHc39so3mMAw3oThHl0cs1T7ivoTHsNU02Npd-gFKCSZDr1DRv4mPg-pveeiya2u8Yv4WdAOfQR1Rr_7kRSqtoXBr6ljcQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "93fd0df6-b2a8-4127-ba7b-378335c3e11f",
+    "appId": "1ac190cf-46ee-4c65-845d-38bb8354219d",
+    "appName": "Strava",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.YBn1INhCFbaWGoiK.b-4_RRCJl7vkmsz3cLFss9SSm6spBW-dHlf866L2fJPVOZsTjOe1NsLgylRadTEr-vQs_yZ07CqaA7boGsQnEl0ZmJJzcACJT3mftZAgh2GtIwABJoyJ_w7piJ3c7sQhYtD3wuWPStaJ-cd_wO1qnU5DOVzUE917SyJyWzVjOit0-0-IE4xHt3qn-ceCf1JCfvstWT5Ol0GeTK7YVl6SL4b_Yxitw3EN8cZsx-qZ3PAqHGJqJPBj3RkbiY74Og",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "3edee00b-466a-4f0d-8c66-854b132f2ddc",
+    "appId": "1ac190cf-46ee-4c65-845d-38bb8354219d",
+    "appName": "Strava",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.tGYQN5CALtoVphJk.G5RWbqorZ15Dpp4MXTtIrGLfb0Cae7E9UasPpHJkdenPRm9cIXhbvw3mbeOV0ZI8P588DM6lSynKllkg_2fVWCQJ59MTjeY7CKE4OlsGwYm0vqRco4xDJSOPqotAVpbFj86mT16yj8UcMBqYiyPocMZ2CHAZ2tKVIylZx1QQ4vmtmAqL3j5M7Tv5kdCpQDNGCutUfTuQBGyMwV_NPCaT_FxLKaV584unf4-OWqF0FhzL1QboT10t1kWVypZimw",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "28a851b4-8f4d-4502-bec1-b74d67a4f50c",
+    "appId": "76436d76-126b-42ea-a287-9bb453f8d97f",
+    "appName": "Apple Health",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.DEnHdLJN5VsRvhBr.hzhBSQF41qcgQdqNvZvS3-cy0NfUuVLZF_5697_1dS34U5uSe0iCA3O5u8Z4tQ9QjAdXSOEdDg6nRh_yPKJKqDZWT-v-N9IS293LCNw2xTeYuDU1Luo7j5_kYb8A4tNMja51VW52J7-fVjAl2P4Qo3JDfq-AIACAZNCOIXXPJ_QOJN_ErMwnQXOCHpAp_bIrC5NzgRq5ZzuQtHWQY9tIJ2T9rHZOBMM92XJ83v5ei47VH_F5lStETfhqCmHlSw",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "62991cea-fe42-41ec-b441-754a961c87cc",
+    "appId": "76436d76-126b-42ea-a287-9bb453f8d97f",
+    "appName": "Apple Health",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.Va3yWEVeVbzwklRb.5VPKS02uJwFiBPkXjKxIRZYuDtNZqPg2gFRQOvAxe-afcg_7Jkl4_1S_mx5e0ozYQpLXVIUFZh6ZQmkyL1bQHNyZNxK9mM-ydESLpSBDxjvWBj_JWMUZ_afOcP7Q_fnd_PIDShBAipkoU7BlSnOzvzdbHxJoYF4Vv4JIVHaODVtmOVGfkBvvOmmidQ028O-GXERjTyiWwDLDjdyE2NH1YLY5I9f8Hn_jPE7kecYFkqVGNBqzwKWLDAcvUHUvMw",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "ac163cdf-3d94-4ef5-9abc-cdc9a10b1fef",
+    "appId": "76436d76-126b-42ea-a287-9bb453f8d97f",
+    "appName": "Apple Health",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Switch"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.RfOH99KAUyF4CKGz.WFF5gG4grlPGDhB3Mm4bBEM1nM4ca9Cxze5dSb80FHuy4q_XOAilPj6v4_c4ZD5StXGBpYemsD3FmxEznRaQjt_WJlZ_lxTAyKtbwEAnQJzjP-9nuWLedWOgGPEr2fzOLqw6pK68cmoUpbthze7WlwN_M__kVxiF8WqPvn3_cxKnJfmT2Ah1fTuDa5wbaWCBKgi4nkW6JPn-8cdg9LecQ6OvcU9KZ_7vws_1uPndAxu2X01tXV3KWRbh1gTNKw",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "acba9f6e-6d6b-4432-807f-6b59c249e141",
+    "appId": "66ac61f7-f9ea-4c45-b512-b2fadf7e027b",
+    "appName": "AllTrails",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.NYRrMlmez3THEFzU.q_-t9amLQ1cNYAK8yIhU9r7E8oZ88qfHqeT9txjpviXONWNGglC_HboJnpbRwDml4CN6op1EBrpEj-iJTafEcyxuEew7piiusWFOg5A-l34oLadYt-H8_zBN8t1g9cq9wOgQhLZATbVppEYVwbOuUPSfeH8Yz_7gq0N0gZnIbZt5xg5x16WXB0JqRCN5B3gwp-c6JINFhSyN7_6J72DjFj-U26KosJFNJo4nx1O8QLqHuwv0s27Cy3vclWZUFQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "30b19c7b-43db-4189-bcb1-2d2e13417270",
+    "appId": "66ac61f7-f9ea-4c45-b512-b2fadf7e027b",
+    "appName": "AllTrails",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Icon"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.TTizlePeRcIs60T8.kvn5zMDM1vczViEDm4MvoBapPATl1fsn2v3DQugU5y2mQuOpEuNmbZoMC8q3VdcZRtQnaUFUnwDTY_88FtG6efDz9G_hKnVWpyE0Kk2Zwl2ArKNBfi6f11arRpbgiOQobFxhhqzOyTXtbvJVAFPxmNKJiGd7jX-pdHqVgNWggk7YLfTJ2RGTtXqpg7FYp8pWF46Xa4koCULPb07iOLnq9mncfBm30_P-JhRskdfYOCcbqg7JbpzHRGDnSwVffQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "2dc31a13-c09d-4ffd-a7c7-f9a9cb7f56e7",
+    "appId": "66ac61f7-f9ea-4c45-b512-b2fadf7e027b",
+    "appName": "AllTrails",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Switch"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.HQmVnh-FTBMWGPMp.AsxJ69f_coArgdMEBdvCKWixPyTLy4Q07zyH3PzQ7Zn-dfy3fmykme88aDutkJ5rwqyJXK3fpeMLwgPnmGNzMLeaxs2pHaYPAifeOPf55EU1MmSayo-u1V4s7U5UWpE6qtkePW8qw1cfeYADjrFqjQBseT2W7GwrxfKGDr2v4-s-b5o4aZqHhIRI2_Nr8aWhNj5ZiFeUByh1Jl4xPjR_3HggEz6Tb5p4Y26r-8nNbZWL6EnE-aSbOYdmlPjRLg",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "bb3bf476-ccc7-45ea-8dfc-eeab3c8778bf",
+    "appId": "66ac61f7-f9ea-4c45-b512-b2fadf7e027b",
+    "appName": "AllTrails",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Chip"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/9a60d920-ce18-4e0f-9527-b8a8e556a3e0.png",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "1885f646-3b8d-4466-a6df-a1e6733259a1",
+    "appId": "66ac61f7-f9ea-4c45-b512-b2fadf7e027b",
+    "appName": "AllTrails",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq._e9P-gID1G3pUvI7.lxSX_6gqSX6TbADGjB3iceEhqnZSfJ8Hsb_AkrbewTJIvyDbmuPi3YUwICnBG67x94b_lU-d2kOchKCQ6jEcEOorG1Ab3SJ5Be1qKVgZFMFvuh4-KuYdqp1a3l7-rh-cFfhV8a3Vuq8k17Z_gpDNU3RgCMvaNlyahStnesPwYSjBfYgrDO9JSnaDxzLwI3jM4jfJJEAzwHHEV4skhxdZINZabCwy-Ll6Z2O94teSMper65Qz450CUOYA_PFWNQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "b8c836df-29da-4756-860b-34db6b1207ce",
+    "appId": "449de884-1da3-4133-a57e-5106be737046",
+    "appName": "Nike Run Club",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [
+      "Radio Button"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.nVOKLlr39WgDALhe.AWn0kCJHASPKYx9o-N6lHB_tnnElEctXdrrTMs1ncO_L_GvMHHveEc5sQrojbmzZkt_EZPelPABUvw7nBgQwNckfYbwk1T8VA1pbaomLfiOIIY-WqptIGI8d2HGxBAeLUFnBAuLO5TMrLDmXMp4D3PoNFkGFbB9wNOOxdk6WrtIIrTcyXnEXQ-yG9Vb1uXTz_eagcWhgW6fN4kIFyA9188dtX85XehknoyVpCWI_i3ijIozTXZppw4zXZ6vXBA",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "324563f0-75f6-45a0-9f32-fe387f14e99a",
+    "appId": "449de884-1da3-4133-a57e-5106be737046",
+    "appName": "Nike Run Club",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.X8NuVZ4MPGrKumWF.CUxLX1qwpJzAGK639ZiKD0tn0YHr59fZ5BBHbVejGtSPLME8V28rpq0ftGU-w_2sKq3dNGA4YKOWQBriy0WBkefw4hfLTpxaob_pQgZJV7J4OjH3-FMZMF6MYRHiAy5WjBkjvLXMC9W3PL2rvj7nyKKfMLgDHd2_gXvtL9TVvPX82qhE4JLOJUWs-QnrVq1wwtYxWM-61pwesBao4ZxiovwAVOxtIWZ057_c_pfwimidjl89LGKHAS2ypd_oCg",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "5f673aed-19a4-4986-82fa-834bc1688bba",
+    "appId": "449de884-1da3-4133-a57e-5106be737046",
+    "appName": "Nike Run Club",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.75OJVjfazxeer_3H.OC8xQPJNFln6MyvifvdTi0HW75zUIWY1_0I_3YpwGwAvXf1c7nlmLHWTaCxQgYaSeFxf0hZ3emceH1Oves-r1ki6QsAYxPSEVUWzW1ziUi818FvD4Z31G9G9mSiyebzI53CA63Mrrk3lSnF4qZy6lVLar8c2kvMUhs_moW5LubKsvfPS-MUoEI2UWSyEfA6IRei4ojL-lg8slCIAo3Gxj5mh2zFL73Xy-qUZYZ7nxSeqcoscXyCYbyyAgfQmTQ",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  },
+  {
+    "id": "82d4ab8c-0e94-4513-93da-cd89627c2f9e",
+    "appId": "449de884-1da3-4133-a57e-5106be737046",
+    "appName": "Nike Run Club",
+    "platform": "ios",
+    "screenPatterns": [
+      "Settings & Preferences",
+      "Edit"
+    ],
+    "screenElements": [
+      "Text Field"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.-qREJKiClc9zfBYF.Jagtkaa7zi_9mOPeIhDVQqbB737Bj__KbJg-G-gKaywxXnWxbY66OPPTNheJVEjyaIXVj4IN5ZH_X47T35gxJUu7AyU8aDkq32r7rNoe_u3M9c0RntahcEjg4E95RGpbkMHoglok_Y39vIE-KHevwlIVRxk0G8tzZq0w8bh0VspdZhl7bKSBHCgRnGBzxCN0uLjsztNMfz1FWXw4iZyJtMwG0MopwWvEBfTuc2RHzSzCZX8zPnGX_sSFpfQ_mA",
+    "metadata": {
+      "width": 1179,
+      "height": 2556
+    }
+  }
+]

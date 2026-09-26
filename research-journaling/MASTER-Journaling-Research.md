@@ -1,4 +1,4 @@
-# JOURNALING-APP RESEARCH — MASTER COMPILE (Aug 2026)
+﻿# JOURNALING-APP RESEARCH — MASTER COMPILE (Aug 2026)
 
 **Super-thorough edition.** The complete cross-industry research base for
 **PersonalOS** (private single-user Flutter PWA: journal + habits + goals +
@@ -1493,7 +1493,7 @@ questions. Landing section in `TEMP-PLANNING.md` noted.
 ### Mobbin data (real-app UI inventories)
 - `research-journaling/mobbin-screens-finch.json` (671 screens) ·
   `mobbin-screens-evernote.json` (352) · `mobbin-screens-stoic.json`
-  (303) · `mobbin-apps-*.json` (Apple Notes, Notion, 5 Minute Journal,
+  (303) · `mobbin-<app>-apps.json` (Apple Notes, Notion, 5 Minute Journal,
   Bloom, Otter AI, Bear)
 - Query helper: `research-journaling/mobbin-query.mjs`
   (`node research-journaling/mobbin-query.mjs screens|flows|apps "<query>" [platform] [limit]`)

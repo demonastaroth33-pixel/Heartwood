@@ -1,0 +1,298 @@
+[
+  {
+    "id": "a19e1bda-a8e2-4491-b931-3d7c16a1fd60",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Progress"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/89d22ef3-c0c6-4e55-a715-5d9f20151fc5.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "9832df7c-13bd-4b6b-a863-247dd4e7a020",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/a4c837d9-c1ac-4abd-af02-8f05f382dd4b.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "23afa665-561e-4880-9f62-9e87601249b9",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/dff8b53e-c9dc-49eb-8857-66188d60fcc1.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "91ecd0f2-d4bf-4cc5-9fc6-90ca809169cd",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/dee87824-8b46-411c-b39d-bc236fad6650.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "8c5baf91-90e2-4c43-b207-85688af1edf3",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/9a580569-992e-4413-9bfe-3a9f45d4e15c.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "f804b475-c13e-471a-91c1-464e4bb52b68",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/994c8c84-37a8-495e-b3f0-6db286072767.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "bf1d37d7-4014-4873-a6d1-aeeebb27f3ec",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/4f493d13-fd67-4449-85af-23cd16de4365.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "057e4dec-e96a-4221-9915-03b0f983ee47",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://ujasntkfphywizsdaapi.supabase.co/storage/v1/object/public/content/app_screens/60e4e352-da16-4234-8546-81c7eb337ed6.png",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "d900f537-9a31-4f00-9c2f-a6772582f762",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.04lnp9wEK42OhZDM.msHZhhqYdDbBEtIllzMlF6AFDOE4n4RE7ubmC981_UW4K2R_Bmy3H_wcIToQLrBPUJMGGf0AR1uJWjjVVZ1ekWxYfA72tWVUHO0h8u_BkLEugBHzqhSbvSOlJSgBFrTVGd2j2JOQkFIjvfLkZRJf-53HTMgMxX33TjCw42hGZEUHKFBqqoNLFtrvfBOV-1e5ESOr80gXjK8oQwt4k9Kgp0X3CgCGye_uCdyfajFzK5cT2ONwnNJi9iBSvlPLzA",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "a59e30f5-e0fa-43b3-8f1f-f5f3f6c55360",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.dw7zjsXFzN4s4cIS.2Rml8c-a8h7cgIm9Nt6MfQR5Dec1Lh6WXDBnlt5ZpgUdGkDrHr6w6D2Fo7z41NSiDHKTeXQMCmyOJS77QcTWFLKNw7q9XCEwSxwgepvcB7jFh5bzrDX_sqhW3-P_FhTo0tzMSUhTQ5MFk2CeAgpxzeFrfBZ-SCMbkfoXJxuGCpyu3b4RwP3u3DYWnGgimAenHy7GDAgpQX2z_wrHHHIaUGSIqkj7GCaPZmQbsNVKBjFItrZnKsa0tGJripIkXQ",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "73697343-4828-4397-8abe-af8936088c23",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.eJBjGmQvMObMSY7B.fNqiO7zKwAIkhuyANdPOQUK7ZfAmYuyMT0XpVhbjJ5UV1P2jd1-TR3hTkMfG4868iQVzZtp5Hock9YBnAv5IetZdC8ZR7486m0m6OZ8zr6xgQSHNoy8LkDJslfXR8YPm_A3YzhU6UGQMjEYpu8ynd4LPQZ8En4Uq5k_zd2NX5b71-Jqq8vjKMowMEhBIHsF5G5I6cb3uRk1qpdrud6NjFeCEIWi1R9aGYm9MVDra4CYo3Q0kn7MKBMSasxy9Dg",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "d3006b86-eeed-473f-bb0c-aba1872a983d",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.cIyG2EIHYZgLtox9.qeWcIOJbwe3B5IE5FoVVimauAMcj28K9srM2fyMgKl96j-ZzxCqOoAyN2L8q9RfW_RHVVaXZl0ss7QrQd5oDxWqRhGzcz-hT74QOeb_5AycCxIpCFsQ627YhpZCiYNaSbCs7iCHRguRG90v3dfq5mj7Ym8aVpixEohBbcYkqWWLo1zWBhpLjLx3276NUvMM4zkcCJKkaHu5Aju0a9EgHQoFfbqLO3TEVpR6eDPCuIbHPyJdtawdirAhtZayEQA",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "ae62f64f-6075-48ac-9e5c-65a76a3f9983",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.51p6ThIJo3xle2LV.kNvqBZ_GSimgMH3s_CMu6TIggpR5UWQ9kl1yoFjuXBXQ6lqzd9Sn-m28rfy_8RWvK-gpWR8qjOzAvf69H7wRccT6zhLqG-czWLZcxDaNPsdPG3gxBs0OZTs4cYVDSDZgCxwrmCdM8UBFHbFiz0fwhA-VAAiSLTk5_MEh7psm8Qzgl_cbFSNjo-NJY6bbSC22gLVzB06TIxMRS52HmI2wTHQmMbjwYvxCesnYfnDenaDRQNM8pSIfCVjmiGd1Qw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "a4b92251-7dc8-4ed4-a6b9-f50e90577e7a",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Progress"
+    ],
+    "screenElements": [
+      "Progress Indicator"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.Q2kr8r5rHPiAA6C9.z51t0Wj3Z8nT5W4nvPhTOzcuBeiTDrSSXp6fY0kVEo-Rzr0Nj9WfkXrZaW0FiYPNrnzBsjHsS-LJFSYdzK3tq_hVr-1l4qHNzoaMN3c9UULID5h7oR9WOcfejsxj4cje8hT0c-jjJXsZw4_PHEHUToP4BKYXGkXY3KbAVKYDaXFj_QCAbS9lBve4QzYlLNoTLl1EbKVAhe0gGsxGJBv1LDfHNrGhgcJllekx3RFouEj0mOkV4ix__DGVCrs9gw",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "9aef899d-dc28-47d8-8acd-fe2c1c606005",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Charts",
+      "Dashboard"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.u8VGgMAQOYzlFH86.IEclY8Bmv_CcYH7DGumGiPT2tYkV80qiWxwG1rgH9JTfPSi9y70SbEIlsjSnn0KYob4Jir5OwFxa7naoSBVN7-juCD4MorTSwsJ5dzRCPVhGLy-Bdny5JaxAYOp6odZEzemaxFZxJsJ8EYfV-Mhj4evhzFI4xOfQz5ZD1SAIU7XuiFY_Ahe5OCA6i8WFp-X-LU7pUrww2V0qvHPGqC_5zSp7W_5DPjBSiMwL6VwbBs7jv7TIZpghf_dgjsLemQ",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  },
+  {
+    "id": "39704ae7-5679-46fc-96c6-63cb65c3a2cf",
+    "appId": "ec5eee00-e0a8-4060-a969-379d4eae7c63",
+    "appName": "Streaks",
+    "platform": "ios",
+    "screenPatterns": [
+      "Dashboard",
+      "Charts"
+    ],
+    "screenElements": [
+      "Page Control"
+    ],
+    "screenKeywords": "",
+    "screenUrl": "https://bytescale.mobbin.com/FW25bBB/image/mobbin.com/prod/file.webp?enc=1.Pjvjficq.e-UYThCdA3jNviF-.IUZGcL95cVqcCmppx2XzU8gIjPcgvWQaz-FuyUrd-tHy6OxoP383Hen9xb-79Hbt2tEV_0jXfv-z-g2NqOLZKmrKNpWk9lqR4wshA5f3mbxUzPN6EOUqlKbZM2GPfSMa9dLZMjIOoIz5KkIOQ2ItLtPhpA5Ihs567yIYe-DQDQhh2b3DrQPCK0cXZqpjijZPudnE8qqx_oKgU2dfmfFKUxlvma6bDW0lQDbL1UvZX6barYDFCUlLmYgORHuV1g",
+    "metadata": {
+      "width": 1125,
+      "height": 2436
+    }
+  }
+]
