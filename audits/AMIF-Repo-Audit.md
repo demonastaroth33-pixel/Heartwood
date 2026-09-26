@@ -1,6 +1,6 @@
-# AMIF — Repo-Tailoring Audit (2026-09-26)
+﻿# AMIF — Repo-Tailoring Audit (2026-09-26)
 
-**Audited:** `tools/Heartwood – Agentic Milestone Implementation Framework (1).html` (v1.1, 611 content lines) + `tools/Heartwood – AMIF Agent Prompt Library.html` (v1.1, 594 content lines).
+**Audited:** `tools/Heartwood – Agentic Milestone Implementation Framework (1).html` (v1.1, 613 content lines) + `tools/Heartwood – AMIF Agent Prompt Library.html` (v1.1, 596 content lines).
 **Against:** the current repo reality (post gen-2 pipeline close, 2026-09-26) — AGENTS.md, TOOLING.md, opencode.json, .opencode/agent/, design/ conventions, Roadmap.md milestones, docs/ set, and the lessons of the just-completed gen-2 integration run.
 
 ## Verdict: PASS-WITH-FIXES — the framework is sound; 8 repo-alignment fixes + 1 experience-encoded improvement + 4 open decisions.

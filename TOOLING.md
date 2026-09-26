@@ -76,6 +76,7 @@ never whole libraries.
 | context7 | Live library docs (drift, riverpod, flutter…) | ✅ active, free API key set |
 | playwright | Drives your installed Chrome: click/fill/screenshot/logs | ✅ active |
 | drive | Your Google Drive (read + write-own-files only) | ✅ active, OAuth done |
+| open-design | Local OpenDesign daemon — GUI polish track + mockup work (AMIF Phase 6) | ✅ enabled; daemon must be running (see AGENTS.md Commands) |
 
 **Mobbin (NOT an MCP — a CLI + off-by-default skills):** `mobbin-mcp` v1.0.19
 powers the 5 `mobbin-*` skills (search / prompts / visuals / capture /
