@@ -181,6 +181,11 @@ never re-implement the math, never a per-view hack. Rounding happens once,
 inside the owner. There is no generic-aggregator meta-framework; each stat has
 a named owner. The catalog below is the consolidated authority (C13.5 / S024):
 
+<!-- E-audit GAP-closing requeue: L016 (F-09) + L017 (F-10) + L054 (N-13) drafted
+into Architecture.md — est1RM effort feed (D210), trainingMax owner (D211),
+derived-number provenance contract (D212). Feature/copy portions live in
+Roadmap D171, UIUX D180/D183, CoachSystem D190/D194. -->
+
 | Owner | Responsibility |
 |---|---|
 | `rollingAvgWeight(dateKey)` | shared 7-day rolling bodyweight; thin-data guards inside |
@@ -202,7 +207,8 @@ a named owner. The catalog below is the consolidated authority (C13.5 / S024):
 | `anniversaryWindow` | ±7 days exact-day distance (L180) |
 | `rollingWindowMean(series, windowDays)` | the ONLY windowed rolling-average util in the engine (L145; amended D161) |
 | `bodyTrendEMA(dateKey)` | time-indexed EMA trend owner for body — trend ≠ rate ≠ prediction, separate derived layers (F-13, D161; math in DecisionLog D121) |
-| `est1RM` | the only Epley conversion; record-mode routing (L144) |
+| `est1RM` | the only Epley conversion; record-mode routing (L144); corrected/confirmed by the F-09 effort feed, never replaced (D210) |
+| `trainingMax` | TM decision number anchored 85–90% of e1RM; RTF/RIR adjustment contract (F-10, D211) |
 | `qualifyingEntry` | ONE qualifying-entry definition per domain (L187) |
 | `robotOverlapWindow` / `runAlive` | robot-consistency run anchoring (L192, L208) |
 
@@ -230,6 +236,30 @@ records are D126 (engine-1) and D127 (engine-2).
   rule-book session (M8 anchor). No rule content is drafted at this pass — the
   rule catalog + test plan live in CoachSystem.md.
 
+### Derived-number provenance (N-13)
+
+Every derived number carries its **source basis** (formula, inputs, constants,
+sources) and its **uncertainty band** (honest error framing). This is an
+architecture-level contract on every H3 owner, not a surface rule (docs-pass
+D212; ledger L054):
+
+- **Source basis:** each owner can answer "where did this number come from?"
+  — the formula, the inputs it read, the constants it used, and the source of
+  those constants. An owner that cannot show its work is not finished.
+- **Uncertainty band:** each owner carries an honest error framing for its
+  output. Estimates stay labeled estimates everywhere (the strength-burn band,
+  TDEE formula, implied-TDEE, exercise kcal, 7700 kcal/kg); no derived number
+  presents itself as measurement-truth.
+- **Single render path:** the tap-to-explain sheet (UIUX D183) and the
+  check-up framing lines (CoachSystem D194) RENDER the owner's derivation —
+  they never re-implement it. The VERBATIM framing copy table lives in UIUX
+  D183 (explainer sheet + footnotes) and CoachSystem D194 (check-up copy);
+  Architecture carries the contract, not the copy.
+- **Explainability is part of the one-owner rule (L168/L244):** a new
+  aggregate is not complete until it exposes its source basis + uncertainty
+  band through the same owner. Rounding happens once, inside the owner —
+  framing happens once, inside the owner too.
+
 ### Day activity score
 
 - **dayActivityScore (C9.4):** ONE H3 owner — workout/session logged = 3 (max
@@ -253,6 +283,28 @@ records are D126 (engine-1) and D127 (engine-2).
 - **est1RM (L014, L144):** single Epley owner from the BEST working set (zero
   max attempts), shown alongside the raw top-set; PR = est-1RM beats the
   all-time best.
+- **Expected-vs-actual effort feed (F-09, L016; docs-pass D210):** the
+  Prilepin-style effort table (load% × reps → expected effort) feeds the
+  locked Epley e1RM owner as a **confirm/correct, never replace** signal:
+  actual ≥2 off → e1RM adjusts down; easier → up. SILENT by default
+  (engine-internal); optionally visible per set as a derived detail ("this
+  set inferred ~RPE 8"; UIUX D180). Pure lookup + delta rule; zero extra
+  logging — the engine's honesty without trusting self-rated RPE.
+- **TM owner — Training-Max adjustment on Epley (F-10, L017; docs-pass
+  D211):** `trainingMax()` is the decision-number owner beside the e1RM
+  measurement: e1RM (locked Epley) = measurement; TM (Training Max) =
+  decision number anchored 85–90% of e1RM. Adjustment contract (canonical
+  numbers verbatim-critical):
+  - **RTF mode (hypertrophy, DEFAULT):** beat target reps → TM +0.5%/rep;
+    miss → TM −1%/rep.
+  - **RIR mode (strength blocks, only if optional post-session RIR logging
+    is ever added):** 6+ RIR → +2%; <4 RIR → −5%; 4–6 → hold.
+  - **Overwarm single** = TM recalibration event.
+  - **F sets feed the miss logic** (F-05): a failure set counts as the miss
+    that adjusts TM down.
+  - Derived-only; history never rewritten; verifiable by hand. The Coach line
+    cites the rule (CoachSystem D190); Roadmap carries the milestone scope
+    (D171).
 - **Record modes (L117):** weight-mode → Epley est-1RM within 1–12;
   rep-count mode → best clean rep count, no 12-cap, `addedLoadKg` breaks
   ties. `strengthSnapshot()` reports the mode; PR events carry the

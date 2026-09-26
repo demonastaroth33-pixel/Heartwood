@@ -284,6 +284,46 @@ explicitly NOT included; it is an open item (see Open Items).
   by default, no nagging) opens a prefilled journal composer; the nudge rule
   itself lives in `CoachSystem.md`.
 
+<!-- AMENDED 2026-09-26 (gen-2 E-audit GAP-closing requeue; L081 / C-06; docs-pass D205): the then & now selfie compare — media-pipeline half — lands here; the M1 milestone bullet lives in Roadmap.md (docs-pass D174). Closes the IntegrationAuditReport L081 GAP for MediaStorage.md. -->
+
+### Then & now selfie compare (C-06; docs-pass D205)
+
+Companion to the D031 timeline — the media-pipeline half of the then & now
+selfie compare (the M1 milestone bullet lives in `Roadmap.md`, docs-pass D174).
+Both actions are derived over the existing `media_attachments` rows: zero new
+tables, zero new media paths (same rule as the D031 anchor, D073).
+
+- **Dated "compare" action per historical photo** — every physique photo in the
+  timeline carries a dated "compare" action; selecting one enters the
+  side-by-side / slider comparison against the current photo (the D031
+  comparison view already designed).
+- **"Snap a new one" pairs the current photo against any selected historical
+  one** — the action opens the normal capture flow (camera/file picker, same
+  capture pipeline as any photo); the new photo lands in the timeline as a
+  regular physique photo. The pair is a view-time relationship stored nowhere:
+  the two photos remain two independent `media_attachments` rows, each anchored
+  to its own `health`+`physique` journal entry (D031/D073 anchor).
+- **Storage & compression implications of paired media:**
+  - Pairing never duplicates bytes — a photo may take part in any number of
+    comparisons without a copy; the pair references the two existing rows only.
+  - A "snap a new one" photo is a new capture → new blob, new row. Content-hash
+    dedup applies exactly as to any photo (a re-imported identical capture
+    dedups); the pair never bypasses dedup and never forces a duplicate.
+  - Compression exemption stays per-category, not per-pair: physique photos
+    remain exempt from any future general-photo compression tier (D031; open
+    item D038). The compare feature adds no new compression surface or tier.
+  - Meter math unchanged — each physique photo counts as one row/blob like any
+    other; pairing adds no meter-visible bytes.
+- **Media-census role in the Life Tree later** — the compare pairs are derived
+  from existing physique media only and add **no new input class**. Each
+  physique photo is already one media event in the tree's media census (the
+  tree consumes `mediaPresence`, D117 A3; see `LifeTree.md`) — the then & now
+  layer (M9) reads that same media presence; nothing in this feature changes
+  the tree's inputs or schema.
+- **Sequencing note** — ships with the D031 physique-photo timeline in M1
+  (Roadmap M1 bullet, D174); this section is the media-pipeline half (D205). No
+  new milestone, no new dependency.
+
 ## Cloud Provider Abstraction
 
 See `Architecture.md`. The hard rule: `CloudMediaAdapter` exposes only

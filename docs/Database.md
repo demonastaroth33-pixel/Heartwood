@@ -42,8 +42,8 @@ document describes the logical schema that both candidates must implement.
 | `batches` | id, name, recipeId?, servings, createdAt | prepped batch — recipe × N servings, or free-form (N-05 → D134); the locked `packed` source producer's first-class flow |
 | `batch_containers` | id, batchId?, name, createdAt | per-container rows (N-05 → D134): partial-consume semantics; recipe-linked AND free-form container kinds |
 | `batch_container_line_items` | id, containerId, recipeId?, foodName?, kcal, protein, carbs, fat, portionMultiplier, source (packed\|fooddb\|recipe) | per-container line items (N-05 → D134): each part its own portion multiplier; per-part honest sources; consumed portions become `nutrition_logs` rows (source='packed') at eat time |
-| `deload_markers` | id, startDate, endDate (ANY range), reason?, journalEntryId?, notes? | deload ranges: days in range are adherence-quiet, volume-balance exempt, strength chart shaded (CoachSystem.md §Context switches); journalEntryId? FK → journal_entries; separate table, NOT a phases type (D051) |
-| `periods` | id, type (vacation\|term\|holiday\|…), title, startDate, endDate, notes?, extraEntityIds? | invisible metadata records — content derived by INCLUSIVE date range [start, end], never copied/owned; extraEntityIds? = the ONE deliberate exception (an item dragged into a period outside its range); user rows survive restore (backup enumeration); vacation-day union drives streak rules (Gamification.md); D075 |
+| `deload_markers` | id, startDate, endDate (ANY range), reason?, journalEntryId?, notes? | deload ranges: days in range are adherence-quiet, volume-balance exempt, strength chart shaded (CoachSystem.md §Context switches); journalEntryId? FK → journal_entries; separate table, NOT a phases type (D051); F-11 (→ D200) PO freshness decay reads it as a MARKED-absence system — marked/planned absence decays differently (or not at all) vs true unplanned absence |
+| `periods` | id, type (vacation\|term\|holiday\|…), title, startDate, endDate, notes?, extraEntityIds? | invisible metadata records — content derived by INCLUSIVE date range [start, end], never copied/owned; extraEntityIds? = the ONE deliberate exception (an item dragged into a period outside its range); user rows survive restore (backup enumeration); vacation-day union drives streak rules (Gamification.md); D075; F-11 (→ D200) PO freshness decay reads it as a PLANNED-absence system (vacation/term/holiday = planned, decays differently or not at all) |
 | `limitations` | id, exerciseId?, muscleGroupId?, startDate, endDate?, note? | injury/limitation records — target is an exercise OR a muscle group; feeds "limited-not-lazy" Coach rule + PO suggestions (CoachSystem.md §Named rules); D051 |
 | `day_templates` | id, name, createdAt, updatedAt | named reusable full-day plans; edits/deletes affect FUTURE bindings only |
 | `day_template_slots` | id, templateId, time, kind (meal\|pack\|workout\|activity\|rest\|sleep\|weigh-in), title, link?, notes? | link = recipeId for meal slots, workoutTemplateId for workout-kind slots |
@@ -118,6 +118,29 @@ Editing a template affects future sessions only; past sessions never change.
   adherence exclusion). F counts as volume; tonnage = real weight × real reps
   achieved; F can still fire a PR; progression: F = HOLD weight next time, never
   punish, never auto-deload (deloads from locked stall rules only — F-12).
+- **PO suggestion freshness decay — the F-11 reads (L018 → D200):** the decay
+  that lowers the suggested starting load after time off (days-since-e1RM
+  multiplier; completes the locked N2 return ramp) reads EXISTING schema —
+  no new columns, no stored decay factors. The reads:
+  - **Last-session markers** — the decay computes days since the last session
+    from `workouts.dateKey`/`occurredAt` + `exercise_sets` (the e1RM's source
+    set), derived at read time; never stored, never cached on the session row.
+  - **`deload_markers`** — a MARKED/planned deload range: days in range decay
+    differently (or not at all) vs true unplanned absence; `reason?` may carry
+    the deload kind the decay treats as planned.
+  - **`periods`** — a PLANNED absence (vacation/term/holiday): days inside a
+    period's inclusive range decay differently (or not at all), same rule as
+    marked deloads; planned-rest + quiet week (J4) ride the same range reads.
+  - **Settings knob** — decay steepness = `inactivityDecaySteepness` (settings
+    key, default ~10–20% per week off; see Settings keys below).
+  - **Sensitive-numbers warn** — 3+ weeks off shows a warning + explanation
+    before any suggested load (Coach-side copy; the schema just supplies the
+    days-since read).
+  - **History/vault/PRs NEVER change** — the decay moves ONLY the suggested
+    starting load; `exercise_sets` history is untouched, derived-only.
+  - **Constant reconciliation (docs-pass D190/D200):** the >4wk freshness tier
+    governs HINT DISPLAY (collapsed — UIUX.md); F-11's decay governs the
+    SUGGESTED STARTING LOAD — three surfaces, no conflict.
 
 ### `phases` (C2.1)
 
@@ -209,6 +232,24 @@ Editing a template affects future sessions only; past sessions never change.
   auto-tick from a veggie-tagged food category; water auto-ticks from logged water.
   The locked habit engine applies unchanged (daily check-ins, grace, quiet-week,
   no-shame, zero-XP for ticking); manual check-in always wins; isImported excluded.
+- **Adherence-neutral compliance math — the N-03 reads (L043 → D201):** the
+  weekly check-up's denominator is a READ over the existing receipt-line model —
+  no new columns, no zero-fill rows, no streak storage. The schema contract:
+  - **Denominator = distinct logged days** — the weekly check-up counts the week's
+    distinct `nutrition_logs.dateKey` values with ≥1 receipt line; the day total is
+    SUM of rows (existing rule), never a stored day row.
+  - **Missed rows NEVER count as zero** — an unlogged day contributes NOTHING to
+    the denominator and never gets a synthetic zero row written; unlogged days are
+    treated as typical intake or excluded (Coach-side copy), never as a zero.
+  - **Thin-week rule (<5 logged days)** — when the week has <5 logged days, the
+    missing days are EXCLUDED from the denominator (the check-up does not report a
+    compliance % for a thin week); a typical-average is used only when the week is
+    otherwise complete (verbatim-critical: the threshold is <5).
+  - **Compliance = logged days' performance only** — percentages are computed over
+    the logged-day denominator only; no streak displays for nutrition (nothing to
+    store, no streak fields on `nutrition_logs` or a nutrition-streak table).
+  The check-up's denominator rules themselves live in CoachSystem.md (N-03, D191);
+  Database.md carries the fields the math reads (`dateKey`, receipt-line macros).
 
 ### Routine — day templates, binder, performed days (C8.1/C8.2/C8.3)
 
@@ -290,6 +331,7 @@ Schema-relevant ones:
 - food macro lookup toggle — default ON; OFF = plain manual entry (switches behavior, never deletes data)
 - grace default — 1 grace day per 7-day window (streak forgiveness budget)
 - PO auto-suggestions GLOBAL KILL-SWITCH — default on
+- `inactivityDecaySteepness` — PO suggested-load decay per week off (F-11 → D200): ~10–20% per week off default; the settings knob the freshness decay reads (see `workouts` — PO suggestion freshness decay)
 
 ### `media_attachments` fields (media update — see `MediaStorage.md`, DecisionLog D037)
 
@@ -389,7 +431,10 @@ ever deleted, new fields ship with defaults — and old backups remain importabl
 per the migration rules. Decision records: the tree-era fields cite
 D098/D100/D102/D107/D108/D109/D113/D117; the F/N/L-era fields cite the docs-pass
 schema records D133–D140 (assigned at this pass per the C-approved decision-ID
-list — one shared ID per same-theme row).
+list — one shared ID per same-theme row). E-audit GAP-closing requeue: F-11
+(L018 → D200) and N-03 (L043 → D201) are READ-CONTRACTS over existing schema —
+no new columns, no migration entries; their detail lives in the `workouts`
+section, the Settings keys, and the Nutrition section respectively.
 
 ### formatVersion 3 + `logFingerprint` (D109 C-2)
 
