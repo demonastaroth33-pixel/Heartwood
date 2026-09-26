@@ -3,6 +3,39 @@
 The Coach is the system that makes PersonalOS feel like a coach instead of a
 tracker: it analyzes context, does not blindly punish, and adjusts strictness.
 
+## Authority
+
+This document IS the Coach's authority (gen-2 delta §5): there is no separate
+Coach Consolidated Map in gen-2 — the v6-final cross-check does not exist and
+is dropped. The Coach is governed by this document + the L-10 record (the
+rule-based cross-domain insight engine — its one insight line lives inside the
+weekly message, §The weekly Coach message, AND the Life Tree branch detail,
+nowhere else) + the tree decisions:
+
+- **D103 — trigger authority:** the achievement system wins over derived
+  triggers — no feature invents a trigger where an achievement already encodes
+  the condition; the no-double-fire rule (one visual, one source).
+- **D110 — payload-blindness, why-panel, read-surface exclusion:** the tree
+  NEVER reads `coach_outputs` (structurally enforced — see §Outputs &
+  surfaces); the why-panel shows only event-log facts + register values, never
+  free text from any stored system, never LLM narrative.
+- **D111 — semantics surface:** the tree's pixels and semantics come from the
+  same deterministic state model (one source, two outputs).
+- **engine-2 (D127) — the rule-book session** (§Scheduling & rule-book
+  session) locks the ~25 named rules committed by M2 + the concrete test plan;
+  ONE rule-execution architecture; LLM = voice layer only (render-never-decide),
+  OFF by default, offline = complete product.
+
+The Life Tree branch detail hosts the L-10 insight line (payload-blind mirror
+per D110; LifeTree.md §13/§16).
+
+<!-- Authority re-point (INT-16/INT-13, docs-pass D151): gen-2 has NO Coach
+Consolidated Map — the v6-final §cross-check is DROPPED (delta §5). The Coach's
+authority is CoachSystem.md + the L-10 record (L069/D145) + the tree decisions
+D103/D110/D111 + the engine-2 rule-book session (D127). Payload-blindness
+(INT-13/D110(1)): coach_outputs rows are rendered text and are NEVER a tree
+input; the LLM render-never-decide rule is reinforced. -->
+
 ## Philosophy
 
 The Coach's posture is fixed before any rule is written: it speaks facts,
@@ -155,6 +188,13 @@ deletable (L166). `coach_outputs` kinds: `daily_note`, `nudge`, `briefing`,
 `check_in_weekly`, `nutrition_checkup`, `milestone_review_goal`,
 `milestone_review_anniversary`, `phase_close`, `pattern_alert`.
 
+`coach_outputs` rows are RENDERED TEXT — the Coach's output store and nothing
+else. They are NEVER a Life Tree input: the tree mirrors H3 owners only and its
+read surface never includes `coach_outputs` (payload-blindness, D110(1),
+structurally enforced — LifeTree.md §13). The LLM is a voice layer only:
+render-never-decide, OFF by default, offline = complete product (engine-2,
+D127); the LLM may never make a decision the heuristics cannot explain.
+
 ### One weekly surface — the merged check-in
 
 The M2 Coach weekly review is NOT a standalone surface. It merges INTO the
@@ -164,27 +204,79 @@ Nothing is deleted — merge only, one pipeline, one scroll. The day is
 configurable, Sunday default (L255). The dashboard's glance strip (R11) is
 exactly that: a glance; the verdict lives here (L101).
 
+### The weekly Coach message (F-24) — the 3–5-line template
+
+The Coach weekly section is NOT one line per strictness — it is ONE
+template-driven message, 3–5 lines (F-24; the gen-2 upgrade of the old
+one-line rule; INT-17):
+
+1. **Review** — the week's numbers: sessions, volume vs bands, PRs, sets held,
+   the Form zone.
+2. **Adjust** — the engine's decisions, rule-cited (show-your-work).
+3. **Next-week goal** — one concrete target.
+
+Template + interpolation — the Reflection Generator's flagship output. No LLM
+(render-never-decide); same derived facts, same surface, same day; facts-only;
+show-your-work; one notification/day; quiet week wins; no shame (F-24). The
+surface copy renders in UIUX.md §Weekly Surfaces (docs-pass D149); this
+section carries the template rules.
+
+**What rides inside (and ONLY inside):**
+
+- **F-30's three readouts** — LOAD (est-1RM trend across the big-5), STIMULUS
+  (working-set volume vs the F-08 bands), BALANCE (F-29 ratios + muscle
+  imbalance) — live ONLY inside this message: no fitness-area display, no
+  dashboard surface (F-30). The F-28 carve-out: the sets-per-muscle-week chart
+  IS the data visualization (interactive, in the fitness area) — F-30's "no
+  fitness-area display" means no additional readout cards beyond that chart.
+- **The L-10 insight line** (D145) — ONE line within this message, the same
+  line the Life Tree branch detail surfaces; NOWHERE else. Rule-based
+  cross-domain comparisons (pure-logic with/without, the next-day lag window),
+  confidence tiers from sample size (never truth without the n), data
+  thresholds (5+5/90-day rule — ≥5 days per group OR 90 days of history);
+  correlation-not-causation wording verbatim ("correlates with", never "caused
+  by"); mood-proxy is derived-only (journal presence, word counts, entry
+  length — C-04 rejection referenced); the first comparison set = the big five
+  (training ↔ journal presence/word count · training ↔ mood-proxy ·
+  sleep-proxy ↔ next-day training · protein hit-rate ↔ next-day gym · weigh-in
+  trend ↔ journal cadence). Stress-testing is a user directive: synthetic
+  seeded histories become part of the engine's test suite (engine-2
+  discipline).
+- **N-13's estimate-framing lines, F-08's band verdict, F-14's
+  rate-vs-target, F-19's Form zone, F-20's ramp alert, F-29's balance
+  ratios** — each rule's detail locks at the rule-book session (§Scheduling &
+  rule-book session); this message is their home.
+
+<!-- Weekly-message template restructure (INT-17/F-24/F-30/L-10, docs-pass
+D152): the one-line-per-strictness rule is REPLACED by the 3–5-line template
+(review → adjust → next-week goal); F-30's readouts + the L-10 insight line
+(D145) live ONLY inside it; the four "one Coach line per strictness" places
+(check_in_weekly, nutrition_checkup, phase_close, milestone-review) amend to
+this template. -->
+
 ### Weekly fitness check-in (`check_in_weekly`)
 
 One derived summary on the configured day: rolling weight vs phase baseline,
-pace status, adherence + pattern flags, volume snapshot and balance,
-PRs/records, goal pace, plus one Coach line per strictness. Read-only,
+pace status, adherence + pattern flags, volume snapshot and balance (the
+sets-per-muscle-week chart renders here as the data visualization — F-28;
+F-30's readouts live only inside the weekly message), PRs/records, goal pace,
+plus the 3–5-line weekly Coach message (§The weekly Coach message). Read-only,
 annotatable, zero new tables (L032).
 
 ### Nutrition check-up (`nutrition_checkup`)
 
 A compact section of the merged weekly surface mirroring the fitness check-in:
-kcal vs target %, protein hit-rate, weekly compliance, one Coach line per
-strictness (L092).
+kcal vs target %, protein hit-rate, weekly compliance, plus the 3–5-line
+weekly Coach message (§The weekly Coach message) (L092).
 
 ### Phase-close report (`phase_close`)
 
 Closing a phase renders the full report: weight trend (+kg via rolling avg),
 pace verdict vs target rate, sessions count (strength/cardio), adherence %,
 volume totals + group volume, PRs (list with margins), achievements, goal
-pace, plus one Coach line. All derived; a snapshot may land in `coach_outputs`
-like a weekly check-in (L065). Phase-close also feeds the milestone-review
-phase blocks.
+pace, plus the 3–5-line weekly Coach message (§The weekly Coach message). All
+derived; a snapshot may land in `coach_outputs` like a weekly check-in (L065).
+Phase-close also feeds the milestone-review phase blocks.
 
 ### Milestone-review card (`milestone_review_goal`)
 
@@ -205,9 +297,18 @@ NO XP.
 The long-form "since you started" review — the counterpart of the weekly
 check-in on the same surface model, NEVER a new screen (L264).
 
-- **Anchor** (derived, not stored): the FIRST journal entry's date = "day one";
-  if that entry is deleted the anchor falls back to the next-earliest. No
-  journal entries at all → no milestone review.
+- **Anchor** (derived, not stored): the app-wide shared birth anchor (D102) —
+  the account's FIRST IN-WINDOW EVENT per D100, frozen at first write, never
+  recomputed, never shifted by deletion. The Coach anniversary, the milestone
+  reviews, the tree, and the rings all read the same value (LifeTree.md §2.2);
+  a gym-only user gets their milestone review on their tree's birthday. No
+  in-window events at all → no milestone review (the anchor never exists).
+
+<!-- REMOVES-existing note (D102, docs-pass): the "FIRST journal entry = day
+one" anchor is SUPERSEDED by the app-wide shared birth anchor (D102). The
+Coach's year stops shifting on deletion; user-visible change: the
+milestone-review date may move for users whose first event was not a journal
+entry. -->
 - **Cadence**: default ladder off the anchor — +1 month · +3 months · +6
   months · +1 year · then yearly. Settings Group 2 (Coach) makes it editable:
   enable/disable individual milestones or a flat interval.
@@ -233,8 +334,9 @@ check-in on the same surface model, NEVER a new screen (L264).
   weight trend, adherence), or a closure summary when a phase ENDED inside the
   window. Phases are reported one-by-one, never blended; no phase open → no
   block renders.
-- **Tone/rules**: advisory only, NO XP, coach-line-per-strictness, honest
-  labels (same "absolutely solid" math, same owners).
+- **Tone/rules**: advisory only, NO XP, the 3–5-line weekly Coach message
+  template (§The weekly Coach message), honest labels (same "absolutely solid"
+  math, same owners).
 
 Privacy stamp: FACTS ONLY (L158) — cadence lines and stats only, never
 journal text.
@@ -274,7 +376,20 @@ weeks are exempt. Analytics → rules → reflection; no schema change.
 Seeded minimum-effective-sets-per-week baselines per muscle group (MRV-style,
 settings-editable), with weekly under-floor and imbalance checks and
 phase-adjusted floors (L029). Advisory only — never XP, never a penalty.
-Settings keys only; zero core schema change.
+Settings keys + the F-05 `setType` column (working-set counting reads the
+W/D/F labels; the setType schema change is F-05's — see Database.md schema
+set). The weekly check-in's volume fact line renders F-28's sets-per-muscle-
+week chart as its data visualization (interactive, in the fitness area);
+F-30's readouts (LOAD/STIMULUS/BALANCE) live only inside the weekly message
+(§The weekly Coach message).
+
+<!-- REMOVES-existing note (F-08/F-05, docs-pass D154): "Settings keys only;
+zero core schema change" is SUPERSEDED — F-05 adds the setType column
+(Database schema set, D133–D140); the volume-balance claim amends to
+"settings keys + the setType column (F-05)". -->
+<!-- Display reconciliation (F-28/F-30, docs-pass D152): F-28's chart IS the
+data visualization (interactive, in the fitness area); F-30's readouts live
+ONLY inside the weekly message. -->
 
 ### Rest-day pattern detection
 
@@ -349,12 +464,26 @@ dinner/snack) so it works day one.
 Optional monthly nudge to add a D031 timeline photo — OFF by default, no
 nagging (L070). The photo anchors to a journal entry tagged health+physique.
 
-### Deferred: recovery readiness (N5)
+### Recovery readiness (N5) — CLOSED by F-19 (D121)
 
-Skipped for now; the deferred line keeps: a morning 1–5 recovery log + PO/
-Coach branches + M2 correlation analysis + deload trigger + check-in line
-(L060). Revisit anytime, together with rest/recovery tracking (FUT-2, L271) —
-whenever scoped, this must not be duplicated.
+The N5 deferral is CLOSED: F-19 locks training-load Form (CTL/ATL/TSB — the
+readiness signal from logged sessions only; display = bands primary + number
+secondary + trend arrow, with the mandatory honesty label "Training Form (from
+your logged training)" — sleep/life stress NOT measured; zero new logging;
+derived-only; no wearable; one notification/day; quiet week wins; facts-only).
+The full rule detail (windows, constants, the session-load unit + F-20's
+"~8 units/week" guardrail) locks at the rule-book session (§Scheduling &
+rule-book session); the load owner lives in Architecture.md. The deferred
+line's old content (a morning 1–5 recovery log, PO/Coach branches, M2
+correlation analysis, a deload trigger, a check-in line — L060) is superseded.
+FUT-2 (sleep/rest-day/readiness hardware-style tracking) stays OUT of F-19 and
+is carried forward as a separate non-duplication note (L271): whenever scoped,
+it must not duplicate F-19.
+
+<!-- REMOVES-existing note (F-19/D121, docs-pass): the "Deferred: recovery
+readiness (N5)" line is CLOSED by F-19 (D121) — training-load Form is locked;
+the deferred line's content is superseded; FUT-2 hardware-style readiness
+tracking stays OUT of F-19 and is carried forward (L271). -->
 
 ## Achievement tie-in
 
@@ -432,6 +561,14 @@ FACTS ONLY. Anything that reads actual words stays gated behind the M2+
 text-analysis opt-in. The stamp bears in Architecture.md as well and repeats
 for every new feature (S025).
 
+<!-- Privacy-stamp citation (L084/C-08, docs-pass re-cite): the per-feature
+privacy-stamp rule lives in the paragraph above ("facts only" OR "needs text
+access → user opt-in first") + the never-list below; external citations should
+target THIS paragraph + the never-list (the ledger's older :437-441 range was
+~4 lines off the current text). The mention-suggestion sub-item (D125) carries
+this stamp — gated until the M2+ text opt-in exists, or matching is restricted
+to tags/areas/dates only (decision at build). -->
+
 ### The never-list
 
 - Facts-only by default — the Coach speaks stats, never quotes journal text.
@@ -476,6 +613,20 @@ formulas, `dayActivityScore` weights. These are settings, never toggles.
 - **Milestone-review cadence**: the anchor ladder with smart catch-up (L264).
 - Coach flows never reference standalone plans — planner content is
   routine-bound slots (L114); no new scheduler content.
+- **The rule-book session is the locking anchor for engine-2 (D127,
+  APPROVE-as-record):** ~25 named rules commit by M2 (gen-1 locks + F-08/F-09/
+  F-10/F-11/F-12/F-19/F-20/F-23/F-24; the rejected pair F-21/F-22 excluded);
+  ONE rule-execution architecture (event → rule catalog, condition→action,
+  strictness-parameterized) — never scattered conditionals; H3 single-owner
+  vocabulary; graceful degradation; LLM = voice layer only (render-never-
+  decide), OFF by default, offline = complete product; the concrete test plan
+  (determinism/table-driven/boundary/fixture/provenance) locks HERE. No rule
+  content is drafted at this pass (D127) — the named-rule sections above stay
+  as they are until the session writes the catalog. L-10's insight engine is
+  stress-tested with synthetic seeded histories (known patterns, tiny samples,
+  lopsided groups, seasonal effects, missing data — the full
+  threshold/confidence matrix) BEFORE any real insight ships; the fixtures
+  become part of the engine's test suite (user directive, engine-2).
 - **The complete Coach rule catalog is a DEDICATED deferred deep session**
   (L171): scheduled AFTER all features are planned and BEFORE the UI/UX
   ordering pass — Coach surfaces affect layout. Carry-over locks the session
@@ -486,8 +637,17 @@ formulas, `dayActivityScore` weights. These are settings, never toggles.
 - **M2 fitness/nutrition rule catalog** (adherence, volume balance,
   deload/period quiet, PO gating, phase messaging) is written as ONE list at
   M2 — pending, not built (L190).
-- **Deferred rules** ride the ledger: N5 recovery readiness (L060) with
-  FUT-2 (L271).
+- **Deferred rules** ride the ledger: N5 recovery readiness is CLOSED by F-19
+  (D121) — the F-19 Form rule is locked; FUT-2 (hardware-style readiness
+  tracking) stays out of F-19 and rides the ledger (L271) as a separate
+  non-duplication note. Revisit inputs recorded at this session: C-12 prompt
+  library, C-14 context-timed nudges, RL-10 no-fail journaling (D132 skipped /
+  research leftovers — revisit triggers only, not drafted).
+
+<!-- Rule-book session locking anchor (engine-2/D127, docs-pass D153): the M8
+session is the locking anchor for engine-2's ~25-rule catalog + the concrete
+test plan (determinism/table-driven/boundary/fixture/provenance).
+APPROVE-as-record at this pass — no rule content is drafted (D127 Revisit). -->
 
 ## Validation Goals for the MVP Stub
 
