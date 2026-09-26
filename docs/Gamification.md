@@ -20,7 +20,7 @@ Deferred to M2. The philosophy and rules are locked now so M2 has no ambiguity.
 | Goal completed | very large bonus | the rarest, most meaningful |
 | Journal entry with content (word-count threshold, e.g. ≥20 words) | small | documentation is a core loop step; capped — see Anti-Farming |
 | Media captured with an entry | small | life documentation; rides the journal cap |
-| PR (real session, per exercise) | small | meaningful progress; milestone tiers 1st/5th/10th; size-weighted — a +≥2.5 kg est-1RM gain counts, micro-PRs do not; zero XP for logging itself; growth displays are the centerpiece |
+| PR (real WORKING set, per exercise) | small | meaningful progress; milestone tiers 1st/5th/10th; size-weighted — a +≥2.5 kg est-1RM gain counts, micro-PRs do not; a PR fires ONLY from a real working set — warm-up (W) sets never count (F-05 setType bar, D133); zero XP for logging itself; growth displays are the centerpiece |
 
 <!-- REMOVED (D050 / L173): the "Weekly review completed | small" row. Reviews
 never give XP — the weekly review loses its small-XP reward in the docs pass;
@@ -105,20 +105,48 @@ Not XP sources:
   the v2 weight-gain ladder: 70 · 75 · 80 · 85 · 90 · 95 · 100 kg, confirmed
   by the 7-day rolling average across TWO consecutive weekly checkpoints.
   Weight goals insert into THIS ladder — a goal's threshold is a ladder value,
-  never bespoke; trophy and goal close on the same number.
+  never bespoke; trophy and goal close on the same number. Milestone hero ring
+  (F-15, D156): the current rung + % to next; FORECAST AS A DATE RANGE (honest
+  uncertainty — e.g. "80kg around Nov 10–18", never a single date); boundary
+  photos (D031 protocol anchored at rung start/end); celebration copy states
+  the differentiator ("80kg — confirmed by 2 consecutive weeks"). The
+  celebration VISUAL language defers to the Life Tree ceremony session (same
+  as F-03 — D106/D112; not confetti).
 - **Grace** — a forgiveness budget of 1 grace day per 7-day window, default 1,
   editable as a setting; per-window so it cannot stack endlessly; ONE shared
   budget across all habits; applies everywhere (habit streaks and life-area
   streaks). History stays true: a missed day is still recorded as a miss;
-  grace only prevents the streak break. Grace is the ONLY finite streak shield
-  — quiet weeks never shield streaks. Grace NEVER shields a robot-consistency
-  run: a missed day there breaks the run. Planned rest applies to
-  robot-consistency runs as a freeze.
+  grace only prevents the streak break. Grace + the bounded pause are the
+  streak shields — quiet weeks never shield streaks. Grace NEVER shields a
+  robot-consistency run: a missed day there breaks the run. Planned rest
+  applies to robot-consistency runs as a freeze.
+  <!-- REMOVED (D130 / C-09, L085): "Grace is the ONLY finite streak shield —
+  quiet weeks never shield streaks." Superseded — the C-09 bounded pause is a
+  second, separate finite shield; two bounded shields cannot become one
+  unlimited shield. -->
+- **Pause mode (bounded)** — a separate finite shield for a known-away period
+  (C-09 / D130): the user freezes streaks for the away period WITHOUT
+  forgiving anything. Bounded: finite durations per pause (1–14 days). The
+  away period is still RECORDED — a pause freezes, never hides; it is
+  scheduled absence, not forgiveness. Distinct from grace (forgives misses)
+  and from quiet week (silences nudges). Mostly OFF by default (Settings,
+  habits/coach group). Repair tokens REJECTED — grace stays simple.
 - **Perfect Month is not grace-able** — grace covers streaks only. Perfect
   Month requires every calendar day logged (28–31 / 31 real log days); a
   grace-covered miss leaves that day empty, so the trophy does NOT fire.
+- **2-day slip is goals-only (L-02, D158)** — goal cadences get a 2-day slip
+  indicator at M5: one skipped day does NOT break the run; a "2" indicator
+  shows with the neutral line "do it today or it's missed" — recoverable,
+  never shame. Habits already have grace (above); the slip is the
+  goals-side equivalent, never a second habit shield.
 - **Zero-XP consistency marker** — a soft "N days fully logged" marker on the
   dashboard, built from the fully-logged-day definition. No XP.
+- **Nutrition-domain habit check-ins (N-16, D138)** — veggie servings and
+  water become habit check-ins INSIDE the nutrition domain, riding the LOCKED
+  habit engine unchanged: daily check-ins, grace, quiet-week, no-shame — and
+  they tick with ZERO XP (locked). Seeded as TWO habits (veggies, water),
+  DEFAULTS-OFF, user-enabled, never forced; manual check-in always wins;
+  `isImported` excluded.
 
 ## Levels & Achievements
 
@@ -167,15 +195,51 @@ Not XP sources:
   year" residue was scrubbed to anchored-yearly-window wording; Rolling Tape
   is the first KEPT vlog (captured OR adopted); the push-up ladder tier was
   renamed "Fifty Push-Ups".
+- **No-rename guarantee (D091)** — the 131 trophy names AND the tier labels
+  (Sprout / Root / Branch / Heartwood / Ring / Grove) stay EXACTLY as they
+  are — zero redo. The flower thematic is carried by the Life Tree OVERLAY
+  (identity axis + tier magnitude + derived accents), never a rename of this
+  catalog; the flower-tier relabeling proposal is withdrawn. The achievement
+  list here is also the scan-time feed for the Life Tree rarity-tier scan
+  (D086 — the ladder is built from the FULL scanned list, every family, every
+  tier).
+- **Heartwood naming note (D112 DV-C5)** — all three "Heartwood" names stay
+  (the app name, this achievement tier, the habit stage); the ambiguity is
+  documented, never renamed. The habit card becomes the bud's local view (the
+  mini-plant stages are replaced by bud states) — a Life Tree duality change,
+  not a rename here.
+- **F-27 planning seed — APPROVED IN PRINCIPLE (D155; L034)** — adherence
+  trophies (runs of meeting your OWN plan — structurally unfarmable) and
+  situation trophies (Early Bird, Night Owl, Comeback, Weatherproof) are
+  approved as a CONCEPT only; the FULL setup is deferred to the M7
+  achievement/gamification milestone — no trophy-rule content is locked here.
+  The planning-seed constraints carry over from the locked rules: new entries
+  go through the catalog layer map (below), loudness stays Sprout/Branch-tier
+  → silent in-game toasts only (the Coach tie-in section), and achievements
+  grant ZERO XP. Research retention data recorded for the activation
+  discussion (hardest-tier achievers retain 74% vs 32% easiest; day-one
+  earners +64%).
+- **New achievement work follows the v2 map** — THE WHAT (the catalog) / THE
+  WHEN (the trigger spec) / THE WHY (this ledger's pins), exactly as the
+  canonical-sources block above states. Any new trophy or catalog entry —
+  including the F-27 activation work and the schedule-run trophies — goes
+  through the same three-layer map; nothing is added ad hoc.
 
 ### Shared primitives (owners and rules)
 
 - **Account anchor** — longevity "day one" = the MINIMUM `occurredAt` across
   all events with `imported=false` and no tombstone/deletion; computed and
   FROZEN at the moment the first real event is written; stored immutable, read
-  O(1), never user-editable. It is NOT the milestone-review anchor (first
-  journal entry). It survives reinstall; imports can never set or shift it.
-  Rings read this anchor.
+  O(1), never user-editable. It IS the shared app-wide anchor (D102): the
+  milestone-review anchor and the Coach's anniversary read the SAME frozen
+  value — the account's FIRST IN-WINDOW event per D100, never the first
+  journal entry, never shifted by deletion. It survives reinstall; imports
+  can never set or shift it. Rings read this anchor.
+  <!-- REMOVED (D102 / L132): "It is NOT the milestone-review anchor (first
+  journal entry)." Superseded — D102 makes the account anchor THE shared
+  anchor: the Coach's milestone-review anniversary is the same frozen value
+  (a gym-only user gets their review on the tree's birthday); the shifting
+  first-journal-entry anchor is replaced. -->
 - **occurredAt is the evidence, writtenAt is the clock** — the
   robot-consistency family reads `occurredAt` (the time the user declares the
   thing happened — the system rewards the ritual, not the typing). `writtenAt`
@@ -194,7 +258,14 @@ Not XP sources:
   that domain (never timer/render); a trophy fires exactly ONCE when its
   condition flips not-true → true, stays silent while true, and repeatables
   re-arm per cadence; one `achievement.unlocked` event, plus an optional one
-  Coach line for Ring/Grove. Imported-heavy days never paint "full".
+  Coach line for Ring/Grove. Imported-heavy days never paint "full". The RING
+  brand reads the SIX CORE domains only (D116 D10 — goals and periods excluded
+  from the brand; the canonical-7 stays for the axes/presence; "fitness" here
+  is the gym domain, same presence owner). PRESENCE reads the written-in-window
+  guard (D100): a day counts as presence only if its events were written within
+  the ±3-day grace window of that dayKey — content is real, presence is earned;
+  the shared predicate kills the manufacture-a-year attack for the yearly bars
+  too, exactly as it does for the tree.
 - **Two-domain same-day joins** — PR + journal (Wrote It Down), D031 photo +
   weight milestone (Eyes on the Data), journal + vlog-in-trip (Somewhere Else,
   Still You) are composed from `dayDomainPresence` plus targeted day queries;
@@ -207,8 +278,11 @@ Not XP sources:
   guardrail; it is a different floor from the journal-XP content gate above);
   FOOD — non-imported log with ≥1 real logged item (named, quantified); typed
   daily totals/placeholders/empty never count; GYM — non-imported training
-  session with ≥1 real logged set (weight/reps or time; zero-set sessions
-  never count); HABITS — a real completion that day (including auto-tracked);
+  session with ≥1 real WORKING set (F-05 setType bar, D133 — weight/reps or
+  time; zero-set sessions never count, and a warm-up-only (W) session NEVER
+  satisfies qualifyingEntry(GYM): it is a logged session, not a trained
+  session; W sets are excluded from volume/PR/est-1RM/adherence everywhere);
+  HABITS — a real completion that day (including auto-tracked);
   `completion_revoked` never counts; PLANNED REST NEVER FILLS THE SLOT (a rest
   day is honest absence — streaks still freeze, Honest Rest still fires,
   nothing is punished, the domain is simply not present); BODY — a real
@@ -316,13 +390,15 @@ Not XP sources:
   level (item 19) is a display-only profile grade — never a trophy, never a
   gate.
 - **Absolute ladders are actual-lift-only** — absolute-lift trophy ladders
-  (bench/squat/DL/OHP/curl thresholds) fire ONLY when a REAL logged set crosses
-  threshold weight ≥ threshold AND reps ≥ 1, straight from exercise_sets (or
-  the rep-mode addedLoadKg path) — NO est-1RM substitution, no inflation, no
-  "45 kg × 8 ≈ 50 kg" math. Est-1RM stays for PR detection and standards;
+  (bench/squat/DL/OHP/curl thresholds) fire ONLY when a REAL WORKING set
+  crosses threshold weight ≥ threshold AND reps ≥ 1, straight from
+  exercise_sets (or the rep-mode addedLoadKg path) — NO est-1RM substitution,
+  no inflation, no "45 kg × 8 ≈ 50 kg" math; warm-up (W) sets NEVER count
+  (F-05 setType bar, D133 — the W exclusion applies to volume, PR, est-1RM,
+  and adherence everywhere). Est-1RM stays for PR detection and standards;
   thresholds beyond the current best stay future-earnable; "real set on real
-  day" + session-verify guard against warm-up failures and mistyped rack
-  numbers; no deletion can re-mint (derived from committed history).
+  day" + session-verify guard against mistyped rack numbers; no deletion can
+  re-mint (derived from committed history).
 - **Relative-to-you and standards share one metric** — the relative family
   (Bodyweight Bench, One and a Half, Double Bodyweight Pull, Press
   Three-Quarters, Triple and Four Times) measures est-1RM ÷ 7-day rolling
@@ -344,6 +420,16 @@ Not XP sources:
   for vault or achievements). When re-derivation removes a previously fired
   PR-XP (set edit/delete), the gamification engine writes a NEGATIVE XP event
   so totals stay reconciled; PR XP never resurrects without a fresh real PR.
+- **PR celebration moments (F-03, D157)** — celebration fires on the
+  first-ever PR per exercise; milestone PRs defer to the locked trophy rules;
+  a return-after-gap PR gets a distinct softer mark; NO celebration for
+  matching records, warm-up (W) sets (F-05), or imported data; anti-noise
+  guard (one at a time; stacked PRs queue + collapse into the post-session
+  summary card "3 records set today"); summary card on session-finish +
+  records vault; facts-only copy; the celebration grants NO XP. The VISUAL
+  language defers to the Life Tree ceremony session (D106 F-03 NO-BLOOM
+  arbitration: bract-style flourish at the logging moment, ZERO flowers — the
+  flower = achievement contract survives; not confetti).
 
 ### Cadence and window rules (G pins — named guardrails)
 
@@ -449,6 +535,17 @@ Not XP sources:
   tiers but only Novice/Intermediate/Advanced fire trophies; the top tier is a
   Coach-observable ceiling only, ZERO trophies read it; no future pass may fix
   it into a trophy.
+- **Schedule-run trophies in the catalog (F-27 activation, D155)** —
+  Trimester and The Schedule Never Breaks are catalog achievements: their
+  criteria live in THE WHAT (the v2 catalog), their trigger machinery in THE
+  WHEN (the achievement spec), the pins here in THE WHY — the three-layer map
+  above, unchanged. Their activation milestone is the M7 achievement/
+  gamification milestone, alongside the F-27 planning seed. Two questions are
+  deferred to that activation, not decided now: (1) do adapted sessions (F-23)
+  count as "adhered"? — the draft answer recorded for activation is yes —
+  done-differently, never skipped; (2) if so, do adapted sessions CAP these
+  trophies' count (e.g., max N adapted weeks per run)? The cap question is
+  answered at activation, never before.
 
 ### Coach tie-in
 
